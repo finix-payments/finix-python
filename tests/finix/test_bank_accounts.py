@@ -12,6 +12,7 @@ class TestBankAccount(TestCase):
         if not identity_id:
             from test_identities import TestIdentities
             identity_id = TestIdentities.create_identity(api).id
+
         form = forms.bank_account.Create(
             tags=dict(application_name='test app'),
             account_type='SAVINGS',

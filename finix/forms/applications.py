@@ -44,3 +44,6 @@ class ApplicationUpdateForm(Form):
     processing_enabled = Boolean(default=pilo.NONE)
     settlement_enabled = Boolean(default=pilo.NONE)
     tags = Dict(String(), String(), default=pilo.NONE)
+
+class CreateApplicationUser(Form):
+    tags = Dict(String(), String(), default=pilo.NONE)

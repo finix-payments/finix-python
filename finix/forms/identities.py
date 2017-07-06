@@ -38,5 +38,3 @@ class Entity(Form):
 class Create(Form):
     tags = Dict(String(), String(), default=pilo)
     entity = SubForm(Entity)
-
-

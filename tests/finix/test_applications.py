@@ -65,6 +65,12 @@ class TestApplications(TestCase):
         )
         return api.applications.post(form)
 
+    @classmethod
+    def create_application_user(self):
+        api = self.platform_api
+        form = forms.applications.CreateApplicationUser.Create(tags=dict(application_name='test app python'))
+        return api.applications.post(form)
+
     def test_applications(self):
         api = self.platform_api
 
@@ -77,9 +83,17 @@ class TestApplications(TestCase):
 
         application_with_enabled_processor = application.register_processor()
 
+        # how can i make an api call w/ a nested resource -
+        # application_user = api.applications.id(application.id)
+        # application_user = api.applications.id(application.id)
+
+        print "#################################"
+        # print application_user
         print "#################################"
         print application_with_enabled_processor
 
-
         self.assertTrue(updated_application.processing_enabled)
         # self.assertEqual('DUMMY_V1', application_with_enabled_processor.type)
+
+
+

@@ -12,7 +12,8 @@ class ApiClient(object):
 
         self.users = resources.Index(self, '/users', views.User, [])
         self.applications = resources.Index(self, '/applications', views.Application, [
-            resources.Index(self, '/processors', views.Processor, [])
+            # resources.Index(self, '/processors', views.Processor, []),
+            # resources.Index(self, '/users', views.User, []),
         ]),
         # self.processors = resources.Index(self, '/applications', views.Application, [
         #     resources.Index(self,'/processors',views.Processor)
