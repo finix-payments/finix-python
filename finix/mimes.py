@@ -36,8 +36,8 @@ class _JSONEncoder(_json.JSONEncoder):
 
 
 Json = MIME(
-    accept_type='application/json',
-    content_type='application/json',
+    accept_type='application/vnd.json+api',
+    content_type='application/vnd.json+api',
     encode=_JSONEncoder().encode,
     source=_JSONSource,
 )
