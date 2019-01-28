@@ -5,7 +5,7 @@ from finix import lib
 from finix import mimes
 
 
-headers = {'Content-Type': 'application/json'}
+headers = {'Content-Type': 'application/vnd.json+api'}
 
 
 class Index(object):
