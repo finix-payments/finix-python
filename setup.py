@@ -11,7 +11,7 @@ requirements = [
 
 setup(
     name='finix',
-    version='1.0.0',
+    version='1.0.18',
     url='https://github.com/finix-payments/finix-python',
     author='michael serna',
     author_email='michael@finixpayments.com',
