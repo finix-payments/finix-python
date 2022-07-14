@@ -273,3 +273,4 @@ def test_create_merchant_verification(config, c_merchant):
 		tmp_client.merchants.create_merchant_verification(id, create_verification_request=req)
 	assert e.value.status == 422
 	assert e.value.reason == 'Unprocessable Entity'
+	assert 'An existing verification is already PENDING.' in e.value.body

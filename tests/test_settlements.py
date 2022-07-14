@@ -36,6 +36,7 @@ def test_delete_exception(config):
         tmp_client.settlements.remove_transfers_from_settlement(sid,remove_settlement_transfer = req)
     assert e.value.status == 409
     assert e.value.reason == 'Conflict'
+    assert 'Entries [TRr61njQxaa7AJf6E1C3QwCc] not found in settlement STmCc8GbjjX33SdymwNhb9Et' in e.value.body
 
 
 # try to create a settlement for everything settled, expect 422
