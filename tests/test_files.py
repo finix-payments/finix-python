@@ -45,7 +45,7 @@ def c_elink(config, c_file):
     return response
 
 
-def test_get(config, c_file):
+def test_get_file(config, c_file):
     tmp_client = finix.FinixClient(config)
     id = c_file.id
     response = tmp_client.files.get(id)
@@ -54,7 +54,7 @@ def test_get(config, c_file):
     assert response.tags['test_key_100'] == 'test_val_100'
 
 
-def test_create(config):
+def test_create_file(config):
     tmp_client = finix.FinixClient(config)
     req = CreateFileRequest(
         display_name="pytest_create",

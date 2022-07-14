@@ -35,7 +35,7 @@ def c_device(config):
     return response
 
 
-def test_get(config, c_device):
+def test_get_device(config, c_device):
     tmp_client = finix.FinixClient(config)
     id = c_device.id
     response = tmp_client.devices.get(id)
@@ -44,7 +44,7 @@ def test_get(config, c_device):
     assert response.tags['test_key_100'] == 'test_val_100'
 
 
-def test_create(config):
+def test_create_device(config):
     tmp_client = finix.FinixClient(config)
     id = 'MUu56ZGx3Xb6U9gAqKfgNisd'
     req = CreateDevice(

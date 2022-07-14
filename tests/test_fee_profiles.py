@@ -29,7 +29,7 @@ def c_profile(config):
     return response
 
 
-def test_get(config, c_profile):
+def test_get_fee_profile(config, c_profile):
     tmp_client = finix.FinixClient(config)
     id = c_profile.id
     response = tmp_client.fee_profiles.get(id)
@@ -38,7 +38,7 @@ def test_get(config, c_profile):
     assert response.fixed_fee == 100
 
 
-def test_create(config):
+def test_create_fee_profile(config):
     tmp_client = finix.FinixClient(config)
     req = CreateFeeProfileRequest(
         fixed_fee=10,

@@ -29,7 +29,7 @@ def c_verif(config):
     return response
 
 
-def test_get(config, c_verif):
+def test_get_verification(config, c_verif):
     tmp_client = finix.FinixClient(config)
     id = c_verif.id
     response = tmp_client.verifications.get(id)
@@ -38,7 +38,7 @@ def test_get(config, c_verif):
     assert response.tags['test_key_100'] == 'test_val_100'
 
 
-def test_create(config):
+def test_create_verification(config):
     tmp_client = finix.FinixClient(config)
     req = CreateVerificationRequest(
         merchant='MUucec6fHeaWo3VHYoSkUySM',

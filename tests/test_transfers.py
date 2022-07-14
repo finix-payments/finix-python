@@ -31,7 +31,7 @@ def c_transfer(config):
     return response
 
 
-def test_create(config):
+def test_create_transfer(config):
     tmp_client = finix.FinixClient(config)
     req = CreateTransferRequest(
 	    merchant="MUeDVrf2ahuKc9Eg5TeZugvs",
@@ -63,7 +63,7 @@ def test_create_transfer_reversal(config, c_transfer):
     assert response.tags['test_key_102'] == 'test_val_102'
 
 
-def test_get(config, c_transfer):
+def test_get_transfer(config, c_transfer):
     tmp_client = finix.FinixClient(config)
     id = c_transfer.id
     response = tmp_client.transfers.get(id)
@@ -72,7 +72,7 @@ def test_get(config, c_transfer):
     assert response.tags['test_key_100'] == 'test_val_100'
 
 
-def test_update(config, c_transfer):
+def test_update_transfer(config, c_transfer):
     tmp_client = finix.FinixClient(config)
     id = c_transfer.id
     req = UpdateTransferRequest(

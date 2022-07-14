@@ -29,7 +29,7 @@ def c_update(config):
     return response
 
 
-def test_create(config):
+def test_create_instrument_update(config):
     tmp_client = finix.FinixClient(config)
     str_now = str(datetime.now())
     req_string = "{\"merchant\":\"MUucec6fHeaWo3VHYoSkUySM\",  \"idempotency_id\":\"" + str_now + "\" }"
@@ -43,7 +43,7 @@ def test_create(config):
     assert response.state == 'PENDING'
 
 
-def test_get(config, c_update):
+def test_get_instrument_update(config, c_update):
     tmp_client = finix.FinixClient(config)
     id = c_update.id
     response = tmp_client.instrument_updates.get(id)
@@ -53,7 +53,7 @@ def test_get(config, c_update):
 
 
 # newly uploaded file not immediately ready for download
-def test_download(config, c_update):
+def test_download_instrument_update(config, c_update):
     tmp_client = finix.FinixClient(config)
     id = c_update.id
     with pytest.raises(finix.ApiException) as e:

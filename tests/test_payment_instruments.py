@@ -34,7 +34,7 @@ def c_bank(config):
     return response
 
 
-def test_get(config):
+def test_get_payment_instrument(config):
     tmp_client = finix.FinixClient(config)
     id = 'PI4gTM3twQ5XyXfM4rTuFvpo'
     response = tmp_client.payment_instruments.get(id)
@@ -42,7 +42,7 @@ def test_get(config):
     assert response.type == 'APPLE_PAY'
 
 
-def test_create(config):
+def test_create_payment_instrument(config):
     tmp_client = finix.FinixClient(config)
     req = CreatePaymentInstrumentRequest(
 	    name="LBC Finix",
@@ -69,7 +69,7 @@ def test_create(config):
     assert response.tags['card_name'] == 'Finix Card Python'
 
 
-def test_update(config, c_bank):
+def test_update_payment_instrument(config, c_bank):
     tmp_client = finix.FinixClient(config)
     id = c_bank.id
     req = UpdatePaymentInstrumentRequest(

@@ -15,7 +15,7 @@ def config():
     return configuration
 
 
-def test_get(config):
+def test_get_settlement(config):
     tmp_client = finix.FinixClient(config)
     id = 'STmCc8GbjjX33SdymwNhb9Et'
     response = tmp_client.settlements.get(id)
@@ -25,7 +25,7 @@ def test_get(config):
 
 
 # testing on deleted resource resulting in Conflict exception
-def test_delete_exception(config):
+def test_delete_settlement_transfers(config):
     tmp_client = finix.FinixClient(config)
     sid = 'STmCc8GbjjX33SdymwNhb9Et'
     tid = 'TRr61njQxaa7AJf6E1C3QwCc'
@@ -40,7 +40,7 @@ def test_delete_exception(config):
 
 
 # try to create a settlement for everything settled, expect 422
-def test_create(config):
+def test_create_settlement(config):
     tmp_client = finix.FinixClient(config)
     id = 'IDqvpp6sfYBLxDsYNeFRdYeF'
     req = CreateSettlementRequest(
@@ -58,7 +58,7 @@ def test_create(config):
     assert 'There are no unsettled SUCCEEDED transfers to be settled.' in e.value.body
 
 
-def test_update(config):
+def test_update_settlement(config):
     tmp_client = finix.FinixClient(config)
     id = 'STmCc8GbjjX33SdymwNhb9Et'
     req = UpdateSettlementRequest(

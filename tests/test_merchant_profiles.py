@@ -15,7 +15,7 @@ def config():
     return configuration
 
 
-def test_get(config):
+def test_get_merchant_profile(config):
     tmp_client = finix.FinixClient(config)
     id = 'MP9J4ALZHx4pa5i1p5G5jeKY'
     response = tmp_client.merchant_profiles.get(id)
@@ -23,7 +23,7 @@ def test_get(config):
     assert response.application == 'AP7yJr75Zycq9Fz6CpK8h9gn'
 
 
-def test_update(config):
+def test_update_merchant_profile(config):
     tmp_client = finix.FinixClient(config)
     id = 'MP9J4ALZHx4pa5i1p5G5jeKY'
     req = {

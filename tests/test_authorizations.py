@@ -32,7 +32,7 @@ def c_auth(config):
     return response
 
 
-def test_create(config):
+def test_create_authorization(config):
     tmp_client = finix.FinixClient(config)
     req = CreateAuthorizationRequest(
         source="PIe2YvpcjvoVJ6PzoRPBK137",
@@ -50,7 +50,7 @@ def test_create(config):
     assert response.tags['test_key_101'] == 'test_val_101'
 
 
-def test_get(config, c_auth):
+def test_get_authorization(config, c_auth):
     tmp_client = finix.FinixClient(config)
     id = c_auth.id
     response = tmp_client.authorizations.get(id)
@@ -59,7 +59,7 @@ def test_get(config, c_auth):
     assert response.tags['test_key_100'] == 'test_val_100'
 
 
-def test_update(config, c_auth):
+def test_update_authorization(config, c_auth):
     tmp_client = finix.FinixClient(config)
     id = c_auth.id
     req = UpdateAuthorizationRequest(

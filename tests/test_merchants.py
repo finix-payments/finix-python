@@ -132,7 +132,7 @@ def c_merchant(config):
     return response2
 
 
-def test_get(config, c_merchant):
+def test_get_merchant(config, c_merchant):
     tmp_client = finix.FinixClient(config)
     id = c_merchant.id
     response = tmp_client.merchants.get(id)
@@ -141,7 +141,7 @@ def test_get(config, c_merchant):
     assert response.tags['test_key_100'] == 'test_val_100'
 
 
-def test_update(config01, c_merchant):
+def test_update_merchant(config01, c_merchant):
     tmp_client = finix.FinixClient(config01)
     id = c_merchant.id
     req = UpdateMerchantRequest(
@@ -156,7 +156,7 @@ def test_update(config01, c_merchant):
     assert response.tags['test_key_101'] == 'test_val_101'
 
 
-def test_create(config):
+def test_create_merchant(config):
     tmp_client = finix.FinixClient(config)
     req1 = CreateIdentityRequest(
  	    additional_underwriting_data=CreateIdentityRequestAdditionalUnderwritingData(

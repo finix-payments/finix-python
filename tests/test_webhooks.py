@@ -29,7 +29,7 @@ def c_hook(config):
     return response
 
 
-def test_get(config, c_hook):
+def test_get_webhook(config, c_hook):
     tmp_client = finix.FinixClient(config)
     id = c_hook.id
     response = tmp_client.webhooks.get(id)
@@ -38,7 +38,7 @@ def test_get(config, c_hook):
     assert response.enabled == False
 
 
-def test_update(config,c_hook):
+def test_update_webhook(config,c_hook):
     tmp_client = finix.FinixClient(config)
     id = c_hook.id
     req01 = UpdateWebhookRequest(
@@ -57,7 +57,7 @@ def test_update(config,c_hook):
     assert response02.enabled == False
 
 
-def test_create(config):
+def test_create_webhook(config):
     tmp_client = finix.FinixClient(config)
     req = CreateWebhookRequest(
         url='https://example.com'

@@ -38,7 +38,7 @@ def test_create_dispute_evidence(config):
     assert response.tags['content-type'] == 'image/png'
 
 
-def test_get(config):
+def test_get_dispute(config):
     tmp_client = finix.FinixClient(config)
     id = 'DIs7yQRkHDdMYhurzYz72SFk'
     response = tmp_client.disputes.get(id)

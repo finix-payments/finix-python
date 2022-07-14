@@ -33,7 +33,7 @@ def c_btransfer(config):
     return response
 
 
-def test_get(config, c_btransfer):
+def test_get_balance_transfer(config, c_btransfer):
     tmp_client = finix.FinixClient(config)
     id = c_btransfer.id
     response = tmp_client.balance_transfers.get(id)
@@ -42,7 +42,7 @@ def test_get(config, c_btransfer):
     assert response.tags['test_key_100'] == 'test_val_100'
 
 
-def test_create(config):
+def test_create_balance_transfer(config):
     tmp_client = finix.FinixClient(config)
     req = CreateBalanceTransferRequest(
         currency=Currency("USD"),
