@@ -180,8 +180,8 @@ def test_settlements_transfers(config02):
     assert response.page['limit'] == 5
 
 
-def test_webhooks(config02):
-    tmp_client = finix.FinixClient(config02)
+def test_webhooks(config):
+    tmp_client = finix.FinixClient(config)
     response = tmp_client.webhooks.list()
     assert isinstance(response, WebhooksList)
     assert response.embedded['webhooks'][0]['id'][:2] == 'WH'
