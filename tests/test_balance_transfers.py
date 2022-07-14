@@ -29,14 +29,14 @@ def c_btransfer(config):
 	        test_key_100 = "test_val_100"
         )
     )
-    response = tmp_client.balance_transfers.create_balance_transfer(create_balance_transfer_request=req)
+    response = tmp_client.balance_transfers.create(create_balance_transfer_request=req)
     return response
 
 
 def test_get(config, c_btransfer):
     tmp_client = finix.FinixClient(config)
     id = c_btransfer.id
-    response = tmp_client.balance_transfers.get_balance_transfers(id)
+    response = tmp_client.balance_transfers.get(id)
     assert response.id[:2] == 'BT'
     assert response.amount == 100
     assert response.tags['test_key_100'] == 'test_val_100'
@@ -55,7 +55,7 @@ def test_create(config):
 	        test_key_101 = "test_val_101"
         )
     )
-    response = tmp_client.balance_transfers.create_balance_transfer(create_balance_transfer_request=req)
+    response = tmp_client.balance_transfers.create(create_balance_transfer_request=req)
     assert response.id[:2] == 'BT'
     assert response.amount == 101
     assert response.tags['test_key_101'] == 'test_val_101'

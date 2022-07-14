@@ -107,7 +107,7 @@ def test_merchants(config):
 
 def test_balance_transfers(config01):
     tmp_client = finix.FinixClient(config01)
-    response = tmp_client.balance_transfers.list_balance_transfers(limit=5)
+    response = tmp_client.balance_transfers.list(limit=5)
     assert isinstance(response, BalanceTransferList)
     assert response.page['limit'] == 5
     assert response.embedded['balance_transfers'][0]['id'][:2] == 'BT'
