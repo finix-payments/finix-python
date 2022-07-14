@@ -1,6 +1,5 @@
 import pytest
 import finix
-from finix.apis import *
 from finix.models import *
 from finix.configuration import Environment, Configuration
 from datetime import datetime
