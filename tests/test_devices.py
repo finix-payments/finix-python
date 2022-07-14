@@ -17,7 +17,7 @@ def config():
 
 @pytest.fixture
 def c_device(config):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     id = 'MUu56ZGx3Xb6U9gAqKfgNisd'
     request = CreateDevice(
         description='setup for testing',
@@ -31,21 +31,21 @@ def c_device(config):
             allow_debit=True
         )
     )
-    response = tmp_client.devices.create(id, create_device = request)
+    response = client.devices.create(id, create_device = request)
     return response
 
 
 def test_get_device(config, c_device):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     id = c_device.id
-    response = tmp_client.devices.get(id)
+    response = client.devices.get(id)
     assert response.id[:2] == 'DV'
     assert response.name == 'pytest_device'
     assert response.tags['test_key_100'] == 'test_val_100'
 
 
 def test_create_device(config):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     id = 'MUu56ZGx3Xb6U9gAqKfgNisd'
     request = CreateDevice(
         description='setup testing',
@@ -59,7 +59,7 @@ def test_create_device(config):
             allow_debit=True
         )
     )
-    response = tmp_client.devices.create(id, create_device = request)
+    response = client.devices.create(id, create_device = request)
     assert response.id[:2] == 'DV'
     assert response.name == 'pytest_device01'
     assert response.tags['test_key_101'] == 'test_val_101'

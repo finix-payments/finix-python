@@ -17,7 +17,7 @@ def config():
 
 @pytest.fixture
 def c_bank(config):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     request = CreatePaymentInstrumentRequest(
         account_type="SAVINGS",
         name="test_python",
@@ -30,20 +30,20 @@ def c_bank(config):
 	    type="BANK_ACCOUNT",
 	    identity="IDpYDM7J9n57q849o9E9yNrG"
     )
-    response = tmp_client.payment_instruments.create(create_payment_instrument_request=request)
+    response = client.payment_instruments.create(create_payment_instrument_request=request)
     return response
 
 
 def test_get_payment_instrument(config):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     id = 'PI4gTM3twQ5XyXfM4rTuFvpo'
-    response = tmp_client.payment_instruments.get(id)
+    response = client.payment_instruments.get(id)
     assert response.id[:2] == 'PI'
     assert response.type == 'APPLE_PAY'
 
 
 def test_create_payment_instrument(config):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     request = CreatePaymentInstrumentRequest(
 	    name="LBC Finix",
 	    expiration_year=2049,
@@ -63,28 +63,28 @@ def test_create_payment_instrument(config):
 	    type="PAYMENT_CARD",
 	    identity="IDgWxBhfGYLLdkhxx2ddYf9K"
     )
-    response = tmp_client.payment_instruments.create(create_payment_instrument_request=request)
+    response = client.payment_instruments.create(create_payment_instrument_request=request)
     assert response.id[:2] == 'PI'
     assert response.last_four == '0006'
     assert response.tags['card_name'] == 'Finix Card Python'
 
 
 def test_update_payment_instrument(config, c_bank):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     id = c_bank.id
     request = UpdatePaymentInstrumentRequest(
 	    tags=Tags(
 	        bank_account="Test Python Update"
         ),
     )
-    response = tmp_client.payment_instruments.update(id, update_payment_instrument_request=request)
+    response = client.payment_instruments.update(id, update_payment_instrument_request=request)
     assert response.id[:2] == 'PI'
     assert response.type == 'BANK_ACCOUNT'
     assert response.tags['bank_account'] == 'Test Python Update'
 
 
 def test_create_payment_instrument_verification(config, c_bank):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     id = c_bank.id
     request = CreateVerificationRequest(
         processor='DUMMY_V1',
@@ -92,7 +92,7 @@ def test_create_payment_instrument_verification(config, c_bank):
 	        test_key_000='test_val_000'
         )
     )
-    response = tmp_client.payment_instruments.create_payment_instrument_verification(id, create_verification_request=request)
+    response = client.payment_instruments.create_payment_instrument_verification(id, create_verification_request=request)
     assert response.id[:2] == 'VI'
     assert response.processor == 'DUMMY_V1'
     assert response.tags['test_key_000'] == 'test_val_000'

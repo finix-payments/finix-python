@@ -18,35 +18,35 @@ def config():
 
 @pytest.fixture
 def c_update(config):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     str_now = str(datetime.now())
     req_string = "{\"merchant\":\"MUucec6fHeaWo3VHYoSkUySM\",  \"idempotency_id\":\"F" + str_now + "\" }"
     request = CreateInstrumentUpdateRequest(
         file=open('tests/test_file.png', 'rb'),
         request=req_string,
     )
-    response = tmp_client.instrument_updates.create(create_instrument_update_request=request)
+    response = client.instrument_updates.create(create_instrument_update_request=request)
     return response
 
 
 def test_create_instrument_update(config):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     str_now = str(datetime.now())
     req_string = "{\"merchant\":\"MUucec6fHeaWo3VHYoSkUySM\",  \"idempotency_id\":\"" + str_now + "\" }"
     request = CreateInstrumentUpdateRequest(
         file=open('tests/test_file.png', 'rb'),
         request=req_string,
     )
-    response = tmp_client.instrument_updates.create(create_instrument_update_request=request)
+    response = client.instrument_updates.create(create_instrument_update_request=request)
     assert response.id[:2] == 'IU'
     assert response.merchant == 'MUucec6fHeaWo3VHYoSkUySM'
     assert response.state == 'PENDING'
 
 
 def test_get_instrument_update(config, c_update):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     id = c_update.id
-    response = tmp_client.instrument_updates.get(id)
+    response = client.instrument_updates.get(id)
     assert response.id[:2] == 'IU'
     assert response.merchant == 'MUucec6fHeaWo3VHYoSkUySM'
     assert response.state == 'PENDING'
@@ -54,9 +54,9 @@ def test_get_instrument_update(config, c_update):
 
 # newly uploaded file not immediately ready for download
 def test_download_instrument_update(config, c_update):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     id = c_update.id
     with pytest.raises(finix.ApiException) as e:
-        tmp_client.instrument_updates.download(id, format='json')
+        client.instrument_updates.download(id, format='json')
     assert e.value.status == 404
     assert e.value.reason == 'Not Found'

@@ -17,7 +17,7 @@ def config():
 
 @pytest.fixture
 def c_profile(config):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     request = CreateFeeProfileRequest(
         fixed_fee=100,
         application = 'APmuwPBaW8pVcwb4vCTHQH32',
@@ -25,21 +25,21 @@ def c_profile(config):
 	        test_key_100 = "test_val_100"
         )
     )
-    response = tmp_client.fee_profiles.create(create_fee_profile_request=request)
+    response = client.fee_profiles.create(create_fee_profile_request=request)
     return response
 
 
 def test_get_fee_profile(config, c_profile):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     id = c_profile.id
-    response = tmp_client.fee_profiles.get(id)
+    response = client.fee_profiles.get(id)
     assert response.id[:2] == 'FP'
     assert response.application == 'APmuwPBaW8pVcwb4vCTHQH32'
     assert response.fixed_fee == 100
 
 
 def test_create_fee_profile(config):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     request = CreateFeeProfileRequest(
         fixed_fee=10,
         application = 'APmuwPBaW8pVcwb4vCTHQH32',
@@ -47,7 +47,7 @@ def test_create_fee_profile(config):
 	        test_key_110 = "test_val_110"
         )
     )
-    response = tmp_client.fee_profiles.create(create_fee_profile_request=request)
+    response = client.fee_profiles.create(create_fee_profile_request=request)
     assert response.id[:2] == 'FP'
     assert response.application == 'APmuwPBaW8pVcwb4vCTHQH32'
     assert response.fixed_fee == 10

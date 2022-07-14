@@ -17,7 +17,7 @@ def config():
 
 @pytest.fixture
 def c_verif(config):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     request = CreateVerificationRequest(
         merchant='MUgWbPVvtKbzjKNNGKqdQYV7',
         processor='DUMMY_V1',
@@ -25,21 +25,21 @@ def c_verif(config):
             test_key_100 = "test_val_100"
         )
     )
-    response = tmp_client.verifications.create(create_verification_request=request)
+    response = client.verifications.create(create_verification_request=request)
     return response
 
 
 def test_get_verification(config, c_verif):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     id = c_verif.id
-    response = tmp_client.verifications.get(id)
+    response = client.verifications.get(id)
     assert response.id[:2] == 'VI'
     assert response.processor == 'DUMMY_V1'
     assert response.tags['test_key_100'] == 'test_val_100'
 
 
 def test_create_verification(config):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     request = CreateVerificationRequest(
         merchant='MUucec6fHeaWo3VHYoSkUySM',
         processor='DUMMY_V1',
@@ -47,7 +47,7 @@ def test_create_verification(config):
             test_key_110 = "test_val_110"
         )
     )
-    response = tmp_client.verifications.create(create_verification_request=request)
+    response = client.verifications.create(create_verification_request=request)
     assert response.id[:2] == 'VI'
     assert response.processor == 'DUMMY_V1'
     assert response.tags['test_key_110'] == 'test_val_110'

@@ -17,41 +17,41 @@ def config():
 
 @pytest.fixture
 def c_evidence(config):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     id = 'DIs7yQRkHDdMYhurzYz72SFk'
     request = CreateDisputeEvidenceRequest(
         file=open('tests/test_file.png', 'rb'),
     )
-    response = tmp_client.disputes.create_dispute_evidence(id, create_dispute_evidence_request=request)
+    response = client.disputes.create_dispute_evidence(id, create_dispute_evidence_request=request)
     return response
 
 
 def test_create_dispute_evidence(config):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     id = 'DIs7yQRkHDdMYhurzYz72SFk'
     request = CreateDisputeEvidenceRequest(
         file=open('tests/test_file.png', 'rb'),
     )
-    response = tmp_client.disputes.create_dispute_evidence(id, create_dispute_evidence_request=request)
+    response = client.disputes.create_dispute_evidence(id, create_dispute_evidence_request=request)
     assert response.id[:2] == 'DF'
     assert response.tags['file-name'] == 'test_file.png'
     assert response.tags['content-type'] == 'image/png'
 
 
 def test_get_dispute(config):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     id = 'DIs7yQRkHDdMYhurzYz72SFk'
-    response = tmp_client.disputes.get(id)
+    response = client.disputes.get(id)
     assert response.id[:2] == 'DI'
     assert response.application == 'APgPDQrLD52TYvqazjHJJchM'
     assert response.reason == 'FRAUD'
 
 
 def test_get_dispute_evidence(config, c_evidence):
-    tmp_client = finix.FinixClient(config)
+    client = finix.FinixClient(config)
     did = 'DIs7yQRkHDdMYhurzYz72SFk'
     eid = c_evidence.id
-    response = tmp_client.disputes.get_dispute_evidence(did,eid)
+    response = client.disputes.get_dispute_evidence(did,eid)
     assert response.id[:2] == 'DF'
     assert response.tags['file-name'] == 'test_file.png'
     assert response.tags['content-type'] == 'image/png'
