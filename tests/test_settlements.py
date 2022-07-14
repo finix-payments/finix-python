@@ -38,7 +38,7 @@ def test_delete_exception(config):
     assert e.value.reason == 'Conflict'
 
 
-# wrong endpoint in spec, pending fix
+# try to create a settlement for everything settled, expect 422
 def test_create(config):
     tmp_client = finix.FinixClient(config)
     id = 'IDqvpp6sfYBLxDsYNeFRdYeF'
@@ -51,9 +51,10 @@ def test_create(config):
         )
     )
     with pytest.raises(finix.ApiException) as e:
-        tmp_client.settlements.create(create_settlement_request=req)
-    assert e.value.status == 405
-    assert e.value.reason == 'Method Not Allowed'
+        tmp_client.settlements.create(id,create_settlement_request=req)
+    assert e.value.status == 422
+    assert e.value.reason == 'Unprocessable Entity'
+    assert 'There are no unsettled SUCCEEDED transfers to be settled.' in e.value.body
 
 
 def test_update(config):
