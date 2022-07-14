@@ -19,7 +19,7 @@ def config():
 def c_device(config):
     tmp_client = finix.FinixClient(config)
     id = 'MUu56ZGx3Xb6U9gAqKfgNisd'
-    req = CreateDevice(
+    request = CreateDevice(
         description='setup for testing',
         tags=Tags(
 	        test_key_100 = "test_val_100"
@@ -31,7 +31,7 @@ def c_device(config):
             allow_debit=True
         )
     )
-    response = tmp_client.devices.create(id, create_device = req)
+    response = tmp_client.devices.create(id, create_device = request)
     return response
 
 
@@ -47,7 +47,7 @@ def test_get_device(config, c_device):
 def test_create_device(config):
     tmp_client = finix.FinixClient(config)
     id = 'MUu56ZGx3Xb6U9gAqKfgNisd'
-    req = CreateDevice(
+    request = CreateDevice(
         description='setup testing',
         tags=Tags(
 	        test_key_101 = "test_val_101"
@@ -59,7 +59,7 @@ def test_create_device(config):
             allow_debit=True
         )
     )
-    response = tmp_client.devices.create(id, create_device = req)
+    response = tmp_client.devices.create(id, create_device = request)
     assert response.id[:2] == 'DV'
     assert response.name == 'pytest_device01'
     assert response.tags['test_key_101'] == 'test_val_101'

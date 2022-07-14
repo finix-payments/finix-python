@@ -18,7 +18,7 @@ def config():
 @pytest.fixture
 def c_merchant(config):
     tmp_client = finix.FinixClient(config)
-    req = CreateIdentityRequest(
+    request = CreateIdentityRequest(
  	    additional_underwriting_data=CreateIdentityRequestAdditionalUnderwritingData(
 	        merchant_agreement_accepted=True,
 	        merchant_agreement_ip_address="42.1.1.113",
@@ -97,7 +97,7 @@ def c_merchant(config):
 	        annual_card_volume=12000000,
         )
     ) 
-    response = tmp_client.identities.create(create_identity_request=req)
+    response = tmp_client.identities.create(create_identity_request=request)
     return response
 
 
@@ -113,12 +113,12 @@ def test_get_identity(config, c_merchant):
 def test_update_identity(config, c_merchant):
     tmp_client = finix.FinixClient(config)
     id = c_merchant.id
-    req = UpdateIdentityRequest(
+    request = UpdateIdentityRequest(
         tags=Tags(
             test_key_101 = "test_val_101"
         )
     )
-    response = tmp_client.identities.update(id, update_identity_request=req)
+    response = tmp_client.identities.update(id, update_identity_request=request)
     assert response.id[:2] == 'ID'
     assert response.entity['mcc'] == '0742'
     assert response.tags['test_key_101'] == 'test_val_101'
@@ -126,7 +126,7 @@ def test_update_identity(config, c_merchant):
 
 def test_create_identity(config):
     tmp_client = finix.FinixClient(config)
-    req = CreateIdentityRequest(
+    request = CreateIdentityRequest(
  	    additional_underwriting_data=CreateIdentityRequestAdditionalUnderwritingData(
 	        merchant_agreement_accepted=True,
 	        merchant_agreement_ip_address="42.1.1.113",
@@ -205,7 +205,7 @@ def test_create_identity(config):
 	        annual_card_volume=12000000,
         )
     ) 
-    response = tmp_client.identities.create(create_identity_request=req)
+    response = tmp_client.identities.create(create_identity_request=request)
     assert response.id[:2] == 'ID'
     assert response.entity['last_name'] == 'abc'
     assert response.tags['test_key_102'] == 'test_val_102'
@@ -214,7 +214,7 @@ def test_create_identity(config):
 def test_create_associated_identity(config, c_merchant):
     tmp_client = finix.FinixClient(config)
     id = c_merchant.id
-    req = CreateIdentityRequest(
+    request = CreateIdentityRequest(
 	    tags=Tags(
 	        test_key_103 = "test_val_103"
         ),
@@ -266,7 +266,7 @@ def test_create_associated_identity(config, c_merchant):
 	        annual_card_volume=12000000,
         )
     ) 
-    response = tmp_client.identities.create_associated_identity(id, create_identity_request=req)
+    response = tmp_client.identities.create_associated_identity(id, create_identity_request=request)
     assert response.id[:2] == 'ID'
     assert response.entity['last_name'] == 'xbc'
     assert response.tags['test_key_103'] == 'test_val_103'
@@ -275,13 +275,13 @@ def test_create_associated_identity(config, c_merchant):
 def test_create_identity_verification(config, c_merchant):
     tmp_client = finix.FinixClient(config)
     id = c_merchant.id
-    req = CreateVerificationRequest(
+    request = CreateVerificationRequest(
 		processor='DUMMY_V1',
 		tags=Tags(
 	        test_key_104 = "test_val_104"
         )
 	)
-    response = tmp_client.identities.create_identity_verification(id, create_verification_request=req)
+    response = tmp_client.identities.create_identity_verification(id, create_verification_request=request)
     assert response.id[:2] == 'VI'
     assert response.processor == 'DUMMY_V1'
     assert response.tags['test_key_104'] == 'test_val_104'

@@ -26,10 +26,10 @@ def test_get_merchant_profile(config):
 def test_update_merchant_profile(config):
     tmp_client = finix.FinixClient(config)
     id = 'MP9J4ALZHx4pa5i1p5G5jeKY'
-    req = {
+    request = {
         'tags':{'test_key_100':'test_val_100'}
     }
-    response = tmp_client.merchant_profiles.update(id,body=req)
+    response = tmp_client.merchant_profiles.update(id,body=request)
     assert response.id[:2] == 'MP'
     assert response.application == 'AP7yJr75Zycq9Fz6CpK8h9gn'
     assert response.tags['test_key_100'] == 'test_val_100'

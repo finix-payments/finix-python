@@ -19,20 +19,20 @@ def config():
 def c_evidence(config):
     tmp_client = finix.FinixClient(config)
     id = 'DIs7yQRkHDdMYhurzYz72SFk'
-    req = CreateDisputeEvidenceRequest(
+    request = CreateDisputeEvidenceRequest(
         file=open('tests/test_file.png', 'rb'),
     )
-    response = tmp_client.disputes.create_dispute_evidence(id, create_dispute_evidence_request=req)
+    response = tmp_client.disputes.create_dispute_evidence(id, create_dispute_evidence_request=request)
     return response
 
 
 def test_create_dispute_evidence(config):
     tmp_client = finix.FinixClient(config)
     id = 'DIs7yQRkHDdMYhurzYz72SFk'
-    req = CreateDisputeEvidenceRequest(
+    request = CreateDisputeEvidenceRequest(
         file=open('tests/test_file.png', 'rb'),
     )
-    response = tmp_client.disputes.create_dispute_evidence(id, create_dispute_evidence_request=req)
+    response = tmp_client.disputes.create_dispute_evidence(id, create_dispute_evidence_request=request)
     assert response.id[:2] == 'DF'
     assert response.tags['file-name'] == 'test_file.png'
     assert response.tags['content-type'] == 'image/png'

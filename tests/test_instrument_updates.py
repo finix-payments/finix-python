@@ -21,11 +21,11 @@ def c_update(config):
     tmp_client = finix.FinixClient(config)
     str_now = str(datetime.now())
     req_string = "{\"merchant\":\"MUucec6fHeaWo3VHYoSkUySM\",  \"idempotency_id\":\"F" + str_now + "\" }"
-    req = CreateInstrumentUpdateRequest(
+    request = CreateInstrumentUpdateRequest(
         file=open('tests/test_file.png', 'rb'),
         request=req_string,
     )
-    response = tmp_client.instrument_updates.create(create_instrument_update_request=req)
+    response = tmp_client.instrument_updates.create(create_instrument_update_request=request)
     return response
 
 
@@ -33,11 +33,11 @@ def test_create_instrument_update(config):
     tmp_client = finix.FinixClient(config)
     str_now = str(datetime.now())
     req_string = "{\"merchant\":\"MUucec6fHeaWo3VHYoSkUySM\",  \"idempotency_id\":\"" + str_now + "\" }"
-    req = CreateInstrumentUpdateRequest(
+    request = CreateInstrumentUpdateRequest(
         file=open('tests/test_file.png', 'rb'),
         request=req_string,
     )
-    response = tmp_client.instrument_updates.create(create_instrument_update_request=req)
+    response = tmp_client.instrument_updates.create(create_instrument_update_request=request)
     assert response.id[:2] == 'IU'
     assert response.merchant == 'MUucec6fHeaWo3VHYoSkUySM'
     assert response.state == 'PENDING'

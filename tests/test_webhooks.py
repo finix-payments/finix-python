@@ -18,14 +18,14 @@ def config():
 @pytest.fixture
 def c_hook(config):
     tmp_client = finix.FinixClient(config)
-    req = CreateWebhookRequest(
+    request = CreateWebhookRequest(
         url='https://example.com'
     )
-    response = tmp_client.webhooks.create(create_webhook_request=req)
-    req01 = UpdateWebhookRequest(
+    response = tmp_client.webhooks.create(create_webhook_request=request)
+    request_next = UpdateWebhookRequest(
         enabled = False
     )
-    tmp_client.webhooks.update(response.id,update_webhook_request=req01)
+    tmp_client.webhooks.update(response.id,update_webhook_request=request_next)
     return response
 
 
@@ -41,14 +41,14 @@ def test_get_webhook(config, c_hook):
 def test_update_webhook(config,c_hook):
     tmp_client = finix.FinixClient(config)
     id = c_hook.id
-    req01 = UpdateWebhookRequest(
+    request_first = UpdateWebhookRequest(
         enabled = True
     )
-    req02 = UpdateWebhookRequest(
+    request_second = UpdateWebhookRequest(
         enabled = False
     )
-    response01 = tmp_client.webhooks.update(id,update_webhook_request=req01)
-    response02 = tmp_client.webhooks.update(id,update_webhook_request=req02)
+    response01 = tmp_client.webhooks.update(id,update_webhook_request=request_first)
+    response02 = tmp_client.webhooks.update(id,update_webhook_request=request_second)
     assert response01.id[:2] == 'WH'
     assert response01.url == 'https://example.com'
     assert response01.enabled == True
@@ -59,10 +59,10 @@ def test_update_webhook(config,c_hook):
 
 def test_create_webhook(config):
     tmp_client = finix.FinixClient(config)
-    req = CreateWebhookRequest(
+    request = CreateWebhookRequest(
         url='https://example.com'
     )
-    response = tmp_client.webhooks.create(create_webhook_request=req)
+    response = tmp_client.webhooks.create(create_webhook_request=request)
     assert response.id[:2] == 'WH'
     assert response.url == 'https://example.com'
     assert response.enabled == True

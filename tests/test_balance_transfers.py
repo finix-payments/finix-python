@@ -18,7 +18,7 @@ def config():
 @pytest.fixture
 def c_btransfer(config):
     tmp_client = finix.FinixClient(config)
-    req = CreateBalanceTransferRequest(
+    request = CreateBalanceTransferRequest(
         currency=Currency("USD"),
         amount=100,
         source='FOR_BENEFIT_OF_ACCOUNT',
@@ -29,7 +29,7 @@ def c_btransfer(config):
 	        test_key_100 = "test_val_100"
         )
     )
-    response = tmp_client.balance_transfers.create(create_balance_transfer_request=req)
+    response = tmp_client.balance_transfers.create(create_balance_transfer_request=request)
     return response
 
 
@@ -44,7 +44,7 @@ def test_get_balance_transfer(config, c_btransfer):
 
 def test_create_balance_transfer(config):
     tmp_client = finix.FinixClient(config)
-    req = CreateBalanceTransferRequest(
+    request = CreateBalanceTransferRequest(
         currency=Currency("USD"),
         amount=101,
         source='FOR_BENEFIT_OF_ACCOUNT',
@@ -55,7 +55,7 @@ def test_create_balance_transfer(config):
 	        test_key_101 = "test_val_101"
         )
     )
-    response = tmp_client.balance_transfers.create(create_balance_transfer_request=req)
+    response = tmp_client.balance_transfers.create(create_balance_transfer_request=request)
     assert response.id[:2] == 'BT'
     assert response.amount == 101
     assert response.tags['test_key_101'] == 'test_val_101'

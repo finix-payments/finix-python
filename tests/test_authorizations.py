@@ -18,7 +18,7 @@ def config():
 @pytest.fixture
 def c_auth(config):
     tmp_client = finix.FinixClient(config)
-    req = CreateAuthorizationRequest(
+    request = CreateAuthorizationRequest(
         source="PIe2YvpcjvoVJ6PzoRPBK137",
 	    merchant="MUeDVrf2ahuKc9Eg5TeZugvs",
 	    tags=Tags(
@@ -28,13 +28,13 @@ def c_auth(config):
 	    amount=108,
 	    processor="DUMMY_V1"
     )
-    response = tmp_client.authorizations.create(create_authorization_request=req)
+    response = tmp_client.authorizations.create(create_authorization_request=request)
     return response
 
 
 def test_create_authorization(config):
     tmp_client = finix.FinixClient(config)
-    req = CreateAuthorizationRequest(
+    request = CreateAuthorizationRequest(
         source="PIe2YvpcjvoVJ6PzoRPBK137",
 	    merchant="MUeDVrf2ahuKc9Eg5TeZugvs",
 	    tags=Tags(
@@ -44,7 +44,7 @@ def test_create_authorization(config):
 	    amount=118,
 	    processor="DUMMY_V1"
     )
-    response = tmp_client.authorizations.create(create_authorization_request=req)
+    response = tmp_client.authorizations.create(create_authorization_request=request)
     assert response.id[:2] == 'AU'
     assert response.amount == 118
     assert response.tags['test_key_101'] == 'test_val_101'
@@ -62,11 +62,11 @@ def test_get_authorization(config, c_auth):
 def test_update_authorization(config, c_auth):
     tmp_client = finix.FinixClient(config)
     id = c_auth.id
-    req = UpdateAuthorizationRequest(
+    request = UpdateAuthorizationRequest(
         fee=1,
         capture_amount=70,
     )
-    response = tmp_client.authorizations.update(id, update_authorization_request=req)
+    response = tmp_client.authorizations.update(id, update_authorization_request=request)
     assert response.id[:2] == 'AU'
     assert response.state == 'SUCCEEDED'
     assert response.tags['test_key_100'] == 'test_val_100'

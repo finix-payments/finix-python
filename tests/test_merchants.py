@@ -28,7 +28,7 @@ def config01():
 @pytest.fixture
 def c_merchant(config):
     tmp_client = finix.FinixClient(config)
-    req1 = CreateIdentityRequest(
+    request_first = CreateIdentityRequest(
  	    additional_underwriting_data=CreateIdentityRequestAdditionalUnderwritingData(
 	        merchant_agreement_accepted=True,
 	        merchant_agreement_ip_address="42.1.1.113",
@@ -107,9 +107,9 @@ def c_merchant(config):
 	        annual_card_volume=12000000,
         )
     ) 
-    response1 = tmp_client.identities.create(create_identity_request=req1)
+    response1 = tmp_client.identities.create(create_identity_request=request_first)
     id = response1.id
-    req0 = CreatePaymentInstrumentRequest(
+    request_second = CreatePaymentInstrumentRequest(
         account_type="SAVINGS",
         name="LBC",
 	    tags=Tags(
@@ -121,14 +121,14 @@ def c_merchant(config):
 	    type="BANK_ACCOUNT",
 	    identity=id
     )
-    tmp_client.payment_instruments.create(create_payment_instrument_request = req0)
-    req2 = CreateMerchantUnderwritingRequest(
+    tmp_client.payment_instruments.create(create_payment_instrument_request = request_second)
+    request_third = CreateMerchantUnderwritingRequest(
         processor='DUMMY_V1',
         tags=Tags(
 	        test_key_100 = "test_val_100"
         )
     )
-    response2 = tmp_client.merchants.create(id, create_merchant_underwriting_request=req2)
+    response2 = tmp_client.merchants.create(id, create_merchant_underwriting_request=request_third)
     return response2
 
 
@@ -144,13 +144,13 @@ def test_get_merchant(config, c_merchant):
 def test_update_merchant(config01, c_merchant):
     tmp_client = finix.FinixClient(config01)
     id = c_merchant.id
-    req = UpdateMerchantRequest(
+    request = UpdateMerchantRequest(
         level_two_level_three_data_enabled=True,
         tags=Tags(
 	        test_key_101 = "test_val_101"
         )
     )
-    response = tmp_client.merchants.update(id, update_merchant_request=req)
+    response = tmp_client.merchants.update(id, update_merchant_request=request)
     assert response.id[:2] == 'MU'
     assert response.level_two_level_three_data_enabled == True
     assert response.tags['test_key_101'] == 'test_val_101'
@@ -158,7 +158,7 @@ def test_update_merchant(config01, c_merchant):
 
 def test_create_merchant(config):
     tmp_client = finix.FinixClient(config)
-    req1 = CreateIdentityRequest(
+    request_first = CreateIdentityRequest(
  	    additional_underwriting_data=CreateIdentityRequestAdditionalUnderwritingData(
 	        merchant_agreement_accepted=True,
 	        merchant_agreement_ip_address="42.1.1.113",
@@ -237,9 +237,9 @@ def test_create_merchant(config):
 	        annual_card_volume=12000000,
         )
     ) 
-    response1 = tmp_client.identities.create(create_identity_request=req1)
+    response1 = tmp_client.identities.create(create_identity_request=request_first)
     id = response1.id
-    req0 = CreatePaymentInstrumentRequest(
+    request_second = CreatePaymentInstrumentRequest(
         account_type="SAVINGS",
         name="LBC",
 	    tags=Tags(
@@ -251,14 +251,14 @@ def test_create_merchant(config):
 	    type="BANK_ACCOUNT",
 	    identity=id
     )
-    tmp_client.payment_instruments.create(create_payment_instrument_request = req0)
-    req2 = CreateMerchantUnderwritingRequest(
+    tmp_client.payment_instruments.create(create_payment_instrument_request = request_second)
+    request_third = CreateMerchantUnderwritingRequest(
         processor='DUMMY_V1',
         tags=Tags(
 	        test_key_102 = "test_val_102"
         )
     )
-    response2 = tmp_client.merchants.create(id, create_merchant_underwriting_request=req2)
+    response2 = tmp_client.merchants.create(id, create_merchant_underwriting_request=request_third)
     assert response2.id[:2] == 'MU'
     assert response2.processor == 'DUMMY_V1'
     assert response2.tags['test_key_102'] == 'test_val_102'
@@ -268,9 +268,9 @@ def test_create_merchant(config):
 def test_create_merchant_verification(config, c_merchant):
 	tmp_client = finix.FinixClient(config)
 	id = c_merchant.id
-	req = CreateVerificationRequest()
+	request = CreateVerificationRequest()
 	with pytest.raises(finix.ApiException) as e:
-		tmp_client.merchants.create_merchant_verification(id, create_verification_request=req)
+		tmp_client.merchants.create_merchant_verification(id, create_verification_request=request)
 	assert e.value.status == 422
 	assert e.value.reason == 'Unprocessable Entity'
 	assert 'An existing verification is already PENDING.' in e.value.body

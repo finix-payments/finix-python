@@ -18,14 +18,14 @@ def config():
 @pytest.fixture
 def c_verif(config):
     tmp_client = finix.FinixClient(config)
-    req = CreateVerificationRequest(
+    request = CreateVerificationRequest(
         merchant='MUgWbPVvtKbzjKNNGKqdQYV7',
         processor='DUMMY_V1',
         tags=Tags(
             test_key_100 = "test_val_100"
         )
     )
-    response = tmp_client.verifications.create(create_verification_request=req)
+    response = tmp_client.verifications.create(create_verification_request=request)
     return response
 
 
@@ -40,14 +40,14 @@ def test_get_verification(config, c_verif):
 
 def test_create_verification(config):
     tmp_client = finix.FinixClient(config)
-    req = CreateVerificationRequest(
+    request = CreateVerificationRequest(
         merchant='MUucec6fHeaWo3VHYoSkUySM',
         processor='DUMMY_V1',
         tags=Tags(
             test_key_110 = "test_val_110"
         )
     )
-    response = tmp_client.verifications.create(create_verification_request=req)
+    response = tmp_client.verifications.create(create_verification_request=request)
     assert response.id[:2] == 'VI'
     assert response.processor == 'DUMMY_V1'
     assert response.tags['test_key_110'] == 'test_val_110'
