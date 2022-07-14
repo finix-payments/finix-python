@@ -15,18 +15,32 @@ def config():
     return configuration
 
 
-def test_get(config):
+@pytest.fixture
+def c_hook(config):
     tmp_client = finix.FinixClient(config)
-    id = 'WH9MorNnDCgvVnyZQ3MXqiVM'
+    req = CreateWebhookRequest(
+        url='https://example.com'
+    )
+    response = tmp_client.webhooks.create(create_webhook_request=req)
+    req01 = UpdateWebhookRequest(
+        enabled = False
+    )
+    tmp_client.webhooks.update(response.id,update_webhook_request=req01)
+    return response
+
+
+def test_get(config, c_hook):
+    tmp_client = finix.FinixClient(config)
+    id = c_hook.id
     response = tmp_client.webhooks.get(id)
     assert response.id[:2] == 'WH'
-    assert response.url == 'https://eohzjuj2prziycz.m.pipedream.net'
+    assert response.url == 'https://example.com'
     assert response.enabled == False
 
 
-def test_update(config):
+def test_update(config,c_hook):
     tmp_client = finix.FinixClient(config)
-    id = 'WH9MorNnDCgvVnyZQ3MXqiVM'
+    id = c_hook.id
     req01 = UpdateWebhookRequest(
         enabled = True
     )
@@ -36,21 +50,19 @@ def test_update(config):
     response01 = tmp_client.webhooks.update(id,update_webhook_request=req01)
     response02 = tmp_client.webhooks.update(id,update_webhook_request=req02)
     assert response01.id[:2] == 'WH'
-    assert response01.url == 'https://eohzjuj2prziycz.m.pipedream.net'
+    assert response01.url == 'https://example.com'
     assert response01.enabled == True
     assert response02.id[:2] == 'WH'
-    assert response02.url == 'https://eohzjuj2prziycz.m.pipedream.net'
+    assert response02.url == 'https://example.com'
     assert response02.enabled == False
 
 
-# no always open webhook for repetitive testing, expect error
 def test_create(config):
     tmp_client = finix.FinixClient(config)
     req = CreateWebhookRequest(
-        url='https://finix.com'
+        url='https://example.com'
     )
-    with pytest.raises(finix.ApiException) as e:
-        tmp_client.webhooks.create(create_webhook_request=req)
-    assert e.value.status == 422
-    assert e.value.reason == 'Unprocessable Entity'
-    assert 'Unable to call the configured URL with an empty payload' in e.value.body
+    response = tmp_client.webhooks.create(create_webhook_request=req)
+    assert response.id[:2] == 'WH'
+    assert response.url == 'https://example.com'
+    assert response.enabled == True
