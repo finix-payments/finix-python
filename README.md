@@ -4,17 +4,61 @@ This is the official Finix Python library
 
 ## Installation
 ### Prerequisites
-- 
+- Python>=3.6
 
-### pip
+### install from PyPI:
+```
+pip install --upgrade finix
+```
+
+### install from source:
+```
+python setup.py install
+```
 
 
 
 ## Using the Library
 ### Initialization
+```
+import finix
+from finix.configuration import Environment, Configuration
+from finix.models import *        
+# finix.models is intended for wildcard import, feel safe to import all predefined models at once
 
+config = Configuration(
+    username = 'ENTER_YOUR_USERNAME',
+    password = 'ENTER_YOUR_PASSWORD',
+    environment = Environment.SANDBOX
+)
+
+client = finix.FinixClient(config)
+```
 
 ### Example APIs
+Here is an example of creating a transfer:
+```
+request = CreateTransferRequest(
+    merchant='MUeDVrf2ahuKc9Eg5TeZugvs',
+    currency = Currency("USD"),
+    amount = 12345,
+    source = 'PIe2YvpcjvoVJ6PzoRPBK137',
+    tags = Tags(
+        category = 'sale'
+    )
+)
+
+transfer = client.transfers.create(create_transfer_request=request)
+```
+
+Here is an example of listing payment instruments:
+```
+# fetch a list of 5 resources with default pagination
+payment_instrument_list = client.payment_instruments.list(limit=5)
+
+# print type of the first payment instrument from the fetched list
+print(payment_instrument_list.embedded['payment_instruments'][0]['type'])
+```
 
 
 ## Supported APIs
