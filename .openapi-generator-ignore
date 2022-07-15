@@ -3,3 +3,5 @@
 /.gitlab-ci.yml
 /git_push.sh
 /.gitignore
+/finix/apis
+/finix/apis/*
