@@ -20,7 +20,7 @@ python setup.py install
 
 ## Using the Library
 ### Initialization
-```
+```python
 import finix
 from finix.configuration import Environment, Configuration
 from finix.models import *        
@@ -37,7 +37,7 @@ client = finix.FinixClient(config)
 
 ### Example APIs
 Here is an example of creating a transfer:
-```
+```python
 request = CreateTransferRequest(
     merchant='MUeDVrf2ahuKc9Eg5TeZugvs',
     currency = Currency("USD"),
@@ -52,7 +52,7 @@ transfer = client.transfers.create(create_transfer_request=request)
 ```
 
 Here is an example of listing payment instruments:
-```
+```python
 # fetch a list of 5 resources with default pagination
 payment_instrument_list = client.payment_instruments.list(limit=5)
 
