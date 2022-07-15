@@ -5,3 +5,14 @@
 /.gitignore
 /finix/apis
 /finix/apis/*
+
+# unavailable apis
+/finix/api/application_profiles_api.py
+/finix/api/applications_api.py
+/finix/api/fees_api.py
+/finix/api/payment_instruments_p2_c_api.py
+/finix/api/processors_api.py
+/finix/api/subscription_amounts_api.py
+/finix/api/subscription_enrollments_api.py
+/finix/api/subscription_schedules_api.py
+/finix/api/users_api.py
