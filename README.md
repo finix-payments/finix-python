@@ -34,6 +34,11 @@ config = Configuration(
 
 client = finix.FinixClient(config)
 ```
+### Specify API version
+To access the latest version of Finix API, you need to manually set the versioning header as shown below. Otherwise, requests will go to the oldest version of Finix API.
+```python
+client.set_default_header('Finix-Version','2022-02-01')
+```
 
 ### Example APIs
 Here is an example of creating a transfer:
