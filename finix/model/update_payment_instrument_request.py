@@ -58,8 +58,8 @@ class UpdatePaymentInstrumentRequest(ModelNormal):
     allowed_values = {
         ('type',): {
             'TOKEN': "TOKEN",
-            'BANK_ACCOUNT': "BANK_ACCOUNT",
             'PAYMENT_CARD': "PAYMENT_CARD",
+            'BANK_ACCOUNT': "BANK_ACCOUNT",
         },
         ('account_type',): {
             'CHECKING': "CHECKING",

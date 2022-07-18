@@ -4,7 +4,7 @@ x-stoplight:
 info:
   title: Finix API
   description:
-    $ref: ../api-descriptions/main.md
+    $ref: api-descriptions/main.md
   contact:
     name: Finix
     url: https://finix.com
@@ -21,85 +21,57 @@ servers:
 - description: Live server to be used for production charges
   url: https://finix.live-payments-api.com
 tags:
-- name: Applications
-  description:
-    $ref: ../api-descriptions/tags/applications.md
 - name: Authorizations
   description:
-    $ref: ../api-descriptions/tags/authorizations.md
+    $ref: api-descriptions/tags/authorizations.md
 - name: Balance Transfers
   description:
-    $ref: ../api-descriptions/tags/balance-transfers.md
+    $ref: api-descriptions/tags/balance-transfers.md
 - name: Disputes
   description:
-    $ref: ../api-descriptions/tags/disputes.md
+    $ref: api-descriptions/tags/disputes.md
 - name: Fee Profiles
   description:
-    $ref: ../api-descriptions/tags/fee-profiles.md
+    $ref: api-descriptions/tags/fee-profiles.md
 - name: Identities
   description:
-    $ref: ../api-descriptions/tags/identities.md
+    $ref: api-descriptions/tags/identities.md
 - name: Merchants
   description:
-    $ref: ../api-descriptions/tags/merchants.md
+    $ref: api-descriptions/tags/merchants.md
 - name: Payment Instruments
   description:
-    $ref: ../api-descriptions/tags/payment-instruments.md
+    $ref: api-descriptions/tags/payment-instruments.md
 - name: Settlements
   description:
-    $ref: ../api-descriptions/tags/settlements.md
+    $ref: api-descriptions/tags/settlements.md
 - name: Transfers
   description:
-    $ref: ../api-descriptions/tags/transfers.md
-- name: Users
-  description:
-    $ref: ../api-descriptions/tags/users.md
+    $ref: api-descriptions/tags/transfers.md
 - name: Webhooks
   description:
-    $ref: ../api-descriptions/tags/webhooks.md
-- name: Application Profiles
-  description:
-    $ref: ../api-descriptions/tags/application-profiles.md
+    $ref: api-descriptions/tags/webhooks.md
 - name: Devices
   description:
-    $ref: ../api-descriptions/tags/devices.md
+    $ref: api-descriptions/tags/devices.md
 - name: Merchant Profiles
   description:
-    $ref: ../api-descriptions/tags/merchant-profiles.md
+    $ref: api-descriptions/tags/merchant-profiles.md
 - name: Reversals
   description:
-    $ref: ../api-descriptions/tags/reversals.md
+    $ref: api-descriptions/tags/reversals.md
 - name: Risk profiles
   description:
-    $ref: ../api-descriptions/tags/risk-profiles.md
+    $ref: api-descriptions/tags/risk-profiles.md
 - name: Verifications
   description:
-    $ref: ../api-descriptions/tags/verifications.md
-- name: Fees
-  description:
-    $ref: ../api-descriptions/tags/fees.md
+    $ref: api-descriptions/tags/verifications.md
 - name: Files
   description:
-    $ref: ../api-descriptions/tags/files.md
-- name: Processors
-  description:
-    $ref: ../api-descriptions/tags/processors.md
-- name: Payment Instruments P2C
-  x-displayName: Payment Instruments
-  description:
-    $ref: ../api-descriptions/tags/payment-instruments-p2c.md
-- name: Subscription Schedules
-  description:
-    $ref: ../api-descriptions/tags/subscription-schedules.md
-- name: Subscription Amounts
-  description:
-    $ref: ../api-descriptions/tags/subscription-amounts.md
-- name: Subscription Enrollments
-  description:
-    $ref: ../api-descriptions/tags/subscription-enrollments.md
+    $ref: api-descriptions/tags/files.md
 - name: Instrument Updates
   description:
-    $ref: ../api-descriptions/tags/instrument-updates.md
+    $ref: api-descriptions/tags/instrument-updates.md
 x-tagGroups:
 - name: MAIN RESOURCES
   tags:
@@ -131,290 +103,6 @@ x-tagGroups:
   - Subscription Amounts
   - Subscription Enrollments
 paths:
-  /application_profiles:
-    get:
-      tags:
-      - Application Profiles
-      description: Return a collection of `application_profiles`.
-      summary: List Application Profiles
-      operationId: listApplicationProfiles
-      responses:
-        '200':
-          $ref: '#/components/responses/ApplicationProfilesList'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      x-internal: false
-      parameters:
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryAfterCursor'
-      - $ref: '#/components/parameters/QueryBeforeCursor'
-      x-java-method-name: list
-      x-group-parameters: true
-      x-python-method-name: list
-      x-returns-list: true
-  /application_profiles/{application_profile_id}:
-    get:
-      tags:
-      - Application Profiles
-      description: Find an existing `application_profile` by ID.
-      summary: Get Application Profile
-      operationId: getApplicationProfile
-      responses:
-        '200':
-          $ref: '#/components/responses/ApplicationProfile'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      x-java-method-name: get
-      x-python-method-name: get
-    parameters:
-    - $ref: '#/components/parameters/ApplicationProfileId'
-    put:
-      tags:
-      - Application Profiles
-      description: Update an existing `application_profile`.
-      summary: Update Application Profile
-      operationId: updateApplicationProfile
-      requestBody:
-        $ref: '#/components/requestBodies/UpdateApplicationProfileRequest'
-      responses:
-        '200':
-          $ref: '#/components/responses/ApplicationProfile'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      x-java-method-name: update
-      x-python-method-name: update
-  /applications:
-    post:
-      tags:
-      - Applications
-      description: 'If created successfully, returns a 201 status and adds a location
-        header
-
-        to the response which refers to the new created `Application`.
-
-        '
-      summary: Create an Application
-      operationId: createApplication
-      requestBody:
-        $ref: '#/components/requestBodies/CreateApplicationRequest'
-      responses:
-        '201':
-          $ref: '#/components/responses/Application'
-        '400':
-          $ref: '#/components/responses/ErrorUnprocessableEntity'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      x-java-method-name: create
-      x-python-method-name: create
-    get:
-      tags:
-      - Applications
-      description: 'Return a collection of `Applications`. If there are no `Applications`,
-
-        an empty collection will be returned.'
-      summary: List Applications
-      operationId: listApplications
-      parameters:
-      - $ref: '#/components/parameters/QueryIdFilter'
-      - $ref: '#/components/parameters/QueryBeforeCursor'
-      - $ref: '#/components/parameters/QueryAfterCursor'
-      - $ref: '#/components/parameters/QueryLimit'
-      responses:
-        '200':
-          $ref: '#/components/responses/ApplicationsList'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      x-java-method-name: list
-      x-group-parameters: true
-      x-codeSamples:
-      - lang: cURL
-        label: 'curl: list Applications'
-        source: "curl https://finix.sandbox-payments-api.com/applications/APmuwPBaW8pVcwb4vCTHQH32\
-          \ \\\n  -H \"Content-Type: application/vnd.json+api\" \\\n  -u USimz3zSq5R2PqiEBXY6rSiJ:8bacba32-9550-48ff-b567-fe7648947041\n"
-      x-python-method-name: list
-      x-returns-list: true
-  /applications/{application_id}:
-    get:
-      tags:
-      - Applications
-      description: Retrieve the details of an `Application`.
-      summary: Fetch an Application
-      operationId: getApplication
-      responses:
-        '200':
-          $ref: '#/components/responses/Application'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      x-java-method-name: get
-      x-python-method-name: get
-    parameters:
-    - $ref: '#/components/parameters/ApplicationId'
-    put:
-      tags:
-      - Applications
-      description: Update an existing `Application`.
-      summary: Update an Application
-      operationId: updateApplication
-      responses:
-        '200':
-          $ref: '#/components/responses/Application'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      x-java-method-name: update
-      x-python-method-name: update
-  /applications/{application_id}/processors:
-    get:
-      description: Get all enabled `Processors` for an `Application`.
-      summary: List Application Processors
-      operationId: listApplicationProcessors
-      responses:
-        '200':
-          $ref: '#/components/responses/ProcessorsList'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      tags:
-      - Processors
-      x-java-method-name: listByApplicationId
-      x-group-parameters: true
-      x-python-method-name: list_by_application_id
-      x-returns-list: true
-    parameters:
-    - $ref: '#/components/parameters/ApplicationId'
-    post:
-      tags:
-      - Processors
-      description: 'Enable a `Processor` for an `Application`. If created successfully,
-        a
-
-        201 status is returned with a location header added to the response which
-        refers to the
-
-        newly enabled processor.
-
-        '
-      summary: Create Application Processor
-      operationId: createApplicationProcessor
-      requestBody:
-        $ref: '#/components/requestBodies/CreateProcessorRequest'
-      responses:
-        '201':
-          $ref: '#/components/responses/Processor'
-        '400':
-          $ref: '#/components/responses/ErrorUnprocessableEntity'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-        '422':
-          $ref: '#/components/responses/Error422InvalidField'
-      x-python-method-name: create_application_processor
-  /applications/{application_id}/processors/{type}:
-    get:
-      description: Get the `Processor` by `Application` and `type`.
-      summary: Get Application Processor
-      operationId: getApplicationProcessor
-      responses:
-        '200':
-          $ref: '#/components/responses/Processor'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      tags:
-      - Processors
-      x-python-method-name: get_application_processor
-    parameters:
-    - $ref: '#/components/parameters/ApplicationId'
-    - description: Type of `Processor`.
-      required: true
-      in: path
-      name: type
-      schema:
-        type: string
-  /applications/{application_id}/users:
-    parameters:
-    - $ref: '#/components/parameters/ApplicationId'
-    post:
-      description: 'This is the equivalent of provisioning API keys (i.e. credentials)
-        for an `Application`.
-
-
-        > Each Application can have multiple `Users` which allows each merchant to
-        have multiple API keys that can be independently enabled and disabled. Merchants
-        only have read access to the API.'
-      summary: Create an Application User
-      operationId: createApplicationUser
-      requestBody:
-        $ref: '#/components/requestBodies/CreateUserRequest'
-      responses:
-        '201':
-          $ref: '#/components/responses/User'
-        '400':
-          $ref: '#/components/responses/ErrorUnprocessableEntity'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      x-internal: false
-      tags:
-      - Users
-      x-python-method-name: create_application_user
   /authorizations:
     post:
       tags:
@@ -592,13 +280,13 @@ paths:
         \ requests get submitted via a batch request. \n\nOnce the `Authorization`\
         \ is updated with a `capture_amount` (i.e. *Captured*), the state of the `Transfer`\
         \ will update to **SUCCEEDED**.\n\n> Voided `Authorizations` can't be captured."
-      summary: Update an Authorization
-      operationId: updateAuthorization
+      summary: Capture an Authorization
+      operationId: captureAuthorization
       requestBody:
         $ref: '#/components/requestBodies/UpdateAuthorizationRequest'
       responses:
         '200':
-          $ref: '#/components/responses/Authorization'
+          $ref: '#/components/responses/AuthorizationUpdated'
         '401':
           $ref: '#/components/responses/ErrorUnauthorized'
         '403':
@@ -979,92 +667,6 @@ paths:
       schema:
         type: string
       description: The ID of the fee profile.
-  /fees:
-    get:
-      tags:
-      - Fees
-      description: Return a collection of `fees`.
-      summary: List Fees
-      operationId: listFees
-      responses:
-        '200':
-          $ref: '#/components/responses/FeesList'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      parameters:
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryAfterCursor'
-      - $ref: '#/components/parameters/QueryBeforeCursor'
-      x-java-method-name: list
-      x-group-parameters: true
-      x-python-method-name: list
-      x-returns-list: true
-    post:
-      summary: Create a One-Time Fee
-      tags:
-      - Fees
-      operationId: create-fees
-      responses:
-        '201':
-          $ref: '#/components/responses/Fee'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      description: Create a custom (i.e. one time) `fee`.
-      requestBody:
-        $ref: '#/components/requestBodies/CreateFeeRequest'
-      x-java-method-name: create
-      x-python-method-name: create
-  /fees/{fee_id}:
-    get:
-      tags:
-      - Fees
-      description: Retrieve the details of a `Fee`.
-      summary: Get Fee
-      operationId: getFee
-      responses:
-        '200':
-          $ref: '#/components/responses/Fee'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      x-java-method-name: get
-      x-python-method-name: get
-    parameters:
-    - $ref: '#/components/parameters/FeeId'
-    put:
-      summary: Update Fee
-      operationId: updateFee
-      responses:
-        '200':
-          $ref: '#/components/responses/Fee'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      requestBody:
-        $ref: '#/components/requestBodies/UpdateFeeRequest'
-      description: Update the details of a `Fee`.
-      tags:
-      - Fees
-      x-java-method-name: update
-      x-python-method-name: update
   /identities:
     post:
       tags:
@@ -1415,6 +1017,56 @@ paths:
       x-group-parameters: true
       x-python-method-name: list
       x-returns-list: true
+  /merchants/{merchant_id}:
+    get:
+      tags:
+      - Merchants
+      description: Retrieve the details of a `Merchant`.
+      summary: Get a Merchant
+      operationId: getMerchant
+      responses:
+        '200':
+          $ref: '#/components/responses/Merchant'
+        '401':
+          $ref: '#/components/responses/ErrorUnauthorized'
+        '403':
+          $ref: '#/components/responses/ErrorForbidden403'
+        '404':
+          $ref: '#/components/responses/ErrorNotFound'
+        '406':
+          $ref: '#/components/responses/Error406NotAcceptable'
+      x-java-method-name: get
+      x-python-method-name: get
+    parameters:
+    - description: ID of `Merchant`.
+      required: true
+      in: path
+      name: merchant_id
+      schema:
+        type: string
+    put:
+      tags:
+      - Merchants
+      description: "Update a `Merchant` to: \n- Change the `Identity` information\
+        \ saved with the underlying processor\n- Enable Level 2/3 processing\n- Enable\
+        \ [Buyer Chages](/guides/payments/buyer-charges/)"
+      summary: Update a Merchant
+      operationId: updateMerchant
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateMerchantRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/MerchantUpdated'
+        '401':
+          $ref: '#/components/responses/ErrorUnauthorized'
+        '403':
+          $ref: '#/components/responses/ErrorForbidden403'
+        '404':
+          $ref: '#/components/responses/ErrorNotFound'
+        '406':
+          $ref: '#/components/responses/Error406NotAcceptable'
+      x-java-method-name: update
+      x-python-method-name: update
   /merchant_profiles/{merchant_profile_id}:
     get:
       tags:
@@ -1461,55 +1113,6 @@ paths:
           $ref: '#/components/responses/Error406NotAcceptable'
       x-java-method-name: update
       x-internal: false
-      x-python-method-name: update
-  /merchants/{merchant_id}:
-    get:
-      tags:
-      - Merchants
-      description: Retrieve the details of a `Merchant`.
-      summary: Get a Merchant
-      operationId: getMerchant
-      responses:
-        '200':
-          $ref: '#/components/responses/Merchant'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      x-java-method-name: get
-      x-python-method-name: get
-    parameters:
-    - description: ID of `Merchant`.
-      required: true
-      in: path
-      name: merchant_id
-      schema:
-        type: string
-    put:
-      tags:
-      - Merchants
-      description: Update a `Merchant` to change the `Identity` information saved
-        with the underlying processor, or enable Level 2/3 processing.
-      summary: Update a Merchant
-      operationId: updateMerchant
-      requestBody:
-        $ref: '#/components/requestBodies/UpdateMerchantRequest'
-      responses:
-        '200':
-          $ref: '#/components/responses/MerchantUpdated'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      x-java-method-name: update
       x-python-method-name: update
   /merchants/{merchant_id}/devices:
     parameters:
@@ -1722,30 +1325,43 @@ paths:
           $ref: '#/components/responses/Error406NotAcceptable'
       x-java-method-name: update
       x-python-method-name: update
-  /payment_instruments/{payment_instrument_id}/verifications:
-    parameters:
-    - description: ID of object
-      required: true
-      in: path
-      name: payment_instrument_id
-      schema:
-        type: string
-    post:
+  /payment_instruments/{payment_instrument_id}/updates:
+    get:
       tags:
-      - Payment Instruments P2C
       - Payment Instruments
-      description: "Verify a `Payment Instrument` to determine if it's elligable for\
-        \ Push To Card transactions. \n\n> Only verify `Payment Instruments` for [Push\
-        \ To Card](/guides/push-to-card) customers."
-      summary: Verify a Payment Instrument
-      operationId: createPaymentInstrumentVerification
-      requestBody:
-        $ref: '#/components/requestBodies/CreateVerificationRequest'
+      description: 'List the updates on a `Payment Instrument`.
+
+
+        When using the [account updater](/guides/payments/account-updater), `Payment
+        Instrument` details that are updated are represented by an `Update`.'
+      summary: List Payment Instrument Updates
+      operationId: listPaymentInstrumentUpdates
+      parameters:
+      - required: false
+        in: query
+        name: limit
+        schema:
+          type: integer
+          format: int64
+        description: The number of entries to return.
+      - required: false
+        in: query
+        name: offset
+        schema:
+          type: integer
+          format: int64
+        description: The number of items to skip before starting to collect the result
+          set.
+      - required: false
+        in: query
+        name: pageSize
+        schema:
+          type: integer
+          format: int64
+        description: The size of the page.
       responses:
-        '201':
-          $ref: '#/components/responses/Verification'
-        '400':
-          $ref: '#/components/responses/ErrorUnprocessableEntity'
+        '200':
+          $ref: '#/components/responses/PaymentInstrumentUpdatesList'
         '401':
           $ref: '#/components/responses/ErrorUnauthorized'
         '403':
@@ -1754,7 +1370,18 @@ paths:
           $ref: '#/components/responses/ErrorNotFound'
         '406':
           $ref: '#/components/responses/Error406NotAcceptable'
-      x-python-method-name: create_payment_instrument_verification
+      x-java-method-name: listUpdatesByPaymentInstrumentId
+      x-group-parameters: true
+      x-internal: false
+      x-python-method-name: list_updates_by_payment_instrument_id
+      x-returns-list: true
+    parameters:
+    - description: ID of object
+      required: true
+      in: path
+      name: payment_instrument_id
+      schema:
+        type: string
   /settlements:
     get:
       tags:
@@ -2202,74 +1829,6 @@ paths:
       name: transfer_id
       schema:
         type: string
-  /users:
-    get:
-      tags:
-      - Users
-      description: Get a `User`.
-      summary: List Users
-      operationId: listUsers
-      parameters:
-      - $ref: '#/components/parameters/QueryIdFilter'
-      responses:
-        '200':
-          $ref: '#/components/responses/UsersList'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      x-java-method-name: list
-      x-group-parameters: true
-      x-python-method-name: list
-      x-returns-list: true
-  /users/{user_id}:
-    get:
-      tags:
-      - Users
-      description: Retrieve a specific user with the ID of the `User`.
-      summary: Find a User by ID
-      operationId: getUser
-      responses:
-        '200':
-          $ref: '#/components/responses/User'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      x-java-method-name: get
-      x-python-method-name: get
-    parameters:
-    - description: ID of `User` object.
-      required: true
-      in: path
-      name: user_id
-      schema:
-        type: string
-    put:
-      tags:
-      - Users
-      description: You can update the `User` with new tags or to disable the `User`.
-      summary: Update User
-      operationId: updateUser
-      responses:
-        '200':
-          $ref: '#/components/responses/User'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      requestBody:
-        $ref: '#/components/requestBodies/UpdateUserRequest'
-      x-java-method-name: update
-      x-python-method-name: update
   /verifications:
     post:
       tags:
@@ -2308,7 +1867,9 @@ paths:
       summary: List Verifications
       operationId: listVerifications
       parameters:
-      - $ref: '#/components/parameters/QueryIdFilter'
+      - $ref: '#/components/parameters/QueryLimit'
+      - $ref: '#/components/parameters/QueryAfterCursor'
+      - $ref: '#/components/parameters/QueryBeforeCursor'
       responses:
         '200':
           $ref: '#/components/responses/VerificationsList'
@@ -2445,398 +2006,6 @@ paths:
           $ref: '#/components/responses/Error406NotAcceptable'
       x-java-method-name: update
       x-python-method-name: update
-  /subscription/subscription_schedules/{subscription_schedule_id}:
-    parameters:
-    - schema:
-        type: string
-      name: subscription_schedule_id
-      in: path
-      required: true
-      description: The ID of the `Subscription Schedule`.
-    get:
-      summary: Get a Subscription Schedule
-      tags:
-      - Subscription Schedules
-      responses:
-        '200':
-          $ref: '#/components/responses/SubscriptionSchedule'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          description: Not Found
-        '406':
-          description: Not Acceptable
-      operationId: getSubscriptionSchedule
-      description: Retrieve the details of a `subscription_schedule`
-      x-java-method-name: get
-      parameters:
-      - schema:
-          type: string
-        in: query
-        name: nickname
-        description: Filter by the object's `nickname`.
-      - schema:
-          type: string
-        in: query
-        name: type
-        description: Filter by the object's `subscription_type`.
-      x-python-method-name: get
-    put:
-      summary: Update a Subscription Schedule
-      tags:
-      - Subscription Schedules
-      responses:
-        '200':
-          $ref: '#/components/responses/SubscriptionSchedule'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      operationId: updateSubscriptionSchedules
-      requestBody:
-        $ref: '#/components/requestBodies/UpdateSubscriptionScheduleRequest'
-      description: Update the details of a `subscription_schedule`.
-      x-java-method-name: update
-      x-python-method-name: update
-  /subscription/subscription_schedules:
-    get:
-      summary: List Subscription Schedules
-      tags:
-      - Subscription Schedules
-      operationId: listSubscriptionSchedules
-      description: Retrieve a list of `Subscription Schedules`.
-      responses:
-        '200':
-          $ref: '#/components/responses/SubscriptionSchedulesList'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      x-java-method-name: list
-      x-group-parameters: true
-      parameters:
-      - schema:
-          type: string
-        in: query
-        name: nickname
-        description: Filter by the object's `nickname`.
-      - schema:
-          type: string
-        in: query
-        name: type
-        description: Filter by the object's `type`.
-      x-python-method-name: list
-      x-returns-list: true
-    post:
-      summary: Create a Subscription Schedule
-      tags:
-      - Subscription Schedules
-      responses:
-        '200':
-          $ref: '#/components/responses/SubscriptionSchedule'
-        '401':
-          description: Unauthorized
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      operationId: post-subscription-subscription_schedules
-      requestBody:
-        $ref: '#/components/requestBodies/CreateSubscriptionScheduleRequest'
-      description: Create a `subscription_schedule`.
-      x-java-method-name: create
-      x-python-method-name: create
-  /subscription/subscription_schedules/{subscription_schedule_id}/subscription_amounts:
-    parameters:
-    - schema:
-        type: string
-      name: subscription_schedule_id
-      in: path
-      required: true
-      description: The ID of the `Subscription Schedule`.
-    get:
-      summary: List Subscription Amounts
-      tags:
-      - Subscription Amounts
-      responses:
-        '200':
-          $ref: '#/components/responses/SubscriptionAmountsList'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          description: Not Acceptable
-      operationId: listSubscriptionAmount
-      parameters:
-      - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryAfterCursor'
-      - $ref: '#/components/parameters/QueryBeforeCursor'
-      description: Retrive a list of `Subscription Amounts`.
-      x-java-method-name: listBySubscriptionSchedule
-      x-group-parameters: true
-      x-python-method-name: list_by_subscription_schedule
-      x-returns-list: true
-    post:
-      summary: Create a Subscription Amount
-      tags:
-      - Subscription Amounts
-      responses:
-        '200':
-          $ref: '#/components/responses/SubscriptionAmount'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      operationId: createSubscriptionAmounts
-      requestBody:
-        $ref: '#/components/requestBodies/CreateSubscriptionAmountRequest'
-      description: 'Create a `subscription_amount`.
-
-
-        The `Subscription Amount` is the amount to be charged to a `Merchant`. The
-        `Subscription Amount` must be associated to a `Subscription Schedule`.'
-      x-java-method-name: lcreate
-      x-python-method-name: lcreate
-  /subscription/subscription_schedules/{subscription_schedule_id}/subscription_amounts/{subscription_amount_id}:
-    parameters:
-    - schema:
-        type: string
-      name: subscription_amount_id
-      in: path
-      required: true
-      description: The ID of the `Subscription Amount`.
-    - schema:
-        type: string
-      name: subscription_schedule_id
-      in: path
-      required: true
-      description: The ID of the `Subscription Schedule`.
-    get:
-      summary: Get a Subscription Amount
-      tags:
-      - Subscription Amounts
-      responses:
-        '200':
-          $ref: '#/components/responses/SubscriptionAmount'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      operationId: getSubscriptionAmount
-      description: Retrieve the details of a `subscription_amount`.
-      x-java-method-name: get
-      x-python-method-name: get
-    patch:
-      summary: Update a Subscription Amount
-      operationId: patchSubscriptionAmount
-      responses:
-        '200':
-          $ref: '#/components/responses/SubscriptionAmount'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      tags:
-      - Subscription Amounts
-      description: Update the details of a `subscription_amount`.
-      requestBody:
-        $ref: '#/components/requestBodies/UpdateSubscriptionAmountRequest'
-      x-python-method-name: patch_subscription_amount
-    delete:
-      summary: Delete a Subscription Amount
-      operationId: deleteSubscriptionAmount
-      responses:
-        '204':
-          description: No Content
-        '401':
-          $ref: '#/components/responses/ErrorNotFound'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      tags:
-      - Subscription Amounts
-      description: Delete a previously created `Subscription Amount`.
-      x-python-method-name: delete_subscription_amount
-  /subscription/subscription_schedules/{subscription_schedule_id}/subscription_enrollments:
-    parameters:
-    - schema:
-        type: string
-      name: subscription_schedule_id
-      in: path
-      required: true
-      description: The ID of the `subscription_schedule`.
-    get:
-      summary: List Subscription Enrollments on a Schedule
-      tags:
-      - Subscription Enrollments
-      responses:
-        '200':
-          $ref: '#/components/responses/SubscriptionEnrollmentsList'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          description: Forbidden
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      operationId: listSubscriptionEnrollmentsInSchedule
-      description: Retrieve a list of `Subscription Enrollments` for a specific `subscription_schedule`.
-      x-java-method-name: listBySubscriptionScheduleId
-      x-group-parameters: true
-      x-python-method-name: list_by_subscription_schedule_id
-      x-returns-list: true
-    post:
-      summary: Create a Subscription Enrollment
-      tags:
-      - Subscription Enrollments
-      responses:
-        '200':
-          $ref: '#/components/responses/SubscriptionEnrollment'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      operationId: createSubscriptionEnrollments
-      requestBody:
-        $ref: '#/components/requestBodies/CreateSubscriptionEnrollmentRequest'
-      description: 'Create a `subscription_enrollment`.
-
-
-        A `subscription_enrollment` details which `Merchant` gets charged, to what
-        schedule, and when the subscription will start. The `subscription_enrollment`
-        must be associated with a `Subscription Schedule`.'
-      x-java-method-name: create
-      x-python-method-name: create
-  /subscription/subscription_enrollments:
-    get:
-      summary: List Subscription Enrollments
-      tags:
-      - Subscription Enrollments
-      responses:
-        '200':
-          $ref: '#/components/responses/SubscriptionEnrollmentsList'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      operationId: listSubscriptionEnrollments
-      description: Retrieve a list of `Subscription Enrollments`.
-      x-java-method-name: list
-      x-group-parameters: true
-      x-python-method-name: list
-      x-returns-list: true
-  /subscription/subscription_enrollments/{subscription_enrollment_id}:
-    parameters:
-    - schema:
-        type: string
-      name: subscription_enrollment_id
-      in: path
-      required: true
-      description: The ID of the `subscription_enrollment`.
-    put:
-      summary: Update a Subscription Enrollment
-      tags:
-      - Subscription Enrollments
-      responses:
-        '200':
-          $ref: '#/components/responses/SubscriptionEnrollment'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      operationId: updateSubscriptionEnrollment
-      requestBody:
-        $ref: '#/components/requestBodies/UpdateSubscriptionEnrollmentRequest'
-      description: Update the details of a `subscription_enrollment`.
-      x-java-method-name: update
-      x-python-method-name: update
-    get:
-      summary: Get a Subscription Enrollment
-      tags:
-      - Subscription Enrollments
-      responses:
-        '200':
-          $ref: '#/components/responses/SubscriptionEnrollment'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      operationId: getSubscriptionEnrollment
-      description: Retrieve the details of a `subscription_enrollment`.
-      x-java-method-name: get
-      parameters:
-      - schema:
-          type: string
-        in: query
-        name: merchant
-        description: Filter by the objects `merchant` ID.
-      x-python-method-name: get
-    delete:
-      summary: Delete a Subscription Enrollment
-      tags:
-      - Subscription Enrollments
-      responses:
-        '204':
-          $ref: '#/components/responses/NoContent'
-        '401':
-          $ref: '#/components/responses/ErrorUnauthorized'
-        '403':
-          $ref: '#/components/responses/ErrorForbidden403'
-        '404':
-          $ref: '#/components/responses/ErrorNotFound'
-        '406':
-          $ref: '#/components/responses/Error406NotAcceptable'
-      operationId: deleteSubscriptionEnrollment
-      description: Remove a `subscription_enrollment`.
-      x-java-method-name: remove
-      x-python-method-name: remove
   /balance_transfers/{balance_transfers_id}:
     parameters:
     - schema:
@@ -3235,7 +2404,8 @@ paths:
       x-group-parameters: true
       parameters:
       - $ref: '#/components/parameters/QueryLimit'
-      - $ref: '#/components/parameters/QueryOffset'
+      - $ref: '#/components/parameters/QueryAfterCursor'
+      - $ref: '#/components/parameters/QueryBeforeCursor'
       x-python-method-name: list_disputes_adjustments
       x-returns-list: true
   /instrument_updates/{instrument_updates_id}:
@@ -3378,13 +2548,6 @@ components:
       schema:
         type: string
       style: form
-    QueryEntityTypeFilter:
-      description: Filter by entity_type
-      in: query
-      name: entity_type
-      schema:
-        type: string
-      style: form
     QueryIdFilter:
       description: Filter by id
       in: query
@@ -3416,13 +2579,6 @@ components:
       schema:
         type: integer
       style: form
-    QueryOutcomeFilter:
-      description: Filter by outcome
-      in: query
-      name: id
-      schema:
-        type: string
-      style: form
     QuerySettlementReadyToSettleAtGteFilter:
       description: Filter by ready_to_settle_at
       in: query
@@ -3448,41 +2604,6 @@ components:
       description: Filter by statement_descriptor
       in: query
       name: statement_descriptor
-      schema:
-        type: integer
-      style: form
-    QueryTotalAmountFilter:
-      description: Filter by a total amount equal to the given value
-      in: query
-      name: amount
-      schema:
-        type: integer
-      style: form
-    QueryTotalAmountGtFilter:
-      description: Filter by a total amount greater than
-      in: query
-      name: amount.gt
-      schema:
-        type: integer
-      style: form
-    QueryTotalAmountGteFilter:
-      description: Filter by a total amount greater than or equal
-      in: query
-      name: amount.gte
-      schema:
-        type: integer
-      style: form
-    QueryTotalAmountLtFilter:
-      description: Filter by a total amount less than
-      in: query
-      name: amount.lt
-      schema:
-        type: integer
-      style: form
-    QueryTotalAmountLteFilter:
-      description: Filter by a total amount less than or equal
-      in: query
-      name: amount.lte
       schema:
         type: integer
       style: form
@@ -3529,15 +2650,6 @@ components:
       schema:
         type: string
       description: Filter by the business type. Partial business types are not supported
-    QueryDoingBusinessAs:
-      name: doing_business_as
-      in: query
-      required: false
-      schema:
-        type: string
-        example: MTTM
-      description: Filter by the doing business as (DBA) name. Partial DBAs are not
-        supported
     QueryEmail:
       name: email
       in: query
@@ -4031,7 +3143,7 @@ components:
                 expiration_year: 2029
                 tags:
                   card_name: Business Card
-                number: '4895142232120006'
+                number: '5200828282828210'
                 expiration_month: 12
                 address:
                   city: San Francisco
@@ -4105,21 +3217,6 @@ components:
                 currency: USD
                 amount: 150
                 operation_key: CARD_PRESENT_UNREFERENCED_REFUND
-    CreateReviewQueueItemRequest:
-      content:
-        application/hal+json:
-          schema:
-            type: object
-    CreateRiskProfileRequest:
-      content:
-        application/hal+json:
-          schema:
-            type: object
-    CreateRiskProfileRuleRequest:
-      content:
-        application/hal+json:
-          schema:
-            type: object
     CreateSettlementRequest:
       content:
         application/hal+json:
@@ -4283,9 +3380,27 @@ components:
           schema:
             $ref: '#/components/schemas/CreateWebhookRequest'
           examples:
-            example-1:
+            Create a webhook with no authentication:
               value:
-                url: https://eohzjuj2prziycz.m.pipedream.net
+                url: https://example.com/event_handler
+                authentication:
+                  type: NONE
+            Create a webhook with Basic authentication:
+              value:
+                url: https://example.com/event_handler
+                authentication:
+                  type: BASIC
+                  basic:
+                    username: basic-auth-username
+                    password: basic-auth-password
+            Create a webhook with Bearer Token authentication:
+              value:
+                url: https://example.com/event_handler
+                enabled: true
+                authentication:
+                  type: BEARER
+                  bearer:
+                    token: U3VwZXIgc2VjcmV0IGVuY29kZWQgdG9rZW4=
     UpdateTransferRequest:
       content:
         application/hal+json:
@@ -4433,6 +3548,10 @@ components:
             Update Merchant to Enable Level 2/3 Processing:
               value:
                 level_two_level_three_data_enabled: true
+            Update Merchant to Enable Buyer Charges:
+              value:
+                convenience_charges_enabled: true
+                rent_surcharges_enabled: true
     UpdateIdentityRequest:
       content:
         application/hal+json:
@@ -4863,7 +3982,7 @@ components:
                   order_number: 21DFASJSAKAS
                 state: SUCCEEDED
                 currency: USD
-                transfer: null
+                transfer: TRsBcF8LjV1UaK5vXY6pFHmG
                 messages: []
                 raw: null
                 created_at: '2022-01-27T07:37:19.95Z'
@@ -5412,7 +4531,7 @@ components:
             List of Dispute Evidence:
               value:
                 page:
-                  count: 0
+                  limit: 1
                   next_cursor: null
                 _embedded:
                   evidences:
@@ -5508,7 +4627,8 @@ components:
                   self:
                     href: https://finix.sandbox-payments-api.com/disputes/?limit=20&sort=created_at,desc&sort=id,desc
                 page:
-                  next_cursor: DItDftgrrkhcyFLzZiUFxn6Y
+                  offset: 0
+                  count: 2
                   limit: 20
       headers:
         finix-apiuser-role:
@@ -5767,7 +4887,8 @@ components:
                   next:
                     href: https://finix.sandbox-payments-api.com/fees?offset=20&limit=20&sort=created_at,desc&sort=id,desc
                 page:
-                  next_cursor: TRsfZUjgXSCj7k2stZR7APEn
+                  offset: 0
+                  count: 2
                   limit: 20
       headers:
         finix-apiuser-role:
@@ -7002,18 +6123,18 @@ components:
           examples:
             Payment Instrument (Card):
               value:
-                id: PIe2YvpcjvoVJ6PzoRPBK137
+                id: PIgHFzzdUGYi2iaiMhGVZffq
                 application: APgPDQrLD52TYvqazjHJJchM
-                fingerprint: FPRogKWsRQks2HGaau5eGR9AF
+                fingerprint: FPRiCenDk2SoRng7WjQTr7RJY
                 tags:
                   card_name: Business Card
                 expiration_month: 12
                 expiration_year: 2029
-                bin: '489514'
-                last_four: '0006'
-                brand: VISA
-                card_type: UNKNOWN
-                name: Amy White
+                bin: '520082'
+                last_four: '8210'
+                brand: MASTERCARD
+                card_type: DEBIT
+                name: John Smith
                 address:
                   line1: 900 Metro Center Blv
                   line2: null
@@ -7023,27 +6144,27 @@ components:
                   country: USA
                 address_verification: UNKNOWN
                 security_code_verification: UNKNOWN
-                created_at: '2022-01-27T07:37:00.53Z'
-                updated_at: '2022-01-27T07:37:00.53Z'
+                created_at: '2022-07-22T02:36:56.75Z'
+                updated_at: '2022-07-22T02:36:56.75Z'
                 instrument_type: PAYMENT_CARD
                 type: PAYMENT_CARD
                 currency: USD
                 identity: IDgWxBhfGYLLdkhxx2ddYf9K
                 _links:
                   self:
-                    href: https://finix.sandbox-payments-api.com/payment_instruments/PIe2YvpcjvoVJ6PzoRPBK137
+                    href: https://finix.sandbox-payments-api.com/payment_instruments/PIgHFzzdUGYi2iaiMhGVZffq
                   authorizations:
-                    href: https://finix.sandbox-payments-api.com/payment_instruments/PIe2YvpcjvoVJ6PzoRPBK137/authorizations
+                    href: https://finix.sandbox-payments-api.com/payment_instruments/PIgHFzzdUGYi2iaiMhGVZffq/authorizations
                   transfers:
-                    href: https://finix.sandbox-payments-api.com/payment_instruments/PIe2YvpcjvoVJ6PzoRPBK137/transfers
+                    href: https://finix.sandbox-payments-api.com/payment_instruments/PIgHFzzdUGYi2iaiMhGVZffq/transfers
                   verifications:
-                    href: https://finix.sandbox-payments-api.com/payment_instruments/PIe2YvpcjvoVJ6PzoRPBK137/verifications
+                    href: https://finix.sandbox-payments-api.com/payment_instruments/PIgHFzzdUGYi2iaiMhGVZffq/verifications
                   application:
                     href: https://finix.sandbox-payments-api.com/applications/APgPDQrLD52TYvqazjHJJchM
                   identity:
                     href: https://finix.sandbox-payments-api.com/identities/IDgWxBhfGYLLdkhxx2ddYf9K
                   updates:
-                    href: https://finix.sandbox-payments-api.com/payment_instruments/PIe2YvpcjvoVJ6PzoRPBK137/updates
+                    href: https://finix.sandbox-payments-api.com/payment_instruments/PIgHFzzdUGYi2iaiMhGVZffq/updates
             Payment Instrument (Bank Account):
               value:
                 id: PI8sdzepdapDehPWKFTcre1m
@@ -7170,7 +6291,8 @@ components:
                     href: https://finix.sandbox-payments-api.com/payment_instruments/PIe2YvpcjvoVJ6PzoRPBK137/updates?offset=0&limit=20&sort=created_at,desc&sort=id,desc
                 page:
                   limit: 10
-                  next_cursor: FILE_6wBzkFEYoM5JwSTBZeuZ6R
+                  offset: 0
+                  count: 1
       headers:
         finix-apiuser-role:
           $ref: '#/components/headers/finix-apiuser-role'
@@ -7442,129 +6564,12 @@ components:
           $ref: '#/components/headers/date'
         x-request-id:
           $ref: '#/components/headers/x-request-id'
-    ReserveProfile:
-      description: Single reserve profile object
-      content:
-        application/hal+json:
-          schema:
-            $ref: '#/components/schemas/ReserveProfile'
-      headers:
-        finix-apiuser-role:
-          $ref: '#/components/headers/finix-apiuser-role'
-        date:
-          $ref: '#/components/headers/date'
-        x-request-id:
-          $ref: '#/components/headers/x-request-id'
-    ReserveProfilesList:
-      description: List of reserve profiles object
-      content:
-        application/hal+json:
-          schema:
-            $ref: '#/components/schemas/ReserveProfilesList'
-      headers:
-        finix-apiuser-role:
-          $ref: '#/components/headers/finix-apiuser-role'
-        date:
-          $ref: '#/components/headers/date'
-        x-request-id:
-          $ref: '#/components/headers/x-request-id'
     ReversalsList:
       description: List of Reversals
       content:
         application/hal+json:
           schema:
             $ref: '#/components/schemas/TransfersList'
-      headers:
-        finix-apiuser-role:
-          $ref: '#/components/headers/finix-apiuser-role'
-        date:
-          $ref: '#/components/headers/date'
-        x-request-id:
-          $ref: '#/components/headers/x-request-id'
-    ReviewQueueItem:
-      description: Single review queue item
-      content:
-        application/hal+json:
-          schema:
-            $ref: '#/components/schemas/ReviewQueueItem'
-      headers:
-        finix-apiuser-role:
-          $ref: '#/components/headers/finix-apiuser-role'
-        date:
-          $ref: '#/components/headers/date'
-        x-request-id:
-          $ref: '#/components/headers/x-request-id'
-    ReviewQueueItemsList:
-      description: List of review queue items
-      content:
-        application/hal+json:
-          schema:
-            $ref: '#/components/schemas/ReviewQueueItemsList'
-      headers:
-        finix-apiuser-role:
-          $ref: '#/components/headers/finix-apiuser-role'
-        date:
-          $ref: '#/components/headers/date'
-        x-request-id:
-          $ref: '#/components/headers/x-request-id'
-    RiskProfile:
-      description: Single risk profile item
-      content:
-        application/hal+json:
-          schema:
-            $ref: '#/components/schemas/RiskProfile'
-      headers:
-        finix-apiuser-role:
-          $ref: '#/components/headers/finix-apiuser-role'
-        date:
-          $ref: '#/components/headers/date'
-        x-request-id:
-          $ref: '#/components/headers/x-request-id'
-    RiskProfileRule:
-      description: Single risk profile rules item
-      content:
-        application/hal+json:
-          schema:
-            $ref: '#/components/schemas/RiskProfileRule'
-      headers:
-        finix-apiuser-role:
-          $ref: '#/components/headers/finix-apiuser-role'
-        date:
-          $ref: '#/components/headers/date'
-        x-request-id:
-          $ref: '#/components/headers/x-request-id'
-    RiskProfileRulesList:
-      description: List of risk profile rules
-      content:
-        application/hal+json:
-          schema:
-            $ref: '#/components/schemas/RiskProfileRulesList'
-      headers:
-        finix-apiuser-role:
-          $ref: '#/components/headers/finix-apiuser-role'
-        date:
-          $ref: '#/components/headers/date'
-        x-request-id:
-          $ref: '#/components/headers/x-request-id'
-    RiskProfilesList:
-      description: List of risk profiles
-      content:
-        application/hal+json:
-          schema:
-            $ref: '#/components/schemas/RiskProfilesList'
-      headers:
-        finix-apiuser-role:
-          $ref: '#/components/headers/finix-apiuser-role'
-        date:
-          $ref: '#/components/headers/date'
-        x-request-id:
-          $ref: '#/components/headers/x-request-id'
-    Root:
-      description: OK
-      content:
-        application/hal+json:
-          schema:
-            $ref: '#/components/schemas/Root'
       headers:
         finix-apiuser-role:
           $ref: '#/components/headers/finix-apiuser-role'
@@ -7621,19 +6626,6 @@ components:
                     href: https://finix.sandbox-payments-api.com/settlements/STmCc8GbjjX33SdymwNhb9Et/transfers?type=debit
                   disputes:
                     href: https://finix.sandbox-payments-api.com/settlements/STmCc8GbjjX33SdymwNhb9Et/transfers?type=dispute
-      headers:
-        finix-apiuser-role:
-          $ref: '#/components/headers/finix-apiuser-role'
-        date:
-          $ref: '#/components/headers/date'
-        x-request-id:
-          $ref: '#/components/headers/x-request-id'
-    SettlementEngineSettlement:
-      description: Settlement object for new settlement engine
-      content:
-        application/hal+json:
-          schema:
-            $ref: '#/components/schemas/SettlementEngineSettlement'
       headers:
         finix-apiuser-role:
           $ref: '#/components/headers/finix-apiuser-role'
@@ -8294,19 +7286,6 @@ components:
           $ref: '#/components/headers/date'
         x-request-id:
           $ref: '#/components/headers/x-request-id'
-    TransferReversalsList:
-      description: List of reversals
-      content:
-        application/hal+json:
-          schema:
-            $ref: '#/components/schemas/TransferReversalsList'
-      headers:
-        finix-apiuser-role:
-          $ref: '#/components/headers/finix-apiuser-role'
-        date:
-          $ref: '#/components/headers/date'
-        x-request-id:
-          $ref: '#/components/headers/x-request-id'
     TransfersList:
       description: List of Transfer objects
       content:
@@ -8608,7 +7587,7 @@ components:
                     tags:
                       key_2: value_2
                     messages: []
-                    raw: null
+                    raw: RawDummyMerchantUnderwriteResult
                     processor: DUMMY_V1
                     state: SUCCEEDED
                     created_at: '2022-01-27T07:36:58.21Z'
@@ -9716,7 +8695,7 @@ components:
                 settlement_enabled: true
                 gross_settlement_enabled: false
                 creating_transfer_from_report_enabled: true
-                card_expiration_date_required: false
+                card_expiration_date_required: true
                 card_cvv_required: false
                 tags:
                   key_2: value_2
@@ -9724,15 +8703,61 @@ components:
                 mid: FNXw5a7pBKHsCSgCAyQvU2soL
                 merchant_name: Dunder Mifflin
                 settlement_funding_identifier: UNSET
-                ready_to_settle_upon: RECONCILIATION
-                fee_ready_to_settle_upon: RECONCILIATION
+                ready_to_settle_upon: SUCCESSFUL_CAPTURE
+                fee_ready_to_settle_upon: SUCCESSFUL_CAPTURE
                 level_two_level_three_data_enabled: true
                 created_at: '2022-01-27T07:37:04.03Z'
-                updated_at: '2022-01-27T07:37:05.30Z'
+                updated_at: '2022-01-27T07:37:06.12Z'
                 onboarding_state: APPROVED
                 processor_details:
                   mid: FNXw5a7pBKHsCSgCAyQvU2soL
                   api_key: secretValue
+                convenience_charges_enabled: true
+                rent_surcharges_enabled: true
+                _links:
+                  self:
+                    href: https://finix.sandbox-payments-api.com/merchants/MUeDVrf2ahuKc9Eg5TeZugvs
+                  identity:
+                    href: https://finix.sandbox-payments-api.com/identities/IDuqZpDw28f2KK6YuDk4jNLg
+                  verifications:
+                    href: https://finix.sandbox-payments-api.com/merchants/MUeDVrf2ahuKc9Eg5TeZugvs/verifications
+                  merchant_profile:
+                    href: https://finix.sandbox-payments-api.com/merchant_profiles/MP7tbAZ1RpjFycrfBVo6z4Ky
+                  application:
+                    href: https://finix.sandbox-payments-api.com/applications/APgPDQrLD52TYvqazjHJJchM
+                  verification:
+                    href: https://finix.sandbox-payments-api.com/verifications/VI5DBvVQ3ye5PcnUCSSvj84d
+            Merchant Updated to Enable Buyer Charges:
+              value:
+                id: MUeDVrf2ahuKc9Eg5TeZugvs
+                application: APgPDQrLD52TYvqazjHJJchM
+                identity: IDuqZpDw28f2KK6YuDk4jNLg
+                verification: VI5DBvVQ3ye5PcnUCSSvj84d
+                merchant_profile: MP7tbAZ1RpjFycrfBVo6z4Ky
+                processor: DUMMY_V1
+                processing_enabled: true
+                settlement_enabled: true
+                gross_settlement_enabled: false
+                creating_transfer_from_report_enabled: true
+                card_expiration_date_required: true
+                card_cvv_required: false
+                tags:
+                  key_2: value_2
+                mcc: '0742'
+                mid: FNXw5a7pBKHsCSgCAyQvU2soL
+                merchant_name: Dunder Mifflin
+                settlement_funding_identifier: UNSET
+                ready_to_settle_upon: SUCCESSFUL_CAPTURE
+                fee_ready_to_settle_upon: SUCCESSFUL_CAPTURE
+                level_two_level_three_data_enabled: true
+                created_at: '2022-01-27T07:37:04.03Z'
+                updated_at: '2022-01-27T07:37:06.12Z'
+                onboarding_state: APPROVED
+                processor_details:
+                  mid: FNXw5a7pBKHsCSgCAyQvU2soL
+                  api_key: secretValue
+                convenience_charges_enabled: true
+                rent_surcharges_enabled: true
                 _links:
                   self:
                     href: https://finix.sandbox-payments-api.com/merchants/MUeDVrf2ahuKc9Eg5TeZugvs
@@ -9885,6 +8910,248 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/FileDownload'
+    AuthorizationUpdated:
+      description: Single captured Authorization object
+      content:
+        application/hal+json:
+          schema:
+            $ref: '#/components/schemas/AuthorizationCaptured'
+          examples:
+            Captured Authorization:
+              value:
+                id: AUcP43nwPk6VBjPQBDRBTH5n
+                application: APgPDQrLD52TYvqazjHJJchM
+                amount: 108
+                tags:
+                  test_key_100: test_auth
+                state: SUCCEEDED
+                currency: USD
+                transfer: TRhPwUByCNHQjhNiLdNgveuA
+                messages: []
+                raw: null
+                created_at: '2022-07-20T22:12:02.96Z'
+                updated_at: '2022-07-20T22:12:03.76Z'
+                trace_id: ab1bebd8-f6a4-4d86-9640-5eebf68c574f
+                source: PIe2YvpcjvoVJ6PzoRPBK137
+                merchant_identity: IDuqZpDw28f2KK6YuDk4jNLg
+                3ds_redirect_url: null
+                is_void: false
+                void_state: UNATTEMPTED
+                expires_at: '2022-07-27T22:12:02.96Z'
+                idempotency_id: null
+                additional_buyer_charges: null
+                failure_code: null
+                failure_message: null
+                _links:
+                  self:
+                    href: https://finix.sandbox-payments-api.com/authorizations/AUcP43nwPk6VBjPQBDRBTH5n
+                  application:
+                    href: https://finix.sandbox-payments-api.com/applications/APgPDQrLD52TYvqazjHJJchM
+                  transfer:
+                    href: https://finix.sandbox-payments-api.com/transfers/TRhPwUByCNHQjhNiLdNgveuA
+                  merchant_identity:
+                    href: https://finix.sandbox-payments-api.com/identities/IDuqZpDw28f2KK6YuDk4jNLg
+            Captured Authorization (with Level 2 Processing):
+              value:
+                id: AU4AHPn4k7YTQ8YjK3QajeL2
+                application: APgPDQrLD52TYvqazjHJJchM
+                amount: 1000
+                tags:
+                  order_number: 21DFASJSAKAS
+                state: SUCCEEDED
+                currency: USD
+                transfer: TRbew5P8bkL3yxz6a6FzfVia
+                messages: []
+                raw: null
+                created_at: '2022-01-27T07:37:20.68Z'
+                updated_at: '2022-01-27T07:37:20.86Z'
+                trace_id: ab81e66c-dd65-438b-a1dc-6d580b36233c
+                source: PIe2YvpcjvoVJ6PzoRPBK137
+                merchant_identity: IDuqZpDw28f2KK6YuDk4jNLg
+                3ds_redirect_url: null
+                is_void: false
+                void_state: UNATTEMPTED
+                expires_at: '2022-02-03T07:37:20.68Z'
+                idempotency_id: null
+                failure_code: null
+                failure_message: null
+                _links:
+                  self:
+                    href: https://finix.sandbox-payments-api.com/authorizations/AUq2Xz5VS46U4hzzhX9WJCxx
+                  application:
+                    href: https://finix.sandbox-payments-api.com/applications/APgPDQrLD52TYvqazjHJJchM
+                  merchant_identity:
+                    href: https://finix.sandbox-payments-api.com/identities/IDuqZpDw28f2KK6YuDk4jNLg
+            Captured Authorization (with Level 3 Processing):
+              value:
+                id: AUczPEgnHSSMJ79n9dvp6HHJ
+                application: APgPDQrLD52TYvqazjHJJchM
+                amount: 108
+                tags:
+                  order_number: test_auth
+                state: SUCCEEDED
+                currency: USD
+                transfer: TReDoizZYZyyyTrcPzMboz84
+                messages: []
+                raw: null
+                created_at: '2022-07-20T20:52:11.63Z'
+                updated_at: '2022-07-20T20:52:12.37Z'
+                trace_id: 46a36f58-b496-4b6b-9357-6bb3c340de87
+                source: PIe2YvpcjvoVJ6PzoRPBK137
+                merchant_identity: IDuqZpDw28f2KK6YuDk4jNLg
+                3ds_redirect_url: null
+                is_void: false
+                void_state: UNATTEMPTED
+                expires_at: '2022-07-27T20:52:11.63Z'
+                idempotency_id: null
+                additional_buyer_charges: null
+                failure_code: null
+                failure_message: null
+                _links:
+                  self:
+                    href: https://finix.sandbox-payments-api.com/authorizations/AUsQsCLRp9ENxrh563w1zZHi
+                  application:
+                    href: https://finix.sandbox-payments-api.com/applications/APgPDQrLD52TYvqazjHJJchM
+                  merchant_identity:
+                    href: https://finix.sandbox-payments-api.com/identities/IDuqZpDw28f2KK6YuDk4jNLg
+            Voided Authorization:
+              value:
+                id: AU2UkcVZU94rNqonfcLGZRSJ
+                application: APgPDQrLD52TYvqazjHJJchM
+                amount: 100
+                tags:
+                  order_number: 21DFASJSAKAS
+                state: SUCCEEDED
+                currency: USD
+                transfer: null
+                messages: []
+                raw: null
+                created_at: '2022-01-27T07:37:28.10Z'
+                updated_at: '2022-01-27T07:37:29.15Z'
+                trace_id: 710b6745-c424-4101-84e5-4a49cf317dc7
+                source: PIe2YvpcjvoVJ6PzoRPBK137
+                merchant_identity: IDpYDM7J9n57q849o9E9yNrG
+                3ds_redirect_url: null
+                is_void: true
+                void_state: PENDING
+                expires_at: '2022-02-03T07:37:28.10Z'
+                idempotency_id: null
+                failure_code: null
+                failure_message: null
+                _links:
+                  self:
+                    href: https://finix.sandbox-payments-api.com/authorizations/AU2UkcVZU94rNqonfcLGZRSJ
+                  application:
+                    href: https://finix.sandbox-payments-api.com/applications/APgPDQrLD52TYvqazjHJJchM
+                  merchant_identity:
+                    href: https://finix.sandbox-payments-api.com/identities/IDpYDM7J9n57q849o9E9yNrG
+            Captured Card Present Authorization (with an EMV Card):
+              value:
+                id: AUuCfRve8QG6G1wnPCReiLma
+                application: APeUbTUjvYb1CdPXvNcwW1wP
+                amount: 150
+                tags:
+                  test_key_100: test_auth
+                state: SUCCEEDED
+                currency: USD
+                transfer: TRjiUo5CXLmaJp4k9PL7iP8z
+                messages: []
+                raw: null
+                card_present_details:
+                  emv_data:
+                    application_identifier: A0000000031010
+                    application_label: Visa Credit
+                    application_preferred_name: ''
+                    application_transaction_counter: '0047'
+                    cryptogram: TC 4ACED247416CD824
+                    issuer_code_table_index: ''
+                    pin_verified: false
+                    tags: {}
+                  masked_account_number: '************7564'
+                  name: 'AARON/CHRISTOPHER W '
+                  brand: VISA
+                  entry_mode: CHIP_ENTRY
+                  payment_type: CREDIT
+                  approval_code: '000042'
+                capture_amount: 150
+                created_at: '2019-03-01T03:42:13.59Z'
+                updated_at: '2019-03-01T03:49:28.67Z'
+                trace_id: 957ce193-b4e4-4a39-88e2-d88a019982d2
+                source: PIjnHHLBZvRu6GPEZdFt7E2q
+                merchant_identity: IDsbTBawhnLBAVeinRb84vFR
+                device: DVf2H8sh4LZZC52GTUrwCPPf
+                3ds_redirect_url: null
+                is_void: false
+                void_state: UNATTEMPTED
+                expires_at: '2019-03-08T03:42:13.59Z'
+                idempotency_id: null
+                additional_buyer_charges: null
+                failure_code: null
+                failure_message: null
+                _links:
+                  self:
+                    href: https://finix.sandbox-payments-api.com/authorizations/AUuCfRve8QG6G1wnPCReiLma
+                  application:
+                    href: https://finix.sandbox-payments-api.com/applications/APeUbTUjvYb1CdPXvNcwW1wP
+                  transfer:
+                    href: https://finix.sandbox-payments-api.com/transfers/TRjiUo5CXLmaJp4k9PL7iP8z
+                  device:
+                    href: https://finix.sandbox-payments-api.com/devices/DVf2H8sh4LZZC52GTUrwCPPf
+                  merchant_identity:
+                    href: https://finix.sandbox-payments-api.com/identities/IDsbTBawhnLBAVeinRb84vFR
+            Captured Card Present Authorization (with a Non-EMV Card):
+              value:
+                id: AUiQyUYxQzhAF5ACAsxdUvYb
+                application: APeUbTUjvYb1CdPXvNcwW1wP
+                amount: 2500
+                tags:
+                  ticketNumber: '2348'
+                state: SUCCEEDED
+                currency: USD
+                transfer: TR6eEeW2Fr7hVgfTKgeeG3gy
+                messages: []
+                raw: null
+                card_present_details:
+                  emv_data: null
+                  masked_account_number: '************0006'
+                  name: TEST/WORLDPAY
+                  brand: VISA
+                  entry_mode: SWIPED
+                  payment_type: CREDIT
+                  approval_code: '050473'
+                capture_amount: 3000
+                created_at: '2019-05-01T17:18:54.41Z'
+                updated_at: '2019-05-01T17:19:42.46Z'
+                trace_id: FNXwyFm3UyQEyAL9cdabYBGWa
+                source: PImKxRXq5wQ2r5fK6qQtXady
+                merchant_identity: IDsbTBawhnLBAVeinRb84vFR
+                device: DVfKLD9GZtsjcJxLtc2yCcfd
+                3ds_redirect_url: null
+                is_void: false
+                void_state: UNATTEMPTED
+                expires_at: '2019-05-08T17:18:54.41Z'
+                idempotency_id: null
+                additional_buyer_charges: null
+                failure_code: null
+                failure_message: null
+                _links:
+                  self:
+                    href: https://finix.sandbox-payments-api.com/authorizations/AUiQyUYxQzhAF5ACAsxdUvYb
+                  application:
+                    href: https://finix.sandbox-payments-api.com/applications/APeUbTUjvYb1CdPXvNcwW1wP
+                  transfer:
+                    href: https://finix.sandbox-payments-api.com/transfers/TR6eEeW2Fr7hVgfTKgeeG3gy
+                  device:
+                    href: https://finix.sandbox-payments-api.com/devices/DVfKLD9GZtsjcJxLtc2yCcfd
+                  merchant_identity:
+                    href: https://finix.sandbox-payments-api.com/identities/IDsbTBawhnLBAVeinRb84vFR
+      headers:
+        finix-apiuser-role:
+          $ref: '#/components/headers/finix-apiuser-role'
+        date:
+          $ref: '#/components/headers/date'
+        x-request-id:
+          $ref: '#/components/headers/x-request-id'
   schemas:
     Application:
       type: object
@@ -10813,7 +10080,156 @@ components:
           - FAILED
           - SUCCEEDED
           - UNKNOWN
-          description: The state of the `Authorization`.
+          description: The state of the `Transfer`.
+        trace_id:
+          type: string
+          description: Trace ID of the `Authorization`. The processor sends back the
+            `trace_id` so you can track the authorization end-to-end.
+        transfer:
+          type: string
+          example: TRxxxxxxxxxxxxxxxxxx
+          pattern: ^(TR)[a-zA-Z0-9]{16,32}$
+          description: The ID of the `transfer` resource that gets created when the
+            `Authorization` moves to **SUCCEEDED**.
+          nullable: true
+        void_state:
+          type: string
+          description: Details if the `Authorization` has been voided.
+        sub_type:
+          $ref: '#/components/schemas/SubTypeTransfer'
+        _links:
+          type: object
+          description: For your convenience, every response includes several URLs
+            which link to resources relevant to the request. You can use these `_links`
+            to make your follow-up requests and quickly access relevant IDs.
+          properties:
+            application:
+              type: object
+              description: Link to the `Application` the resource was created under.
+              properties:
+                href:
+                  type: string
+            device:
+              type: object
+              description: Link to the `Device` the request was made under.
+              properties:
+                href:
+                  type: string
+            merchant_identity:
+              type: object
+              description: Link to the `Identity` the `Merchant` was created under
+                and the `Transfer` was submitted with.
+              properties:
+                href:
+                  type: string
+            self:
+              type: object
+              description: Link to the resource that was used in the request.
+              properties:
+                href:
+                  type: string
+            transfer:
+              type: object
+              description: Link to the `Transfers` realted to the `Authorization`.
+              properties:
+                href:
+                  type: string
+    AuthorizationCaptured:
+      type: object
+      title: AuthorizationCaptured
+      description: A captured authorization
+      properties:
+        tags:
+          $ref: '#/components/schemas/Tags'
+        id:
+          type: string
+          example: AUxxxxxxxxxxxxxxxxxx
+          pattern: ^(AU)[a-zA-Z0-9]{16,32}$
+          description: The ID of the `Authorization` resource.
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+        3ds_redirect_url:
+          type: string
+          description: The redirect URL used for 3DS transactions (if supported by
+            the processor).
+          nullable: true
+        amount:
+          type: integer
+          minimum: 0
+          description: The total amount that will be debited in cents (e.g. 100 cents
+            to debit $1.00).
+        application:
+          type: string
+          description: The ID of the `Application` resource the `Authorization` was
+            created under.
+        card_present_details:
+          $ref: '#/components/schemas/CardPresentDetails'
+        capture_amount:
+          type: integer
+          format: int64
+          description: The amount of the  `Authorization`  you would like to capture
+            in cents. Must be less than or equal to the `amount` of the `Authorization`.
+        currency:
+          $ref: '#/components/schemas/Currency'
+        device:
+          type: string
+          example: DVxxxxxxxxxxxxxxxxxx
+          pattern: ^(DV)[a-zA-Z0-9]{16,32}$
+          description: The ID of the activated device.
+          nullable: true
+        expires_at:
+          type: string
+          description: Authorization expiration time.
+          format: date-time
+        external_responses:
+          type: array
+          nullable: true
+          items:
+            type: object
+            properties:
+              body:
+                type: string
+              content_type:
+                type: string
+        idempotency_id:
+          type: string
+          description: A randomly generated value that'll be associated with the request.
+          nullable: true
+        failure_code:
+          $ref: '#/components/schemas/FailureCode'
+        failure_message:
+          $ref: '#/components/schemas/FailureMessage'
+        is_void:
+          type: boolean
+          description: Details if the `Authorization` is void.
+        merchant_identity:
+          $ref: '#/components/schemas/Id'
+        merchant:
+          $ref: '#/components/schemas/Id'
+        messages:
+          type: array
+          description: Message field that provides additional details. This field
+            is typically **null**.
+          items:
+            type: string
+        raw:
+          $ref: '#/components/schemas/Raw'
+        source:
+          type: string
+          example: PIxxxxxxxxxxxxxxxxxx
+          pattern: ^(PI)[a-zA-Z0-9]{16,32}$
+          description: ID of the `Payment Instrument` where funds get debited.
+        state:
+          type: string
+          enum:
+          - CANCELED
+          - PENDING
+          - FAILED
+          - SUCCEEDED
+          - UNKNOWN
+          description: The state of the `Transfer`.
         trace_id:
           type: string
           description: Trace ID of the `Authorization`. The processor sends back the
@@ -11423,7 +10839,7 @@ components:
         _links:
           $ref: '#/components/schemas/ListLinks'
         page:
-          $ref: '#/components/schemas/PageCursor'
+          $ref: '#/components/schemas/PageOffset'
     Error401Unauthorized:
       type: object
       properties:
@@ -13511,7 +12927,7 @@ components:
               href: https://finix.sandbox-payments-api.com/applications/APgPDQrLD52TYvqazjHJJchM
             verification:
               href: https://finix.sandbox-payments-api.com/verifications/VIdikDHXv7x8nWyJg8JZemGx
-      title: ''
+      title: Merchant
       properties:
         id:
           type: string
@@ -13599,6 +13015,14 @@ components:
               type: string
             api_key:
               type: string
+        convenience_charges_enabled:
+          type: boolean
+          description: Set to **true** if you want to enable the `Merchant` to accept
+            convenience fees and/or service fees.
+        rent_surcharges_enabled:
+          type: boolean
+          description: Set to **true** if you want to enable a `Merchant` to accept
+            rent charges.
         _links:
           type: object
           description: For your convenience, every response includes several URLs
@@ -13789,6 +13213,14 @@ components:
           type: boolean
           description: Set to **true** to enable the `Merchant` for Level 2 and Level
             3 processing. Default value is **false**.
+        convenience_charges_enabled:
+          type: boolean
+          description: Set to **true** if you want to enable the `Merchant` to accept
+            convenience fees and/or service fees.
+        rent_surcharges_enabled:
+          type: boolean
+          description: Set to **true** if you want to enable a `Merchant` to accept
+            rent charges.
     MerchantsList:
       type: object
       properties:
@@ -13808,19 +13240,20 @@ components:
           $ref: '#/components/schemas/ListLinks'
     PaymentInstrument:
       type: object
+      description: ''
       properties:
         tags:
           $ref: '#/components/schemas/Tags'
         type:
           type: string
           enum:
-          - VIRTUAL
-          - PAYMENT_CARD_PRESENT
           - TOKEN
+          - PAYMENT_CARD
           - SWIPED_PAYMENT_CARD
           - BANK_ACCOUNT
+          - VIRTUAL
+          - PAYMENT_CARD_PRESENT
           - VANTIV_OMNI_TOKEN
-          - PAYMENT_CARD
           description: Type of `Payment Instrument`.
         id:
           $ref: '#/components/schemas/Id'
@@ -13856,13 +13289,13 @@ components:
         instrument_type:
           type: string
           enum:
-          - VIRTUAL
-          - PAYMENT_CARD_PRESENT
           - TOKEN
+          - PAYMENT_CARD
           - SWIPED_PAYMENT_CARD
           - BANK_ACCOUNT
+          - VIRTUAL
+          - PAYMENT_CARD_PRESENT
           - VANTIV_OMNI_TOKEN
-          - PAYMENT_CARD
           description: The type of `Payment Instrument`.
         masked_account_number:
           type: string
@@ -13922,24 +13355,23 @@ components:
               properties:
                 href:
                   type: string
-        address:
-          $ref: '#/components/schemas/Address'
-        address_verification:
-          type: string
-          enum:
-          - POSTAL_CODE_AND_STREET_MATCH
-          - STREET_MATCH
-          - POSTAL_CODE_MATCH
-          - NO_ADDRESS
-          - NO_MATCH
-          - NOT_SUPPORTED
-          - UNKNOWN
-          description: "Additional address information that\u2019s required to verify\
-            \ the identity of the merchant."
+        expiration_month:
+          type: integer
+          maximum: 12
+          minimum: 1
+          description: Expiration month (e.g. 12 for December).
+        expiration_year:
+          type: integer
+          minimum: 1
+          description: 4-digit expiration year.
         bin:
           type: string
           pattern: ^\d{6}$
           description: Bank Identification number for the `Payment Instrument`.
+        last_four:
+          type: string
+          pattern: ^\d{4}$
+          description: Last four digits of the card or bank account number.
         brand:
           type: string
           enum:
@@ -13964,43 +13396,30 @@ components:
           - LANKAPAY
           - DINERS_CLUB
           description: The `brand` of the card saved in the `Payment Instrument`.
-        card_name:
-          type: string
-          description: A custom name you can include to identify the card being used
-            (e.g. **Business Card**).
-          nullable: true
         card_type:
           type: string
           enum:
           - UNKNOWN
-          - PREPAID
           - CREDIT
           - DEBIT
-          - FSA
-          description: The type of card saved in the `Payment Instrument`.
-        expiration_month:
-          type: integer
-          maximum: 12
-          minimum: 1
-          description: Expiration month (e.g. 12 for December).
-        expiration_year:
-          type: integer
-          minimum: 1
-          description: 4-digit expiration year.
-        fast_funds_indicator:
+          - HSA_FSA
+          - NON_RELOADABLE_PREPAID
+          - RELOADABLE_PREPAID
+          description: The type of payment card saved in the `Payment Instrument`.
+        address:
+          $ref: '#/components/schemas/Address'
+        address_verification:
           type: string
-          description: Details if Fast Funds is enabled for the card.
-        last_four:
-          type: string
-          pattern: ^\d{4}$
-          description: Last four digits of the card or bank account number.
-        online_gambing_block_indicator:
-          type: string
-          description: Detailes if the card is enabled to receive push-payments for
-            online gambling payouts.
-        push_funds_block_indicator:
-          type: string
-          description: Details if the card is enabled to receive push-to-card disbursements.
+          enum:
+          - POSTAL_CODE_AND_STREET_MATCH
+          - STREET_MATCH
+          - POSTAL_CODE_MATCH
+          - NO_ADDRESS
+          - NO_MATCH
+          - NOT_SUPPORTED
+          - UNKNOWN
+          description: "Additional address information that\u2019s required to verify\
+            \ the identity of the merchant."
         security_code_verification:
           type: string
           enum:
@@ -14008,6 +13427,21 @@ components:
           - UNKNOWN
           - UNMATCHED
           description: Details the results of the Card Verification Code check.
+        card_name:
+          type: string
+          description: A custom name you can include to identify the card being used
+            (e.g. **Business Card**).
+          nullable: true
+        fast_funds_indicator:
+          type: string
+          description: Details if Fast Funds is enabled for the card.
+        online_gambing_block_indicator:
+          type: string
+          description: Detailes if the card is enabled to receive push-payments for
+            online gambling payouts.
+        push_funds_block_indicator:
+          type: string
+          description: Details if the card is enabled to receive push-to-card disbursements.
     CreatePaymentInstrumentRequest:
       x-examples: {}
       title: ''
@@ -14052,10 +13486,10 @@ components:
         type:
           type: string
           enum:
-          - APPLE_PAY
-          - BANK_ACCOUNT
           - TOKEN
+          - APPLE_PAY
           - PAYMENT_CARD
+          - BANK_ACCOUNT
           description: Type of `Payment Instrument`.
         identity:
           $ref: '#/components/schemas/Id'
@@ -14128,8 +13562,8 @@ components:
           type: string
           enum:
           - TOKEN
-          - BANK_ACCOUNT
           - PAYMENT_CARD
+          - BANK_ACCOUNT
           description: Type of `Payment Instrument`.
         identity:
           $ref: '#/components/schemas/Id'
@@ -15865,386 +15299,6 @@ components:
                 $ref: '#/components/schemas/Processor'
         _links:
           $ref: '#/components/schemas/ListLinks'
-    ReserveProfile:
-      type: object
-      properties:
-        tags:
-          $ref: '#/components/schemas/Tags'
-        id:
-          $ref: '#/components/schemas/Id'
-        created_at:
-          $ref: '#/components/schemas/CreatedAt'
-        updated_at:
-          $ref: '#/components/schemas/UpdatedAt'
-        application:
-          type: string
-          description: The ID of the resource.
-        reserve_days:
-          type: integer
-        reserve_percentage:
-          type: integer
-        _links:
-          type: object
-          description: For your convenience, every response includes several URLs
-            which link to resources relevant to the request. You can use these `_links`
-            to make your follow-up requests and quickly access relevant IDs.
-          properties:
-            application:
-              type: object
-              description: Link to the `Application` the resource was created under.
-              properties:
-                href:
-                  type: string
-            owner_identity:
-              type: object
-              properties:
-                href:
-                  type: string
-            processors:
-              type: object
-              properties:
-                href:
-                  type: string
-            self:
-              type: object
-              description: Link to the resource that was used in the request.
-              properties:
-                href:
-                  type: string
-            users:
-              type: object
-              properties:
-                href:
-                  type: string
-    ReserveProfilesList:
-      type: object
-      properties:
-        page:
-          $ref: '#/components/schemas/PageCursor'
-        _embedded:
-          type: object
-          properties:
-            reserve_profiles:
-              type: array
-              minItems: 0
-              uniqueItems: true
-              items:
-                $ref: '#/components/schemas/ReserveProfile'
-        _links:
-          $ref: '#/components/schemas/ListLinks'
-    ReviewQueueItem:
-      type: object
-      description: ''
-      properties:
-        tags:
-          $ref: '#/components/schemas/Tags'
-        id:
-          type: string
-          example: RKxxxxxxxxxxxxxxxxxx
-          pattern: ^(RK)[a-zA-Z0-9]{16,32}$
-        created_at:
-          $ref: '#/components/schemas/CreatedAt'
-        updated_at:
-          $ref: '#/components/schemas/UpdatedAt'
-        application:
-          type: string
-          description: The ID of the resource.
-        completed_at:
-          type: string
-          format: date-time
-          nullable: true
-        entity_id:
-          $ref: '#/components/schemas/Id'
-        entity_type:
-          type: string
-          enum:
-          - IDENTITY
-          - MERCHANT
-          - SETTLEMENT
-          - SETTLEMENT_V2
-        outcome:
-          type: string
-          enum:
-          - PENDING
-          - REJECTED
-          - ACCEPTED
-        processor_type:
-          type: string
-          enum:
-          - AFFIPAY_V1
-          - CHECKOUT_V1
-          - DUMMY_V1
-          - ELAVON_V1
-          - EXPRESS_V1
-          - FINIX_VISA_SANDBOX_V1
-          - LITLE_V1
-          - MASTERCARD_V1
-          - MICROBILT_V1
-          - MYTHICAL_V1
-          - NMI_V1
-          - SKRILL_V1
-          - STRIPE_V1
-          - TRIPOS_CLOUD_V1
-          - TRIPOS_MOBILE_V1
-          - TRULIOO_V1
-          - VANTIV_V1
-          - VISA_V1
-          nullable: true
-        review_type:
-          type: string
-          enum:
-          - CREATED
-          - COMPLETED
-          - FAILED
-          - VERIFIED
-          - TRANSFER_LIMIT_EXCEEDED
-        reviewed_by:
-          type: string
-          nullable: true
-        _links:
-          type: object
-          description: For your convenience, every response includes several URLs
-            which link to resources relevant to the request. You can use these `_links`
-            to make your follow-up requests and quickly access relevant IDs.
-          properties:
-            application:
-              type: object
-              description: Link to the `Application` the resource was created under.
-              properties:
-                href:
-                  type: string
-            identity:
-              type: object
-              properties:
-                href:
-                  type: string
-            merchant:
-              type: object
-              description: Link to the `Merhcant` resource that was used in the request.
-              properties:
-                href:
-                  type: string
-            review_by:
-              type: object
-              properties:
-                href:
-                  type: string
-            self:
-              type: object
-              description: Link to the resource that was used in the request.
-              properties:
-                href:
-                  type: string
-            settlement:
-              type: object
-              properties:
-                href:
-                  type: string
-    ReviewQueueItemsList:
-      type: object
-      properties:
-        page:
-          $ref: '#/components/schemas/PageCursor'
-        _embedded:
-          type: object
-          properties:
-            review_queue_items:
-              type: array
-              minItems: 0
-              uniqueItems: true
-              items:
-                $ref: '#/components/schemas/ReviewQueueItem'
-        _links:
-          $ref: '#/components/schemas/ListLinks'
-    RiskProfile:
-      type: object
-      properties:
-        tags:
-          $ref: '#/components/schemas/Tags'
-        id:
-          $ref: '#/components/schemas/Id'
-        created_at:
-          $ref: '#/components/schemas/CreatedAt'
-        updated_at:
-          $ref: '#/components/schemas/UpdatedAt'
-        application:
-          type: string
-          description: The ID of the resource.
-        avs_failure_allowed:
-          type: boolean
-        csc_failure_allowed:
-          type: boolean
-        _links:
-          type: object
-          description: For your convenience, every response includes several URLs
-            which link to resources relevant to the request. You can use these `_links`
-            to make your follow-up requests and quickly access relevant IDs.
-          properties:
-            application:
-              type: object
-              description: Link to the `Application` the resource was created under.
-              properties:
-                href:
-                  type: string
-            rules:
-              type: object
-              properties:
-                href:
-                  type: string
-            self:
-              type: object
-              description: Link to the resource that was used in the request.
-              properties:
-                href:
-                  type: string
-    RiskProfileRule:
-      type: object
-      properties:
-        tags:
-          $ref: '#/components/schemas/Tags'
-        type:
-          type: string
-        id:
-          type: string
-          example: RRxxxxxxxxxxxxxxxxxx
-          pattern: ^(RR)[a-zA-Z0-9]{16,32}$
-        created_at:
-          $ref: '#/components/schemas/CreatedAt'
-        updated_at:
-          $ref: '#/components/schemas/UpdatedAt'
-        action:
-          type: string
-        amount:
-          type: integer
-        count:
-          type: integer
-        enabled:
-          type: boolean
-        entity_type:
-          type: string
-        ratio:
-          type: integer
-        risk_profile:
-          $ref: '#/components/schemas/Id'
-        trailing:
-          type: integer
-        trailing_unit:
-          type: string
-        _links:
-          type: object
-          description: For your convenience, every response includes several URLs
-            which link to resources relevant to the request. You can use these `_links`
-            to make your follow-up requests and quickly access relevant IDs.
-          properties:
-            self:
-              type: object
-              description: Link to the resource that was used in the request.
-              properties:
-                href:
-                  type: string
-    RiskProfileRulesList:
-      type: object
-      properties:
-        page:
-          $ref: '#/components/schemas/PageCursor'
-        _embedded:
-          type: object
-          properties:
-            risk_profile_rules:
-              type: array
-              minItems: 0
-              uniqueItems: true
-              items:
-                $ref: '#/components/schemas/RiskProfileRule'
-        _links:
-          $ref: '#/components/schemas/ListLinks'
-    RiskProfilesList:
-      type: object
-      properties:
-        page:
-          $ref: '#/components/schemas/PageCursor'
-        _embedded:
-          type: object
-          properties:
-            risk_profiles:
-              type: array
-              minItems: 0
-              uniqueItems: true
-              items:
-                $ref: '#/components/schemas/RiskProfile'
-        _links:
-          $ref: '#/components/schemas/ListLinks'
-    Root:
-      type: object
-      properties:
-        _links:
-          type: object
-          description: For your convenience, every response includes several URLs
-            which link to resources relevant to the request. You can use these `_links`
-            to make your follow-up requests and quickly access relevant IDs.
-          properties:
-            applications:
-              type: object
-              properties:
-                href:
-                  type: string
-            authorizations:
-              type: object
-              properties:
-                href:
-                  type: string
-            identities:
-              type: object
-              properties:
-                href:
-                  type: string
-            merchants:
-              type: object
-              properties:
-                href:
-                  type: string
-            payment_instruments:
-              type: object
-              properties:
-                href:
-                  type: string
-            processor_callbacks:
-              type: object
-              properties:
-                href:
-                  type: string
-            processor_clients:
-              type: object
-              properties:
-                href:
-                  type: string
-            self:
-              type: object
-              description: Link to the resource that was used in the request.
-              properties:
-                href:
-                  type: string
-            transfers:
-              type: object
-              properties:
-                href:
-                  type: string
-            users:
-              type: object
-              properties:
-                href:
-                  type: string
-            verifications:
-              type: object
-              description: Link to the `Verification` the request was made under.
-              properties:
-                href:
-                  type: string
-            webhooks:
-              type: object
-              properties:
-                href:
-                  type: string
     Settlement:
       type: object
       description: ''
@@ -16380,114 +15434,6 @@ components:
               properties:
                 href:
                   type: string
-    SettlementEngineSettlement:
-      type: object
-      properties:
-        tags:
-          $ref: '#/components/schemas/Tags'
-        id:
-          $ref: '#/components/schemas/Id'
-        created_at:
-          $ref: '#/components/schemas/CreatedAt'
-        updated_at:
-          $ref: '#/components/schemas/UpdatedAt'
-        adjustment_credit_amount:
-          type: integer
-        adjustment_credit_count:
-          type: integer
-        adjustment_debit_amount:
-          type: integer
-        adjustment_debit_count:
-          type: integer
-        application:
-          type: string
-          description: The ID of the resource.
-        auto_close_time:
-          type: string
-          nullable: true
-          format: date-time
-        currency:
-          $ref: '#/components/schemas/Currency'
-        dispute_credit_amount:
-          type: integer
-        dispute_credit_count:
-          type: integer
-        dispute_debit_amount:
-          type: integer
-        dispute_debit_count:
-          type: integer
-        exception:
-          type: boolean
-        fee_count:
-          type: integer
-        identity:
-          $ref: '#/components/schemas/Id'
-        merchant:
-          $ref: '#/components/schemas/Id'
-        payout_plan:
-          type: string
-        processor_type:
-          type: string
-        reverse_amount:
-          type: integer
-        reverse_count:
-          type: integer
-        schedule_type:
-          type: string
-          nullable: true
-          enum:
-          - DAILY
-          - MONTHLY
-          - CONTINUOUS
-        settlement_group:
-          type: string
-        status:
-          type: string
-          enum:
-          - APPROVED
-          - AWAITING_APPROVAL
-          - CANCELLED
-          - PENDING
-          - STAGED
-        total_amount:
-          type: integer
-        total_fee_amount:
-          type: integer
-        transfer_credit_amount:
-          type: integer
-        transfer_credit_count:
-          type: integer
-        transfer_debit_amount:
-          type: integer
-        transfer_debit_count:
-          type: integer
-        window_end:
-          type: string
-          nullable: true
-          format: date-time
-        window_start:
-          type: string
-          nullable: true
-          format: date-time
-        _links:
-          type: object
-          properties:
-            self: {}
-    SettlementEngineSettlementsList:
-      type: object
-      properties:
-        page:
-          $ref: '#/components/schemas/PageCursor'
-        _embedded:
-          type: object
-          properties:
-            settlements:
-              type: array
-              minItems: 0
-              uniqueItems: true
-              items:
-                $ref: '#/components/schemas/SettlementEngineSettlement'
-        _links: {}
     SettlementsList:
       type: object
       description: ''
@@ -16907,22 +15853,6 @@ components:
           $ref: '#/components/schemas/FraudSessionID'
         additional_purchase_data:
           $ref: '#/components/schemas/AdditionalPurchaseData'
-    TransferReversalsList:
-      type: object
-      properties:
-        page:
-          $ref: '#/components/schemas/PageCursor'
-        _embedded:
-          type: object
-          properties:
-            transfers:
-              type: array
-              minItems: 0
-              uniqueItems: true
-              items:
-                $ref: '#/components/schemas/Transfer'
-        _links:
-          $ref: '#/components/schemas/ListLinks'
     TransfersList:
       type: object
       description: ''
@@ -17232,6 +16162,23 @@ components:
           type: string
           description: The ID of the `Application` resource the `Webhook` was created
             under.
+        authentication:
+          type: object
+          description: The authentication settings that are used to send webhook events.
+          properties:
+            type:
+              type: string
+              enum:
+              - NONE
+              - BASIC
+              - BEARER
+              description: 'The type of authentication the webhook will use:
+
+                - NONE: No authentication will be used.
+
+                - BASIC: Basic authentication.
+
+                - BEARER: Oauth2''s Bearer Token.'
         enabled:
           type: boolean
           description: 'Details if the `Webhook` is enabled:<ul><li><strong>true</strong>:
@@ -17349,6 +16296,42 @@ components:
           type: boolean
           description: Set to false to disable Webhooks. Default value when created
             is true.
+        authentication:
+          type: object
+          description: The authentication settings that are used to send webhook events.
+          properties:
+            type:
+              type: string
+              enum:
+              - NONE
+              - BASIC
+              - BEARER
+              description: 'The type of authentication the webhook will use:
+
+                - NONE: No authentication will be used.
+
+                - BASIC: Basic authentication.
+
+                - BEARER: Oauth2''s Bearer Token.'
+            basic:
+              type: object
+              description: The basic authentication configuration. Null if basic is
+                not being used.
+              properties:
+                username:
+                  type: string
+                  description: The username that will be used for basic authentication
+                password:
+                  type: string
+                  description: The password to be used for basic authentication.
+            bearer:
+              type: object
+              description: The bearer authentication configuration. Null if bearer
+                is not being used.
+              properties:
+                token:
+                  type: string
+                  description: The string that Finix will send as the bearer token.
     CreateSettlementRequest:
       title: SettlementCreate
       type: object
@@ -18854,6 +17837,18 @@ components:
           type: string
           description: The status of the `instrument_updates` resource and update
             request.
+        application:
+          type: string
+          description: The id of the application.
+        messages:
+          $ref: '#/components/schemas/Messages'
+        trace_id:
+          type: string
+          description: Trace ID of the `Update`. The processor sends back the `trace_id`
+            so you can track the update end-to-end.
+        payment_instrument:
+          type: string
+          description: The id of the payment instrument the update occured against.
         _links:
           type: object
           description: For your convenience, every response includes several URLs
@@ -18863,6 +17858,18 @@ components:
             self:
               type: object
               description: Link to the resource that was used in the request.
+              properties:
+                href:
+                  type: string
+            payment_instrument:
+              type: object
+              description: Link to the payment instrument.
+              properties:
+                href:
+                  type: string
+            application:
+              type: object
+              description: Link to the application.
               properties:
                 href:
                   type: string
@@ -19160,50 +18167,6 @@ components:
           description: For tax exempt purchases set to True.
       required:
       - customer_reference_number
-    UpdatedMerchant:
-      $ref: '#/components/schemas/Merchant'
-      x-examples:
-        example-1:
-          id: MUucec6fHeaWo3VHYoSkUySM
-          application: APgPDQrLD52TYvqazjHJJchM
-          identity: IDpYDM7J9n57q849o9E9yNrG
-          verification: VIdikDHXv7x8nWyJg8JZemGx
-          merchant_profile: MPzW2oRPtkLxK3fymcMACFi
-          processor: DUMMY_V1
-          processing_enabled: true
-          settlement_enabled: true
-          gross_settlement_enabled: false
-          creating_transfer_from_report_enabled: true
-          card_expiration_date_required: true
-          card_cvv_required: false
-          tags:
-            key_2: value_2
-          mcc: '0742'
-          mid: FNX7CwmebftudY7i5mA4qF6XT
-          merchant_name: Finix
-          settlement_funding_identifier: UNSET
-          ready_to_settle_upon: RECONCILIATION
-          fee_ready_to_settle_upon: RECONCILIATION
-          level_two_level_three_data_enabled: false
-          created_at: '2022-01-27T07:36:58.19Z'
-          updated_at: '2022-01-27T07:36:58.46Z'
-          onboarding_state: APPROVED
-          processor_details:
-            mid: FNX7CwmebftudY7i5mA4qF6XT
-            api_key: secretValue
-          _links:
-            self:
-              href: https://finix.sandbox-payments-api.com/merchants/MUucec6fHeaWo3VHYoSkUySM
-            identity:
-              href: https://finix.sandbox-payments-api.com/identities/IDpYDM7J9n57q849o9E9yNrG
-            verifications:
-              href: https://finix.sandbox-payments-api.com/merchants/MUucec6fHeaWo3VHYoSkUySM/verifications
-            merchant_profile:
-              href: https://finix.sandbox-payments-api.com/merchant_profiles/MPzW2oRPtkLxK3fymcMACFi
-            application:
-              href: https://finix.sandbox-payments-api.com/applications/APgPDQrLD52TYvqazjHJJchM
-            verification:
-              href: https://finix.sandbox-payments-api.com/verifications/VIdikDHXv7x8nWyJg8JZemGx
     ApplePaySessionRequest:
       type: object
       x-examples:
@@ -19562,33 +18525,6 @@ components:
       - SPLIT_PAYOUT
       - SPLIT_PAYOUT_ADJUSTMENT
       - SYSTEM
-    ListApplicationProfilesQueryParams:
-      type: object
-      properties:
-        limit:
-          description: The numbers of items to return
-          type: integer
-        after_cursor:
-          description: Return every resource created after the cursor value.
-          type: string
-        before_cursor:
-          description: Return every resource created before the cursor value.
-          type: string
-    ListApplicationsQueryParams:
-      type: object
-      properties:
-        id:
-          description: Filter by id
-          type: string
-        before_cursor:
-          description: Return every resource created before the cursor value.
-          type: string
-        after_cursor:
-          description: Return every resource created after the cursor value.
-          type: string
-        limit:
-          description: The numbers of items to return
-          type: integer
     ListAuthorizationsQueryParams:
       type: object
       properties:
@@ -19782,18 +18718,6 @@ components:
         limit:
           description: The numbers of items to return
           type: integer
-    ListFeesQueryParams:
-      type: object
-      properties:
-        limit:
-          description: The numbers of items to return
-          type: integer
-        after_cursor:
-          description: Return every resource created after the cursor value.
-          type: string
-        before_cursor:
-          description: Return every resource created before the cursor value.
-          type: string
     ListIdentitiesQueryParams:
       type: object
       properties:
@@ -19957,6 +18881,19 @@ components:
         before_cursor:
           description: Return every resource created before the cursor value.
           type: string
+    ListPaymentInstrumentUpdatesQueryParams:
+      type: object
+      properties:
+        limit:
+          description: The number of entries to return.
+          type: integer
+        offset:
+          description: The number of items to skip before starting to collect the
+            result set.
+          type: integer
+        pageSize:
+          description: The size of the page.
+          type: integer
     ListSettlementsQueryParams:
       type: object
       properties:
@@ -20125,19 +19062,7 @@ components:
         before_cursor:
           description: Return every resource created before the cursor value.
           type: string
-    ListUsersQueryParams:
-      type: object
-      properties:
-        id:
-          description: Filter by id
-          type: string
     ListVerificationsQueryParams:
-      type: object
-      properties:
-        id:
-          description: Filter by id
-          type: string
-    ListWebhooksQueryParams:
       type: object
       properties:
         limit:
@@ -20149,16 +19074,7 @@ components:
         before_cursor:
           description: Return every resource created before the cursor value.
           type: string
-    ListSubscriptionSchedulesQueryParams:
-      type: object
-      properties:
-        nickname:
-          description: Filter by the object's `nickname`.
-          type: string
-        type:
-          description: Filter by the object's `type`.
-          type: string
-    ListSubscriptionAmountQueryParams:
+    ListWebhooksQueryParams:
       type: object
       properties:
         limit:
@@ -20243,10 +19159,12 @@ components:
         limit:
           description: The numbers of items to return
           type: integer
-        offset:
-          description: The number of items to skip before starting to collect the
-            result set
-          type: integer
+        after_cursor:
+          description: Return every resource created after the cursor value.
+          type: string
+        before_cursor:
+          description: Return every resource created before the cursor value.
+          type: string
   securitySchemes:
     BasicAuth:
       type: http
@@ -20254,3 +19172,14 @@ components:
       description: ''
 security:
 - BasicAuth: []
+x-exclude-tags-from-libraries:
+- Applications
+- Application Profiles
+- Fees
+- Payment Instruments P2C
+- Processors
+- Review Queue
+- Subscription Schedules
+- Subscription Amounts
+- Subscription Enrollments
+- Users

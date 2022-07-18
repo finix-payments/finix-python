@@ -7,7 +7,7 @@ openapi-generator generate \
   --global-property skipFormModel=false \
   --reserved-words-mappings self=self \
   --additional-properties=packageName=finix \
-  --additional-properties=packageVersion=2.0.0 \
+  --additional-properties=packageVersion=3.0.0 \
   --additional-properties=projectName=finix \
   --global-property apiDocs=false \
   --global-property modelDocs=false \

@@ -86,8 +86,9 @@ class FinixClient(object):
             self._default_headers[header_name] = header_value
         self._cookie = cookie
         # Set default User-Agent.
-        self._user_agent = 'finix-python/2.0.0'
+        self._user_agent = 'finix-python/3.0.0'
 
+        self.set_default_header('Finix-Version','2022-02-01')
         self.transfers = finix.api.transfers_api.TransfersApi(self)
         self.payment_instruments = finix.api.payment_instruments_api.PaymentInstrumentsApi(self)
         self.authorizations = finix.api.authorizations_api.AuthorizationsApi(self)
@@ -108,23 +109,23 @@ class FinixClient(object):
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
-        self.close()
+        self._close()
 
-    def close(self):
+    def _close(self):
         if self._pool:
             self._pool.close()
             self._pool.join()
             self._pool = None
             if hasattr(atexit, 'unregister'):
-                atexit.unregister(self.close)
+                atexit.unregister(self._close)
 
     @property
-    def pool(self):
+    def _pools(self):
         """Create thread pool on first request
          avoids instantiating unused threadpool for blocking clients.
         """
         if self._pool is None:
-            atexit.register(self.close)
+            atexit.register(self._close)
             self._pool = ThreadPool(self._pool_threads)
         return self._pool
 
@@ -169,14 +170,14 @@ class FinixClient(object):
         if self._cookie:
             header_params['Cookie'] = self._cookie
         if header_params:
-            header_params = self.sanitize_for_serialization(header_params)
-            header_params = dict(self.parameters_to_tuples(header_params,
+            header_params = self._sanitize_for_serialization(header_params)
+            header_params = dict(self._parameters_to_tuples(header_params,
                                                            collection_formats))
 
         # path parameters
         if path_params:
-            path_params = self.sanitize_for_serialization(path_params)
-            path_params = self.parameters_to_tuples(path_params,
+            path_params = self._sanitize_for_serialization(path_params)
+            path_params = self._parameters_to_tuples(path_params,
                                                     collection_formats)
             for k, v in path_params:
                 # specified safe chars, encode everything
@@ -187,27 +188,27 @@ class FinixClient(object):
 
         # query parameters
         if query_params:
-            query_params = self.sanitize_for_serialization(query_params)
-            query_params = self.parameters_to_tuples(query_params,
+            query_params = self._sanitize_for_serialization(query_params)
+            query_params = self._parameters_to_tuples(query_params,
                                                      collection_formats)
 
         # post parameters
         if post_params or files:
             post_params = post_params if post_params else []
-            post_params = self.sanitize_for_serialization(post_params)
-            post_params = self.parameters_to_tuples(post_params,
+            post_params = self._sanitize_for_serialization(post_params)
+            post_params = self._parameters_to_tuples(post_params,
                                                     collection_formats)
-            post_params.extend(self.files_parameters(files))
+            post_params.extend(self._files_parameters(files))
             if header_params['Content-Type'].startswith("multipart"):
-                post_params = self.parameters_to_multipart(post_params,
+                post_params = self._parameters_to_multipart(post_params,
                                                           (dict) )
 
         # body
         if body:
-            body = self.sanitize_for_serialization(body)
+            body = self._sanitize_for_serialization(body)
 
         # auth setting
-        self.update_params_for_auth(header_params, query_params,
+        self._update_params_for_auth(header_params, query_params,
                                     auth_settings, resource_path, method, body)
 
         # request url
@@ -219,13 +220,12 @@ class FinixClient(object):
 
         try:
             # perform request and return response
-            response_data = self.request(
+            response_data = self._request(
                 method, url, query_params=query_params, headers=header_params,
                 post_params=post_params, body=body,
                 _preload_content=_preload_content,
                 _request_timeout=_request_timeout)
         except ApiException as e:
-            e.body = e.body.decode('utf-8')
             raise e
 
         self._last_response = response_data
@@ -247,7 +247,7 @@ class FinixClient(object):
                         encoding = match.group(1)
                 response_data.data = response_data.data.decode(encoding)
 
-            return_data = self.deserialize(
+            return_data = self._deserialize(
                 response_data,
                 response_type,
                 _check_type
@@ -261,7 +261,7 @@ class FinixClient(object):
             return (return_data, response_data.status,
                     response_data.getheaders())
 
-    def parameters_to_multipart(self, params, collection_types):
+    def _parameters_to_multipart(self, params, collection_types):
         """Get parameters as list of tuples, formatting as json if value is collection_types
 
         :param params: Parameters as list of two-tuples
@@ -282,7 +282,7 @@ class FinixClient(object):
         return new_params
 
     @classmethod
-    def sanitize_for_serialization(cls, obj):
+    def _sanitize_for_serialization(cls, obj):
         """Prepares data for transmission before it is sent with the rest client
         If obj is None, return None.
         If obj is str, int, long, float, bool, return directly.
@@ -297,23 +297,23 @@ class FinixClient(object):
         """
         if isinstance(obj, (ModelNormal, ModelComposed)):
             return {
-                key: cls.sanitize_for_serialization(val) for key, val in model_to_dict(obj, serialize=True).items()
+                key: cls._sanitize_for_serialization(val) for key, val in model_to_dict(obj, serialize=True).items()
             }
         elif isinstance(obj, io.IOBase):
-            return cls.get_file_data_and_close_file(obj)
+            return cls._get_file_data_and_close_file(obj)
         elif isinstance(obj, (str, int, float, none_type, bool)):
             return obj
         elif isinstance(obj, (datetime, date)):
             return obj.isoformat()
         elif isinstance(obj, ModelSimple):
-            return cls.sanitize_for_serialization(obj.value)
+            return cls._sanitize_for_serialization(obj.value)
         elif isinstance(obj, (list, tuple)):
-            return [cls.sanitize_for_serialization(item) for item in obj]
+            return [cls._sanitize_for_serialization(item) for item in obj]
         if isinstance(obj, dict):
-            return {key: cls.sanitize_for_serialization(val) for key, val in obj.items()}
+            return {key: cls._sanitize_for_serialization(val) for key, val in obj.items()}
         raise ApiValueError('Unable to prepare type {} for serialization'.format(obj.__class__.__name__))
 
-    def deserialize(self, response, response_type, _check_type):
+    def _deserialize(self, response, response_type, _check_type):
         """Deserializes response into an object.
 
         :param response: RESTResponse object to be deserialized.
@@ -358,7 +358,7 @@ class FinixClient(object):
         )
         return deserialized_data
 
-    def call_api(
+    def _call_api(
         self,
         resource_path: str,
         method: str,
@@ -440,7 +440,7 @@ class FinixClient(object):
                                    _preload_content, _request_timeout, _host,
                                    _check_type)
 
-        return self.pool.apply_async(self.__call_api, (resource_path,
+        return self._pools.apply_async(self.__call_api, (resource_path,
                                                        method, path_params,
                                                        query_params,
                                                        header_params, body,
@@ -453,7 +453,7 @@ class FinixClient(object):
                                                        _request_timeout,
                                                        _host, _check_type))
 
-    def request(self, method, url, query_params=None, headers=None,
+    def _request(self, method, url, query_params=None, headers=None,
                 post_params=None, body=None, _preload_content=True,
                 _request_timeout=None):
         """Makes the HTTP request using RESTClient."""
@@ -514,7 +514,7 @@ class FinixClient(object):
                 " `POST`, `PATCH`, `PUT` or `DELETE`."
             )
 
-    def parameters_to_tuples(self, params, collection_formats):
+    def _parameters_to_tuples(self, params, collection_formats):
         """Get parameters as list of tuples, formatting collections.
 
         :param params: Parameters as dict or list of two-tuples
@@ -545,7 +545,7 @@ class FinixClient(object):
         return new_params
 
     @staticmethod
-    def get_file_data_and_close_file(file_instance: io.IOBase):
+    def _get_file_data_and_close_file(file_instance: io.IOBase):
         file_name = str(os.path.basename(file_instance.name))
         file_data = file_instance.read()
         file_suffix = file_name.split('.')[-1]
@@ -565,7 +565,7 @@ class FinixClient(object):
         file_instance.close()
         return (file_name, file_data, file_type)
 
-    def files_parameters(self, files: typing.Optional[typing.Dict[str, typing.List[io.IOBase]]] = None):
+    def _files_parameters(self, files: typing.Optional[typing.Dict[str, typing.List[io.IOBase]]] = None):
         """Builds form parameters.
 
         :param files: None or a dict with key=param_name and
@@ -590,7 +590,7 @@ class FinixClient(object):
                         "for %s must be open." % param_name
                     )
                 filename = os.path.basename(file_instance.name)
-                filedata = self.get_file_data_and_close_file(file_instance)[1]
+                filedata = self._get_file_data_and_close_file(file_instance)[1]
                 mimetype = (mimetypes.guess_type(filename)[0] or
                             'application/octet-stream')
                 params.append(
@@ -598,7 +598,7 @@ class FinixClient(object):
 
         return params
 
-    def select_header_accept(self, accepts):
+    def _select_header_accept(self, accepts):
         """Returns `Accept` based on an array of accepts provided.
 
         :param accepts: List of headers.
@@ -614,7 +614,7 @@ class FinixClient(object):
         else:
             return ', '.join(accepts)
 
-    def select_header_content_type(self, content_types, method=None, body=None):
+    def _select_header_content_type(self, content_types, method=None, body=None):
         """Returns `Content-Type` based on an array of content_types provided.
 
         :param content_types: List of content-types.
@@ -637,7 +637,7 @@ class FinixClient(object):
         else:
             return content_types[0]
 
-    def update_params_for_auth(self, headers, queries, auth_settings,
+    def _update_params_for_auth(self, headers, queries, auth_settings,
                                resource_path, method, body):
         """Updates header and query params based on authentication setting.
 
@@ -818,11 +818,11 @@ class Endpoint(object):
         """ This method is invoked when endpoints are called
         Example:
 
-        api_instance = ApplicationProfilesApi()
-        api_instance.get_application_profile  # this is an instance of the class Endpoint
-        api_instance.get_application_profile()  # this invokes api_instance.get_application_profile.__call__()
+        api_instance = AuthorizationsApi()
+        api_instance.capture_authorization  # this is an instance of the class Endpoint
+        api_instance.capture_authorization()  # this invokes api_instance.capture_authorization.__call__()
         which then invokes the callable functions stored in that endpoint at
-        api_instance.get_application_profile.callable or self.callable in this class
+        api_instance.capture_authorization.callable or self.callable in this class
 
         """
         return self.callable(self, *args, **kwargs)
@@ -860,7 +860,7 @@ class Endpoint(object):
 
         accept_headers_list = self.headers_map['accept']
         if accept_headers_list:
-            params['header']['Accept'] = self.api_client.select_header_accept(
+            params['header']['Accept'] = self.api_client._select_header_accept(
                 accept_headers_list)
 
         if kwargs.get('_content_type'):
@@ -869,12 +869,12 @@ class Endpoint(object):
             content_type_headers_list = self.headers_map['content_type']
             if content_type_headers_list:
                 if params['body'] != "":
-                    header_list = self.api_client.select_header_content_type(
+                    header_list = self.api_client._select_header_content_type(
                         content_type_headers_list, self.settings['http_method'],
                         params['body'])
                     params['header']['Content-Type'] = header_list
 
-        return self.api_client.call_api(
+        return self.api_client._call_api(
             self.settings['endpoint_path'], self.settings['http_method'],
             params['path'],
             params['query'],

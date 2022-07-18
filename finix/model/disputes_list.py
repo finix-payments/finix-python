@@ -30,10 +30,10 @@ from finix.exceptions import ApiAttributeError
 def lazy_import():
     from finix.model.disputes_list_embedded import DisputesListEmbedded
     from finix.model.list_links import ListLinks
-    from finix.model.page_cursor import PageCursor
+    from finix.model.page_offset import PageOffset
     globals()['DisputesListEmbedded'] = DisputesListEmbedded
     globals()['ListLinks'] = ListLinks
-    globals()['PageCursor'] = PageCursor
+    globals()['PageOffset'] = PageOffset
 
 
 class DisputesList(ModelNormal):
@@ -88,7 +88,7 @@ class DisputesList(ModelNormal):
         return {
             'embedded': (DisputesListEmbedded,),  # noqa: E501
             'links': (ListLinks,),  # noqa: E501
-            'page': (PageCursor,),  # noqa: E501
+            'page': (PageOffset,),  # noqa: E501
         }
 
     @cached_property
@@ -145,7 +145,7 @@ class DisputesList(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             embedded (DisputesListEmbedded): [optional]  # noqa: E501
             links (ListLinks): [optional]  # noqa: E501
-            page (PageCursor): [optional]  # noqa: E501
+            page (PageOffset): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -229,7 +229,7 @@ class DisputesList(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             embedded (DisputesListEmbedded): [optional]  # noqa: E501
             links (ListLinks): [optional]  # noqa: E501
-            page (PageCursor): [optional]  # noqa: E501
+            page (PageOffset): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

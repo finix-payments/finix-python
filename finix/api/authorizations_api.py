@@ -20,6 +20,7 @@ from finix.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from finix.model.authorization import Authorization
+from finix.model.authorization_captured import AuthorizationCaptured
 from finix.model.authorizations_list import AuthorizationsList
 from finix.model.create_authorization_request import CreateAuthorizationRequest
 from finix.model.error401_unauthorized import Error401Unauthorized
@@ -29,6 +30,7 @@ from finix.model.error406_not_acceptable import Error406NotAcceptable
 from finix.model.error422_invalid_field_list import Error422InvalidFieldList
 from finix.model.error_generic import ErrorGeneric
 from finix.model.update_authorization_request import UpdateAuthorizationRequest
+from finix.model.finix_utils import FinixList
 
 from functools import wraps
 
@@ -63,6 +65,63 @@ class AuthorizationsApi(object):
         if api_client is None:
             api_client = finix.api_client.FinixClient()
         self._api_client = api_client
+        self._update_endpoint = finix.api_client.Endpoint(
+            settings={
+                'response_type': (AuthorizationCaptured,),
+                'auth': [
+                    'BasicAuth'
+                ],
+                'endpoint_path': '/authorizations/{authorization_id}',
+                'operation_id': 'update',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'authorization_id',
+                    'update_authorization_request',
+                ],
+                'required': [
+                    'authorization_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'authorization_id':
+                        (str,),
+                    'update_authorization_request':
+                        (UpdateAuthorizationRequest,),
+                },
+                'attribute_map': {
+                    'authorization_id': 'authorization_id',
+                },
+                'location_map': {
+                    'authorization_id': 'path',
+                    'update_authorization_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/hal+json'
+                ],
+                'content_type': [
+                    'application/hal+json'
+                ]
+            },
+            api_client=api_client
+        )
         self._create_endpoint = finix.api_client.Endpoint(
             settings={
                 'response_type': (Authorization,),
@@ -361,63 +420,85 @@ class AuthorizationsApi(object):
             },
             api_client=api_client
         )
-        self._update_endpoint = finix.api_client.Endpoint(
-            settings={
-                'response_type': (Authorization,),
-                'auth': [
-                    'BasicAuth'
-                ],
-                'endpoint_path': '/authorizations/{authorization_id}',
-                'operation_id': 'update',
-                'http_method': 'PUT',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'authorization_id',
-                    'update_authorization_request',
-                ],
-                'required': [
-                    'authorization_id',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'authorization_id':
-                        (str,),
-                    'update_authorization_request':
-                        (UpdateAuthorizationRequest,),
-                },
-                'attribute_map': {
-                    'authorization_id': 'authorization_id',
-                },
-                'location_map': {
-                    'authorization_id': 'path',
-                    'update_authorization_request': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/hal+json'
-                ],
-                'content_type': [
-                    'application/hal+json'
-                ]
-            },
-            api_client=api_client
+
+    def update(
+        self,
+        authorization_id,
+        **kwargs
+    ):
+        """Capture an Authorization  # noqa: E501
+
+        If successfully captured, the `transfer` field of the `Authorization` will contain the ID of the `Transfer` resource that'll move funds.   By default, `Transfers` are in a **PENDING** state. The **PENDING** state means the system hasn't submitted the request to capture funds. Capture requests get submitted via a batch request.   Once the `Authorization` is updated with a `capture_amount` (i.e. *Captured*), the state of the `Transfer` will update to **SUCCEEDED**.  > Voided `Authorizations` can't be captured.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update(authorization_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            authorization_id (str): ID of authorization to fetch
+
+        Keyword Args:
+            update_authorization_request (UpdateAuthorizationRequest): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            AuthorizationCaptured
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
         )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', False
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', False
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['authorization_id'] = \
+            authorization_id
+        return self._update_endpoint.call_with_http_info(**kwargs)
 
     def create(
         self,
@@ -671,84 +752,7 @@ class AuthorizationsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self._list_endpoint.call_with_http_info(**kwargs)
-
-    def update(
-        self,
-        authorization_id,
-        **kwargs
-    ):
-        """Update an Authorization  # noqa: E501
-
-        If successfully captured, the `transfer` field of the `Authorization` will contain the ID of the `Transfer` resource that'll move funds.   By default, `Transfers` are in a **PENDING** state. The **PENDING** state means the system hasn't submitted the request to capture funds. Capture requests get submitted via a batch request.   Once the `Authorization` is updated with a `capture_amount` (i.e. *Captured*), the state of the `Transfer` will update to **SUCCEEDED**.  > Voided `Authorizations` can't be captured.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update(authorization_id, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            authorization_id (str): ID of authorization to fetch
-
-        Keyword Args:
-            update_authorization_request (UpdateAuthorizationRequest): [optional]
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is True.
-            _spec_property_naming (bool): True if the variable names in the input data
-                are serialized names, as specified in the OpenAPI document.
-                False if the variable names in the input data
-                are pythonic names, e.g. snake case (default)
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            Authorization
-                If the method is called asynchronously, returns the request
-                thread.
-        """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', False
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['authorization_id'] = \
-            authorization_id
-        return self._update_endpoint.call_with_http_info(**kwargs)
+        ret = self._list_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list,  **kwargs)
+        return fl
 

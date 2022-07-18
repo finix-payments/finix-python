@@ -53,13 +53,30 @@ transfer = client.transfers.create(create_transfer_request=request)
 
 Here is an example of listing payment instruments:
 ```python
-# fetch a list of 5 resources with default pagination
-payment_instrument_list = client.payment_instruments.list(limit=5)
+# fetch 5 payment instruments and print id of each
+payment_instruments = client.payment_instruments.list(limit=5)
+for single_instrument in payment_instruments:
+    print(single_instrument.id)
 
-# print type of the first payment instrument from the fetched list
-print(payment_instrument_list.embedded['payment_instruments'][0]['type'])
+# fetch the next 5 payment instruments and print type of the first one
+next_five_instruments = payment_instruments.list_next()
+print(next_five_instruments[0].type)
 ```
 
+Here is an example of catching exceptions:
+```python
+try:
+    client.payment_instruments.get('this_is_invalid_id')
+
+except finix.ApiException as e:
+    # print basic http information of the exception
+    print(e.status)
+    print(e.reason)
+    print(e.headers)
+    # print message of each error in the http response body
+    for err in e.body:
+        print (err.message)
+```
 
 ## Supported APIs
 - Transfers

@@ -42,7 +42,7 @@ def lazy_import():
     globals()['Tags'] = Tags
 
 
-class Authorization(ModelNormal):
+class AuthorizationCaptured(ModelNormal):
     """
 
     Attributes:
@@ -196,7 +196,7 @@ class Authorization(ModelNormal):
     @classmethod
     @convert_js_args_to_python_args
     def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
-        """Authorization - a model defined in OpenAPI
+        """AuthorizationCaptured - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -305,7 +305,7 @@ class Authorization(ModelNormal):
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
-        """Authorization - a model defined in OpenAPI
+        """AuthorizationCaptured - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

@@ -5,7 +5,8 @@
     Contact: support@finixpayments.com
 """
 
-
+import json
+from finix.model.finix_utils import FinixError, ErrorList
 
 class OpenApiException(Exception):
     """The base exception class for all OpenAPIExceptions"""
@@ -100,7 +101,12 @@ class ApiException(OpenApiException):
         if http_resp:
             self.status = http_resp.status
             self.reason = http_resp.reason
-            self.body = http_resp.data
+            self.body = http_resp.data.decode('utf-8')
+            self._body_raw = self.body
+            try:
+                self.body = ErrorList(json.loads(self.body))
+            except:
+                self.body = ErrorList()
             self.headers = http_resp.getheaders()
         else:
             self.status = status
@@ -117,7 +123,7 @@ class ApiException(OpenApiException):
                 self.headers)
 
         if self.body:
-            error_message += "HTTP response body: {0}\n".format(self.body)
+            error_message += "HTTP response body: {0}\n".format(self._body_raw)
 
         return error_message
 

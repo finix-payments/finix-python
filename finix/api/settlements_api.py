@@ -31,6 +31,7 @@ from finix.model.settlement import Settlement
 from finix.model.settlements_list import SettlementsList
 from finix.model.transfers_list import TransfersList
 from finix.model.update_settlement_request import UpdateSettlementRequest
+from finix.model.finix_utils import FinixList
 
 from functools import wraps
 
@@ -740,7 +741,9 @@ class SettlementsApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['settlement_id'] = \
             settlement_id
-        return self._list_funding_transfers_endpoint.call_with_http_info(**kwargs)
+        ret = self._list_funding_transfers_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list_funding_transfers,  **kwargs)
+        return fl
 
     def list_transfers_by_settlement_id(
         self,
@@ -821,7 +824,9 @@ class SettlementsApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['settlement_id'] = \
             settlement_id
-        return self._list_transfers_by_settlement_id_endpoint.call_with_http_info(**kwargs)
+        ret = self._list_transfers_by_settlement_id_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list_transfers_by_settlement_id,  **kwargs)
+        return fl
 
     def list(
         self,
@@ -902,7 +907,9 @@ class SettlementsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self._list_endpoint.call_with_http_info(**kwargs)
+        ret = self._list_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list,  **kwargs)
+        return fl
 
     def remove_transfers_from_settlement(
         self,

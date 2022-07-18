@@ -27,6 +27,7 @@ from finix.model.error406_not_acceptable import Error406NotAcceptable
 from finix.model.error422_invalid_field_list import Error422InvalidFieldList
 from finix.model.fee_profile import FeeProfile
 from finix.model.fee_profiles_list import FeeProfilesList
+from finix.model.finix_utils import FinixList
 
 from functools import wraps
 
@@ -448,5 +449,7 @@ class FeeProfilesApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self._list_endpoint.call_with_http_info(**kwargs)
+        ret = self._list_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list,  **kwargs)
+        return fl
 

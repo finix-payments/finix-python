@@ -29,6 +29,7 @@ from finix.model.error401_unauthorized import Error401Unauthorized
 from finix.model.error403_forbidden_list import Error403ForbiddenList
 from finix.model.error404_not_found_list import Error404NotFoundList
 from finix.model.error406_not_acceptable import Error406NotAcceptable
+from finix.model.finix_utils import FinixList
 
 from functools import wraps
 
@@ -388,7 +389,8 @@ class DisputesApi(object):
                 'all': [
                     'dispute_id',
                     'limit',
-                    'offset',
+                    'after_cursor',
+                    'before_cursor',
                 ],
                 'required': [
                     'dispute_id',
@@ -410,18 +412,22 @@ class DisputesApi(object):
                         (str,),
                     'limit':
                         (int,),
-                    'offset':
-                        (int,),
+                    'after_cursor':
+                        (str,),
+                    'before_cursor':
+                        (str,),
                 },
                 'attribute_map': {
                     'dispute_id': 'dispute_id',
                     'limit': 'limit',
-                    'offset': 'offset',
+                    'after_cursor': 'after_cursor',
+                    'before_cursor': 'before_cursor',
                 },
                 'location_map': {
                     'dispute_id': 'path',
                     'limit': 'query',
-                    'offset': 'query',
+                    'after_cursor': 'query',
+                    'before_cursor': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -753,7 +759,9 @@ class DisputesApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['dispute_id'] = \
             dispute_id
-        return self._list_dispute_evidence_by_dispute_id_endpoint.call_with_http_info(**kwargs)
+        ret = self._list_dispute_evidence_by_dispute_id_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list_dispute_evidence_by_dispute_id,  **kwargs)
+        return fl
 
     def list(
         self,
@@ -833,7 +841,9 @@ class DisputesApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self._list_endpoint.call_with_http_info(**kwargs)
+        ret = self._list_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list,  **kwargs)
+        return fl
 
     def list_disputes_adjustments(
         self,
@@ -854,7 +864,8 @@ class DisputesApi(object):
 
         Keyword Args:
             limit (int): The numbers of items to return. [optional]
-            offset (int): The number of items to skip before starting to collect the result set. [optional]
+            after_cursor (str): Return every resource created after the cursor value.. [optional]
+            before_cursor (str): Return every resource created before the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -913,5 +924,7 @@ class DisputesApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['dispute_id'] = \
             dispute_id
-        return self._list_disputes_adjustments_endpoint.call_with_http_info(**kwargs)
+        ret = self._list_disputes_adjustments_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list_disputes_adjustments,  **kwargs)
+        return fl
 

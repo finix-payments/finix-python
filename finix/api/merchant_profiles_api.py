@@ -25,6 +25,7 @@ from finix.model.error404_not_found_list import Error404NotFoundList
 from finix.model.error406_not_acceptable import Error406NotAcceptable
 from finix.model.merchant_profile import MerchantProfile
 from finix.model.merchant_profiles_list import MerchantProfilesList
+from finix.model.finix_utils import FinixList
 
 from functools import wraps
 
@@ -385,7 +386,9 @@ class MerchantProfilesApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self._list_endpoint.call_with_http_info(**kwargs)
+        ret = self._list_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list,  **kwargs)
+        return fl
 
     def update(
         self,

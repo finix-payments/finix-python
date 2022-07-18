@@ -57,10 +57,10 @@ class CreatePaymentInstrumentRequest(ModelNormal):
 
     allowed_values = {
         ('type',): {
-            'APPLE_PAY': "APPLE_PAY",
-            'BANK_ACCOUNT': "BANK_ACCOUNT",
             'TOKEN': "TOKEN",
+            'APPLE_PAY': "APPLE_PAY",
             'PAYMENT_CARD': "PAYMENT_CARD",
+            'BANK_ACCOUNT': "BANK_ACCOUNT",
         },
         ('account_type',): {
             'CHECKING': "CHECKING",

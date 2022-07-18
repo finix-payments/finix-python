@@ -27,14 +27,8 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
-def lazy_import():
-    from finix.model.processor_links import ProcessorLinks
-    from finix.model.webhook_authentication import WebhookAuthentication
-    globals()['ProcessorLinks'] = ProcessorLinks
-    globals()['WebhookAuthentication'] = WebhookAuthentication
 
-
-class Webhook(ModelNormal):
+class ListPaymentInstrumentUpdatesQueryParams(ModelNormal):
     """
 
     Attributes:
@@ -59,11 +53,6 @@ class Webhook(ModelNormal):
     }
 
     validations = {
-        ('id',): {
-            'regex': {
-                'pattern': r'^(WH)[a-zA-Z0-9]{16,32}$',  # noqa: E501
-            },
-        },
     }
 
     @cached_property
@@ -72,7 +61,6 @@ class Webhook(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -87,16 +75,10 @@ class Webhook(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        lazy_import()
         return {
-            'id': (str,),  # noqa: E501
-            'created_at': (datetime,),  # noqa: E501
-            'updated_at': (datetime,),  # noqa: E501
-            'application': (str,),  # noqa: E501
-            'authentication': (WebhookAuthentication,),  # noqa: E501
-            'enabled': (bool,),  # noqa: E501
-            'url': (str,),  # noqa: E501
-            'links': (ProcessorLinks,),  # noqa: E501
+            'limit': (int,),  # noqa: E501
+            'offset': (int,),  # noqa: E501
+            'page_size': (int,),  # noqa: E501
         }
 
     @cached_property
@@ -105,14 +87,9 @@ class Webhook(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
-        'created_at': 'created_at',  # noqa: E501
-        'updated_at': 'updated_at',  # noqa: E501
-        'application': 'application',  # noqa: E501
-        'authentication': 'authentication',  # noqa: E501
-        'enabled': 'enabled',  # noqa: E501
-        'url': 'url',  # noqa: E501
-        'links': '_links',  # noqa: E501
+        'limit': 'limit',  # noqa: E501
+        'offset': 'offset',  # noqa: E501
+        'page_size': 'pageSize',  # noqa: E501
     }
 
     read_only_vars = {
@@ -123,7 +100,7 @@ class Webhook(ModelNormal):
     @classmethod
     @convert_js_args_to_python_args
     def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
-        """Webhook - a model defined in OpenAPI
+        """ListPaymentInstrumentUpdatesQueryParams - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -156,14 +133,9 @@ class Webhook(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str): The ID of the `Webhook` resource.. [optional]  # noqa: E501
-            created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
-            updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
-            application (str): The ID of the `Application` resource the `Webhook` was created under.. [optional]  # noqa: E501
-            authentication (WebhookAuthentication): [optional]  # noqa: E501
-            enabled (bool): Details if the `Webhook` is enabled:<ul><li><strong>true</strong>: Events are being sent to the `url`.<li><strong>false</strong>: Events are not being sent.. [optional]  # noqa: E501
-            url (str): The HTTP or HTTPS URL where callbacks (i.e. events) will be sent via POST request (max 120 characters).. [optional]  # noqa: E501
-            links (ProcessorLinks): [optional]  # noqa: E501
+            limit (int): The number of entries to return.. [optional]  # noqa: E501
+            offset (int): The number of items to skip before starting to collect the result set.. [optional]  # noqa: E501
+            page_size (int): The size of the page.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -212,7 +184,7 @@ class Webhook(ModelNormal):
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
-        """Webhook - a model defined in OpenAPI
+        """ListPaymentInstrumentUpdatesQueryParams - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -245,14 +217,9 @@ class Webhook(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str): The ID of the `Webhook` resource.. [optional]  # noqa: E501
-            created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
-            updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
-            application (str): The ID of the `Application` resource the `Webhook` was created under.. [optional]  # noqa: E501
-            authentication (WebhookAuthentication): [optional]  # noqa: E501
-            enabled (bool): Details if the `Webhook` is enabled:<ul><li><strong>true</strong>: Events are being sent to the `url`.<li><strong>false</strong>: Events are not being sent.. [optional]  # noqa: E501
-            url (str): The HTTP or HTTPS URL where callbacks (i.e. events) will be sent via POST request (max 120 characters).. [optional]  # noqa: E501
-            links (ProcessorLinks): [optional]  # noqa: E501
+            limit (int): The number of entries to return.. [optional]  # noqa: E501
+            offset (int): The number of items to skip before starting to collect the result set.. [optional]  # noqa: E501
+            page_size (int): The size of the page.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

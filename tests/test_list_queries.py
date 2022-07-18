@@ -1,227 +1,220 @@
 import pytest
 import finix
 from finix.models import *
-from finix.configuration import Environment, Configuration
+from finix.model.finix_utils import FinixList, PaginationException
 
 
-@pytest.fixture
-def config():
-    configuration = Configuration(
-        username = 'USsRhsHYZGBPnQw8CByJyEQW',
-        password = '8a14c2f9-d94b-4c72-8f5c-a62908e5b30e',
-        environment = Environment.SANDBOX
-    )
-    return configuration
+def test_list_transfers(client00):
+    response = client00.transfers.list(limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].id[:2] == 'TR'
+    next_list1 = response.list_next()
+    next_list2 = next_list1.list_next()
+    next_list3 = next_list2.list_next()
+    assert isinstance(next_list1, FinixList)
+    assert len(next_list1) <= 5
+    assert next_list1[0].id[:2] == 'TR'
+    assert isinstance(next_list2, FinixList)
+    assert len(next_list2) <= 5
+    assert next_list2[0].id[:2] == 'TR'
+    assert isinstance(next_list3, FinixList)
+    assert len(next_list3) <= 5
+    assert next_list3[0].id[:2] == 'TR'
+    assert response[0].id != next_list1[0].id
+    assert next_list1[0].id != next_list2[0].id
+    assert next_list2[0].id != next_list3[0].id
 
 
-@pytest.fixture
-def config01():
-    configuration = Configuration(
-        username = 'USbkjk46XqUTQHN3i2jaVnc1',
-        password = 'ac915962-2757-49ea-aeee-10960a408b99',
-        environment = Environment.SANDBOX
-    )
-    return configuration
-
-
-@pytest.fixture
-def config02():
-    configuration = Configuration(
-        username = 'USpumes23XhzHwXqiy9bfX2B',
-        password = 'c69d39e3-f9ff-4735-8c3e-abca86441906',
-        environment = Environment.SANDBOX
-    )
-    return configuration
-
-
-@pytest.fixture
-def config03():
-    configuration = Configuration(
-        username = 'USjHFGYvecE4LBitYG8KDE2g',
-        password = 'b698f403-d9b7-4157-82d8-162cea8c8cc3',
-        environment = Environment.SANDBOX
-    )
-    return configuration
-
-
-@pytest.fixture
-def config04():
-    configuration = Configuration(
-        username = 'USimz3zSq5R2PqiEBXY6rSiJ',
-        password = '8bacba32-9550-48ff-b567-fe7648947041',
-        environment = Environment.SANDBOX
-    )
-    return configuration
-
-
-def test_list_transfers(config):
-    client = finix.FinixClient(config)
-    response = client.transfers.list(limit=5)
-    assert isinstance(response, TransfersList)
-    assert response.page['limit'] == 5
-    assert response.embedded['transfers'][0]['id'][:2] == 'TR'
-
-
-def test_list_reversals(config):
-    client = finix.FinixClient(config)
+def test_list_reversals(client00):
     id = 'TRacB6Q6GcW6yvFUKawSnMEP'
-    response = client.transfers.list_transfers_reversals(id, limit=5)
-    assert isinstance(response, TransfersList)
-    assert response.page['limit'] == 5
-    assert response.embedded['transfers'][0]['type'] == 'REVERSAL'
+    response = client00.transfers.list_transfers_reversals(id, limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].type == 'REVERSAL'
 
 
-def test_list_authorizations(config):
-    client = finix.FinixClient(config)
-    response = client.authorizations.list(limit=5)
-    assert isinstance(response, AuthorizationsList)
-    assert response.page['limit'] == 5
-    assert response.embedded['authorizations'][0]['id'][:2] == 'AU'
+def test_list_authorizations(client00):
+    response = client00.authorizations.list(limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].id[:2] == 'AU'
 
 
-def test_list_identities(config):
-    client = finix.FinixClient(config)
-    response = client.identities.list(limit=5)
-    assert isinstance(response, IdentitiesList)
-    assert response.page['limit'] == 5
-    assert response.embedded['identities'][0]['id'][:2] == 'ID'
+def test_list_identities(client00):
+    response = client00.identities.list(limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].id[:2] == 'ID'
+    next_list1 = response.list_next()
+    next_list2 = next_list1.list_next()
+    next_list3 = next_list2.list_next()
+    assert isinstance(next_list1, FinixList)
+    assert len(next_list1) <= 5
+    assert next_list1[0].id[:2] == 'ID'
+    assert isinstance(next_list2, FinixList)
+    assert len(next_list2) <= 5
+    assert next_list2[0].id[:2] == 'ID'
+    assert isinstance(next_list3, FinixList)
+    assert len(next_list3) <= 5
+    assert next_list3[0].id[:2] == 'ID'
+    assert response[0].id != next_list1[0].id
+    assert next_list1[0].id != next_list2[0].id
+    assert next_list2[0].id != next_list3[0].id
 
 
-def test_list_associated_identities(config):
-    client = finix.FinixClient(config)
+def test_list_associated_identities(client00):
     id ='IDpYDM7J9n57q849o9E9yNrG'
-    response = client.identities.list_assocaiated_identities(id, limit=5)
-    assert isinstance(response, IdentitiesList)
-    assert response.page['limit'] == 5
-    assert response.embedded['identities'][0]['id'][:2] == 'ID'
+    response = client00.identities.list_assocaiated_identities(id, limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].id[:2] == 'ID'
 
 
-def test_list_merchants(config):
-    client = finix.FinixClient(config)
-    response = client.merchants.list(limit=5)
-    assert isinstance(response, MerchantsList)
-    assert response.page['limit'] == 5
-    assert response.embedded['merchants'][0]['id'][:2] == 'MU'
+def test_list_merchants(client00):
+    response = client00.merchants.list(limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].id[:2] == 'MU'
 
 
-def test_list_balance_transfers(config01):
-    client = finix.FinixClient(config01)
-    response = client.balance_transfers.list(limit=5)
-    assert isinstance(response, BalanceTransferList)
-    assert response.page['limit'] == 5
-    assert response.embedded['balance_transfers'][0]['id'][:2] == 'BT'
+def test_list_balance_transfers(client01):
+    response = client01.balance_transfers.list(limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].id[:2] == 'BT'
 
 
-def test_list_disputes(config):
-    client = finix.FinixClient(config)
-    response = client.disputes.list(limit=5)
-    assert isinstance(response, DisputesList)
-    assert response.page['limit'] == 5
-    assert response.embedded['disputes'][0]['id'][:2] == 'DI'
+def test_list_disputes(client00):
+    response = client00.disputes.list(limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].id[:2] == 'DI'
 
 
-def test_list_dispute_evidences(config):
-    client = finix.FinixClient(config)
+def test_list_dispute_evidences(client00):
     id = 'DIs7yQRkHDdMYhurzYz72SFk'
-    response = client.disputes.list_dispute_evidence_by_dispute_id(id, limit=5)
-    assert isinstance(response, DisputeEvidenceList)
-    assert response.page['limit'] == 5
-    assert response.embedded['evidences'][0]['id'][:2] == 'DF'
+    response = client00.disputes.list_dispute_evidence_by_dispute_id(id, limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].id[:2] == 'DF'
 
 
-def test_list_dispute_adjustment_transfers(config):
-    client = finix.FinixClient(config)
+def test_list_dispute_adjustment_transfers(client00):
     id = 'DIs7yQRkHDdMYhurzYz72SFk'
-    response = client.disputes.list_disputes_adjustments(id, limit=5)
-    assert isinstance(response, AdjustmentTransfersList)
-    assert response.page['limit'] == 5
-    assert response.embedded['transfers'][0]['id'][:2] == 'TR'
+    response = client00.disputes.list_disputes_adjustments(id, limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].id[:2] == 'TR'
 
 
-def test_list_files(config):
-    client = finix.FinixClient(config)
-    response = client.files.list(limit=5)
-    assert isinstance(response, FilesList)
-    assert response.page['limit'] == 5
-    assert response.embedded['files'][0]['id'][:4] == 'FILE'
+def test_list_files(client00):
+    response = client00.files.list(limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].id[:4] == 'FILE'
 
 
-def test_list_external_links(config):
-    client = finix.FinixClient(config)
+def test_list_external_links(client00):
     id = 'FILE_bJecqoRPasStEPVpvKHtgA'
-    response = client.files.list_external_links(id, limit=5)
-    assert isinstance(response, ExternalLinksList)
-    assert response.page['limit'] == 5
-    assert response.embedded['external_links'][0]['id'][:2] == 'EL'   
+    response = client00.files.list_external_links(id, limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].id[:2] == 'EL'
 
 
-def test_list_settlements(config02):
-    client = finix.FinixClient(config02)
-    response = client.settlements.list(limit=5)
-    assert isinstance(response, SettlementsList)
-    assert response.page['limit'] == 5
-    assert response.embedded['settlements'][0]['id'][:2] == 'ST'
+def test_list_settlements(client04):
+    response = client04.settlements.list(limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].id[:2] == 'ST'
 
 
-def test_list_settlements_funding_transfers(config02):
-    client = finix.FinixClient(config02)
+def test_list_settlements_funding_transfers(client04):
     id = 'STmCc8GbjjX33SdymwNhb9Et'
-    response = client.settlements.list_funding_transfers(id,limit=5)
-    assert isinstance(response, TransfersList)
-    assert response.page['limit'] == 5
+    response = client04.settlements.list_funding_transfers(id,limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response.has_more == False
+    with pytest.raises(PaginationException) as e:
+        response.list_next()
+    assert e.value.message == 'list_next() fails: either pagination information is missing or there is no more resource to fetch!'
 
 
-def test_list_settlements_transfers(config02):
-    client = finix.FinixClient(config02)
+def test_list_settlements_transfers(client04):
     id = 'STmCc8GbjjX33SdymwNhb9Et'
-    response = client.settlements.list_transfers_by_settlement_id(id, limit=5)
-    assert isinstance(response, TransfersList)
-    assert response.page['limit'] == 5
+    response = client04.settlements.list_transfers_by_settlement_id(id, limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response.has_more == False
+    with pytest.raises(PaginationException) as e:
+        response.list_next()
+    assert e.value.message == 'list_next() fails: either pagination information is missing or there is no more resource to fetch!'
 
 
-def test_list_webhooks(config):
-    client = finix.FinixClient(config)
-    response = client.webhooks.list()
-    assert isinstance(response, WebhooksList)
-    assert response.embedded['webhooks'][0]['id'][:2] == 'WH'
+def test_list_webhooks(client00):
+    response = client00.webhooks.list()
+    assert isinstance(response, FinixList)
+    assert response[0].id[:2] == 'WH'
 
 
-def test_list_verifications(config):
-    client = finix.FinixClient(config)
-    response = client.verifications.list(limit=5)
-    assert isinstance(response, VerificationsList)
-    assert response.page['limit'] == 5
-    assert response.embedded['verifications'][0]['id'][:2] == 'VI'
+def test_list_verifications(client00):
+    response = client00.verifications.list(limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].id[:2] == 'VI'
 
 
-def test_list_merchant_verifications(config):
-    client = finix.FinixClient(config)
+def test_list_merchant_verifications(client00):
     id = 'MUgWbPVvtKbzjKNNGKqdQYV7'
-    response = client.verifications.list_by_merchant_id(id,limit=5)
-    assert isinstance(response, VerificationsList)
-    assert response.page['limit'] == 5
-    assert response.embedded['verifications'][0]['id'][:2] == 'VI'
+    response = client00.verifications.list_by_merchant_id(id,limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].id[:2] == 'VI'
+    next_list1 = response.list_next()
+    next_list2 = next_list1.list_next()
+    next_list3 = next_list2.list_next()
+    assert isinstance(next_list1, FinixList)
+    assert len(next_list1) <= 5
+    assert next_list1[0].id[:2] == 'VI'
+    assert isinstance(next_list2, FinixList)
+    assert len(next_list2) <= 5
+    assert next_list2[0].id[:2] == 'VI'
+    assert isinstance(next_list3, FinixList)
+    assert len(next_list3) <= 5
+    assert next_list3[0].id[:2] == 'VI'
+    assert response[0].id != next_list1[0].id
+    assert next_list1[0].id != next_list2[0].id
+    assert next_list2[0].id != next_list3[0].id
 
 
-def test_list_merchant_profiles(config03):
-    client = finix.FinixClient(config03)
-    response = client.merchant_profiles.list(limit=5)
-    assert isinstance(response, MerchantProfilesList)
-    assert response.page['limit'] == 5
-    assert response.embedded['merchant_profiles'][0]['id'][:2] == 'MP'
+def test_list_merchant_profiles(client02):
+    response = client02.merchant_profiles.list(limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].id[:2] == 'MP'
 
 
-def test_list_fee_profiles(config04):
-    client = finix.FinixClient(config04)
-    response = client.fee_profiles.list(limit=5)
-    assert isinstance(response, FeeProfilesList)
-    assert response.page['limit'] == 5
-    assert response.embedded['fee_profiles'][0]['id'][:2] == 'FP'
+def test_list_fee_profiles(client03):
+    response = client03.fee_profiles.list(limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].id[:2] == 'FP'
 
 
-def test_list_payment_instruments(config):
-    client = finix.FinixClient(config)
-    response = client.payment_instruments.list(limit=5)
-    assert isinstance(response, PaymentInstrumentsList)
-    assert response.page['limit'] == 5
-    assert response.embedded['payment_instruments'][0]['id'][:2] == 'PI'
+def test_list_payment_instruments(client00):
+    response = client00.payment_instruments.list(limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].id[:2] == 'PI'
+
+
+def test_list_payment_instrument_updates(client00, bank_account):
+    id = bank_account.id
+    response = client00.payment_instruments.list_updates_by_payment_instrument_id(id)
+    assert isinstance(response, FinixList)
+    assert len(response) == 0
+    assert response.has_more == False
+    with pytest.raises(PaginationException) as e:
+        response.list_next()
+    assert e.value.message == 'list_next() fails: either pagination information is missing or there is no more resource to fetch!'

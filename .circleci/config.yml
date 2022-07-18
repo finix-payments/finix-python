@@ -1,0 +1,44 @@
+version: 2.1
+orbs:
+  python: circleci/python@2.0.3
+jobs:
+  build_and_test:
+    executor: python/default
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: Install Pytest
+          command: pip install pytest
+      - run:
+          name: Run tests
+          command: python -m pytest
+  pypi_publish:
+    executor: python/default
+    steps:
+      - checkout
+      - run:
+          name: Publish to PyPI
+          command: |
+            python setup.py sdist bdist_wheel
+            pip install pipenv
+            pipenv install twine
+            pipenv run twine upload dist/*
+workflows:
+  deploy:
+    jobs:
+      - build_and_test:
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v[0-9]+.*$/
+      - pypi_publish:
+          requires:
+            - build_and_test
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v[0-9]+.*$/

@@ -28,6 +28,7 @@ from finix.model.error422_invalid_field_list import Error422InvalidFieldList
 from finix.model.error_generic import ErrorGeneric
 from finix.model.verification import Verification
 from finix.model.verifications_list import VerificationsList
+from finix.model.finix_utils import FinixList
 
 from functools import wraps
 
@@ -242,7 +243,9 @@ class VerificationsApi(object):
             },
             params_map={
                 'all': [
-                    'id',
+                    'limit',
+                    'after_cursor',
+                    'before_cursor',
                 ],
                 'required': [],
                 'nullable': [
@@ -258,14 +261,22 @@ class VerificationsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'id':
+                    'limit':
+                        (int,),
+                    'after_cursor':
+                        (str,),
+                    'before_cursor':
                         (str,),
                 },
                 'attribute_map': {
-                    'id': 'id',
+                    'limit': 'limit',
+                    'after_cursor': 'after_cursor',
+                    'before_cursor': 'before_cursor',
                 },
                 'location_map': {
-                    'id': 'query',
+                    'limit': 'query',
+                    'after_cursor': 'query',
+                    'before_cursor': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -510,7 +521,9 @@ class VerificationsApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['merchant_id'] = \
             merchant_id
-        return self._list_by_merchant_id_endpoint.call_with_http_info(**kwargs)
+        ret = self._list_by_merchant_id_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list_by_merchant_id,  **kwargs)
+        return fl
 
     def list(
         self,
@@ -527,7 +540,9 @@ class VerificationsApi(object):
 
 
         Keyword Args:
-            id (str): Filter by id. [optional]
+            limit (int): The numbers of items to return. [optional]
+            after_cursor (str): Return every resource created after the cursor value.. [optional]
+            before_cursor (str): Return every resource created before the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -584,5 +599,7 @@ class VerificationsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self._list_endpoint.call_with_http_info(**kwargs)
+        ret = self._list_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list,  **kwargs)
+        return fl
 
