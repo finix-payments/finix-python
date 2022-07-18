@@ -314,7 +314,7 @@ class FinixClient(object):
                 key: cls.sanitize_for_serialization(val) for key, val in model_to_dict(obj, serialize=True).items()
             }
         elif isinstance(obj, io.IOBase):
-            return cls.get_file_data_and_close_file(obj)
+            return cls._get_file_data_and_close_file(obj)
         elif isinstance(obj, (str, int, float, none_type, bool)):
             return obj
         elif isinstance(obj, (datetime, date)):
@@ -559,7 +559,7 @@ class FinixClient(object):
         return new_params
 
     @staticmethod
-    def get_file_data_and_close_file(file_instance: io.IOBase):
+    def _get_file_data_and_close_file(file_instance: io.IOBase):
         file_name = str(os.path.basename(file_instance.name))
         file_data = file_instance.read()
         file_suffix = file_name.split('.')[-1]
@@ -604,7 +604,7 @@ class FinixClient(object):
                         "for %s must be open." % param_name
                     )
                 filename = os.path.basename(file_instance.name)
-                filedata = self.get_file_data_and_close_file(file_instance)[1]
+                filedata = self._get_file_data_and_close_file(file_instance)[1]
                 mimetype = (mimetypes.guess_type(filename)[0] or
                             'application/octet-stream')
                 params.append(
