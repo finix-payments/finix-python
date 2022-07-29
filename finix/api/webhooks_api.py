@@ -29,6 +29,7 @@ from finix.model.error_generic import ErrorGeneric
 from finix.model.update_webhook_request import UpdateWebhookRequest
 from finix.model.webhook import Webhook
 from finix.model.webhooks_list import WebhooksList
+from finix.model.finix_utils import FinixList
 
 from functools import wraps
 
@@ -507,7 +508,9 @@ class WebhooksApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self._list_endpoint.call_with_http_info(**kwargs)
+        ret = self._list_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list,  **kwargs)
+        return fl
 
     def update(
         self,

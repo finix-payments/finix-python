@@ -30,6 +30,7 @@ from finix.model.identities_list import IdentitiesList
 from finix.model.identity import Identity
 from finix.model.update_identity_request import UpdateIdentityRequest
 from finix.model.verification import Verification
+from finix.model.finix_utils import FinixList
 
 from functools import wraps
 
@@ -912,7 +913,9 @@ class IdentitiesApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self._list_endpoint.call_with_http_info(**kwargs)
+        ret = self._list_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list,  **kwargs)
+        return fl
 
     def list_assocaiated_identities(
         self,
@@ -993,7 +996,9 @@ class IdentitiesApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['identity_id'] = \
             identity_id
-        return self._list_assocaiated_identities_endpoint.call_with_http_info(**kwargs)
+        ret = self._list_assocaiated_identities_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list_assocaiated_identities,  **kwargs)
+        return fl
 
     def update(
         self,

@@ -1,61 +1,41 @@
 import pytest
 import finix
 from finix.models import *
-from finix.configuration import Environment, Configuration
 from datetime import datetime
 
 
-@pytest.fixture
-def config():
-    configuration = Configuration(
-        username = 'USsRhsHYZGBPnQw8CByJyEQW',
-        password = '8a14c2f9-d94b-4c72-8f5c-a62908e5b30e',
-        environment = Environment.SANDBOX
-    )
-    return configuration
-
-
-@pytest.fixture
-def c_update(config):
-    client = finix.FinixClient(config)
-    str_now = str(datetime.now())
-    req_string = "{\"merchant\":\"MUucec6fHeaWo3VHYoSkUySM\",  \"idempotency_id\":\"F" + str_now + "\" }"
-    request = CreateInstrumentUpdateRequest(
-        file=open('tests/test_file.png', 'rb'),
-        request=req_string,
-    )
-    response = client.instrument_updates.create(create_instrument_update_request=request)
-    return response
-
-
-def test_create_instrument_update(config):
-    client = finix.FinixClient(config)
+def test_create_instrument_update(client00):
     str_now = str(datetime.now())
     req_string = "{\"merchant\":\"MUucec6fHeaWo3VHYoSkUySM\",  \"idempotency_id\":\"" + str_now + "\" }"
     request = CreateInstrumentUpdateRequest(
         file=open('tests/test_file.png', 'rb'),
         request=req_string,
     )
-    response = client.instrument_updates.create(create_instrument_update_request=request)
+    response = client00.instrument_updates.create(create_instrument_update_request=request)
     assert response.id[:2] == 'IU'
     assert response.merchant == 'MUucec6fHeaWo3VHYoSkUySM'
     assert response.state == 'PENDING'
 
 
-def test_get_instrument_update(config, c_update):
-    client = finix.FinixClient(config)
-    id = c_update.id
-    response = client.instrument_updates.get(id)
+def test_get_instrument_update(client00, instrument_update):
+    id = instrument_update.id
+    response = client00.instrument_updates.get(id)
     assert response.id[:2] == 'IU'
     assert response.merchant == 'MUucec6fHeaWo3VHYoSkUySM'
     assert response.state == 'PENDING'
 
 
 # newly uploaded file not immediately ready for download
-def test_download_instrument_update(config, c_update):
-    client = finix.FinixClient(config)
-    id = c_update.id
+def test_download_instrument_update_fail(client00, instrument_update):
+    id = instrument_update.id
     with pytest.raises(finix.ApiException) as e:
-        client.instrument_updates.download(id, format='json')
+        client00.instrument_updates.download(id, format='json')
     assert e.value.status == 404
     assert e.value.reason == 'Not Found'
+    assert e.value.body.no_error_body == True
+
+
+def test_download_instrument_update_success(client00):
+    id = 'IUp9oSWhWUF31DPrJ8CojQeQ'
+    response = client00.instrument_updates.download(id, format='json')
+    assert isinstance(response.read(), bytes)

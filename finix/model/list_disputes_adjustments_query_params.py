@@ -77,7 +77,8 @@ class ListDisputesAdjustmentsQueryParams(ModelNormal):
         """
         return {
             'limit': (int,),  # noqa: E501
-            'offset': (int,),  # noqa: E501
+            'after_cursor': (str,),  # noqa: E501
+            'before_cursor': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -87,7 +88,8 @@ class ListDisputesAdjustmentsQueryParams(ModelNormal):
 
     attribute_map = {
         'limit': 'limit',  # noqa: E501
-        'offset': 'offset',  # noqa: E501
+        'after_cursor': 'after_cursor',  # noqa: E501
+        'before_cursor': 'before_cursor',  # noqa: E501
     }
 
     read_only_vars = {
@@ -132,7 +134,8 @@ class ListDisputesAdjustmentsQueryParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             limit (int): The numbers of items to return. [optional]  # noqa: E501
-            offset (int): The number of items to skip before starting to collect the result set. [optional]  # noqa: E501
+            after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
+            before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -215,7 +218,8 @@ class ListDisputesAdjustmentsQueryParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             limit (int): The numbers of items to return. [optional]  # noqa: E501
-            offset (int): The number of items to skip before starting to collect the result set. [optional]  # noqa: E501
+            after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
+            before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

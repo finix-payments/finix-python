@@ -16,6 +16,7 @@ from {{packageName}}.model_utils import (  # noqa: F401
 {{#imports}}
 {{{import}}}
 {{/imports}}
+from finix.model.finix_utils import FinixList
 
 from functools import wraps
 
@@ -336,7 +337,14 @@ class {{classname}}(object):
         kwargs['{{paramName}}'] = \
             {{paramName}}
 {{/requiredParams}}
+{{^vendorExtensions.x-returns-list}}
         return self._{{#vendorExtensions.x-python-method-name}}{{{.}}}{{/vendorExtensions.x-python-method-name}}{{^vendorExtensions.x-python-method-name}}{{operationId}}{{/vendorExtensions.x-python-method-name}}_endpoint.call_with_http_info(**kwargs)
+{{/vendorExtensions.x-returns-list}}
+{{#vendorExtensions.x-returns-list}}
+        ret = self._{{#vendorExtensions.x-python-method-name}}{{{.}}}{{/vendorExtensions.x-python-method-name}}{{^vendorExtensions.x-python-method-name}}{{operationId}}{{/vendorExtensions.x-python-method-name}}_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.{{#vendorExtensions.x-python-method-name}}{{{.}}}{{/vendorExtensions.x-python-method-name}}{{^vendorExtensions.x-python-method-name}}{{operationId}}{{/vendorExtensions.x-python-method-name}},  **kwargs)
+        return fl
+{{/vendorExtensions.x-returns-list}}
 
 {{/operation}}
 {{/operations}}

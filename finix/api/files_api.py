@@ -30,6 +30,7 @@ from finix.model.external_links_list import ExternalLinksList
 from finix.model.file import File
 from finix.model.files_list import FilesList
 from finix.model.upload_file_request import UploadFileRequest
+from finix.model.finix_utils import FinixList
 
 from functools import wraps
 
@@ -1057,7 +1058,9 @@ class FilesApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['file_id'] = \
             file_id
-        return self._list_external_links_endpoint.call_with_http_info(**kwargs)
+        ret = self._list_external_links_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list_external_links,  **kwargs)
+        return fl
 
     def list(
         self,
@@ -1139,7 +1142,9 @@ class FilesApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self._list_endpoint.call_with_http_info(**kwargs)
+        ret = self._list_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list,  **kwargs)
+        return fl
 
     def upload_file(
         self,

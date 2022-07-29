@@ -5,6 +5,7 @@
 /.gitignore
 /finix/apis
 /finix/apis/*
+/finix/model/finix_utils.py
 
 # unavailable apis
 /finix/api/application_profiles_api.py

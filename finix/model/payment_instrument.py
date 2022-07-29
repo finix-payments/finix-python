@@ -63,13 +63,13 @@ class PaymentInstrument(ModelNormal):
 
     allowed_values = {
         ('type',): {
-            'VIRTUAL': "VIRTUAL",
-            'PAYMENT_CARD_PRESENT': "PAYMENT_CARD_PRESENT",
             'TOKEN': "TOKEN",
+            'PAYMENT_CARD': "PAYMENT_CARD",
             'SWIPED_PAYMENT_CARD': "SWIPED_PAYMENT_CARD",
             'BANK_ACCOUNT': "BANK_ACCOUNT",
+            'VIRTUAL': "VIRTUAL",
+            'PAYMENT_CARD_PRESENT': "PAYMENT_CARD_PRESENT",
             'VANTIV_OMNI_TOKEN': "VANTIV_OMNI_TOKEN",
-            'PAYMENT_CARD': "PAYMENT_CARD",
         },
         ('account_type',): {
             'CHECKING': "CHECKING",
@@ -78,26 +78,17 @@ class PaymentInstrument(ModelNormal):
             'CORP_SAVINGS': "CORP_SAVINGS",
         },
         ('instrument_type',): {
-            'VIRTUAL': "VIRTUAL",
-            'PAYMENT_CARD_PRESENT': "PAYMENT_CARD_PRESENT",
             'TOKEN': "TOKEN",
+            'PAYMENT_CARD': "PAYMENT_CARD",
             'SWIPED_PAYMENT_CARD': "SWIPED_PAYMENT_CARD",
             'BANK_ACCOUNT': "BANK_ACCOUNT",
+            'VIRTUAL': "VIRTUAL",
+            'PAYMENT_CARD_PRESENT': "PAYMENT_CARD_PRESENT",
             'VANTIV_OMNI_TOKEN': "VANTIV_OMNI_TOKEN",
-            'PAYMENT_CARD': "PAYMENT_CARD",
         },
         ('payload_type',): {
             'SOURCE': "SOURCE",
             'DESTINATION': "DESTINATION",
-        },
-        ('address_verification',): {
-            'POSTAL_CODE_AND_STREET_MATCH': "POSTAL_CODE_AND_STREET_MATCH",
-            'STREET_MATCH': "STREET_MATCH",
-            'POSTAL_CODE_MATCH': "POSTAL_CODE_MATCH",
-            'NO_ADDRESS': "NO_ADDRESS",
-            'NO_MATCH': "NO_MATCH",
-            'NOT_SUPPORTED': "NOT_SUPPORTED",
-            'UNKNOWN': "UNKNOWN",
         },
         ('brand',): {
             'UNKNOWN': "UNKNOWN",
@@ -123,10 +114,20 @@ class PaymentInstrument(ModelNormal):
         },
         ('card_type',): {
             'UNKNOWN': "UNKNOWN",
-            'PREPAID': "PREPAID",
             'CREDIT': "CREDIT",
             'DEBIT': "DEBIT",
-            'FSA': "FSA",
+            'HSA_FSA': "HSA_FSA",
+            'NON_RELOADABLE_PREPAID': "NON_RELOADABLE_PREPAID",
+            'RELOADABLE_PREPAID': "RELOADABLE_PREPAID",
+        },
+        ('address_verification',): {
+            'POSTAL_CODE_AND_STREET_MATCH': "POSTAL_CODE_AND_STREET_MATCH",
+            'STREET_MATCH': "STREET_MATCH",
+            'POSTAL_CODE_MATCH': "POSTAL_CODE_MATCH",
+            'NO_ADDRESS': "NO_ADDRESS",
+            'NO_MATCH': "NO_MATCH",
+            'NOT_SUPPORTED': "NOT_SUPPORTED",
+            'UNKNOWN': "UNKNOWN",
         },
         ('security_code_verification',): {
             'MATCHED': "MATCHED",
@@ -146,17 +147,17 @@ class PaymentInstrument(ModelNormal):
                 'pattern': r'X+\d{4}',  # noqa: E501
             },
         },
-        ('bin',): {
-            'regex': {
-                'pattern': r'^\d{6}$',  # noqa: E501
-            },
-        },
         ('expiration_month',): {
             'inclusive_maximum': 12,
             'inclusive_minimum': 1,
         },
         ('expiration_year',): {
             'inclusive_minimum': 1,
+        },
+        ('bin',): {
+            'regex': {
+                'pattern': r'^\d{6}$',  # noqa: E501
+            },
         },
         ('last_four',): {
             'regex': {
@@ -205,19 +206,19 @@ class PaymentInstrument(ModelNormal):
             'name': (str, none_type,),  # noqa: E501
             'payload_type': (str,),  # noqa: E501
             'links': (PaymentInstrumentLinks,),  # noqa: E501
-            'address': (Address,),  # noqa: E501
-            'address_verification': (str,),  # noqa: E501
-            'bin': (str,),  # noqa: E501
-            'brand': (str,),  # noqa: E501
-            'card_name': (str, none_type,),  # noqa: E501
-            'card_type': (str,),  # noqa: E501
             'expiration_month': (int,),  # noqa: E501
             'expiration_year': (int,),  # noqa: E501
-            'fast_funds_indicator': (str,),  # noqa: E501
+            'bin': (str,),  # noqa: E501
             'last_four': (str,),  # noqa: E501
+            'brand': (str,),  # noqa: E501
+            'card_type': (str,),  # noqa: E501
+            'address': (Address,),  # noqa: E501
+            'address_verification': (str,),  # noqa: E501
+            'security_code_verification': (str,),  # noqa: E501
+            'card_name': (str, none_type,),  # noqa: E501
+            'fast_funds_indicator': (str,),  # noqa: E501
             'online_gambing_block_indicator': (str,),  # noqa: E501
             'push_funds_block_indicator': (str,),  # noqa: E501
-            'security_code_verification': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -243,19 +244,19 @@ class PaymentInstrument(ModelNormal):
         'name': 'name',  # noqa: E501
         'payload_type': 'payload_type',  # noqa: E501
         'links': '_links',  # noqa: E501
-        'address': 'address',  # noqa: E501
-        'address_verification': 'address_verification',  # noqa: E501
-        'bin': 'bin',  # noqa: E501
-        'brand': 'brand',  # noqa: E501
-        'card_name': 'card_name',  # noqa: E501
-        'card_type': 'card_type',  # noqa: E501
         'expiration_month': 'expiration_month',  # noqa: E501
         'expiration_year': 'expiration_year',  # noqa: E501
-        'fast_funds_indicator': 'fast_funds_indicator',  # noqa: E501
+        'bin': 'bin',  # noqa: E501
         'last_four': 'last_four',  # noqa: E501
+        'brand': 'brand',  # noqa: E501
+        'card_type': 'card_type',  # noqa: E501
+        'address': 'address',  # noqa: E501
+        'address_verification': 'address_verification',  # noqa: E501
+        'security_code_verification': 'security_code_verification',  # noqa: E501
+        'card_name': 'card_name',  # noqa: E501
+        'fast_funds_indicator': 'fast_funds_indicator',  # noqa: E501
         'online_gambing_block_indicator': 'online_gambing_block_indicator',  # noqa: E501
         'push_funds_block_indicator': 'push_funds_block_indicator',  # noqa: E501
-        'security_code_verification': 'security_code_verification',  # noqa: E501
     }
 
     read_only_vars = {
@@ -316,19 +317,19 @@ class PaymentInstrument(ModelNormal):
             name (str, none_type): The name of the bank account or card owner.. [optional]  # noqa: E501
             payload_type (str): [optional]  # noqa: E501
             links (PaymentInstrumentLinks): [optional]  # noqa: E501
-            address (Address): [optional]  # noqa: E501
-            address_verification (str): Additional address information that’s required to verify the identity of the merchant.. [optional]  # noqa: E501
-            bin (str): Bank Identification number for the `Payment Instrument`.. [optional]  # noqa: E501
-            brand (str): The `brand` of the card saved in the `Payment Instrument`.. [optional]  # noqa: E501
-            card_name (str, none_type): A custom name you can include to identify the card being used (e.g. **Business Card**).. [optional]  # noqa: E501
-            card_type (str): The type of card saved in the `Payment Instrument`.. [optional]  # noqa: E501
             expiration_month (int): Expiration month (e.g. 12 for December).. [optional]  # noqa: E501
             expiration_year (int): 4-digit expiration year.. [optional]  # noqa: E501
-            fast_funds_indicator (str): Details if Fast Funds is enabled for the card.. [optional]  # noqa: E501
+            bin (str): Bank Identification number for the `Payment Instrument`.. [optional]  # noqa: E501
             last_four (str): Last four digits of the card or bank account number.. [optional]  # noqa: E501
+            brand (str): The `brand` of the card saved in the `Payment Instrument`.. [optional]  # noqa: E501
+            card_type (str): The type of payment card saved in the `Payment Instrument`.. [optional]  # noqa: E501
+            address (Address): [optional]  # noqa: E501
+            address_verification (str): Additional address information that’s required to verify the identity of the merchant.. [optional]  # noqa: E501
+            security_code_verification (str): Details the results of the Card Verification Code check.. [optional]  # noqa: E501
+            card_name (str, none_type): A custom name you can include to identify the card being used (e.g. **Business Card**).. [optional]  # noqa: E501
+            fast_funds_indicator (str): Details if Fast Funds is enabled for the card.. [optional]  # noqa: E501
             online_gambing_block_indicator (str): Detailes if the card is enabled to receive push-payments for online gambling payouts.. [optional]  # noqa: E501
             push_funds_block_indicator (str): Details if the card is enabled to receive push-to-card disbursements.. [optional]  # noqa: E501
-            security_code_verification (str): Details the results of the Card Verification Code check.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -427,19 +428,19 @@ class PaymentInstrument(ModelNormal):
             name (str, none_type): The name of the bank account or card owner.. [optional]  # noqa: E501
             payload_type (str): [optional]  # noqa: E501
             links (PaymentInstrumentLinks): [optional]  # noqa: E501
-            address (Address): [optional]  # noqa: E501
-            address_verification (str): Additional address information that’s required to verify the identity of the merchant.. [optional]  # noqa: E501
-            bin (str): Bank Identification number for the `Payment Instrument`.. [optional]  # noqa: E501
-            brand (str): The `brand` of the card saved in the `Payment Instrument`.. [optional]  # noqa: E501
-            card_name (str, none_type): A custom name you can include to identify the card being used (e.g. **Business Card**).. [optional]  # noqa: E501
-            card_type (str): The type of card saved in the `Payment Instrument`.. [optional]  # noqa: E501
             expiration_month (int): Expiration month (e.g. 12 for December).. [optional]  # noqa: E501
             expiration_year (int): 4-digit expiration year.. [optional]  # noqa: E501
-            fast_funds_indicator (str): Details if Fast Funds is enabled for the card.. [optional]  # noqa: E501
+            bin (str): Bank Identification number for the `Payment Instrument`.. [optional]  # noqa: E501
             last_four (str): Last four digits of the card or bank account number.. [optional]  # noqa: E501
+            brand (str): The `brand` of the card saved in the `Payment Instrument`.. [optional]  # noqa: E501
+            card_type (str): The type of payment card saved in the `Payment Instrument`.. [optional]  # noqa: E501
+            address (Address): [optional]  # noqa: E501
+            address_verification (str): Additional address information that’s required to verify the identity of the merchant.. [optional]  # noqa: E501
+            security_code_verification (str): Details the results of the Card Verification Code check.. [optional]  # noqa: E501
+            card_name (str, none_type): A custom name you can include to identify the card being used (e.g. **Business Card**).. [optional]  # noqa: E501
+            fast_funds_indicator (str): Details if Fast Funds is enabled for the card.. [optional]  # noqa: E501
             online_gambing_block_indicator (str): Detailes if the card is enabled to receive push-payments for online gambling payouts.. [optional]  # noqa: E501
             push_funds_block_indicator (str): Details if the card is enabled to receive push-to-card disbursements.. [optional]  # noqa: E501
-            security_code_verification (str): Details the results of the Card Verification Code check.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

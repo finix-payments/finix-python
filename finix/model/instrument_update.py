@@ -28,8 +28,10 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from finix.model.dispute_evidence_links import DisputeEvidenceLinks
-    globals()['DisputeEvidenceLinks'] = DisputeEvidenceLinks
+    from finix.model.instrument_update_links import InstrumentUpdateLinks
+    from finix.model.messages import Messages
+    globals()['InstrumentUpdateLinks'] = InstrumentUpdateLinks
+    globals()['Messages'] = Messages
 
 
 class InstrumentUpdate(ModelNormal):
@@ -87,7 +89,11 @@ class InstrumentUpdate(ModelNormal):
             'updated_at': (datetime,),  # noqa: E501
             'merchant': (str,),  # noqa: E501
             'state': (str,),  # noqa: E501
-            'links': (DisputeEvidenceLinks,),  # noqa: E501
+            'application': (str,),  # noqa: E501
+            'messages': (Messages,),  # noqa: E501
+            'trace_id': (str,),  # noqa: E501
+            'payment_instrument': (str,),  # noqa: E501
+            'links': (InstrumentUpdateLinks,),  # noqa: E501
         }
 
     @cached_property
@@ -101,6 +107,10 @@ class InstrumentUpdate(ModelNormal):
         'updated_at': 'updated_at',  # noqa: E501
         'merchant': 'merchant',  # noqa: E501
         'state': 'state',  # noqa: E501
+        'application': 'application',  # noqa: E501
+        'messages': 'messages',  # noqa: E501
+        'trace_id': 'trace_id',  # noqa: E501
+        'payment_instrument': 'payment_instrument',  # noqa: E501
         'links': '_links',  # noqa: E501
     }
 
@@ -150,7 +160,11 @@ class InstrumentUpdate(ModelNormal):
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             merchant (str): The `Merchant` ID associated with the `instrument_updates`.. [optional]  # noqa: E501
             state (str): The status of the `instrument_updates` resource and update request.. [optional]  # noqa: E501
-            links (DisputeEvidenceLinks): [optional]  # noqa: E501
+            application (str): The id of the application.. [optional]  # noqa: E501
+            messages (Messages): [optional]  # noqa: E501
+            trace_id (str): Trace ID of the `Update`. The processor sends back the `trace_id` so you can track the update end-to-end.. [optional]  # noqa: E501
+            payment_instrument (str): The id of the payment instrument the update occured against.. [optional]  # noqa: E501
+            links (InstrumentUpdateLinks): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -237,7 +251,11 @@ class InstrumentUpdate(ModelNormal):
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             merchant (str): The `Merchant` ID associated with the `instrument_updates`.. [optional]  # noqa: E501
             state (str): The status of the `instrument_updates` resource and update request.. [optional]  # noqa: E501
-            links (DisputeEvidenceLinks): [optional]  # noqa: E501
+            application (str): The id of the application.. [optional]  # noqa: E501
+            messages (Messages): [optional]  # noqa: E501
+            trace_id (str): Trace ID of the `Update`. The processor sends back the `trace_id` so you can track the update end-to-end.. [optional]  # noqa: E501
+            payment_instrument (str): The id of the payment instrument the update occured against.. [optional]  # noqa: E501
+            links (InstrumentUpdateLinks): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

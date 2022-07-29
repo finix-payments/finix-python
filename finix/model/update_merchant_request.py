@@ -94,6 +94,8 @@ class UpdateMerchantRequest(ModelNormal):
             'ready_to_settle_upon': (str,),  # noqa: E501
             'fee_ready_to_settle_upon': (str,),  # noqa: E501
             'level_two_level_three_data_enabled': (bool,),  # noqa: E501
+            'convenience_charges_enabled': (bool,),  # noqa: E501
+            'rent_surcharges_enabled': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -114,6 +116,8 @@ class UpdateMerchantRequest(ModelNormal):
         'ready_to_settle_upon': 'ready_to_settle_upon',  # noqa: E501
         'fee_ready_to_settle_upon': 'fee_ready_to_settle_upon',  # noqa: E501
         'level_two_level_three_data_enabled': 'level_two_level_three_data_enabled',  # noqa: E501
+        'convenience_charges_enabled': 'convenience_charges_enabled',  # noqa: E501
+        'rent_surcharges_enabled': 'rent_surcharges_enabled',  # noqa: E501
     }
 
     read_only_vars = {
@@ -169,6 +173,8 @@ class UpdateMerchantRequest(ModelNormal):
             ready_to_settle_upon (str): Details how `Authorizations` captured by the `Merchant` are settled.. [optional]  # noqa: E501
             fee_ready_to_settle_upon (str): Details how the `Merchant` settles fees.. [optional]  # noqa: E501
             level_two_level_three_data_enabled (bool): Set to **true** to enable the `Merchant` for Level 2 and Level 3 processing. Default value is **false**.. [optional]  # noqa: E501
+            convenience_charges_enabled (bool): Set to **true** if you want to enable the `Merchant` to accept convenience fees and/or service fees.. [optional]  # noqa: E501
+            rent_surcharges_enabled (bool): Set to **true** if you want to enable a `Merchant` to accept rent charges.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -262,6 +268,8 @@ class UpdateMerchantRequest(ModelNormal):
             ready_to_settle_upon (str): Details how `Authorizations` captured by the `Merchant` are settled.. [optional]  # noqa: E501
             fee_ready_to_settle_upon (str): Details how the `Merchant` settles fees.. [optional]  # noqa: E501
             level_two_level_three_data_enabled (bool): Set to **true** to enable the `Merchant` for Level 2 and Level 3 processing. Default value is **false**.. [optional]  # noqa: E501
+            convenience_charges_enabled (bool): Set to **true** if you want to enable the `Merchant` to accept convenience fees and/or service fees.. [optional]  # noqa: E501
+            rent_surcharges_enabled (bool): Set to **true** if you want to enable a `Merchant` to accept rent charges.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

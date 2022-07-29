@@ -30,6 +30,7 @@ from finix.model.merchant import Merchant
 from finix.model.merchants_list import MerchantsList
 from finix.model.update_merchant_request import UpdateMerchantRequest
 from finix.model.verification import Verification
+from finix.model.finix_utils import FinixList
 
 from functools import wraps
 
@@ -680,7 +681,9 @@ class MerchantsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self._list_endpoint.call_with_http_info(**kwargs)
+        ret = self._list_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list,  **kwargs)
+        return fl
 
     def update(
         self,
@@ -689,7 +692,7 @@ class MerchantsApi(object):
     ):
         """Update a Merchant  # noqa: E501
 
-        Update a `Merchant` to change the `Identity` information saved with the underlying processor, or enable Level 2/3 processing.  # noqa: E501
+        Update a `Merchant` to:  - Change the `Identity` information saved with the underlying processor - Enable Level 2/3 processing - Enable [Buyer Chages](/guides/payments/buyer-charges/)  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

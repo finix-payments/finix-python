@@ -27,6 +27,10 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
+def lazy_import():
+    from finix.model.create_webhook_request_authentication import CreateWebhookRequestAuthentication
+    globals()['CreateWebhookRequestAuthentication'] = CreateWebhookRequestAuthentication
+
 
 class CreateWebhookRequest(ModelNormal):
     """
@@ -64,6 +68,7 @@ class CreateWebhookRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
+        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -78,9 +83,11 @@ class CreateWebhookRequest(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
+        lazy_import()
         return {
             'url': (str,),  # noqa: E501
             'enabled': (bool,),  # noqa: E501
+            'authentication': (CreateWebhookRequestAuthentication,),  # noqa: E501
         }
 
     @cached_property
@@ -91,6 +98,7 @@ class CreateWebhookRequest(ModelNormal):
     attribute_map = {
         'url': 'url',  # noqa: E501
         'enabled': 'enabled',  # noqa: E501
+        'authentication': 'authentication',  # noqa: E501
     }
 
     read_only_vars = {
@@ -136,6 +144,7 @@ class CreateWebhookRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             url (str): The HTTP or HTTPS URL where callbacks (i.e. events) will be sent via POST request (max 120 characters).. [optional]  # noqa: E501
             enabled (bool): Set to false to disable Webhooks. Default value when created is true.. [optional]  # noqa: E501
+            authentication (CreateWebhookRequestAuthentication): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -219,6 +228,7 @@ class CreateWebhookRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             url (str): The HTTP or HTTPS URL where callbacks (i.e. events) will be sent via POST request (max 120 characters).. [optional]  # noqa: E501
             enabled (bool): Set to false to disable Webhooks. Default value when created is true.. [optional]  # noqa: E501
+            authentication (CreateWebhookRequestAuthentication): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

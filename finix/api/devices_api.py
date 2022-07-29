@@ -26,6 +26,7 @@ from finix.model.error403_forbidden_list import Error403ForbiddenList
 from finix.model.error404_not_found_list import Error404NotFoundList
 from finix.model.error406_not_acceptable import Error406NotAcceptable
 from finix.model.error_generic import ErrorGeneric
+from finix.model.finix_utils import FinixList
 
 from functools import wraps
 
