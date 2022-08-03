@@ -42,3 +42,9 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v[0-9]+.*$/
+  verify_codegen:
+    jobs:
+      - build_and_test:
+          filters:
+            branches:
+              only: /^codegen-.*$/
