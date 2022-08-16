@@ -1,3 +1,5 @@
+find ./finix/model ! -name 'finix_utils.py' -type f -exec rm -f {} +
+
 openapi-generator generate \
   -g python \
   -t template \
