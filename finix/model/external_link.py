@@ -84,14 +84,14 @@ class ExternalLink(ModelNormal):
         return {
             'id': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
-            'url': (str,),  # noqa: E501
-            'type': (str,),  # noqa: E501
-            'expires_at': (str,),  # noqa: E501
-            'user_id': (str,),  # noqa: E501
-            'file_id': (str,),  # noqa: E501
             'duration': (str, none_type,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
             'expired': (bool,),  # noqa: E501
+            'expires_at': (str,),  # noqa: E501
+            'file_id': (str,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
+            'type': (str,),  # noqa: E501
+            'url': (str,),  # noqa: E501
+            'user_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -102,14 +102,14 @@ class ExternalLink(ModelNormal):
     attribute_map = {
         'id': 'id',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
-        'url': 'url',  # noqa: E501
-        'type': 'type',  # noqa: E501
-        'expires_at': 'expires_at',  # noqa: E501
-        'user_id': 'user_id',  # noqa: E501
-        'file_id': 'file_id',  # noqa: E501
         'duration': 'duration',  # noqa: E501
-        'tags': 'tags',  # noqa: E501
         'expired': 'expired',  # noqa: E501
+        'expires_at': 'expires_at',  # noqa: E501
+        'file_id': 'file_id',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
+        'type': 'type',  # noqa: E501
+        'url': 'url',  # noqa: E501
+        'user_id': 'user_id',  # noqa: E501
     }
 
     read_only_vars = {
@@ -155,14 +155,14 @@ class ExternalLink(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): The ID of the `external_Link` resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
-            url (str): The URL you can share with merchants to **UPLOAD** or **DOWNLOAD** files depending on the request sent.. [optional]  # noqa: E501
-            type (str): Sets if the link is for uploading or downloading files from Finix.. [optional]  # noqa: E501
-            expires_at (str): The timestamp that the external link expires at.. [optional]  # noqa: E501
-            user_id (str): The ID of the `user` that requested to create this link.. [optional]  # noqa: E501
-            file_id (str): The `File` ID the `external_link` is related to.. [optional]  # noqa: E501
             duration (str, none_type): Details how long the `url` will be avalible for users to upload files to.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
             expired (bool): <ul><li>If <strong>TRUE</strong> the link has expired<br><li>If <strong>FALSE</strong>, the link is active and files can still be uploaded or downloaded from the link.. [optional]  # noqa: E501
+            expires_at (str): The timestamp that the external link expires at.. [optional]  # noqa: E501
+            file_id (str): The `File` ID the `external_link` is related to.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            type (str): Sets if the link is for uploading or downloading files from Finix.. [optional]  # noqa: E501
+            url (str): The URL you can share with merchants to **UPLOAD** or **DOWNLOAD** files depending on the request sent.. [optional]  # noqa: E501
+            user_id (str): The ID of the `user` that requested to create this link.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -246,14 +246,14 @@ class ExternalLink(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             id (str): The ID of the `external_Link` resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
-            url (str): The URL you can share with merchants to **UPLOAD** or **DOWNLOAD** files depending on the request sent.. [optional]  # noqa: E501
-            type (str): Sets if the link is for uploading or downloading files from Finix.. [optional]  # noqa: E501
-            expires_at (str): The timestamp that the external link expires at.. [optional]  # noqa: E501
-            user_id (str): The ID of the `user` that requested to create this link.. [optional]  # noqa: E501
-            file_id (str): The `File` ID the `external_link` is related to.. [optional]  # noqa: E501
             duration (str, none_type): Details how long the `url` will be avalible for users to upload files to.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
             expired (bool): <ul><li>If <strong>TRUE</strong> the link has expired<br><li>If <strong>FALSE</strong>, the link is active and files can still be uploaded or downloaded from the link.. [optional]  # noqa: E501
+            expires_at (str): The timestamp that the external link expires at.. [optional]  # noqa: E501
+            file_id (str): The `File` ID the `external_link` is related to.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            type (str): Sets if the link is for uploading or downloading files from Finix.. [optional]  # noqa: E501
+            url (str): The URL you can share with merchants to **UPLOAD** or **DOWNLOAD** files depending on the request sent.. [optional]  # noqa: E501
+            user_id (str): The ID of the `user` that requested to create this link.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

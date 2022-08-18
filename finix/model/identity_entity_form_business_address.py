@@ -331,9 +331,9 @@ class IdentityEntityFormBusinessAddress(ModelNormal):
             'city': (str, none_type,),  # noqa: E501
             'country': (str, none_type,),  # noqa: E501
             'line1': (str, none_type,),  # noqa: E501
-            'line2': (str, none_type,),  # noqa: E501
             'postal_code': (str, none_type,),  # noqa: E501
             'region': (str, none_type,),  # noqa: E501
+            'line2': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -345,9 +345,9 @@ class IdentityEntityFormBusinessAddress(ModelNormal):
         'city': 'city',  # noqa: E501
         'country': 'country',  # noqa: E501
         'line1': 'line1',  # noqa: E501
-        'line2': 'line2',  # noqa: E501
         'postal_code': 'postal_code',  # noqa: E501
         'region': 'region',  # noqa: E501
+        'line2': 'line2',  # noqa: E501
     }
 
     read_only_vars = {
@@ -357,14 +357,13 @@ class IdentityEntityFormBusinessAddress(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, city, country, line1, line2, postal_code, region, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, city, country, line1, postal_code, region, *args, **kwargs):  # noqa: E501
         """IdentityEntityFormBusinessAddress - a model defined in OpenAPI
 
         Args:
             city (str, none_type): City (max 20 characters).
             country (str, none_type): 3-Letter Country code.
             line1 (str, none_type): First line of the address (max 35 characters).
-            line2 (str, none_type): Second line of the address (max 35 characters).
             postal_code (str, none_type): Zip or Postal code (max 7 characters).
             region (str, none_type): 2-letter State code.
 
@@ -399,6 +398,7 @@ class IdentityEntityFormBusinessAddress(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            line2 (str, none_type): Second line of the address (max 35 characters).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -429,7 +429,6 @@ class IdentityEntityFormBusinessAddress(ModelNormal):
         self.city = city
         self.country = country
         self.line1 = line1
-        self.line2 = line2
         self.postal_code = postal_code
         self.region = region
         for var_name, var_value in kwargs.items():
@@ -452,14 +451,13 @@ class IdentityEntityFormBusinessAddress(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, city, country, line1, line2, postal_code, region, *args, **kwargs):  # noqa: E501
+    def __init__(self, city, country, line1, postal_code, region, *args, **kwargs):  # noqa: E501
         """IdentityEntityFormBusinessAddress - a model defined in OpenAPI
 
         Args:
             city (str, none_type): City (max 20 characters).
             country (str, none_type): 3-Letter Country code.
             line1 (str, none_type): First line of the address (max 35 characters).
-            line2 (str, none_type): Second line of the address (max 35 characters).
             postal_code (str, none_type): Zip or Postal code (max 7 characters).
             region (str, none_type): 2-letter State code.
 
@@ -494,6 +492,7 @@ class IdentityEntityFormBusinessAddress(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            line2 (str, none_type): Second line of the address (max 35 characters).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -522,7 +521,6 @@ class IdentityEntityFormBusinessAddress(ModelNormal):
         self.city = city
         self.country = country
         self.line1 = line1
-        self.line2 = line2
         self.postal_code = postal_code
         self.region = region
         for var_name, var_value in kwargs.items():

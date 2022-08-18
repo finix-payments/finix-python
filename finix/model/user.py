@@ -95,7 +95,6 @@ class User(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': (Tags,),  # noqa: E501
             'id': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
@@ -103,6 +102,7 @@ class User(ModelNormal):
             'identity': (str, none_type,),  # noqa: E501
             'password': (str, none_type,),  # noqa: E501
             'role': (str,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
             'links': (UserLinks,),  # noqa: E501
         }
 
@@ -112,7 +112,6 @@ class User(ModelNormal):
 
 
     attribute_map = {
-        'tags': 'tags',  # noqa: E501
         'id': 'id',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'updated_at': 'updated_at',  # noqa: E501
@@ -120,6 +119,7 @@ class User(ModelNormal):
         'identity': 'identity',  # noqa: E501
         'password': 'password',  # noqa: E501
         'role': 'role',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
         'links': '_links',  # noqa: E501
     }
 
@@ -164,14 +164,14 @@ class User(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
-            id (str): The ID of the `User` resource.. [optional]  # noqa: E501
+            id (str): The ID of the `User` object.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             enabled (bool): Details if the `User` is enabled and active. Set to **false** to disable the `User`.. [optional]  # noqa: E501
-            identity (str, none_type): ID of the `Identity` that the `User` resource was created under.. [optional]  # noqa: E501
+            identity (str, none_type): ID of the `Identity` that the `User` object was created under.. [optional]  # noqa: E501
             password (str, none_type): The `password` you'll use to authetnicate requests.. [optional]  # noqa: E501
             role (str): Details the level of access the [`User`](#tag/Users) has available.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             links (UserLinks): [optional]  # noqa: E501
         """
 
@@ -254,14 +254,14 @@ class User(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
-            id (str): The ID of the `User` resource.. [optional]  # noqa: E501
+            id (str): The ID of the `User` object.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             enabled (bool): Details if the `User` is enabled and active. Set to **false** to disable the `User`.. [optional]  # noqa: E501
-            identity (str, none_type): ID of the `Identity` that the `User` resource was created under.. [optional]  # noqa: E501
+            identity (str, none_type): ID of the `Identity` that the `User` object was created under.. [optional]  # noqa: E501
             password (str, none_type): The `password` you'll use to authetnicate requests.. [optional]  # noqa: E501
             role (str): Details the level of access the [`User`](#tag/Users) has available.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             links (UserLinks): [optional]  # noqa: E501
         """
 

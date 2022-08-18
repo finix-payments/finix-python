@@ -86,8 +86,8 @@ class CreateIdentityRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'entity': (CreateIdentityRequestEntity,),  # noqa: E501
             'additional_underwriting_data': (CreateIdentityRequestAdditionalUnderwritingData,),  # noqa: E501
+            'entity': (CreateIdentityRequestEntity,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
         }
 
@@ -97,8 +97,8 @@ class CreateIdentityRequest(ModelNormal):
 
 
     attribute_map = {
-        'entity': 'entity',  # noqa: E501
         'additional_underwriting_data': 'additional_underwriting_data',  # noqa: E501
+        'entity': 'entity',  # noqa: E501
         'tags': 'tags',  # noqa: E501
     }
 
@@ -109,11 +109,8 @@ class CreateIdentityRequest(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, entity, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """CreateIdentityRequest - a model defined in OpenAPI
-
-        Args:
-            entity (CreateIdentityRequestEntity):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -147,6 +144,7 @@ class CreateIdentityRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             additional_underwriting_data (CreateIdentityRequestAdditionalUnderwritingData): [optional]  # noqa: E501
+            entity (CreateIdentityRequestEntity): [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 
@@ -175,7 +173,6 @@ class CreateIdentityRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.entity = entity
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -196,11 +193,8 @@ class CreateIdentityRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, entity, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """CreateIdentityRequest - a model defined in OpenAPI
-
-        Args:
-            entity (CreateIdentityRequestEntity):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -234,6 +228,7 @@ class CreateIdentityRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             additional_underwriting_data (CreateIdentityRequestAdditionalUnderwritingData): [optional]  # noqa: E501
+            entity (CreateIdentityRequestEntity): [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 
@@ -260,7 +255,6 @@ class CreateIdentityRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.entity = entity
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

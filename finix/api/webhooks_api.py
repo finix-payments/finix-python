@@ -361,7 +361,7 @@ class WebhooksApi(object):
         webhook_id,
         **kwargs
     ):
-        """Get a Webhook  # noqa: E501
+        """Fetch a Webhook  # noqa: E501
 
         Retrieve the details of a `Webhook`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -449,7 +449,7 @@ class WebhooksApi(object):
 
 
         Keyword Args:
-            limit (int): The numbers of items to return. [optional]
+            limit (int): The numbers of items to return.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status

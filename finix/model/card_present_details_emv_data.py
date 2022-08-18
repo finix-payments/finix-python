@@ -82,7 +82,6 @@ class CardPresentDetailsEmvData(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': (Tags,),  # noqa: E501
             'application_identifier': (str,),  # noqa: E501
             'application_label': (str,),  # noqa: E501
             'application_preferred_name': (str, none_type,),  # noqa: E501
@@ -90,6 +89,7 @@ class CardPresentDetailsEmvData(ModelNormal):
             'cryptogram': (str,),  # noqa: E501
             'issuer_code_table_index': (str, none_type,),  # noqa: E501
             'pin_verified': (bool,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
         }
 
     @cached_property
@@ -98,7 +98,6 @@ class CardPresentDetailsEmvData(ModelNormal):
 
 
     attribute_map = {
-        'tags': 'tags',  # noqa: E501
         'application_identifier': 'application_identifier',  # noqa: E501
         'application_label': 'application_label',  # noqa: E501
         'application_preferred_name': 'application_preferred_name',  # noqa: E501
@@ -106,6 +105,7 @@ class CardPresentDetailsEmvData(ModelNormal):
         'cryptogram': 'cryptogram',  # noqa: E501
         'issuer_code_table_index': 'issuer_code_table_index',  # noqa: E501
         'pin_verified': 'pin_verified',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
     }
 
     read_only_vars = {
@@ -149,7 +149,6 @@ class CardPresentDetailsEmvData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             application_identifier (str): ID of the EMV application processing the transaction.. [optional]  # noqa: E501
             application_label (str): EMV card label.. [optional]  # noqa: E501
             application_preferred_name (str, none_type): Alternate EMV application name (if provided).. [optional]  # noqa: E501
@@ -157,6 +156,7 @@ class CardPresentDetailsEmvData(ModelNormal):
             cryptogram (str): Encrypted card infromation used to process the transaction.. [optional]  # noqa: E501
             issuer_code_table_index (str, none_type): The alphabet code table (according to ISO 8859) used by the EMV application (if provided).. [optional]  # noqa: E501
             pin_verified (bool): Details if the cardholder's PIN number was verified.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -238,7 +238,6 @@ class CardPresentDetailsEmvData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             application_identifier (str): ID of the EMV application processing the transaction.. [optional]  # noqa: E501
             application_label (str): EMV card label.. [optional]  # noqa: E501
             application_preferred_name (str, none_type): Alternate EMV application name (if provided).. [optional]  # noqa: E501
@@ -246,6 +245,7 @@ class CardPresentDetailsEmvData(ModelNormal):
             cryptogram (str): Encrypted card infromation used to process the transaction.. [optional]  # noqa: E501
             issuer_code_table_index (str, none_type): The alphabet code table (according to ISO 8859) used by the EMV application (if provided).. [optional]  # noqa: E501
             pin_verified (bool): Details if the cardholder's PIN number was verified.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

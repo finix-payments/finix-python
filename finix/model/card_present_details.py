@@ -82,12 +82,12 @@ class CardPresentDetails(ModelNormal):
         """
         lazy_import()
         return {
-            'approval_code': (str,),  # noqa: E501
-            'brand': (str,),  # noqa: E501
+            'approval_code': (str, none_type,),  # noqa: E501
+            'brand': (str, none_type,),  # noqa: E501
             'emv_data': (CardPresentDetailsEmvData,),  # noqa: E501
-            'entry_mode': (str,),  # noqa: E501
-            'masked_account_number': (str,),  # noqa: E501
-            'name': (str,),  # noqa: E501
+            'entry_mode': (str, none_type,),  # noqa: E501
+            'masked_account_number': (str, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
             'payment_type': (str,),  # noqa: E501
         }
 
@@ -147,12 +147,12 @@ class CardPresentDetails(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            approval_code (str): Unique ID used to identify the approval of the `Transfer`.. [optional]  # noqa: E501
-            brand (str): The brand of the card saved in the `Payment Instrument`.. [optional]  # noqa: E501
+            approval_code (str, none_type): Unique ID used to identify the approval of the `Transfer`.. [optional]  # noqa: E501
+            brand (str, none_type): The brand of the card saved in the `Payment Instrument`.. [optional]  # noqa: E501
             emv_data (CardPresentDetailsEmvData): [optional]  # noqa: E501
-            entry_mode (str): Details how the card was entered to process the transaction.. [optional]  # noqa: E501
-            masked_account_number (str): Last four digits of the bank account number.. [optional]  # noqa: E501
-            name (str): The name of the bank account or card owner.. [optional]  # noqa: E501
+            entry_mode (str, none_type): Details how the card was entered to process the transaction.. [optional]  # noqa: E501
+            masked_account_number (str, none_type): Last four digits of the bank account number.. [optional]  # noqa: E501
+            name (str, none_type): The name of the bank account or card owner.. [optional]  # noqa: E501
             payment_type (str): The type of `Payment Instrument` used in the transaction (or the original payment).. [optional]  # noqa: E501
         """
 
@@ -235,12 +235,12 @@ class CardPresentDetails(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            approval_code (str): Unique ID used to identify the approval of the `Transfer`.. [optional]  # noqa: E501
-            brand (str): The brand of the card saved in the `Payment Instrument`.. [optional]  # noqa: E501
+            approval_code (str, none_type): Unique ID used to identify the approval of the `Transfer`.. [optional]  # noqa: E501
+            brand (str, none_type): The brand of the card saved in the `Payment Instrument`.. [optional]  # noqa: E501
             emv_data (CardPresentDetailsEmvData): [optional]  # noqa: E501
-            entry_mode (str): Details how the card was entered to process the transaction.. [optional]  # noqa: E501
-            masked_account_number (str): Last four digits of the bank account number.. [optional]  # noqa: E501
-            name (str): The name of the bank account or card owner.. [optional]  # noqa: E501
+            entry_mode (str, none_type): Details how the card was entered to process the transaction.. [optional]  # noqa: E501
+            masked_account_number (str, none_type): Last four digits of the bank account number.. [optional]  # noqa: E501
+            name (str, none_type): The name of the bank account or card owner.. [optional]  # noqa: E501
             payment_type (str): The type of `Payment Instrument` used in the transaction (or the original payment).. [optional]  # noqa: E501
         """
 

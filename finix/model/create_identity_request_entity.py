@@ -28,13 +28,7 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from finix.model.create_identity_request_entity_business_address import CreateIdentityRequestEntityBusinessAddress
-    from finix.model.create_identity_request_entity_dob import CreateIdentityRequestEntityDob
-    from finix.model.create_identity_request_entity_incorporation_date import CreateIdentityRequestEntityIncorporationDate
     from finix.model.create_identity_request_entity_personal_address import CreateIdentityRequestEntityPersonalAddress
-    globals()['CreateIdentityRequestEntityBusinessAddress'] = CreateIdentityRequestEntityBusinessAddress
-    globals()['CreateIdentityRequestEntityDob'] = CreateIdentityRequestEntityDob
-    globals()['CreateIdentityRequestEntityIncorporationDate'] = CreateIdentityRequestEntityIncorporationDate
     globals()['CreateIdentityRequestEntityPersonalAddress'] = CreateIdentityRequestEntityPersonalAddress
 
 
@@ -60,68 +54,9 @@ class CreateIdentityRequestEntity(ModelNormal):
     """
 
     allowed_values = {
-        ('ownership_type',): {
-            'PUBLIC': "PUBLIC",
-            'PRIVATE': "PRIVATE",
-        },
-        ('business_type',): {
-            'INDIVIDUAL_SOLE_PROPRIETORSHIP': "INDIVIDUAL_SOLE_PROPRIETORSHIP",
-            'CORPORATION': "CORPORATION",
-            'LIMITED_LIABILITY_COMPANY': "LIMITED_LIABILITY_COMPANY",
-            'PARTNERSHIP': "PARTNERSHIP",
-            'ASSOCIATION_ESTATE_TRUST': "ASSOCIATION_ESTATE_TRUST",
-            'TAX_EXEMPT_ORGANIZATION': "TAX_EXEMPT_ORGANIZATION",
-            'INTERNATIONAL_ORGANIZATION': "INTERNATIONAL_ORGANIZATION",
-            'GOVERNMENT_AGENCY': "GOVERNMENT_AGENCY",
-        },
     }
 
     validations = {
-        ('last_name',): {
-            'min_length': 1,
-        },
-        ('first_name',): {
-            'min_length': 1,
-        },
-        ('email',): {
-            'min_length': 1,
-        },
-        ('phone',): {
-            'min_length': 1,
-        },
-        ('default_statement_descriptor',): {
-            'min_length': 1,
-        },
-        ('ownership_type',): {
-            'min_length': 1,
-        },
-        ('title',): {
-            'min_length': 1,
-        },
-        ('business_tax_id',): {
-            'min_length': 1,
-        },
-        ('doing_business_as',): {
-            'min_length': 1,
-        },
-        ('mcc',): {
-            'min_length': 1,
-        },
-        ('business_name',): {
-            'min_length': 1,
-        },
-        ('tax_id',): {
-            'min_length': 1,
-        },
-        ('business_type',): {
-            'min_length': 1,
-        },
-        ('business_phone',): {
-            'min_length': 1,
-        },
-        ('url',): {
-            'min_length': 1,
-        },
     }
 
     @cached_property
@@ -147,29 +82,11 @@ class CreateIdentityRequestEntity(ModelNormal):
         """
         lazy_import()
         return {
-            'last_name': (str,),  # noqa: E501
-            'first_name': (str,),  # noqa: E501
             'email': (str,),  # noqa: E501
-            'phone': (str,),  # noqa: E501
-            'max_transaction_amount': (int,),  # noqa: E501
-            'has_accepted_credit_cards_previously': (bool,),  # noqa: E501
-            'default_statement_descriptor': (str,),  # noqa: E501
+            'first_name': (str,),  # noqa: E501
+            'last_name': (str,),  # noqa: E501
             'personal_address': (CreateIdentityRequestEntityPersonalAddress,),  # noqa: E501
-            'incorporation_date': (CreateIdentityRequestEntityIncorporationDate,),  # noqa: E501
-            'business_address': (CreateIdentityRequestEntityBusinessAddress,),  # noqa: E501
-            'ownership_type': (str,),  # noqa: E501
-            'title': (str,),  # noqa: E501
-            'business_tax_id': (str,),  # noqa: E501
-            'doing_business_as': (str,),  # noqa: E501
-            'principal_percentage_ownership': (int,),  # noqa: E501
-            'mcc': (str,),  # noqa: E501
-            'business_name': (str, none_type,),  # noqa: E501
-            'tax_id': (str,),  # noqa: E501
-            'business_type': (str,),  # noqa: E501
-            'business_phone': (str,),  # noqa: E501
-            'dob': (CreateIdentityRequestEntityDob,),  # noqa: E501
-            'url': (str,),  # noqa: E501
-            'annual_card_volume': (int,),  # noqa: E501
+            'phone': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -178,29 +95,11 @@ class CreateIdentityRequestEntity(ModelNormal):
 
 
     attribute_map = {
-        'last_name': 'last_name',  # noqa: E501
-        'first_name': 'first_name',  # noqa: E501
         'email': 'email',  # noqa: E501
-        'phone': 'phone',  # noqa: E501
-        'max_transaction_amount': 'max_transaction_amount',  # noqa: E501
-        'has_accepted_credit_cards_previously': 'has_accepted_credit_cards_previously',  # noqa: E501
-        'default_statement_descriptor': 'default_statement_descriptor',  # noqa: E501
+        'first_name': 'first_name',  # noqa: E501
+        'last_name': 'last_name',  # noqa: E501
         'personal_address': 'personal_address',  # noqa: E501
-        'incorporation_date': 'incorporation_date',  # noqa: E501
-        'business_address': 'business_address',  # noqa: E501
-        'ownership_type': 'ownership_type',  # noqa: E501
-        'title': 'title',  # noqa: E501
-        'business_tax_id': 'business_tax_id',  # noqa: E501
-        'doing_business_as': 'doing_business_as',  # noqa: E501
-        'principal_percentage_ownership': 'principal_percentage_ownership',  # noqa: E501
-        'mcc': 'mcc',  # noqa: E501
-        'business_name': 'business_name',  # noqa: E501
-        'tax_id': 'tax_id',  # noqa: E501
-        'business_type': 'business_type',  # noqa: E501
-        'business_phone': 'business_phone',  # noqa: E501
-        'dob': 'dob',  # noqa: E501
-        'url': 'url',  # noqa: E501
-        'annual_card_volume': 'annual_card_volume',  # noqa: E501
+        'phone': 'phone',  # noqa: E501
     }
 
     read_only_vars = {
@@ -210,14 +109,8 @@ class CreateIdentityRequestEntity(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, last_name, first_name, email, phone, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """CreateIdentityRequestEntity - a model defined in OpenAPI
-
-        Args:
-            last_name (str): The legal last name of the merchant's control owner (max 20 characters).
-            first_name (str): The legal first name of the merchant's control owner (max 20 characters).
-            email (str): The email address of the principal control owner where they can be reached (max 100 characters).
-            phone (str): The principal control owner's phone number (max 10 characters).
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -250,25 +143,11 @@ class CreateIdentityRequestEntity(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            max_transaction_amount (int): The maximum amount (in cents) that can be charged for a single transaction (max 12 characters).. [optional]  # noqa: E501
-            has_accepted_credit_cards_previously (bool): Defaults to **false** if not passed.. [optional]  # noqa: E501
-            default_statement_descriptor (str): The description of the merchant that appears on the buyer's bank or card statement.. [optional]  # noqa: E501
+            email (str): The email address of the buyer where they can be reached (max 100 characters).. [optional]  # noqa: E501
+            first_name (str): The legal first name of the buyer (max 20 characters).. [optional]  # noqa: E501
+            last_name (str): The legal last name of the buyer (max 20 characters).. [optional]  # noqa: E501
             personal_address (CreateIdentityRequestEntityPersonalAddress): [optional]  # noqa: E501
-            incorporation_date (CreateIdentityRequestEntityIncorporationDate): [optional]  # noqa: E501
-            business_address (CreateIdentityRequestEntityBusinessAddress): [optional]  # noqa: E501
-            ownership_type (str): Avalible values include: <ul><li><strong>PUBLIC</strong> to indicate a publicly-traded company.<li><strong>PRIVATE</strong> for privately-held businesses.. [optional]  # noqa: E501
-            title (str): The corporate title of the control owner (e.g. Chief Executive Officer, CFO, etc. Max 60 characters).. [optional]  # noqa: E501
-            business_tax_id (str): Nine digit Tax Identification Number (TIN), Employer Identification Number (EIN). If the `business_type` is **INDIVIDUAL\\_SOLE\\_PROPRIETORSHIP** and they do not have an EIN, use the sole proprietor's Social Security Number (SSN).. [optional]  # noqa: E501
-            doing_business_as (str): Alternate names of the business. If there are no other names, pass the same value used for `business_name` (max 60 characters).. [optional]  # noqa: E501
-            principal_percentage_ownership (int): Percentage of the company owned by the principal control owner (min 0; max 100).. [optional]  # noqa: E501
-            mcc (str): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card\\_x/mcc.pdf)) that this merchant will be classified under.. [optional]  # noqa: E501
-            business_name (str, none_type): The merchant's legal business name (max 120 characters).<ul><li>If **INDIVIDUAL_SOLE_PROPRIETORSHIP**, pass the owner's legal first name, last name and middle initial.. [optional]  # noqa: E501
-            tax_id (str): Pass one of the following values (nine digits):<ul><li>Social Security Number (SSN)<li>Tax Identification Number (TIN)<li>Individual Taxpayer Identification Number (ITIN)</ul>. [optional]  # noqa: E501
-            business_type (str): Include the value that best applies to the merchant.. [optional]  # noqa: E501
-            business_phone (str): Customer service phone number where the merchant can be reached (max 10 characters).. [optional]  # noqa: E501
-            dob (CreateIdentityRequestEntityDob): [optional]  # noqa: E501
-            url (str): The URL of the merchant's public website.. [optional]  # noqa: E501
-            annual_card_volume (int): The annual credit card sales (in cents) expected to be processed by this merchant (max 19 characters).. [optional]  # noqa: E501
+            phone (str): Phone number where the buyer can be reached.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -296,10 +175,6 @@ class CreateIdentityRequestEntity(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.last_name = last_name
-        self.first_name = first_name
-        self.email = email
-        self.phone = phone
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -320,14 +195,8 @@ class CreateIdentityRequestEntity(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, last_name, first_name, email, phone, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """CreateIdentityRequestEntity - a model defined in OpenAPI
-
-        Args:
-            last_name (str): The legal last name of the merchant's control owner (max 20 characters).
-            first_name (str): The legal first name of the merchant's control owner (max 20 characters).
-            email (str): The email address of the principal control owner where they can be reached (max 100 characters).
-            phone (str): The principal control owner's phone number (max 10 characters).
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -360,25 +229,11 @@ class CreateIdentityRequestEntity(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            max_transaction_amount (int): The maximum amount (in cents) that can be charged for a single transaction (max 12 characters).. [optional]  # noqa: E501
-            has_accepted_credit_cards_previously (bool): Defaults to **false** if not passed.. [optional]  # noqa: E501
-            default_statement_descriptor (str): The description of the merchant that appears on the buyer's bank or card statement.. [optional]  # noqa: E501
+            email (str): The email address of the buyer where they can be reached (max 100 characters).. [optional]  # noqa: E501
+            first_name (str): The legal first name of the buyer (max 20 characters).. [optional]  # noqa: E501
+            last_name (str): The legal last name of the buyer (max 20 characters).. [optional]  # noqa: E501
             personal_address (CreateIdentityRequestEntityPersonalAddress): [optional]  # noqa: E501
-            incorporation_date (CreateIdentityRequestEntityIncorporationDate): [optional]  # noqa: E501
-            business_address (CreateIdentityRequestEntityBusinessAddress): [optional]  # noqa: E501
-            ownership_type (str): Avalible values include: <ul><li><strong>PUBLIC</strong> to indicate a publicly-traded company.<li><strong>PRIVATE</strong> for privately-held businesses.. [optional]  # noqa: E501
-            title (str): The corporate title of the control owner (e.g. Chief Executive Officer, CFO, etc. Max 60 characters).. [optional]  # noqa: E501
-            business_tax_id (str): Nine digit Tax Identification Number (TIN), Employer Identification Number (EIN). If the `business_type` is **INDIVIDUAL\\_SOLE\\_PROPRIETORSHIP** and they do not have an EIN, use the sole proprietor's Social Security Number (SSN).. [optional]  # noqa: E501
-            doing_business_as (str): Alternate names of the business. If there are no other names, pass the same value used for `business_name` (max 60 characters).. [optional]  # noqa: E501
-            principal_percentage_ownership (int): Percentage of the company owned by the principal control owner (min 0; max 100).. [optional]  # noqa: E501
-            mcc (str): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card\\_x/mcc.pdf)) that this merchant will be classified under.. [optional]  # noqa: E501
-            business_name (str, none_type): The merchant's legal business name (max 120 characters).<ul><li>If **INDIVIDUAL_SOLE_PROPRIETORSHIP**, pass the owner's legal first name, last name and middle initial.. [optional]  # noqa: E501
-            tax_id (str): Pass one of the following values (nine digits):<ul><li>Social Security Number (SSN)<li>Tax Identification Number (TIN)<li>Individual Taxpayer Identification Number (ITIN)</ul>. [optional]  # noqa: E501
-            business_type (str): Include the value that best applies to the merchant.. [optional]  # noqa: E501
-            business_phone (str): Customer service phone number where the merchant can be reached (max 10 characters).. [optional]  # noqa: E501
-            dob (CreateIdentityRequestEntityDob): [optional]  # noqa: E501
-            url (str): The URL of the merchant's public website.. [optional]  # noqa: E501
-            annual_card_volume (int): The annual credit card sales (in cents) expected to be processed by this merchant (max 19 characters).. [optional]  # noqa: E501
+            phone (str): Phone number where the buyer can be reached.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -404,10 +259,6 @@ class CreateIdentityRequestEntity(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.last_name = last_name
-        self.first_name = first_name
-        self.email = email
-        self.phone = phone
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

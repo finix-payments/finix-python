@@ -64,28 +64,28 @@ class UpdateIdentityRequestAdditionalUnderwritingData(ModelNormal):
     }
 
     validations = {
-        ('merchant_agreement_ip_address',): {
-            'min_length': 1,
-        },
-        ('credit_check_user_agent',): {
-            'min_length': 1,
-        },
-        ('refund_policy',): {
-            'min_length': 1,
-        },
-        ('credit_check_timestamp',): {
-            'min_length': 1,
-        },
-        ('merchant_agreement_timestamp',): {
-            'min_length': 1,
-        },
         ('business_description',): {
             'min_length': 1,
         },
         ('credit_check_ip_address',): {
             'min_length': 1,
         },
+        ('credit_check_timestamp',): {
+            'min_length': 1,
+        },
+        ('credit_check_user_agent',): {
+            'min_length': 1,
+        },
+        ('merchant_agreement_ip_address',): {
+            'min_length': 1,
+        },
+        ('merchant_agreement_timestamp',): {
+            'min_length': 1,
+        },
         ('merchant_agreement_user_agent',): {
+            'min_length': 1,
+        },
+        ('refund_policy',): {
             'min_length': 1,
         },
     }
@@ -113,21 +113,21 @@ class UpdateIdentityRequestAdditionalUnderwritingData(ModelNormal):
         """
         lazy_import()
         return {
+            'annual_ach_volume': (int,),  # noqa: E501
+            'average_ach_transfer_amount': (int,),  # noqa: E501
+            'average_card_transfer_amount': (int,),  # noqa: E501
+            'business_description': (str,),  # noqa: E501
+            'credit_check_allowed': (bool,),  # noqa: E501
+            'credit_check_ip_address': (str,),  # noqa: E501
+            'credit_check_timestamp': (str,),  # noqa: E501
+            'credit_check_user_agent': (str,),  # noqa: E501
+            'card_volume_distribution': (UpdateIdentityRequestAdditionalUnderwritingDataCardVolumeDistribution,),  # noqa: E501
             'merchant_agreement_accepted': (bool,),  # noqa: E501
             'merchant_agreement_ip_address': (str,),  # noqa: E501
-            'volume_distribution_by_business_type': (UpdateIdentityRequestAdditionalUnderwritingDataVolumeDistributionByBusinessType,),  # noqa: E501
-            'average_ach_transfer_amount': (int,),  # noqa: E501
-            'annual_ach_volume': (int,),  # noqa: E501
-            'credit_check_user_agent': (str,),  # noqa: E501
-            'refund_policy': (str,),  # noqa: E501
-            'credit_check_timestamp': (str,),  # noqa: E501
-            'credit_check_allowed': (bool,),  # noqa: E501
             'merchant_agreement_timestamp': (str,),  # noqa: E501
-            'business_description': (str,),  # noqa: E501
-            'average_card_transfer_amount': (int,),  # noqa: E501
-            'credit_check_ip_address': (str,),  # noqa: E501
             'merchant_agreement_user_agent': (str,),  # noqa: E501
-            'card_volume_distribution': (UpdateIdentityRequestAdditionalUnderwritingDataCardVolumeDistribution,),  # noqa: E501
+            'refund_policy': (str,),  # noqa: E501
+            'volume_distribution_by_business_type': (UpdateIdentityRequestAdditionalUnderwritingDataVolumeDistributionByBusinessType,),  # noqa: E501
         }
 
     @cached_property
@@ -136,21 +136,21 @@ class UpdateIdentityRequestAdditionalUnderwritingData(ModelNormal):
 
 
     attribute_map = {
+        'annual_ach_volume': 'annual_ach_volume',  # noqa: E501
+        'average_ach_transfer_amount': 'average_ach_transfer_amount',  # noqa: E501
+        'average_card_transfer_amount': 'average_card_transfer_amount',  # noqa: E501
+        'business_description': 'business_description',  # noqa: E501
+        'credit_check_allowed': 'credit_check_allowed',  # noqa: E501
+        'credit_check_ip_address': 'credit_check_ip_address',  # noqa: E501
+        'credit_check_timestamp': 'credit_check_timestamp',  # noqa: E501
+        'credit_check_user_agent': 'credit_check_user_agent',  # noqa: E501
+        'card_volume_distribution': 'card_volume_distribution',  # noqa: E501
         'merchant_agreement_accepted': 'merchant_agreement_accepted',  # noqa: E501
         'merchant_agreement_ip_address': 'merchant_agreement_ip_address',  # noqa: E501
-        'volume_distribution_by_business_type': 'volume_distribution_by_business_type',  # noqa: E501
-        'average_ach_transfer_amount': 'average_ach_transfer_amount',  # noqa: E501
-        'annual_ach_volume': 'annual_ach_volume',  # noqa: E501
-        'credit_check_user_agent': 'credit_check_user_agent',  # noqa: E501
-        'refund_policy': 'refund_policy',  # noqa: E501
-        'credit_check_timestamp': 'credit_check_timestamp',  # noqa: E501
-        'credit_check_allowed': 'credit_check_allowed',  # noqa: E501
         'merchant_agreement_timestamp': 'merchant_agreement_timestamp',  # noqa: E501
-        'business_description': 'business_description',  # noqa: E501
-        'average_card_transfer_amount': 'average_card_transfer_amount',  # noqa: E501
-        'credit_check_ip_address': 'credit_check_ip_address',  # noqa: E501
         'merchant_agreement_user_agent': 'merchant_agreement_user_agent',  # noqa: E501
-        'card_volume_distribution': 'card_volume_distribution',  # noqa: E501
+        'refund_policy': 'refund_policy',  # noqa: E501
+        'volume_distribution_by_business_type': 'volume_distribution_by_business_type',  # noqa: E501
     }
 
     read_only_vars = {
@@ -194,21 +194,21 @@ class UpdateIdentityRequestAdditionalUnderwritingData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            annual_ach_volume (int): The approximate annual ACH sales expected to be processed (in cents) by this merchant (max 10 characters).. [optional]  # noqa: E501
+            average_ach_transfer_amount (int): The approximate average ACH sale amount (in cents) for this merchant.. [optional]  # noqa: E501
+            average_card_transfer_amount (int): The average credit card sale amount (in cents) for this merchant.. [optional]  # noqa: E501
+            business_description (str): Description of this merchant's business (max 200 characters).. [optional]  # noqa: E501
+            credit_check_allowed (bool): Sets if this merchant has consented and accepted to a credit check.. [optional]  # noqa: E501
+            credit_check_ip_address (str): The IP address of the merchant when they consented to a credit check (e.g., 42.1.1.113 ).. [optional]  # noqa: E501
+            credit_check_timestamp (str): A timestamp of when this merchant consented to a credit check (e.g., 2021-04-28T16:42:55Z).. [optional]  # noqa: E501
+            credit_check_user_agent (str): The details of the browser that was used when this merchant consented to a credit check (e.g., Mozilla 5.0 (Macintosh; Intel Mac OS X 10 _14_6)).. [optional]  # noqa: E501
+            card_volume_distribution (UpdateIdentityRequestAdditionalUnderwritingDataCardVolumeDistribution): [optional]  # noqa: E501
             merchant_agreement_accepted (bool): Sets whether this merchant has accepted the terms and conditions of the merchant agreement.. [optional]  # noqa: E501
             merchant_agreement_ip_address (str): IP address of the merchant when this merchant accepted the merchant agreement (e.g., 42.1.1.113).. [optional]  # noqa: E501
-            volume_distribution_by_business_type (UpdateIdentityRequestAdditionalUnderwritingDataVolumeDistributionByBusinessType): [optional]  # noqa: E501
-            average_ach_transfer_amount (int): The approximate average ACH sale amount (in cents) for this merchant.. [optional]  # noqa: E501
-            annual_ach_volume (int): The approximate annual ACH sales expected to be processed (in cents) by this merchant (max 10 characters).. [optional]  # noqa: E501
-            credit_check_user_agent (str): The details of the browser that was used when this merchant consented to a credit check (e.g., Mozilla 5.0 (Macintosh; Intel Mac OS X 10 _14_6)).. [optional]  # noqa: E501
-            refund_policy (str): Include the value that best applies to the merchant's refund policy.. [optional]  # noqa: E501
-            credit_check_timestamp (str): A timestamp of when this merchant consented to a credit check (e.g., 2021-04-28T16:42:55Z).. [optional]  # noqa: E501
-            credit_check_allowed (bool): Sets if this merchant has consented and accepted to a credit check.. [optional]  # noqa: E501
             merchant_agreement_timestamp (str): Timestamp of when the merchant accepted Finix's Terms of Service (e.g., 2021-04-28T16:42:55Z).. [optional]  # noqa: E501
-            business_description (str): Description of this merchant's business (max 200 characters).. [optional]  # noqa: E501
-            average_card_transfer_amount (int): The average credit card sale amount (in cents) for this merchant.. [optional]  # noqa: E501
-            credit_check_ip_address (str): The IP address of the merchant when they consented to a credit check (e.g., 42.1.1.113 ).. [optional]  # noqa: E501
             merchant_agreement_user_agent (str): The details of the browser that was used when this merchant accepted Finix's Terms of Service (e.g., Mozilla 5.0 (Macintosh; Intel Mac OS X 10 _14_6)).. [optional]  # noqa: E501
-            card_volume_distribution (UpdateIdentityRequestAdditionalUnderwritingDataCardVolumeDistribution): [optional]  # noqa: E501
+            refund_policy (str): Include the value that best applies to the merchant's refund policy.. [optional]  # noqa: E501
+            volume_distribution_by_business_type (UpdateIdentityRequestAdditionalUnderwritingDataVolumeDistributionByBusinessType): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -290,21 +290,21 @@ class UpdateIdentityRequestAdditionalUnderwritingData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            annual_ach_volume (int): The approximate annual ACH sales expected to be processed (in cents) by this merchant (max 10 characters).. [optional]  # noqa: E501
+            average_ach_transfer_amount (int): The approximate average ACH sale amount (in cents) for this merchant.. [optional]  # noqa: E501
+            average_card_transfer_amount (int): The average credit card sale amount (in cents) for this merchant.. [optional]  # noqa: E501
+            business_description (str): Description of this merchant's business (max 200 characters).. [optional]  # noqa: E501
+            credit_check_allowed (bool): Sets if this merchant has consented and accepted to a credit check.. [optional]  # noqa: E501
+            credit_check_ip_address (str): The IP address of the merchant when they consented to a credit check (e.g., 42.1.1.113 ).. [optional]  # noqa: E501
+            credit_check_timestamp (str): A timestamp of when this merchant consented to a credit check (e.g., 2021-04-28T16:42:55Z).. [optional]  # noqa: E501
+            credit_check_user_agent (str): The details of the browser that was used when this merchant consented to a credit check (e.g., Mozilla 5.0 (Macintosh; Intel Mac OS X 10 _14_6)).. [optional]  # noqa: E501
+            card_volume_distribution (UpdateIdentityRequestAdditionalUnderwritingDataCardVolumeDistribution): [optional]  # noqa: E501
             merchant_agreement_accepted (bool): Sets whether this merchant has accepted the terms and conditions of the merchant agreement.. [optional]  # noqa: E501
             merchant_agreement_ip_address (str): IP address of the merchant when this merchant accepted the merchant agreement (e.g., 42.1.1.113).. [optional]  # noqa: E501
-            volume_distribution_by_business_type (UpdateIdentityRequestAdditionalUnderwritingDataVolumeDistributionByBusinessType): [optional]  # noqa: E501
-            average_ach_transfer_amount (int): The approximate average ACH sale amount (in cents) for this merchant.. [optional]  # noqa: E501
-            annual_ach_volume (int): The approximate annual ACH sales expected to be processed (in cents) by this merchant (max 10 characters).. [optional]  # noqa: E501
-            credit_check_user_agent (str): The details of the browser that was used when this merchant consented to a credit check (e.g., Mozilla 5.0 (Macintosh; Intel Mac OS X 10 _14_6)).. [optional]  # noqa: E501
-            refund_policy (str): Include the value that best applies to the merchant's refund policy.. [optional]  # noqa: E501
-            credit_check_timestamp (str): A timestamp of when this merchant consented to a credit check (e.g., 2021-04-28T16:42:55Z).. [optional]  # noqa: E501
-            credit_check_allowed (bool): Sets if this merchant has consented and accepted to a credit check.. [optional]  # noqa: E501
             merchant_agreement_timestamp (str): Timestamp of when the merchant accepted Finix's Terms of Service (e.g., 2021-04-28T16:42:55Z).. [optional]  # noqa: E501
-            business_description (str): Description of this merchant's business (max 200 characters).. [optional]  # noqa: E501
-            average_card_transfer_amount (int): The average credit card sale amount (in cents) for this merchant.. [optional]  # noqa: E501
-            credit_check_ip_address (str): The IP address of the merchant when they consented to a credit check (e.g., 42.1.1.113 ).. [optional]  # noqa: E501
             merchant_agreement_user_agent (str): The details of the browser that was used when this merchant accepted Finix's Terms of Service (e.g., Mozilla 5.0 (Macintosh; Intel Mac OS X 10 _14_6)).. [optional]  # noqa: E501
-            card_volume_distribution (UpdateIdentityRequestAdditionalUnderwritingDataCardVolumeDistribution): [optional]  # noqa: E501
+            refund_policy (str): Include the value that best applies to the merchant's refund policy.. [optional]  # noqa: E501
+            volume_distribution_by_business_type (UpdateIdentityRequestAdditionalUnderwritingDataVolumeDistributionByBusinessType): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

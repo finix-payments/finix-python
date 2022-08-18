@@ -27,12 +27,8 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
-def lazy_import():
-    from finix.model.tags import Tags
-    globals()['Tags'] = Tags
 
-
-class CreateFileRequest(ModelNormal):
+class ProcessorSystemConfigConfig(ModelNormal):
     """
 
     Attributes:
@@ -54,19 +50,6 @@ class CreateFileRequest(ModelNormal):
     """
 
     allowed_values = {
-        ('type',): {
-            'DRIVERS_LICENSE_FRONT': "DRIVERS_LICENSE_FRONT",
-            'DRIVERS_LICENSE_BACK': "DRIVERS_LICENSE_BACK",
-            'IDENTIFICATION_CARD_FRONT': "IDENTIFICATION_CARD_FRONT",
-            'IDENTIFICATION_CARD_BACK': "IDENTIFICATION_CARD_BACK",
-            'BANK_STATEMENT': "BANK_STATEMENT",
-            'TAX_DOCUMENT': "TAX_DOCUMENT",
-            'BUSINESS_REGISTRATION': "BUSINESS_REGISTRATION",
-            'BUSINESS_ADDRESS_VERIFICATION': "BUSINESS_ADDRESS_VERIFICATION",
-            'OTHER': "OTHER",
-            'PCI_DOCUMENT': "PCI_DOCUMENT",
-            'PASSPORT': "PASSPORT",
-        },
     }
 
     validations = {
@@ -78,7 +61,6 @@ class CreateFileRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -93,12 +75,8 @@ class CreateFileRequest(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        lazy_import()
         return {
-            'display_name': (str,),  # noqa: E501
-            'linked_to': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
-            'type': (str,),  # noqa: E501
+            'can_debit_bank_account': ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)},),  # noqa: E501
         }
 
     @cached_property
@@ -107,10 +85,7 @@ class CreateFileRequest(ModelNormal):
 
 
     attribute_map = {
-        'display_name': 'display_name',  # noqa: E501
-        'linked_to': 'linked_to',  # noqa: E501
-        'tags': 'tags',  # noqa: E501
-        'type': 'type',  # noqa: E501
+        'can_debit_bank_account': 'canDebitBankAccount',  # noqa: E501
     }
 
     read_only_vars = {
@@ -121,7 +96,7 @@ class CreateFileRequest(ModelNormal):
     @classmethod
     @convert_js_args_to_python_args
     def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
-        """CreateFileRequest - a model defined in OpenAPI
+        """ProcessorSystemConfigConfig - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -154,10 +129,7 @@ class CreateFileRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            display_name (str): The name of the `File` you'll create.. [optional]  # noqa: E501
-            linked_to (str): The resource ID that you want linked to the `File` (e.g. Merchant ID).. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
-            type (str): The type of document. | Available values include: <br>Identity Verification<ul><li> **DRIVERS\\_LICENSE\\_FRONT**<li>**DRIVERS\\_LICENSE\\_BACK**<li>**IDENTIFICATION\\_CARD\\_FRONT**<li>**IDENTIFICATION\\_CARD\\_BACK**</ul>Bank account validation<ul><li>**BANK\\_STATEMENT**</ul>Business Verification<ul><li>**TAX\\_DOCUMENT**<li>**BUSINESS\\_REGISTRATION**<li>**BUSINESS\\_ADDRESS\\_VERIFICATION**</ul>Additional<ul><li>**OTHER**<li>**PCI\\_DOCUMENT**<li>**PASSPORT**<ul>. [optional]  # noqa: E501
+            can_debit_bank_account ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}): Set to true to allow the `Processor` to debit `Payment instrument with type **BANK_ACCOUNT** (i.e. eCheck).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -206,7 +178,7 @@ class CreateFileRequest(ModelNormal):
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
-        """CreateFileRequest - a model defined in OpenAPI
+        """ProcessorSystemConfigConfig - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -239,10 +211,7 @@ class CreateFileRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            display_name (str): The name of the `File` you'll create.. [optional]  # noqa: E501
-            linked_to (str): The resource ID that you want linked to the `File` (e.g. Merchant ID).. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
-            type (str): The type of document. | Available values include: <br>Identity Verification<ul><li> **DRIVERS\\_LICENSE\\_FRONT**<li>**DRIVERS\\_LICENSE\\_BACK**<li>**IDENTIFICATION\\_CARD\\_FRONT**<li>**IDENTIFICATION\\_CARD\\_BACK**</ul>Bank account validation<ul><li>**BANK\\_STATEMENT**</ul>Business Verification<ul><li>**TAX\\_DOCUMENT**<li>**BUSINESS\\_REGISTRATION**<li>**BUSINESS\\_ADDRESS\\_VERIFICATION**</ul>Additional<ul><li>**OTHER**<li>**PCI\\_DOCUMENT**<li>**PASSPORT**<ul>. [optional]  # noqa: E501
+            can_debit_bank_account ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}): Set to true to allow the `Processor` to debit `Payment instrument with type **BANK_ACCOUNT** (i.e. eCheck).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -135,7 +135,7 @@ class ListFeeProfilesQueryParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
             before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
-            limit (int): The numbers of items to return. [optional]  # noqa: E501
+            limit (int): The numbers of items to return.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -219,7 +219,7 @@ class ListFeeProfilesQueryParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
             before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
-            limit (int): The numbers of items to return. [optional]  # noqa: E501
+            limit (int): The numbers of items to return.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

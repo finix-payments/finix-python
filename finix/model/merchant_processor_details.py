@@ -76,8 +76,8 @@ class MerchantProcessorDetails(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'mid': (str,),  # noqa: E501
             'api_key': (str,),  # noqa: E501
+            'mid': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -86,8 +86,8 @@ class MerchantProcessorDetails(ModelNormal):
 
 
     attribute_map = {
-        'mid': 'mid',  # noqa: E501
         'api_key': 'api_key',  # noqa: E501
+        'mid': 'mid',  # noqa: E501
     }
 
     read_only_vars = {
@@ -131,8 +131,8 @@ class MerchantProcessorDetails(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            mid (str): [optional]  # noqa: E501
             api_key (str): [optional]  # noqa: E501
+            mid (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -214,8 +214,8 @@ class MerchantProcessorDetails(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            mid (str): [optional]  # noqa: E501
             api_key (str): [optional]  # noqa: E501
+            mid (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

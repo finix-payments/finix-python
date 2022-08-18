@@ -86,9 +86,9 @@ class DisputesList(ModelNormal):
         """
         lazy_import()
         return {
+            'page': (PageOffset,),  # noqa: E501
             'embedded': (DisputesListEmbedded,),  # noqa: E501
             'links': (ListLinks,),  # noqa: E501
-            'page': (PageOffset,),  # noqa: E501
         }
 
     @cached_property
@@ -97,9 +97,9 @@ class DisputesList(ModelNormal):
 
 
     attribute_map = {
+        'page': 'page',  # noqa: E501
         'embedded': '_embedded',  # noqa: E501
         'links': '_links',  # noqa: E501
-        'page': 'page',  # noqa: E501
     }
 
     read_only_vars = {
@@ -143,9 +143,9 @@ class DisputesList(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            page (PageOffset): [optional]  # noqa: E501
             embedded (DisputesListEmbedded): [optional]  # noqa: E501
             links (ListLinks): [optional]  # noqa: E501
-            page (PageOffset): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -227,9 +227,9 @@ class DisputesList(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            page (PageOffset): [optional]  # noqa: E501
             embedded (DisputesListEmbedded): [optional]  # noqa: E501
             links (ListLinks): [optional]  # noqa: E501
-            page (PageOffset): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

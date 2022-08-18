@@ -66,6 +66,7 @@ class CreateDevice(ModelNormal):
             'ISC480': "ISC480",
             'ISMP4': "ISMP4",
             'ANDROID': "ANDROID",
+            'LANE_3000': "LANE_3000",
         },
     }
 
@@ -95,12 +96,12 @@ class CreateDevice(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': (Tags,),  # noqa: E501
-            'description': (str,),  # noqa: E501
-            'configuration': (ConfigurationDetails,),  # noqa: E501
-            'merchant_id': (str,),  # noqa: E501
             'model': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
+            'configuration': (ConfigurationDetails,),  # noqa: E501
+            'description': (str,),  # noqa: E501
+            'merchant_id': (str,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
         }
 
     @cached_property
@@ -109,12 +110,12 @@ class CreateDevice(ModelNormal):
 
 
     attribute_map = {
-        'tags': 'tags',  # noqa: E501
-        'description': 'description',  # noqa: E501
-        'configuration': 'configuration',  # noqa: E501
-        'merchant_id': 'merchant_id',  # noqa: E501
         'model': 'model',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'configuration': 'configuration',  # noqa: E501
+        'description': 'description',  # noqa: E501
+        'merchant_id': 'merchant_id',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
     }
 
     read_only_vars = {
@@ -124,8 +125,12 @@ class CreateDevice(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, model, name, *args, **kwargs):  # noqa: E501
         """CreateDevice - a model defined in OpenAPI
+
+        Args:
+            model (str): Include one of the following values to let Finix know the type of device that's being used.
+            name (str): Name of the `Device`.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -158,12 +163,10 @@ class CreateDevice(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
-            description (str): Additional information about device (e.g. self serving terminal).. [optional]  # noqa: E501
             configuration (ConfigurationDetails): [optional]  # noqa: E501
+            description (str): Additional information about device (e.g. self serving terminal).. [optional]  # noqa: E501
             merchant_id (str): ID of the `Merchant` the `Device` is associated with.. [optional]  # noqa: E501
-            model (str): Include one of the following values to let Finix know the type of device that's being used.. [optional]  # noqa: E501
-            name (str): Name of the `Device`.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -191,6 +194,8 @@ class CreateDevice(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.model = model
+        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -211,8 +216,12 @@ class CreateDevice(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, model, name, *args, **kwargs):  # noqa: E501
         """CreateDevice - a model defined in OpenAPI
+
+        Args:
+            model (str): Include one of the following values to let Finix know the type of device that's being used.
+            name (str): Name of the `Device`.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -245,12 +254,10 @@ class CreateDevice(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
-            description (str): Additional information about device (e.g. self serving terminal).. [optional]  # noqa: E501
             configuration (ConfigurationDetails): [optional]  # noqa: E501
+            description (str): Additional information about device (e.g. self serving terminal).. [optional]  # noqa: E501
             merchant_id (str): ID of the `Merchant` the `Device` is associated with.. [optional]  # noqa: E501
-            model (str): Include one of the following values to let Finix know the type of device that's being used.. [optional]  # noqa: E501
-            name (str): Name of the `Device`.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -276,6 +283,8 @@ class CreateDevice(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.model = model
+        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

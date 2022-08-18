@@ -86,9 +86,9 @@ class AdjustmentTransfersList(ModelNormal):
         """
         lazy_import()
         return {
+            'page': (PageCursor,),  # noqa: E501
             'embedded': (AdjustmentTransfersListEmbedded,),  # noqa: E501
             'links': (DisputeEvidenceLinks,),  # noqa: E501
-            'page': (PageCursor,),  # noqa: E501
         }
 
     @cached_property
@@ -97,9 +97,9 @@ class AdjustmentTransfersList(ModelNormal):
 
 
     attribute_map = {
+        'page': 'page',  # noqa: E501
         'embedded': '_embedded',  # noqa: E501
         'links': '_links',  # noqa: E501
-        'page': 'page',  # noqa: E501
     }
 
     read_only_vars = {
@@ -143,9 +143,9 @@ class AdjustmentTransfersList(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            page (PageCursor): [optional]  # noqa: E501
             embedded (AdjustmentTransfersListEmbedded): [optional]  # noqa: E501
             links (DisputeEvidenceLinks): [optional]  # noqa: E501
-            page (PageCursor): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -227,9 +227,9 @@ class AdjustmentTransfersList(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            page (PageCursor): [optional]  # noqa: E501
             embedded (AdjustmentTransfersListEmbedded): [optional]  # noqa: E501
             links (DisputeEvidenceLinks): [optional]  # noqa: E501
-            page (PageCursor): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

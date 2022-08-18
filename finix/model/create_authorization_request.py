@@ -28,12 +28,14 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from finix.model.additional_buyer_charges import AdditionalBuyerCharges
     from finix.model.additional_purchase_data import AdditionalPurchaseData
     from finix.model.create_authorization_request3d_secure_authentication import CreateAuthorizationRequest3dSecureAuthentication
     from finix.model.currency import Currency
     from finix.model.operation_key import OperationKey
     from finix.model.sub_type_transfer import SubTypeTransfer
     from finix.model.tags import Tags
+    globals()['AdditionalBuyerCharges'] = AdditionalBuyerCharges
     globals()['AdditionalPurchaseData'] = AdditionalPurchaseData
     globals()['CreateAuthorizationRequest3dSecureAuthentication'] = CreateAuthorizationRequest3dSecureAuthentication
     globals()['Currency'] = Currency
@@ -114,17 +116,17 @@ class CreateAuthorizationRequest(ModelNormal):
         return {
             'amount': (int,),  # noqa: E501
             'currency': (Currency,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'additional_buyer_charges': (AdditionalBuyerCharges,),  # noqa: E501
+            'additional_purchase_data': (AdditionalPurchaseData,),  # noqa: E501
+            'device': (str, none_type,),  # noqa: E501
+            'fraud_session_id': (str,),  # noqa: E501
             'idempotency_id': (str, none_type,),  # noqa: E501
             'merchant': (str, none_type,),  # noqa: E501
-            'merchant_identity': (str, none_type,),  # noqa: E501
+            'operation_key': (OperationKey,),  # noqa: E501
             'processor': (str,),  # noqa: E501
             'source': (str, none_type,),  # noqa: E501
-            'additional_purchase_data': (AdditionalPurchaseData,),  # noqa: E501
-            'fraud_session_id': (str,),  # noqa: E501
             'sub_type': (SubTypeTransfer,),  # noqa: E501
-            'operation_key': (OperationKey,),  # noqa: E501
-            'device': (str, none_type,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
             '_3d_secure_authentication': (CreateAuthorizationRequest3dSecureAuthentication,),  # noqa: E501
         }
 
@@ -136,17 +138,17 @@ class CreateAuthorizationRequest(ModelNormal):
     attribute_map = {
         'amount': 'amount',  # noqa: E501
         'currency': 'currency',  # noqa: E501
-        'tags': 'tags',  # noqa: E501
+        'additional_buyer_charges': 'additional_buyer_charges',  # noqa: E501
+        'additional_purchase_data': 'additional_purchase_data',  # noqa: E501
+        'device': 'device',  # noqa: E501
+        'fraud_session_id': 'fraud_session_id',  # noqa: E501
         'idempotency_id': 'idempotency_id',  # noqa: E501
         'merchant': 'merchant',  # noqa: E501
-        'merchant_identity': 'merchant_identity',  # noqa: E501
+        'operation_key': 'operation_key',  # noqa: E501
         'processor': 'processor',  # noqa: E501
         'source': 'source',  # noqa: E501
-        'additional_purchase_data': 'additional_purchase_data',  # noqa: E501
-        'fraud_session_id': 'fraud_session_id',  # noqa: E501
         'sub_type': 'sub_type',  # noqa: E501
-        'operation_key': 'operation_key',  # noqa: E501
-        'device': 'device',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
         '_3d_secure_authentication': '3d_secure_authentication',  # noqa: E501
     }
 
@@ -195,17 +197,17 @@ class CreateAuthorizationRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
+            additional_buyer_charges (AdditionalBuyerCharges): [optional]  # noqa: E501
+            additional_purchase_data (AdditionalPurchaseData): [optional]  # noqa: E501
+            device (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            fraud_session_id (str): The `fraud_session_session` ID you want to review for fraud. For more info, see [Fraud Detection](/docs/guides/payments/fraud-detection/).. [optional]  # noqa: E501
             idempotency_id (str, none_type): A randomly generated value that'll be associated with the request.. [optional]  # noqa: E501
             merchant (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            merchant_identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            operation_key (OperationKey): [optional]  # noqa: E501
             processor (str): Name of the transaction processor.. [optional]  # noqa: E501
             source (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            additional_purchase_data (AdditionalPurchaseData): [optional]  # noqa: E501
-            fraud_session_id (str): The `fraud_session_session` ID you want to review for fraud. For more info, see [Fraud Detection](/docs/guides/payments/fraud-detection/).. [optional]  # noqa: E501
             sub_type (SubTypeTransfer): [optional]  # noqa: E501
-            operation_key (OperationKey): [optional]  # noqa: E501
-            device (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             _3d_secure_authentication (CreateAuthorizationRequest3dSecureAuthentication): [optional]  # noqa: E501
         """
 
@@ -294,17 +296,17 @@ class CreateAuthorizationRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
+            additional_buyer_charges (AdditionalBuyerCharges): [optional]  # noqa: E501
+            additional_purchase_data (AdditionalPurchaseData): [optional]  # noqa: E501
+            device (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            fraud_session_id (str): The `fraud_session_session` ID you want to review for fraud. For more info, see [Fraud Detection](/docs/guides/payments/fraud-detection/).. [optional]  # noqa: E501
             idempotency_id (str, none_type): A randomly generated value that'll be associated with the request.. [optional]  # noqa: E501
             merchant (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            merchant_identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            operation_key (OperationKey): [optional]  # noqa: E501
             processor (str): Name of the transaction processor.. [optional]  # noqa: E501
             source (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            additional_purchase_data (AdditionalPurchaseData): [optional]  # noqa: E501
-            fraud_session_id (str): The `fraud_session_session` ID you want to review for fraud. For more info, see [Fraud Detection](/docs/guides/payments/fraud-detection/).. [optional]  # noqa: E501
             sub_type (SubTypeTransfer): [optional]  # noqa: E501
-            operation_key (OperationKey): [optional]  # noqa: E501
-            device (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             _3d_secure_authentication (CreateAuthorizationRequest3dSecureAuthentication): [optional]  # noqa: E501
         """
 

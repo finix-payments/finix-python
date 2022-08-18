@@ -111,16 +111,8 @@ class Address(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, city, country, line1, line2, postal_code, region, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """Address - a model defined in OpenAPI
-
-        Args:
-            city (str, none_type): City (max 20 characters).
-            country (Country):
-            line1 (str, none_type): First line of the address (max 35 characters).
-            line2 (str, none_type): Second line of the address (max 35 characters).
-            postal_code (str, none_type): Zip or Postal code (max 7 characters).
-            region (str, none_type): 2-letter State code.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -153,6 +145,12 @@ class Address(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            city (str, none_type): City (max 20 characters).. [optional]  # noqa: E501
+            country (Country): [optional]  # noqa: E501
+            line1 (str, none_type): First line of the address (max 35 characters).. [optional]  # noqa: E501
+            line2 (str, none_type): Second line of the address (max 35 characters).. [optional]  # noqa: E501
+            postal_code (str, none_type): Zip or Postal code (max 7 characters).. [optional]  # noqa: E501
+            region (str, none_type): 2-letter State code.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -180,12 +178,6 @@ class Address(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.city = city
-        self.country = country
-        self.line1 = line1
-        self.line2 = line2
-        self.postal_code = postal_code
-        self.region = region
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -206,16 +198,8 @@ class Address(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, city, country, line1, line2, postal_code, region, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """Address - a model defined in OpenAPI
-
-        Args:
-            city (str, none_type): City (max 20 characters).
-            country (Country):
-            line1 (str, none_type): First line of the address (max 35 characters).
-            line2 (str, none_type): Second line of the address (max 35 characters).
-            postal_code (str, none_type): Zip or Postal code (max 7 characters).
-            region (str, none_type): 2-letter State code.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -248,6 +232,12 @@ class Address(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            city (str, none_type): City (max 20 characters).. [optional]  # noqa: E501
+            country (Country): [optional]  # noqa: E501
+            line1 (str, none_type): First line of the address (max 35 characters).. [optional]  # noqa: E501
+            line2 (str, none_type): Second line of the address (max 35 characters).. [optional]  # noqa: E501
+            postal_code (str, none_type): Zip or Postal code (max 7 characters).. [optional]  # noqa: E501
+            region (str, none_type): 2-letter State code.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -273,12 +263,6 @@ class Address(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.city = city
-        self.country = country
-        self.line1 = line1
-        self.line2 = line2
-        self.postal_code = postal_code
-        self.region = region
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -84,10 +84,10 @@ class UpdateAuthorizationRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': (Tags,),  # noqa: E501
-            'fee': (int,),  # noqa: E501
-            'capture_amount': (int,),  # noqa: E501
             'additional_purchase_data': (AdditionalPurchaseData,),  # noqa: E501
+            'capture_amount': (int,),  # noqa: E501
+            'fee': (int,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
             'void_me': (bool,),  # noqa: E501
         }
 
@@ -97,10 +97,10 @@ class UpdateAuthorizationRequest(ModelNormal):
 
 
     attribute_map = {
-        'tags': 'tags',  # noqa: E501
-        'fee': 'fee',  # noqa: E501
-        'capture_amount': 'capture_amount',  # noqa: E501
         'additional_purchase_data': 'additional_purchase_data',  # noqa: E501
+        'capture_amount': 'capture_amount',  # noqa: E501
+        'fee': 'fee',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
         'void_me': 'void_me',  # noqa: E501
     }
 
@@ -145,11 +145,11 @@ class UpdateAuthorizationRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
-            fee (int): The amount of the `Authorization` you'd like to collect as your fee in cents. Defaults to zero (must be less than or equal to the `amount`).. [optional]  # noqa: E501
-            capture_amount (int): The amount of the  `Authorization`  you would like to capture in cents. Must be less than or equal to the `amount` of the `Authorization`.. [optional]  # noqa: E501
             additional_purchase_data (AdditionalPurchaseData): [optional]  # noqa: E501
-            void_me (bool): Set to True to void the Authorization. [optional]  # noqa: E501
+            capture_amount (int): The amount of the  `Authorization`  you would like to capture in cents. Must be less than or equal to the `amount` of the `Authorization`.. [optional]  # noqa: E501
+            fee (int): The amount of the `Authorization` you'd like to collect as your fee in cents. Defaults to zero (must be less than or equal to the `amount`).. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            void_me (bool): Set to **True** to void the `Authorization`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -231,11 +231,11 @@ class UpdateAuthorizationRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
-            fee (int): The amount of the `Authorization` you'd like to collect as your fee in cents. Defaults to zero (must be less than or equal to the `amount`).. [optional]  # noqa: E501
-            capture_amount (int): The amount of the  `Authorization`  you would like to capture in cents. Must be less than or equal to the `amount` of the `Authorization`.. [optional]  # noqa: E501
             additional_purchase_data (AdditionalPurchaseData): [optional]  # noqa: E501
-            void_me (bool): Set to True to void the Authorization. [optional]  # noqa: E501
+            capture_amount (int): The amount of the  `Authorization`  you would like to capture in cents. Must be less than or equal to the `amount` of the `Authorization`.. [optional]  # noqa: E501
+            fee (int): The amount of the `Authorization` you'd like to collect as your fee in cents. Defaults to zero (must be less than or equal to the `amount`).. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            void_me (bool): Set to **True** to void the `Authorization`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

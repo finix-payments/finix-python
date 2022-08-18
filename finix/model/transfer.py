@@ -28,11 +28,13 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from finix.model.additional_buyer_charges import AdditionalBuyerCharges
     from finix.model.card_present_details import CardPresentDetails
     from finix.model.currency import Currency
     from finix.model.fee_type import FeeType
     from finix.model.messages import Messages
     from finix.model.tags import Tags
+    globals()['AdditionalBuyerCharges'] = AdditionalBuyerCharges
     globals()['CardPresentDetails'] = CardPresentDetails
     globals()['Currency'] = Currency
     globals()['FeeType'] = FeeType
@@ -62,17 +64,6 @@ class Transfer(ModelNormal):
     """
 
     allowed_values = {
-        ('type',): {
-            'DEBIT': "DEBIT",
-            'CREDIT': "CREDIT",
-            'REVERSAL': "REVERSAL",
-            'FEE': "FEE",
-            'ADJUSTMENT': "ADJUSTMENT",
-            'DISPUTE': "DISPUTE",
-            'RESERVE': "RESERVE",
-            'SETTLEMENT': "SETTLEMENT",
-            'UNKNOWN': "UNKNOWN",
-        },
         ('state',): {
             'CANCELED': "CANCELED",
             'PENDING': "PENDING",
@@ -100,6 +91,17 @@ class Transfer(ModelNormal):
             'SPLIT_PAYOUT': "SPLIT_PAYOUT",
             'SPLIT_PAYOUT_ADJUSTMENT': "SPLIT_PAYOUT_ADJUSTMENT",
             'SYSTEM': "SYSTEM",
+        },
+        ('type',): {
+            'DEBIT': "DEBIT",
+            'CREDIT': "CREDIT",
+            'REVERSAL': "REVERSAL",
+            'FEE': "FEE",
+            'ADJUSTMENT': "ADJUSTMENT",
+            'DISPUTE': "DISPUTE",
+            'RESERVE': "RESERVE",
+            'SETTLEMENT': "SETTLEMENT",
+            'UNKNOWN': "UNKNOWN",
         },
     }
 
@@ -129,21 +131,22 @@ class Transfer(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': (Tags,),  # noqa: E501
-            'type': (str,),  # noqa: E501
             'id': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
+            'additional_buyer_charges': (AdditionalBuyerCharges,),  # noqa: E501
             'amount': (int,),  # noqa: E501
             'application': (str, none_type,),  # noqa: E501
             'card_present_details': (CardPresentDetails,),  # noqa: E501
             'currency': (Currency,),  # noqa: E501
             'destination': (str, none_type,),  # noqa: E501
             'device': (str, none_type,),  # noqa: E501
+            'externally_funded': (str,),  # noqa: E501
+            'failure_code': (str, none_type,),  # noqa: E501
+            'failure_message': (str, none_type,),  # noqa: E501
             'fee': (int,),  # noqa: E501
             'fee_type': (FeeType,),  # noqa: E501
             'idempotency_id': (str, none_type,),  # noqa: E501
-            'identity': (str,),  # noqa: E501
             'merchant_identity': (str, none_type,),  # noqa: E501
             'messages': (Messages,),  # noqa: E501
             'raw': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
@@ -152,10 +155,9 @@ class Transfer(ModelNormal):
             'state': (str,),  # noqa: E501
             'statement_descriptor': (str, none_type,),  # noqa: E501
             'subtype': (str,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
             'trace_id': (str, none_type,),  # noqa: E501
-            'externally_funded': (str,),  # noqa: E501
-            'failure_code': (str, none_type,),  # noqa: E501
-            'failure_message': (str, none_type,),  # noqa: E501
+            'type': (str,),  # noqa: E501
             'links': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
@@ -165,21 +167,22 @@ class Transfer(ModelNormal):
 
 
     attribute_map = {
-        'tags': 'tags',  # noqa: E501
-        'type': 'type',  # noqa: E501
         'id': 'id',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'updated_at': 'updated_at',  # noqa: E501
+        'additional_buyer_charges': 'additional_buyer_charges',  # noqa: E501
         'amount': 'amount',  # noqa: E501
         'application': 'application',  # noqa: E501
         'card_present_details': 'card_present_details',  # noqa: E501
         'currency': 'currency',  # noqa: E501
         'destination': 'destination',  # noqa: E501
         'device': 'device',  # noqa: E501
+        'externally_funded': 'externally_funded',  # noqa: E501
+        'failure_code': 'failure_code',  # noqa: E501
+        'failure_message': 'failure_message',  # noqa: E501
         'fee': 'fee',  # noqa: E501
         'fee_type': 'fee_type',  # noqa: E501
         'idempotency_id': 'idempotency_id',  # noqa: E501
-        'identity': 'identity',  # noqa: E501
         'merchant_identity': 'merchant_identity',  # noqa: E501
         'messages': 'messages',  # noqa: E501
         'raw': 'raw',  # noqa: E501
@@ -188,10 +191,9 @@ class Transfer(ModelNormal):
         'state': 'state',  # noqa: E501
         'statement_descriptor': 'statement_descriptor',  # noqa: E501
         'subtype': 'subtype',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
         'trace_id': 'trace_id',  # noqa: E501
-        'externally_funded': 'externally_funded',  # noqa: E501
-        'failure_code': 'failure_code',  # noqa: E501
-        'failure_message': 'failure_message',  # noqa: E501
+        'type': 'type',  # noqa: E501
         'links': '_links',  # noqa: E501
     }
 
@@ -236,33 +238,33 @@ class Transfer(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
-            type (str): Type of `Transfer`.. [optional]  # noqa: E501
             id (str): The ID of the `Transfer` resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
+            additional_buyer_charges (AdditionalBuyerCharges): [optional]  # noqa: E501
             amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).. [optional]  # noqa: E501
             application (str, none_type): The ID of the resource.. [optional]  # noqa: E501
             card_present_details (CardPresentDetails): [optional]  # noqa: E501
             currency (Currency): [optional]  # noqa: E501
             destination (str, none_type): The ID of the destination.. [optional]  # noqa: E501
             device (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            externally_funded (str): Details if the `Transfer` will be settled externally by card processors.. [optional]  # noqa: E501
+            failure_code (str, none_type): The code of the failure so the decline can be handled programmatically. For more info on how to handle the failure, see [Failure Codes](/docs/guides/developers/errors/#failure-codes).. [optional]  # noqa: E501
+            failure_message (str, none_type): A human-readable description of why the transaction was declined. This will also include a suggestion on how to complete the payment.. [optional]  # noqa: E501
             fee (int): The amount of the `Transfer` you'd like to collect as your fee in cents. Defaults to zero (must be less than or equal to the `amount`).. [optional]  # noqa: E501
             fee_type (FeeType): [optional]  # noqa: E501
             idempotency_id (str, none_type): ID to [idempotently](#section/Idempotency-Requests) identifty the transfer.. [optional]  # noqa: E501
-            identity (str): The ID of the identity.. [optional]  # noqa: E501
             merchant_identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
             messages (Messages): [optional]  # noqa: E501
-            raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Raw response from the processor. [optional]  # noqa: E501
+            raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Raw response from the processor.. [optional]  # noqa: E501
             ready_to_settle_at (datetime, none_type): Timestamp of when the `Transfer` is ready to be settled at.. [optional]  # noqa: E501
             source (str, none_type): The ID of the resource.. [optional]  # noqa: E501
             state (str): The stauts of the `Transfer`.. [optional]  # noqa: E501
             statement_descriptor (str, none_type): The description of the merchant that appears on the buyer's bank or card statement.. [optional]  # noqa: E501
             subtype (str): Additional information describing the `payment_type`.. [optional]  # noqa: E501
-            trace_id (str, none_type): Trace ID of the `Transfer`. The processor sends back the `trace_id` so you can track the `transfer` end-to-end.. [optional]  # noqa: E501
-            externally_funded (str): Details if the Transfer will be settled externally by card processors.. [optional]  # noqa: E501
-            failure_code (str, none_type): The code of the failure so the decline can be handled programmatically. For more info on how to handle the failure, see [Failure Codes](/docs/guides/developers/errors/#failure-codes).. [optional]  # noqa: E501
-            failure_message (str, none_type): A human-readable description of why the transaction was declined. This will also include a suggestion on how to complete the payment.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            trace_id (str, none_type): Trace ID of the `Transfer`. The processor sends back the `trace_id` so you can track the `Transfer` end-to-end.. [optional]  # noqa: E501
+            type (str): Type of `Transfer`.. [optional]  # noqa: E501
             links ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): For your convenience, every response includes several URLs which link to resources relevant to the request. You can use these `_links` to make your follow-up requests and quickly access relevant IDs.. [optional]  # noqa: E501
         """
 
@@ -345,33 +347,33 @@ class Transfer(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
-            type (str): Type of `Transfer`.. [optional]  # noqa: E501
             id (str): The ID of the `Transfer` resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
+            additional_buyer_charges (AdditionalBuyerCharges): [optional]  # noqa: E501
             amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).. [optional]  # noqa: E501
             application (str, none_type): The ID of the resource.. [optional]  # noqa: E501
             card_present_details (CardPresentDetails): [optional]  # noqa: E501
             currency (Currency): [optional]  # noqa: E501
             destination (str, none_type): The ID of the destination.. [optional]  # noqa: E501
             device (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            externally_funded (str): Details if the `Transfer` will be settled externally by card processors.. [optional]  # noqa: E501
+            failure_code (str, none_type): The code of the failure so the decline can be handled programmatically. For more info on how to handle the failure, see [Failure Codes](/docs/guides/developers/errors/#failure-codes).. [optional]  # noqa: E501
+            failure_message (str, none_type): A human-readable description of why the transaction was declined. This will also include a suggestion on how to complete the payment.. [optional]  # noqa: E501
             fee (int): The amount of the `Transfer` you'd like to collect as your fee in cents. Defaults to zero (must be less than or equal to the `amount`).. [optional]  # noqa: E501
             fee_type (FeeType): [optional]  # noqa: E501
             idempotency_id (str, none_type): ID to [idempotently](#section/Idempotency-Requests) identifty the transfer.. [optional]  # noqa: E501
-            identity (str): The ID of the identity.. [optional]  # noqa: E501
             merchant_identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
             messages (Messages): [optional]  # noqa: E501
-            raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Raw response from the processor. [optional]  # noqa: E501
+            raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Raw response from the processor.. [optional]  # noqa: E501
             ready_to_settle_at (datetime, none_type): Timestamp of when the `Transfer` is ready to be settled at.. [optional]  # noqa: E501
             source (str, none_type): The ID of the resource.. [optional]  # noqa: E501
             state (str): The stauts of the `Transfer`.. [optional]  # noqa: E501
             statement_descriptor (str, none_type): The description of the merchant that appears on the buyer's bank or card statement.. [optional]  # noqa: E501
             subtype (str): Additional information describing the `payment_type`.. [optional]  # noqa: E501
-            trace_id (str, none_type): Trace ID of the `Transfer`. The processor sends back the `trace_id` so you can track the `transfer` end-to-end.. [optional]  # noqa: E501
-            externally_funded (str): Details if the Transfer will be settled externally by card processors.. [optional]  # noqa: E501
-            failure_code (str, none_type): The code of the failure so the decline can be handled programmatically. For more info on how to handle the failure, see [Failure Codes](/docs/guides/developers/errors/#failure-codes).. [optional]  # noqa: E501
-            failure_message (str, none_type): A human-readable description of why the transaction was declined. This will also include a suggestion on how to complete the payment.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            trace_id (str, none_type): Trace ID of the `Transfer`. The processor sends back the `trace_id` so you can track the `Transfer` end-to-end.. [optional]  # noqa: E501
+            type (str): Type of `Transfer`.. [optional]  # noqa: E501
             links ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): For your convenience, every response includes several URLs which link to resources relevant to the request. You can use these `_links` to make your follow-up requests and quickly access relevant IDs.. [optional]  # noqa: E501
         """
 

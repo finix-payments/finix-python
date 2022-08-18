@@ -28,7 +28,7 @@ from finix.exceptions import ApiAttributeError
 
 
 
-class CreateIdentityRequestEntityIncorporationDate(ModelNormal):
+class CreateTransferRequest3dSecureAuthentication(ModelNormal):
     """
 
     Attributes:
@@ -53,6 +53,11 @@ class CreateIdentityRequestEntityIncorporationDate(ModelNormal):
     }
 
     validations = {
+        ('cardholder_ip_address',): {
+            'regex': {
+                'pattern': r'^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$',  # noqa: E501
+            },
+        },
     }
 
     @cached_property
@@ -63,7 +68,7 @@ class CreateIdentityRequestEntityIncorporationDate(ModelNormal):
         """
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
-    _nullable = False
+    _nullable = True
 
     @cached_property
     def openapi_types():
@@ -76,9 +81,10 @@ class CreateIdentityRequestEntityIncorporationDate(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'year': (int,),  # noqa: E501
-            'day': (int,),  # noqa: E501
-            'month': (int,),  # noqa: E501
+            'cardholder_authentication': (str,),  # noqa: E501
+            'cardholder_ip_address': (str,),  # noqa: E501
+            'electronic_commerce_indicator': (str,),  # noqa: E501
+            'transaction_id': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -87,9 +93,10 @@ class CreateIdentityRequestEntityIncorporationDate(ModelNormal):
 
 
     attribute_map = {
-        'year': 'year',  # noqa: E501
-        'day': 'day',  # noqa: E501
-        'month': 'month',  # noqa: E501
+        'cardholder_authentication': 'cardholder_authentication',  # noqa: E501
+        'cardholder_ip_address': 'cardholder_ip_address',  # noqa: E501
+        'electronic_commerce_indicator': 'electronic_commerce_indicator',  # noqa: E501
+        'transaction_id': 'transaction_id',  # noqa: E501
     }
 
     read_only_vars = {
@@ -100,7 +107,7 @@ class CreateIdentityRequestEntityIncorporationDate(ModelNormal):
     @classmethod
     @convert_js_args_to_python_args
     def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
-        """CreateIdentityRequestEntityIncorporationDate - a model defined in OpenAPI
+        """CreateTransferRequest3dSecureAuthentication - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -133,9 +140,10 @@ class CreateIdentityRequestEntityIncorporationDate(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            year (int): [optional]  # noqa: E501
-            day (int): [optional]  # noqa: E501
-            month (int): [optional]  # noqa: E501
+            cardholder_authentication (str): Provides evidence that the cardholder authentication occurred or that the merchant attempted authentication. This is unique for each authentication transaction.. [optional]  # noqa: E501
+            cardholder_ip_address (str): Only required for American Express cards. Format is nnn.nnn.nnn.nnn. [optional]  # noqa: E501
+            electronic_commerce_indicator (str): AUTHENTICATED: Approved by 3D Secure Vendor; ATTEMPTED: Issuer or cardholder does not support 3D Secure. [optional]  # noqa: E501
+            transaction_id (str): Only valid for Visa transactions. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -184,7 +192,7 @@ class CreateIdentityRequestEntityIncorporationDate(ModelNormal):
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
-        """CreateIdentityRequestEntityIncorporationDate - a model defined in OpenAPI
+        """CreateTransferRequest3dSecureAuthentication - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -217,9 +225,10 @@ class CreateIdentityRequestEntityIncorporationDate(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            year (int): [optional]  # noqa: E501
-            day (int): [optional]  # noqa: E501
-            month (int): [optional]  # noqa: E501
+            cardholder_authentication (str): Provides evidence that the cardholder authentication occurred or that the merchant attempted authentication. This is unique for each authentication transaction.. [optional]  # noqa: E501
+            cardholder_ip_address (str): Only required for American Express cards. Format is nnn.nnn.nnn.nnn. [optional]  # noqa: E501
+            electronic_commerce_indicator (str): AUTHENTICATED: Approved by 3D Secure Vendor; ATTEMPTED: Issuer or cardholder does not support 3D Secure. [optional]  # noqa: E501
+            transaction_id (str): Only valid for Visa transactions. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

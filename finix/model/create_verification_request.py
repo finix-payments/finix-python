@@ -82,11 +82,10 @@ class CreateVerificationRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': (Tags,),  # noqa: E501
             'identity': (str,),  # noqa: E501
-            'instrument': (str,),  # noqa: E501
             'merchant': (str,),  # noqa: E501
             'processor': (str,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
         }
 
     @cached_property
@@ -95,11 +94,10 @@ class CreateVerificationRequest(ModelNormal):
 
 
     attribute_map = {
-        'tags': 'tags',  # noqa: E501
         'identity': 'identity',  # noqa: E501
-        'instrument': 'instrument',  # noqa: E501
         'merchant': 'merchant',  # noqa: E501
         'processor': 'processor',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
     }
 
     read_only_vars = {
@@ -143,11 +141,10 @@ class CreateVerificationRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             identity (str): ID of the `Identity` resource associated with the `Merchant`.. [optional]  # noqa: E501
-            instrument (str): The `Payment Instrument` that'll be used to settle the `Merchant's` funds.. [optional]  # noqa: E501
             merchant (str): The ID of the `Merchant`.. [optional]  # noqa: E501
             processor (str): Name of the `Verification` processor.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -229,11 +226,10 @@ class CreateVerificationRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             identity (str): ID of the `Identity` resource associated with the `Merchant`.. [optional]  # noqa: E501
-            instrument (str): The `Payment Instrument` that'll be used to settle the `Merchant's` funds.. [optional]  # noqa: E501
             merchant (str): The ID of the `Merchant`.. [optional]  # noqa: E501
             processor (str): Name of the `Verification` processor.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

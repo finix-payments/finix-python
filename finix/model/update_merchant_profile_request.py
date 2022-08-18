@@ -27,8 +27,12 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
+def lazy_import():
+    from finix.model.tags import Tags
+    globals()['Tags'] = Tags
 
-class CreateIdentityRequestEntityDob(ModelNormal):
+
+class UpdateMerchantProfileRequest(ModelNormal):
     """
 
     Attributes:
@@ -61,6 +65,7 @@ class CreateIdentityRequestEntityDob(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
+        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -75,10 +80,11 @@ class CreateIdentityRequestEntityDob(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
+        lazy_import()
         return {
-            'year': (int,),  # noqa: E501
-            'day': (int,),  # noqa: E501
-            'month': (int,),  # noqa: E501
+            'fee_profile': (str,),  # noqa: E501
+            'risk_profile': (str,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
         }
 
     @cached_property
@@ -87,9 +93,9 @@ class CreateIdentityRequestEntityDob(ModelNormal):
 
 
     attribute_map = {
-        'year': 'year',  # noqa: E501
-        'day': 'day',  # noqa: E501
-        'month': 'month',  # noqa: E501
+        'fee_profile': 'fee_profile',  # noqa: E501
+        'risk_profile': 'risk_profile',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
     }
 
     read_only_vars = {
@@ -100,7 +106,7 @@ class CreateIdentityRequestEntityDob(ModelNormal):
     @classmethod
     @convert_js_args_to_python_args
     def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
-        """CreateIdentityRequestEntityDob - a model defined in OpenAPI
+        """UpdateMerchantProfileRequest - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -133,9 +139,9 @@ class CreateIdentityRequestEntityDob(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            year (int): [optional]  # noqa: E501
-            day (int): [optional]  # noqa: E501
-            month (int): [optional]  # noqa: E501
+            fee_profile (str): ID of the `fee_profile`.. [optional]  # noqa: E501
+            risk_profile (str): ID of the `risk_profile`.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -184,7 +190,7 @@ class CreateIdentityRequestEntityDob(ModelNormal):
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
-        """CreateIdentityRequestEntityDob - a model defined in OpenAPI
+        """UpdateMerchantProfileRequest - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -217,9 +223,9 @@ class CreateIdentityRequestEntityDob(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            year (int): [optional]  # noqa: E501
-            day (int): [optional]  # noqa: E501
-            month (int): [optional]  # noqa: E501
+            fee_profile (str): ID of the `fee_profile`.. [optional]  # noqa: E501
+            risk_profile (str): ID of the `risk_profile`.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

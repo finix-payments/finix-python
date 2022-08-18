@@ -138,7 +138,7 @@ class FeesListEmbedded(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            fees ([Fee]): `fee` object.. [optional]  # noqa: E501
+            fees ([Fee]): `fee` objects.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -220,7 +220,7 @@ class FeesListEmbedded(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            fees ([Fee]): `fee` object.. [optional]  # noqa: E501
+            fees ([Fee]): `fee` objects.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

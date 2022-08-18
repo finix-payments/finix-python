@@ -87,8 +87,8 @@ class CreateReversalRequest(ModelNormal):
             'refund_amount': (int,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
             'device': (str,),  # noqa: E501
-            'currency': (Currency,),  # noqa: E501
             'amount': (int,),  # noqa: E501
+            'currency': (Currency,),  # noqa: E501
             'operation_key': (str, none_type,),  # noqa: E501
         }
 
@@ -101,8 +101,8 @@ class CreateReversalRequest(ModelNormal):
         'refund_amount': 'refund_amount',  # noqa: E501
         'tags': 'tags',  # noqa: E501
         'device': 'device',  # noqa: E501
-        'currency': 'currency',  # noqa: E501
         'amount': 'amount',  # noqa: E501
+        'currency': 'currency',  # noqa: E501
         'operation_key': 'operation_key',  # noqa: E501
     }
 
@@ -150,8 +150,8 @@ class CreateReversalRequest(ModelNormal):
             refund_amount (int): The amount of the refund in cents. It must be equal to or less than the amount of the original `Transfer`.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
             device (str): The ID of the `Device` used to process the transaction.. [optional]  # noqa: E501
-            currency (Currency): [optional]  # noqa: E501
             amount (int): The amount of the sale.. [optional]  # noqa: E501
+            currency (Currency): [optional]  # noqa: E501
             operation_key (str, none_type): Describes the operation to be performed in the transaction. Use **CARD_PRESENT_UNREFERENCED_REFUND** for refunds where the card isn't avalible.. [optional]  # noqa: E501
         """
 
@@ -237,8 +237,8 @@ class CreateReversalRequest(ModelNormal):
             refund_amount (int): The amount of the refund in cents. It must be equal to or less than the amount of the original `Transfer`.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
             device (str): The ID of the `Device` used to process the transaction.. [optional]  # noqa: E501
-            currency (Currency): [optional]  # noqa: E501
             amount (int): The amount of the sale.. [optional]  # noqa: E501
+            currency (Currency): [optional]  # noqa: E501
             operation_key (str, none_type): Describes the operation to be performed in the transaction. Use **CARD_PRESENT_UNREFERENCED_REFUND** for refunds where the card isn't avalible.. [optional]  # noqa: E501
         """
 

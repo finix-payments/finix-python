@@ -77,8 +77,8 @@ class UpdateIdentityRequestAdditionalUnderwritingDataCardVolumeDistribution(Mode
         """
         return {
             'card_present_percentage': (int,),  # noqa: E501
-            'mail_order_telephone_order_percentage': (int,),  # noqa: E501
             'ecommerce_percentage': (int,),  # noqa: E501
+            'mail_order_telephone_order_percentage': (int,),  # noqa: E501
         }
 
     @cached_property
@@ -88,8 +88,8 @@ class UpdateIdentityRequestAdditionalUnderwritingDataCardVolumeDistribution(Mode
 
     attribute_map = {
         'card_present_percentage': 'card_present_percentage',  # noqa: E501
-        'mail_order_telephone_order_percentage': 'mail_order_telephone_order_percentage',  # noqa: E501
         'ecommerce_percentage': 'ecommerce_percentage',  # noqa: E501
+        'mail_order_telephone_order_percentage': 'mail_order_telephone_order_percentage',  # noqa: E501
     }
 
     read_only_vars = {
@@ -134,8 +134,8 @@ class UpdateIdentityRequestAdditionalUnderwritingDataCardVolumeDistribution(Mode
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             card_present_percentage (int): The percentage of the merchant's business that's card present (between 0 and 100).. [optional]  # noqa: E501
-            mail_order_telephone_order_percentage (int): The percentage of the merchant's business that's mail or telephone order (between 0 and 100).. [optional]  # noqa: E501
             ecommerce_percentage (int): The percentage of the merchant's business that's e-commerce (between 0 and 100).. [optional]  # noqa: E501
+            mail_order_telephone_order_percentage (int): The percentage of the merchant's business that's mail or telephone order (between 0 and 100).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -218,8 +218,8 @@ class UpdateIdentityRequestAdditionalUnderwritingDataCardVolumeDistribution(Mode
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             card_present_percentage (int): The percentage of the merchant's business that's card present (between 0 and 100).. [optional]  # noqa: E501
-            mail_order_telephone_order_percentage (int): The percentage of the merchant's business that's mail or telephone order (between 0 and 100).. [optional]  # noqa: E501
             ecommerce_percentage (int): The percentage of the merchant's business that's e-commerce (between 0 and 100).. [optional]  # noqa: E501
+            mail_order_telephone_order_percentage (int): The percentage of the merchant's business that's mail or telephone order (between 0 and 100).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

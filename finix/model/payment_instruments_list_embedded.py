@@ -138,7 +138,7 @@ class PaymentInstrumentsListEmbedded(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            payment_instruments ([PaymentInstrument]): List of `Payment Instruments`.. [optional]  # noqa: E501
+            payment_instruments ([PaymentInstrument]): `Payment Instrument` objects.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -220,7 +220,7 @@ class PaymentInstrumentsListEmbedded(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            payment_instruments ([PaymentInstrument]): List of `Payment Instruments`.. [optional]  # noqa: E501
+            payment_instruments ([PaymentInstrument]): `Payment Instrument` objects.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

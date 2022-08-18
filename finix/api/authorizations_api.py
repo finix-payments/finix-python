@@ -236,22 +236,22 @@ class AuthorizationsApi(object):
             },
             params_map={
                 'all': [
-                    'sort',
+                    'amount',
+                    'amount_gt',
+                    'amount_gte',
+                    'amount_lt',
+                    'amount_lte',
                     'before_cursor',
-                    'limit',
-                    'idempotency_id',
-                    'state',
                     'created_at_gte',
                     'created_at_lte',
+                    'idempotency_id',
+                    'limit',
+                    'sort',
+                    'state',
                     'updated_at_gte',
                     'updated_at_lte',
-                    'is_void',
-                    'amount',
-                    'amount_lt',
-                    'amount_gt',
-                    'amount_lte',
-                    'amount_gte',
                     'trace_id',
+                    'is_void',
                     'instrument_bin',
                     'instrument_account_last4',
                     'instrument_brand_type',
@@ -288,37 +288,37 @@ class AuthorizationsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'sort':
-                        (str,),
-                    'before_cursor':
-                        (str,),
-                    'limit':
+                    'amount':
                         (int,),
-                    'idempotency_id':
-                        (str,),
-                    'state':
+                    'amount_gt':
+                        (int,),
+                    'amount_gte':
+                        (int,),
+                    'amount_lt':
+                        (int,),
+                    'amount_lte':
+                        (int,),
+                    'before_cursor':
                         (str,),
                     'created_at_gte':
                         (str,),
                     'created_at_lte':
                         (str,),
+                    'idempotency_id':
+                        (str,),
+                    'limit':
+                        (int,),
+                    'sort':
+                        (str,),
+                    'state':
+                        (str,),
                     'updated_at_gte':
                         (str,),
                     'updated_at_lte':
                         (str,),
-                    'is_void':
-                        (str,),
-                    'amount':
-                        (int,),
-                    'amount_lt':
-                        (int,),
-                    'amount_gt':
-                        (int,),
-                    'amount_lte':
-                        (int,),
-                    'amount_gte':
-                        (int,),
                     'trace_id':
+                        (str,),
+                    'is_void':
                         (str,),
                     'instrument_bin':
                         (str,),
@@ -348,22 +348,22 @@ class AuthorizationsApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'sort': 'sort',
+                    'amount': 'amount',
+                    'amount_gt': 'amount.gt',
+                    'amount_gte': 'amount.gte',
+                    'amount_lt': 'amount.lt',
+                    'amount_lte': 'amount.lte',
                     'before_cursor': 'before_cursor',
-                    'limit': 'limit',
-                    'idempotency_id': 'idempotency_id',
-                    'state': 'state',
                     'created_at_gte': 'created_at.gte',
                     'created_at_lte': 'created_at.lte',
+                    'idempotency_id': 'idempotency_id',
+                    'limit': 'limit',
+                    'sort': 'sort',
+                    'state': 'state',
                     'updated_at_gte': 'updated_at.gte',
                     'updated_at_lte': 'updated_at.lte',
-                    'is_void': 'is_void',
-                    'amount': 'amount',
-                    'amount_lt': 'amount.lt',
-                    'amount_gt': 'amount.gt',
-                    'amount_lte': 'amount.lte',
-                    'amount_gte': 'amount.gte',
                     'trace_id': 'trace_id',
+                    'is_void': 'is_void',
                     'instrument_bin': 'instrument_bin',
                     'instrument_account_last4': 'instrument_account_last4',
                     'instrument_brand_type': 'instrument_brand_type',
@@ -379,22 +379,22 @@ class AuthorizationsApi(object):
                     'after_cursor': 'after_cursor',
                 },
                 'location_map': {
-                    'sort': 'query',
+                    'amount': 'query',
+                    'amount_gt': 'query',
+                    'amount_gte': 'query',
+                    'amount_lt': 'query',
+                    'amount_lte': 'query',
                     'before_cursor': 'query',
-                    'limit': 'query',
-                    'idempotency_id': 'query',
-                    'state': 'query',
                     'created_at_gte': 'query',
                     'created_at_lte': 'query',
+                    'idempotency_id': 'query',
+                    'limit': 'query',
+                    'sort': 'query',
+                    'state': 'query',
                     'updated_at_gte': 'query',
                     'updated_at_lte': 'query',
-                    'is_void': 'query',
-                    'amount': 'query',
-                    'amount_lt': 'query',
-                    'amount_gt': 'query',
-                    'amount_lte': 'query',
-                    'amount_gte': 'query',
                     'trace_id': 'query',
+                    'is_void': 'query',
                     'instrument_bin': 'query',
                     'instrument_account_last4': 'query',
                     'instrument_brand_type': 'query',
@@ -428,7 +428,7 @@ class AuthorizationsApi(object):
     ):
         """Capture an Authorization  # noqa: E501
 
-        If successfully captured, the `transfer` field of the `Authorization` will contain the ID of the `Transfer` resource that'll move funds.   By default, `Transfers` are in a **PENDING** state. The **PENDING** state means the system hasn't submitted the request to capture funds. Capture requests get submitted via a batch request.   Once the `Authorization` is updated with a `capture_amount` (i.e. *Captured*), the state of the `Transfer` will update to **SUCCEEDED**.  > Voided `Authorizations` can't be captured.  # noqa: E501
+        If successfully captured, the `transfer` field of the `Authorization` will contain the ID of the `Transfer` resource that'll move funds.   By default, `Transfers` are in a **PENDING** state. The **PENDING** state means the request to capture funds hasn't been submitted yet. Capture requests get submitted via a batch request.   Once the `Authorization` is updated with a `capture_amount` (i.e. *Captured*), the state of the `Transfer` will update to **SUCCEEDED**.  > Voided `Authorizations` can't be captured.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -436,7 +436,7 @@ class AuthorizationsApi(object):
         >>> result = thread.get()
 
         Args:
-            authorization_id (str): ID of authorization to fetch
+            authorization_id (str): ID of `Authorization` to fetch.
 
         Keyword Args:
             update_authorization_request (UpdateAuthorizationRequest): [optional]
@@ -506,7 +506,7 @@ class AuthorizationsApi(object):
     ):
         """Create an Authorization  # noqa: E501
 
-        Create an `Authorization` to process a transaction.  `Authorizations` can have two possible `states`:  - **SUCCEEDED**  - **FAILED**  If the `Authorization` has **SUCCEEDED** , it must be captured before `expires_at` passes or the funds will be released.  Learn how to prevent duplicate authorizations by passing an [Idempotency ID](#section/Idempotency-Requests) in the payload.  # noqa: E501
+        Create an `Authorization` to process a transaction.  `Authorizations` can have six possible `states`, two of which are expected:  - **SUCCEEDED**  - **FAILED**  If the `Authorization` has **SUCCEEDED** , it must be captured before `expires_at` passes or the funds will be released. If the `transfer` field of an `Authorization` is **null**, it hasn't been captured yet.  Learn how to prevent duplicate authorizations by passing an [Idempotency ID](#section/Idempotency-Requests) in the payload. - `Authorizations` on debit cards place a hold on funds in the cardholder's bank account and can lead to lower than expected balances or issues with insufficient funds.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -579,7 +579,7 @@ class AuthorizationsApi(object):
         authorization_id,
         **kwargs
     ):
-        """Get an Authorization  # noqa: E501
+        """Fetch an Authorization  # noqa: E501
 
         Retrieve the details of a previously created `Authorization`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -589,7 +589,7 @@ class AuthorizationsApi(object):
         >>> result = thread.get()
 
         Args:
-            authorization_id (str): ID of authorization to fetch
+            authorization_id (str): ID of `Authorization` to fetch.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -667,34 +667,34 @@ class AuthorizationsApi(object):
 
 
         Keyword Args:
-            sort (str): Specify key to be used for sorting the collection. [optional]
+            amount (int): Filter by an amount equal to the given value.. [optional]
+            amount_gt (int): Filter by an amount greater than.. [optional]
+            amount_gte (int): Filter by an amount greater than or equal.. [optional]
+            amount_lt (int): Filter by an amount less than.. [optional]
+            amount_lte (int): Filter by an amount less than or equal.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
-            limit (int): The numbers of items to return. [optional]
-            idempotency_id (str): Filter by idempotency_id. [optional]
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
+            idempotency_id (str): Filter by `idempotency_id`.. [optional]
+            limit (int): The numbers of items to return.. [optional]
+            sort (str): Specify key to be used for sorting the collection.. [optional]
             state (str): Filter by Transaction state.. [optional]
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]
-            updated_at_gte (str): Filter where updated_at is after the given date. [optional]
-            updated_at_lte (str): Filter where updated_at is before the given date. [optional]
-            is_void (str): Filter by idempotency_id. [optional]
-            amount (int): Filter by an amount equal to the given value. [optional]
-            amount_lt (int): Filter by an amount less than. [optional]
-            amount_gt (int): Filter by an amount greater than. [optional]
-            amount_lte (int): Filter by an amount less than or equal. [optional]
-            amount_gte (int): Filter by an amount greater than or equal. [optional]
-            trace_id (str): Filter by trace_id. [optional]
-            instrument_bin (str): Filter by Bank Identification Number (BIN). The BIN is the first 6 digits of the masked number. [optional]
-            instrument_account_last4 (str): Filter Transactions by the last 4 digits of the bank account. The bank account last 4 are the last 4 digits of the masked number instrument_account_last4=9444 BIN . [optional]
-            instrument_brand_type (str): Filter by card brand. Available card brand types can be found in the drop-down. [optional]
-            merchant_identity_id (str): Filter by Identity ID. [optional]
-            merchant_identity_name (str): Filter Transactions by Identity name. The name is not case-sensitive. [optional]
-            instrument_name (str): Filter Transactions by payment instrument name. [optional]
-            instrument_type (str): Filter Transactions by payment instrument type. Available instrument types include: Bank Account or Payment Card. [optional]
-            merchant_id (str): Filter by Merchant ID. [optional]
-            merchant_mid (str): Filter by Merchant Identification Number (MID). [optional]
-            instrument_card_last4 (str): Filter by the payment card last 4 digits. [optional]
-            merchant_processor_id (str): Filter by Processor ID. [optional]
-            type (str): Type of the authorization.. [optional]
+            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]
+            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]
+            trace_id (str): Filter by `trace_id`.. [optional]
+            is_void (str): Filter by `idempotency_id`.. [optional]
+            instrument_bin (str): Filter by Bank Identification Number (BIN). The BIN is the first 6 digits of the masked number.. [optional]
+            instrument_account_last4 (str): Filter Transactions by the last 4 digits of the bank account. The bank account last 4 are the last 4 digits of the masked number instrument_account_last4=9444 BIN.. [optional]
+            instrument_brand_type (str): Filter by card brand. Available card brand types can be found in the drop-down.. [optional]
+            merchant_identity_id (str): Filter by `Identity` ID.. [optional]
+            merchant_identity_name (str): Filter Transactions by `Identity` name. The name is not case-sensitive.. [optional]
+            instrument_name (str): Filter Transactions by `Payment Instrument` name.. [optional]
+            instrument_type (str): Filter Transactions by `Payment Instrument` type. Available instrument types include: Bank Account or Payment Card.. [optional]
+            merchant_id (str): Filter by `Merchant` ID.. [optional]
+            merchant_mid (str): Filter by Merchant Identification Number (MID).. [optional]
+            instrument_card_last4 (str): Filter by the payment card last 4 digits.. [optional]
+            merchant_processor_id (str): Filter by `Processor` ID.. [optional]
+            type (str): Type of the `Authorization`.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
