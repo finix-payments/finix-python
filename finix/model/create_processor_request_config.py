@@ -95,11 +95,8 @@ class CreateProcessorRequestConfig(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, can_debit_bank_account, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """CreateProcessorRequestConfig - a model defined in OpenAPI
-
-        Args:
-            can_debit_bank_account (bool): Details if a `Processor` can debit bank accounts.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -132,6 +129,7 @@ class CreateProcessorRequestConfig(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            can_debit_bank_account (bool): Details if a `Processor` can debit bank accounts.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -159,7 +157,6 @@ class CreateProcessorRequestConfig(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.can_debit_bank_account = can_debit_bank_account
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -180,11 +177,8 @@ class CreateProcessorRequestConfig(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, can_debit_bank_account, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """CreateProcessorRequestConfig - a model defined in OpenAPI
-
-        Args:
-            can_debit_bank_account (bool): Details if a `Processor` can debit bank accounts.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -217,6 +211,7 @@ class CreateProcessorRequestConfig(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            can_debit_bank_account (bool): Details if a `Processor` can debit bank accounts.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -242,7 +237,6 @@ class CreateProcessorRequestConfig(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.can_debit_bank_account = can_debit_bank_account
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

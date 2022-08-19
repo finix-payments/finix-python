@@ -92,31 +92,31 @@ class Merchant(ModelNormal):
         lazy_import()
         return {
             'id': (str,),  # noqa: E501
-            'application': (str,),  # noqa: E501
-            'identity': (str,),  # noqa: E501
-            'verification': (str,),  # noqa: E501
-            'merchant_profile': (str,),  # noqa: E501
-            'processor': (str,),  # noqa: E501
-            'processing_enabled': (bool,),  # noqa: E501
-            'settlement_enabled': (bool,),  # noqa: E501
-            'gross_settlement_enabled': (bool,),  # noqa: E501
-            'creating_transfer_from_report_enabled': (bool,),  # noqa: E501
-            'card_expiration_date_required': (bool,),  # noqa: E501
-            'card_cvv_required': (bool,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
-            'mcc': (str, none_type,),  # noqa: E501
-            'mid': (str, none_type,),  # noqa: E501
-            'merchant_name': (str,),  # noqa: E501
-            'settlement_funding_identifier': (str,),  # noqa: E501
-            'ready_to_settle_upon': (str,),  # noqa: E501
-            'fee_ready_to_settle_upon': (str,),  # noqa: E501
-            'level_two_level_three_data_enabled': (bool,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
-            'onboarding_state': (str,),  # noqa: E501
-            'processor_details': (MerchantProcessorDetails,),  # noqa: E501
+            'application': (str,),  # noqa: E501
+            'card_cvv_required': (bool,),  # noqa: E501
+            'card_expiration_date_required': (bool,),  # noqa: E501
+            'creating_transfer_from_report_enabled': (bool,),  # noqa: E501
             'convenience_charges_enabled': (bool,),  # noqa: E501
+            'fee_ready_to_settle_upon': (str,),  # noqa: E501
+            'gross_settlement_enabled': (bool,),  # noqa: E501
+            'identity': (str,),  # noqa: E501
+            'level_two_level_three_data_enabled': (bool,),  # noqa: E501
+            'mcc': (str, none_type,),  # noqa: E501
+            'merchant_name': (str,),  # noqa: E501
+            'merchant_profile': (str,),  # noqa: E501
+            'mid': (str, none_type,),  # noqa: E501
+            'onboarding_state': (str,),  # noqa: E501
+            'processor': (str,),  # noqa: E501
+            'processor_details': (MerchantProcessorDetails,),  # noqa: E501
+            'processing_enabled': (bool,),  # noqa: E501
+            'ready_to_settle_upon': (str,),  # noqa: E501
             'rent_surcharges_enabled': (bool,),  # noqa: E501
+            'settlement_enabled': (bool,),  # noqa: E501
+            'settlement_funding_identifier': (str,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
+            'verification': (str,),  # noqa: E501
             'links': (MerchantLinks,),  # noqa: E501
         }
 
@@ -127,31 +127,31 @@ class Merchant(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'application': 'application',  # noqa: E501
-        'identity': 'identity',  # noqa: E501
-        'verification': 'verification',  # noqa: E501
-        'merchant_profile': 'merchant_profile',  # noqa: E501
-        'processor': 'processor',  # noqa: E501
-        'processing_enabled': 'processing_enabled',  # noqa: E501
-        'settlement_enabled': 'settlement_enabled',  # noqa: E501
-        'gross_settlement_enabled': 'gross_settlement_enabled',  # noqa: E501
-        'creating_transfer_from_report_enabled': 'creating_transfer_from_report_enabled',  # noqa: E501
-        'card_expiration_date_required': 'card_expiration_date_required',  # noqa: E501
-        'card_cvv_required': 'card_cvv_required',  # noqa: E501
-        'tags': 'tags',  # noqa: E501
-        'mcc': 'mcc',  # noqa: E501
-        'mid': 'mid',  # noqa: E501
-        'merchant_name': 'merchant_name',  # noqa: E501
-        'settlement_funding_identifier': 'settlement_funding_identifier',  # noqa: E501
-        'ready_to_settle_upon': 'ready_to_settle_upon',  # noqa: E501
-        'fee_ready_to_settle_upon': 'fee_ready_to_settle_upon',  # noqa: E501
-        'level_two_level_three_data_enabled': 'level_two_level_three_data_enabled',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'updated_at': 'updated_at',  # noqa: E501
-        'onboarding_state': 'onboarding_state',  # noqa: E501
-        'processor_details': 'processor_details',  # noqa: E501
+        'application': 'application',  # noqa: E501
+        'card_cvv_required': 'card_cvv_required',  # noqa: E501
+        'card_expiration_date_required': 'card_expiration_date_required',  # noqa: E501
+        'creating_transfer_from_report_enabled': 'creating_transfer_from_report_enabled',  # noqa: E501
         'convenience_charges_enabled': 'convenience_charges_enabled',  # noqa: E501
+        'fee_ready_to_settle_upon': 'fee_ready_to_settle_upon',  # noqa: E501
+        'gross_settlement_enabled': 'gross_settlement_enabled',  # noqa: E501
+        'identity': 'identity',  # noqa: E501
+        'level_two_level_three_data_enabled': 'level_two_level_three_data_enabled',  # noqa: E501
+        'mcc': 'mcc',  # noqa: E501
+        'merchant_name': 'merchant_name',  # noqa: E501
+        'merchant_profile': 'merchant_profile',  # noqa: E501
+        'mid': 'mid',  # noqa: E501
+        'onboarding_state': 'onboarding_state',  # noqa: E501
+        'processor': 'processor',  # noqa: E501
+        'processor_details': 'processor_details',  # noqa: E501
+        'processing_enabled': 'processing_enabled',  # noqa: E501
+        'ready_to_settle_upon': 'ready_to_settle_upon',  # noqa: E501
         'rent_surcharges_enabled': 'rent_surcharges_enabled',  # noqa: E501
+        'settlement_enabled': 'settlement_enabled',  # noqa: E501
+        'settlement_funding_identifier': 'settlement_funding_identifier',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
+        'verification': 'verification',  # noqa: E501
         'links': '_links',  # noqa: E501
     }
 
@@ -197,31 +197,31 @@ class Merchant(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): The ID of the resource.. [optional]  # noqa: E501
-            application (str): ID of the `Application` the `Merchant` was created under.. [optional]  # noqa: E501
-            identity (str): The ID of the `Identity` resource associated with the `Merchant`.. [optional]  # noqa: E501
-            verification (str): ID of the `Verification` that was submitted to verify the `Merchant`.. [optional]  # noqa: E501
-            merchant_profile (str): Details if a merchant's info was submitted to third-party processors for provisioning.. [optional]  # noqa: E501
-            processor (str): Name of the transaction processor.. [optional]  # noqa: E501
-            processing_enabled (bool): Details if transaction processing is enabled for the `Merchant`.. [optional]  # noqa: E501
-            settlement_enabled (bool): Details if settlement processing is enabled for the `Merchant`.. [optional]  # noqa: E501
-            gross_settlement_enabled (bool): Set to **true** to enable gross settlements.. [optional]  # noqa: E501
-            creating_transfer_from_report_enabled (bool): Set to **true** to automatically create `Transfers` once settlement reports get generated.. [optional]  # noqa: E501
-            card_expiration_date_required (bool): Set to **true** to require the card's expiration date.. [optional]  # noqa: E501
-            card_cvv_required (bool): Set to **true** to require the card's CVV code.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
-            mcc (str, none_type): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf)) that this merchant will be classified under.. [optional]  # noqa: E501
-            mid (str, none_type): MID of the `Merchant`.. [optional]  # noqa: E501
-            merchant_name (str): The legal name saved in the `Merchant` resource.. [optional]  # noqa: E501
-            settlement_funding_identifier (str): Include addtional information (like the MID) when submitting funding `Tranfers` to processors.. [optional]  # noqa: E501
-            ready_to_settle_upon (str): Details how `Authorizations` captured by the `Merchant` are settled.. [optional]  # noqa: E501
-            fee_ready_to_settle_upon (str): Details how the `Merchant` settles fees.. [optional]  # noqa: E501
-            level_two_level_three_data_enabled (bool): Set to **true** to enable the `Merchant` for Level 2 and Level 3 processing. Default value is **false**.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
-            onboarding_state (str): Details the state of the `Merchant's` onboarding.. [optional]  # noqa: E501
-            processor_details (MerchantProcessorDetails): [optional]  # noqa: E501
+            application (str): ID of the `Application` the `Merchant` was created under.. [optional]  # noqa: E501
+            card_cvv_required (bool): Set to **true** to require the card's CVV code.. [optional]  # noqa: E501
+            card_expiration_date_required (bool): Set to **true** to require the card's expiration date.. [optional]  # noqa: E501
+            creating_transfer_from_report_enabled (bool): Set to **true** to automatically create `Transfers` once settlement reports get generated.. [optional]  # noqa: E501
             convenience_charges_enabled (bool): Set to **true** if you want to enable the `Merchant` to accept convenience fees and/or service fees.. [optional]  # noqa: E501
+            fee_ready_to_settle_upon (str): Details how the `Merchant` settles fees.. [optional]  # noqa: E501
+            gross_settlement_enabled (bool): Set to **true** to enable gross settlements.. [optional]  # noqa: E501
+            identity (str): The ID of the `Identity` resource associated with the `Merchant`.. [optional]  # noqa: E501
+            level_two_level_three_data_enabled (bool): Set to **true** to enable the `Merchant` for Level 2 and Level 3 processing. Default value is **false**.. [optional]  # noqa: E501
+            mcc (str, none_type): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf)) that this merchant will be classified under.. [optional]  # noqa: E501
+            merchant_name (str): The legal name saved in the `Merchant` resource.. [optional]  # noqa: E501
+            merchant_profile (str): Details if a merchant's info was submitted to third-party processors for provisioning.. [optional]  # noqa: E501
+            mid (str, none_type): MID of the `Merchant`.. [optional]  # noqa: E501
+            onboarding_state (str): Details the state of the `Merchant's` onboarding.. [optional]  # noqa: E501
+            processor (str): Name of the transaction processor.. [optional]  # noqa: E501
+            processor_details (MerchantProcessorDetails): [optional]  # noqa: E501
+            processing_enabled (bool): Details if transaction processing is enabled for the `Merchant`.. [optional]  # noqa: E501
+            ready_to_settle_upon (str): Details how `Authorizations` captured by the `Merchant` are settled.. [optional]  # noqa: E501
             rent_surcharges_enabled (bool): Set to **true** if you want to enable a `Merchant` to accept rent charges.. [optional]  # noqa: E501
+            settlement_enabled (bool): Details if settlement processing is enabled for the `Merchant`.. [optional]  # noqa: E501
+            settlement_funding_identifier (str): Include addtional information (like the MID) when submitting funding `Tranfers` to processors.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            verification (str): ID of the `Verification` that was submitted to verify the `Merchant`.. [optional]  # noqa: E501
             links (MerchantLinks): [optional]  # noqa: E501
         """
 
@@ -305,31 +305,31 @@ class Merchant(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): The ID of the resource.. [optional]  # noqa: E501
-            application (str): ID of the `Application` the `Merchant` was created under.. [optional]  # noqa: E501
-            identity (str): The ID of the `Identity` resource associated with the `Merchant`.. [optional]  # noqa: E501
-            verification (str): ID of the `Verification` that was submitted to verify the `Merchant`.. [optional]  # noqa: E501
-            merchant_profile (str): Details if a merchant's info was submitted to third-party processors for provisioning.. [optional]  # noqa: E501
-            processor (str): Name of the transaction processor.. [optional]  # noqa: E501
-            processing_enabled (bool): Details if transaction processing is enabled for the `Merchant`.. [optional]  # noqa: E501
-            settlement_enabled (bool): Details if settlement processing is enabled for the `Merchant`.. [optional]  # noqa: E501
-            gross_settlement_enabled (bool): Set to **true** to enable gross settlements.. [optional]  # noqa: E501
-            creating_transfer_from_report_enabled (bool): Set to **true** to automatically create `Transfers` once settlement reports get generated.. [optional]  # noqa: E501
-            card_expiration_date_required (bool): Set to **true** to require the card's expiration date.. [optional]  # noqa: E501
-            card_cvv_required (bool): Set to **true** to require the card's CVV code.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
-            mcc (str, none_type): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf)) that this merchant will be classified under.. [optional]  # noqa: E501
-            mid (str, none_type): MID of the `Merchant`.. [optional]  # noqa: E501
-            merchant_name (str): The legal name saved in the `Merchant` resource.. [optional]  # noqa: E501
-            settlement_funding_identifier (str): Include addtional information (like the MID) when submitting funding `Tranfers` to processors.. [optional]  # noqa: E501
-            ready_to_settle_upon (str): Details how `Authorizations` captured by the `Merchant` are settled.. [optional]  # noqa: E501
-            fee_ready_to_settle_upon (str): Details how the `Merchant` settles fees.. [optional]  # noqa: E501
-            level_two_level_three_data_enabled (bool): Set to **true** to enable the `Merchant` for Level 2 and Level 3 processing. Default value is **false**.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
-            onboarding_state (str): Details the state of the `Merchant's` onboarding.. [optional]  # noqa: E501
-            processor_details (MerchantProcessorDetails): [optional]  # noqa: E501
+            application (str): ID of the `Application` the `Merchant` was created under.. [optional]  # noqa: E501
+            card_cvv_required (bool): Set to **true** to require the card's CVV code.. [optional]  # noqa: E501
+            card_expiration_date_required (bool): Set to **true** to require the card's expiration date.. [optional]  # noqa: E501
+            creating_transfer_from_report_enabled (bool): Set to **true** to automatically create `Transfers` once settlement reports get generated.. [optional]  # noqa: E501
             convenience_charges_enabled (bool): Set to **true** if you want to enable the `Merchant` to accept convenience fees and/or service fees.. [optional]  # noqa: E501
+            fee_ready_to_settle_upon (str): Details how the `Merchant` settles fees.. [optional]  # noqa: E501
+            gross_settlement_enabled (bool): Set to **true** to enable gross settlements.. [optional]  # noqa: E501
+            identity (str): The ID of the `Identity` resource associated with the `Merchant`.. [optional]  # noqa: E501
+            level_two_level_three_data_enabled (bool): Set to **true** to enable the `Merchant` for Level 2 and Level 3 processing. Default value is **false**.. [optional]  # noqa: E501
+            mcc (str, none_type): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf)) that this merchant will be classified under.. [optional]  # noqa: E501
+            merchant_name (str): The legal name saved in the `Merchant` resource.. [optional]  # noqa: E501
+            merchant_profile (str): Details if a merchant's info was submitted to third-party processors for provisioning.. [optional]  # noqa: E501
+            mid (str, none_type): MID of the `Merchant`.. [optional]  # noqa: E501
+            onboarding_state (str): Details the state of the `Merchant's` onboarding.. [optional]  # noqa: E501
+            processor (str): Name of the transaction processor.. [optional]  # noqa: E501
+            processor_details (MerchantProcessorDetails): [optional]  # noqa: E501
+            processing_enabled (bool): Details if transaction processing is enabled for the `Merchant`.. [optional]  # noqa: E501
+            ready_to_settle_upon (str): Details how `Authorizations` captured by the `Merchant` are settled.. [optional]  # noqa: E501
             rent_surcharges_enabled (bool): Set to **true** if you want to enable a `Merchant` to accept rent charges.. [optional]  # noqa: E501
+            settlement_enabled (bool): Details if settlement processing is enabled for the `Merchant`.. [optional]  # noqa: E501
+            settlement_funding_identifier (str): Include addtional information (like the MID) when submitting funding `Tranfers` to processors.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            verification (str): ID of the `Verification` that was submitted to verify the `Merchant`.. [optional]  # noqa: E501
             links (MerchantLinks): [optional]  # noqa: E501
         """
 

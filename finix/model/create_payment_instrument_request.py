@@ -57,9 +57,10 @@ class CreatePaymentInstrumentRequest(ModelNormal):
 
     allowed_values = {
         ('type',): {
-            'TOKEN': "TOKEN",
             'APPLE_PAY': "APPLE_PAY",
+            'GOOGLE_PAY': "GOOGLE_PAY",
             'PAYMENT_CARD': "PAYMENT_CARD",
+            'TOKEN': "TOKEN",
             'BANK_ACCOUNT': "BANK_ACCOUNT",
         },
         ('account_type',): {
@@ -96,21 +97,21 @@ class CreatePaymentInstrumentRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str,),  # noqa: E501
-            'expiration_year': (int,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
-            'number': (str,),  # noqa: E501
-            'expiration_month': (int,),  # noqa: E501
             'address': (CreatePaymentInstrumentRequestAddress,),  # noqa: E501
-            'security_code': (str,),  # noqa: E501
-            'type': (str,),  # noqa: E501
+            'expiration_month': (int,),  # noqa: E501
+            'expiration_year': (int,),  # noqa: E501
             'identity': (str, none_type,),  # noqa: E501
+            'name': (str,),  # noqa: E501
+            'number': (str,),  # noqa: E501
+            'security_code': (str,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
+            'type': (str,),  # noqa: E501
             'third_party_token': (str,),  # noqa: E501
-            'merchant_identity': (str, none_type,),  # noqa: E501
-            'account_type': (str,),  # noqa: E501
-            'country': (str,),  # noqa: E501
-            'bank_code': (str,),  # noqa: E501
             'account_number': (str,),  # noqa: E501
+            'account_type': (str,),  # noqa: E501
+            'attempt_bank_account_validation_check': (bool,),  # noqa: E501
+            'bank_code': (str,),  # noqa: E501
+            'country': (str,),  # noqa: E501
             'token': (str,),  # noqa: E501
         }
 
@@ -120,21 +121,21 @@ class CreatePaymentInstrumentRequest(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
-        'expiration_year': 'expiration_year',  # noqa: E501
-        'tags': 'tags',  # noqa: E501
-        'number': 'number',  # noqa: E501
-        'expiration_month': 'expiration_month',  # noqa: E501
         'address': 'address',  # noqa: E501
-        'security_code': 'security_code',  # noqa: E501
-        'type': 'type',  # noqa: E501
+        'expiration_month': 'expiration_month',  # noqa: E501
+        'expiration_year': 'expiration_year',  # noqa: E501
         'identity': 'identity',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'number': 'number',  # noqa: E501
+        'security_code': 'security_code',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
+        'type': 'type',  # noqa: E501
         'third_party_token': 'third_party_token',  # noqa: E501
-        'merchant_identity': 'merchant_identity',  # noqa: E501
-        'account_type': 'account_type',  # noqa: E501
-        'country': 'country',  # noqa: E501
-        'bank_code': 'bank_code',  # noqa: E501
         'account_number': 'account_number',  # noqa: E501
+        'account_type': 'account_type',  # noqa: E501
+        'attempt_bank_account_validation_check': 'attempt_bank_account_validation_check',  # noqa: E501
+        'bank_code': 'bank_code',  # noqa: E501
+        'country': 'country',  # noqa: E501
         'token': 'token',  # noqa: E501
     }
 
@@ -179,22 +180,22 @@ class CreatePaymentInstrumentRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            name (str): The name of the bank account or card owner.. [optional]  # noqa: E501
-            expiration_year (int): The 4-digit expiration year of the card.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
-            number (str): The card or bank account number (no dashes in between numbers).. [optional]  # noqa: E501
-            expiration_month (int): The expiration month of the card (e.g. 12 for December).. [optional]  # noqa: E501
             address (CreatePaymentInstrumentRequestAddress): [optional]  # noqa: E501
-            security_code (str): The 3-4 digit security code of the card (i.e. CVV code).. [optional]  # noqa: E501
-            type (str): Type of `Payment Instrument`.. [optional]  # noqa: E501
+            expiration_month (int): The expiration month of the card (e.g. 12 for December).. [optional]  # noqa: E501
+            expiration_year (int): The 4-digit expiration year of the card.. [optional]  # noqa: E501
             identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            third_party_token (str): [optional]  # noqa: E501
-            merchant_identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            account_type (str): The type of bank account.. [optional]  # noqa: E501
-            country (str): 3 Letter country code (e.g. USA).. [optional]  # noqa: E501
-            bank_code (str): The routing number of the bank account.. [optional]  # noqa: E501
+            name (str): The name of the bank account or card owner.. [optional]  # noqa: E501
+            number (str): The card or bank account number (no dashes in between numbers).. [optional]  # noqa: E501
+            security_code (str): The 3-4 digit security code of the card (i.e. CVV code).. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            type (str): Type of `Payment Instrument`.. [optional]  # noqa: E501
+            third_party_token (str): Stringified token provided by Apple or Google. Required if using Apple or Google Pay.. [optional]  # noqa: E501
             account_number (str): The bank account number (no dashes in between numbers).. [optional]  # noqa: E501
-            token (str): [optional]  # noqa: E501
+            account_type (str): The type of bank account.. [optional]  # noqa: E501
+            attempt_bank_account_validation_check (bool): Set to **true** if you want to request a bank account validation. Default value is **false**.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            bank_code (str): The routing number of the bank account.. [optional]  # noqa: E501
+            country (str): 3 Letter country code (e.g. USA).. [optional]  # noqa: E501
+            token (str): ID of the `Token` that was returned from the tokenization client or hosted fields. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -276,22 +277,22 @@ class CreatePaymentInstrumentRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            name (str): The name of the bank account or card owner.. [optional]  # noqa: E501
-            expiration_year (int): The 4-digit expiration year of the card.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
-            number (str): The card or bank account number (no dashes in between numbers).. [optional]  # noqa: E501
-            expiration_month (int): The expiration month of the card (e.g. 12 for December).. [optional]  # noqa: E501
             address (CreatePaymentInstrumentRequestAddress): [optional]  # noqa: E501
-            security_code (str): The 3-4 digit security code of the card (i.e. CVV code).. [optional]  # noqa: E501
-            type (str): Type of `Payment Instrument`.. [optional]  # noqa: E501
+            expiration_month (int): The expiration month of the card (e.g. 12 for December).. [optional]  # noqa: E501
+            expiration_year (int): The 4-digit expiration year of the card.. [optional]  # noqa: E501
             identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            third_party_token (str): [optional]  # noqa: E501
-            merchant_identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            account_type (str): The type of bank account.. [optional]  # noqa: E501
-            country (str): 3 Letter country code (e.g. USA).. [optional]  # noqa: E501
-            bank_code (str): The routing number of the bank account.. [optional]  # noqa: E501
+            name (str): The name of the bank account or card owner.. [optional]  # noqa: E501
+            number (str): The card or bank account number (no dashes in between numbers).. [optional]  # noqa: E501
+            security_code (str): The 3-4 digit security code of the card (i.e. CVV code).. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            type (str): Type of `Payment Instrument`.. [optional]  # noqa: E501
+            third_party_token (str): Stringified token provided by Apple or Google. Required if using Apple or Google Pay.. [optional]  # noqa: E501
             account_number (str): The bank account number (no dashes in between numbers).. [optional]  # noqa: E501
-            token (str): [optional]  # noqa: E501
+            account_type (str): The type of bank account.. [optional]  # noqa: E501
+            attempt_bank_account_validation_check (bool): Set to **true** if you want to request a bank account validation. Default value is **false**.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            bank_code (str): The routing number of the bank account.. [optional]  # noqa: E501
+            country (str): 3 Letter country code (e.g. USA).. [optional]  # noqa: E501
+            token (str): ID of the `Token` that was returned from the tokenization client or hosted fields. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

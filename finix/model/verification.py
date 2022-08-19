@@ -88,19 +88,19 @@ class Verification(ModelNormal):
         lazy_import()
         return {
             'id': (str,),  # noqa: E501
-            'application': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
-            'messages': ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}],),  # noqa: E501
-            'raw': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
-            'processor': (str,),  # noqa: E501
-            'state': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
-            'trace_id': (str,),  # noqa: E501
-            'payment_instrument': (str, none_type,),  # noqa: E501
-            'merchant': (str,),  # noqa: E501
+            'application': (str,),  # noqa: E501
             'identity': (str, none_type,),  # noqa: E501
+            'merchant': (str, none_type,),  # noqa: E501
             'merchant_identity': (str, none_type,),  # noqa: E501
+            'messages': ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}],),  # noqa: E501
+            'payment_instrument': (str, none_type,),  # noqa: E501
+            'processor': (str,),  # noqa: E501
+            'raw': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'state': (str,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
+            'trace_id': (str,),  # noqa: E501
             'links': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
         }
 
@@ -111,19 +111,19 @@ class Verification(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'application': 'application',  # noqa: E501
-        'tags': 'tags',  # noqa: E501
-        'messages': 'messages',  # noqa: E501
-        'raw': 'raw',  # noqa: E501
-        'processor': 'processor',  # noqa: E501
-        'state': 'state',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'updated_at': 'updated_at',  # noqa: E501
-        'trace_id': 'trace_id',  # noqa: E501
-        'payment_instrument': 'payment_instrument',  # noqa: E501
-        'merchant': 'merchant',  # noqa: E501
+        'application': 'application',  # noqa: E501
         'identity': 'identity',  # noqa: E501
+        'merchant': 'merchant',  # noqa: E501
         'merchant_identity': 'merchant_identity',  # noqa: E501
+        'messages': 'messages',  # noqa: E501
+        'payment_instrument': 'payment_instrument',  # noqa: E501
+        'processor': 'processor',  # noqa: E501
+        'raw': 'raw',  # noqa: E501
+        'state': 'state',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
+        'trace_id': 'trace_id',  # noqa: E501
         'links': '_links',  # noqa: E501
     }
 
@@ -169,19 +169,19 @@ class Verification(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): The ID of the `Verification` attempt (begins with `VIXXX`).. [optional]  # noqa: E501
-            application (str): ID of the `Application` the `Merchant` was created under.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
-            messages ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): Provides additional details about the verification (e.g why it failed). This field is usually **null**.. [optional]  # noqa: E501
-            raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Raw response from the processor. [optional]  # noqa: E501
-            processor (str): Name of the verification processor.. [optional]  # noqa: E501
-            state (str): The status of the `Verification` request.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
-            trace_id (str): Trace ID of the `Verification`. The processor sends back the `trace_id` so you can track the verification end-to-end.. [optional]  # noqa: E501
-            payment_instrument (str, none_type): The `Payment Instrument` that'll be used to settle the `Merchant's` processed funds.. [optional]  # noqa: E501
-            merchant (str): ID of the `Merchant` resource.. [optional]  # noqa: E501
+            application (str): ID of the `Application` the `Merchant` was created under.. [optional]  # noqa: E501
             identity (str, none_type): ID of the `Identity` that created the `Merchant`.. [optional]  # noqa: E501
+            merchant (str, none_type): ID of the `Merchant` resource.. [optional]  # noqa: E501
             merchant_identity (str, none_type): ID of the `Identity` associated with the `Merchant`.. [optional]  # noqa: E501
+            messages ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): Provides additional details about the verification (e.g why it failed). This field is usually **null**.. [optional]  # noqa: E501
+            payment_instrument (str, none_type): The `Payment Instrument` that'll be used to settle the `Merchant's` processed funds.. [optional]  # noqa: E501
+            processor (str): Name of the verification processor.. [optional]  # noqa: E501
+            raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Raw response from the processor.. [optional]  # noqa: E501
+            state (str): The status of the `Verification` request.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            trace_id (str): Trace ID of the `Verification`. The processor sends back the `trace_id` so you can track the verification end-to-end.. [optional]  # noqa: E501
             links ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): For your convenience, every response includes several URLs which link to resources relevant to the request. You can use these `_links` to make your follow-up requests and quickly access relevant IDs.. [optional]  # noqa: E501
         """
 
@@ -265,19 +265,19 @@ class Verification(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): The ID of the `Verification` attempt (begins with `VIXXX`).. [optional]  # noqa: E501
-            application (str): ID of the `Application` the `Merchant` was created under.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
-            messages ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): Provides additional details about the verification (e.g why it failed). This field is usually **null**.. [optional]  # noqa: E501
-            raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Raw response from the processor. [optional]  # noqa: E501
-            processor (str): Name of the verification processor.. [optional]  # noqa: E501
-            state (str): The status of the `Verification` request.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
-            trace_id (str): Trace ID of the `Verification`. The processor sends back the `trace_id` so you can track the verification end-to-end.. [optional]  # noqa: E501
-            payment_instrument (str, none_type): The `Payment Instrument` that'll be used to settle the `Merchant's` processed funds.. [optional]  # noqa: E501
-            merchant (str): ID of the `Merchant` resource.. [optional]  # noqa: E501
+            application (str): ID of the `Application` the `Merchant` was created under.. [optional]  # noqa: E501
             identity (str, none_type): ID of the `Identity` that created the `Merchant`.. [optional]  # noqa: E501
+            merchant (str, none_type): ID of the `Merchant` resource.. [optional]  # noqa: E501
             merchant_identity (str, none_type): ID of the `Identity` associated with the `Merchant`.. [optional]  # noqa: E501
+            messages ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): Provides additional details about the verification (e.g why it failed). This field is usually **null**.. [optional]  # noqa: E501
+            payment_instrument (str, none_type): The `Payment Instrument` that'll be used to settle the `Merchant's` processed funds.. [optional]  # noqa: E501
+            processor (str): Name of the verification processor.. [optional]  # noqa: E501
+            raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Raw response from the processor.. [optional]  # noqa: E501
+            state (str): The status of the `Verification` request.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            trace_id (str): Trace ID of the `Verification`. The processor sends back the `trace_id` so you can track the verification end-to-end.. [optional]  # noqa: E501
             links ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): For your convenience, every response includes several URLs which link to resources relevant to the request. You can use these `_links` to make your follow-up requests and quickly access relevant IDs.. [optional]  # noqa: E501
         """
 

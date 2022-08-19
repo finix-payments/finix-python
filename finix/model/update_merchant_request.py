@@ -82,20 +82,20 @@ class UpdateMerchantRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': (Tags,),  # noqa: E501
-            'processing_enabled': (bool,),  # noqa: E501
-            'settlement_enabled': (bool,),  # noqa: E501
-            'gross_settlement_enabled': (bool,),  # noqa: E501
-            'creating_transfer_from_report_enabled': (bool,),  # noqa: E501
-            'card_expiration_date_required': (bool,),  # noqa: E501
             'card_cvv_required': (bool,),  # noqa: E501
-            'merchant_name': (str,),  # noqa: E501
-            'settlement_funding_identifier': (str,),  # noqa: E501
-            'ready_to_settle_upon': (str,),  # noqa: E501
-            'fee_ready_to_settle_upon': (str,),  # noqa: E501
-            'level_two_level_three_data_enabled': (bool,),  # noqa: E501
+            'card_expiration_date_required': (bool,),  # noqa: E501
             'convenience_charges_enabled': (bool,),  # noqa: E501
+            'creating_transfer_from_report_enabled': (bool,),  # noqa: E501
+            'fee_ready_to_settle_upon': (str,),  # noqa: E501
+            'gross_settlement_enabled': (bool,),  # noqa: E501
+            'level_two_level_three_data_enabled': (bool,),  # noqa: E501
+            'merchant_name': (str,),  # noqa: E501
+            'processing_enabled': (bool,),  # noqa: E501
+            'ready_to_settle_upon': (str,),  # noqa: E501
             'rent_surcharges_enabled': (bool,),  # noqa: E501
+            'settlement_enabled': (bool,),  # noqa: E501
+            'settlement_funding_identifier': (str,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
         }
 
     @cached_property
@@ -104,20 +104,20 @@ class UpdateMerchantRequest(ModelNormal):
 
 
     attribute_map = {
-        'tags': 'tags',  # noqa: E501
-        'processing_enabled': 'processing_enabled',  # noqa: E501
-        'settlement_enabled': 'settlement_enabled',  # noqa: E501
-        'gross_settlement_enabled': 'gross_settlement_enabled',  # noqa: E501
-        'creating_transfer_from_report_enabled': 'creating_transfer_from_report_enabled',  # noqa: E501
-        'card_expiration_date_required': 'card_expiration_date_required',  # noqa: E501
         'card_cvv_required': 'card_cvv_required',  # noqa: E501
-        'merchant_name': 'merchant_name',  # noqa: E501
-        'settlement_funding_identifier': 'settlement_funding_identifier',  # noqa: E501
-        'ready_to_settle_upon': 'ready_to_settle_upon',  # noqa: E501
-        'fee_ready_to_settle_upon': 'fee_ready_to_settle_upon',  # noqa: E501
-        'level_two_level_three_data_enabled': 'level_two_level_three_data_enabled',  # noqa: E501
+        'card_expiration_date_required': 'card_expiration_date_required',  # noqa: E501
         'convenience_charges_enabled': 'convenience_charges_enabled',  # noqa: E501
+        'creating_transfer_from_report_enabled': 'creating_transfer_from_report_enabled',  # noqa: E501
+        'fee_ready_to_settle_upon': 'fee_ready_to_settle_upon',  # noqa: E501
+        'gross_settlement_enabled': 'gross_settlement_enabled',  # noqa: E501
+        'level_two_level_three_data_enabled': 'level_two_level_three_data_enabled',  # noqa: E501
+        'merchant_name': 'merchant_name',  # noqa: E501
+        'processing_enabled': 'processing_enabled',  # noqa: E501
+        'ready_to_settle_upon': 'ready_to_settle_upon',  # noqa: E501
         'rent_surcharges_enabled': 'rent_surcharges_enabled',  # noqa: E501
+        'settlement_enabled': 'settlement_enabled',  # noqa: E501
+        'settlement_funding_identifier': 'settlement_funding_identifier',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
     }
 
     read_only_vars = {
@@ -161,20 +161,20 @@ class UpdateMerchantRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
-            processing_enabled (bool): Details if transaction processing is enabled for the `Merchant`.. [optional]  # noqa: E501
-            settlement_enabled (bool): Details if settlement processing is enabled for the `Merchant`.. [optional]  # noqa: E501
-            gross_settlement_enabled (bool): Set to **true** to enable gross settlements.. [optional]  # noqa: E501
-            creating_transfer_from_report_enabled (bool): Set to **true** to automatically create `Transfers` once settlement reports get generated.. [optional]  # noqa: E501
-            card_expiration_date_required (bool): Set to **true** to require the card's expiration date.. [optional]  # noqa: E501
             card_cvv_required (bool): Set to **true** to require the card's CVV code.. [optional]  # noqa: E501
-            merchant_name (str): The legal name saved in the `Merchant` resource.. [optional]  # noqa: E501
-            settlement_funding_identifier (str): Include addtional information (like the MID) when submitting funding `Tranfers` to processors.. [optional]  # noqa: E501
-            ready_to_settle_upon (str): Details how `Authorizations` captured by the `Merchant` are settled.. [optional]  # noqa: E501
-            fee_ready_to_settle_upon (str): Details how the `Merchant` settles fees.. [optional]  # noqa: E501
-            level_two_level_three_data_enabled (bool): Set to **true** to enable the `Merchant` for Level 2 and Level 3 processing. Default value is **false**.. [optional]  # noqa: E501
+            card_expiration_date_required (bool): Set to **true** to require the card's expiration date.. [optional]  # noqa: E501
             convenience_charges_enabled (bool): Set to **true** if you want to enable the `Merchant` to accept convenience fees and/or service fees.. [optional]  # noqa: E501
+            creating_transfer_from_report_enabled (bool): Set to **true** to automatically create `Transfers` once settlement reports get generated.. [optional]  # noqa: E501
+            fee_ready_to_settle_upon (str): Details how the `Merchant` settles fees.. [optional]  # noqa: E501
+            gross_settlement_enabled (bool): Set to **true** to enable gross settlements.. [optional]  # noqa: E501
+            level_two_level_three_data_enabled (bool): Set to **true** to enable the `Merchant` for Level 2 and Level 3 processing. Default value is **false**.. [optional]  # noqa: E501
+            merchant_name (str): The legal name saved in the `Merchant` resource.. [optional]  # noqa: E501
+            processing_enabled (bool): Details if transaction processing is enabled for the `Merchant`.. [optional]  # noqa: E501
+            ready_to_settle_upon (str): Details how `Authorizations` captured by the `Merchant` are settled.. [optional]  # noqa: E501
             rent_surcharges_enabled (bool): Set to **true** if you want to enable a `Merchant` to accept rent charges.. [optional]  # noqa: E501
+            settlement_enabled (bool): Details if settlement processing is enabled for the `Merchant`.. [optional]  # noqa: E501
+            settlement_funding_identifier (str): Include addtional information (like the MID) when submitting funding `Tranfers` to processors.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -256,20 +256,20 @@ class UpdateMerchantRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
-            processing_enabled (bool): Details if transaction processing is enabled for the `Merchant`.. [optional]  # noqa: E501
-            settlement_enabled (bool): Details if settlement processing is enabled for the `Merchant`.. [optional]  # noqa: E501
-            gross_settlement_enabled (bool): Set to **true** to enable gross settlements.. [optional]  # noqa: E501
-            creating_transfer_from_report_enabled (bool): Set to **true** to automatically create `Transfers` once settlement reports get generated.. [optional]  # noqa: E501
-            card_expiration_date_required (bool): Set to **true** to require the card's expiration date.. [optional]  # noqa: E501
             card_cvv_required (bool): Set to **true** to require the card's CVV code.. [optional]  # noqa: E501
-            merchant_name (str): The legal name saved in the `Merchant` resource.. [optional]  # noqa: E501
-            settlement_funding_identifier (str): Include addtional information (like the MID) when submitting funding `Tranfers` to processors.. [optional]  # noqa: E501
-            ready_to_settle_upon (str): Details how `Authorizations` captured by the `Merchant` are settled.. [optional]  # noqa: E501
-            fee_ready_to_settle_upon (str): Details how the `Merchant` settles fees.. [optional]  # noqa: E501
-            level_two_level_three_data_enabled (bool): Set to **true** to enable the `Merchant` for Level 2 and Level 3 processing. Default value is **false**.. [optional]  # noqa: E501
+            card_expiration_date_required (bool): Set to **true** to require the card's expiration date.. [optional]  # noqa: E501
             convenience_charges_enabled (bool): Set to **true** if you want to enable the `Merchant` to accept convenience fees and/or service fees.. [optional]  # noqa: E501
+            creating_transfer_from_report_enabled (bool): Set to **true** to automatically create `Transfers` once settlement reports get generated.. [optional]  # noqa: E501
+            fee_ready_to_settle_upon (str): Details how the `Merchant` settles fees.. [optional]  # noqa: E501
+            gross_settlement_enabled (bool): Set to **true** to enable gross settlements.. [optional]  # noqa: E501
+            level_two_level_three_data_enabled (bool): Set to **true** to enable the `Merchant` for Level 2 and Level 3 processing. Default value is **false**.. [optional]  # noqa: E501
+            merchant_name (str): The legal name saved in the `Merchant` resource.. [optional]  # noqa: E501
+            processing_enabled (bool): Details if transaction processing is enabled for the `Merchant`.. [optional]  # noqa: E501
+            ready_to_settle_upon (str): Details how `Authorizations` captured by the `Merchant` are settled.. [optional]  # noqa: E501
             rent_surcharges_enabled (bool): Set to **true** if you want to enable a `Merchant` to accept rent charges.. [optional]  # noqa: E501
+            settlement_enabled (bool): Details if settlement processing is enabled for the `Merchant`.. [optional]  # noqa: E501
+            settlement_funding_identifier (str): Include addtional information (like the MID) when submitting funding `Tranfers` to processors.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

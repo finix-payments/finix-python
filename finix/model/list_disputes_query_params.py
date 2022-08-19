@@ -141,13 +141,13 @@ class ListDisputesQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            sort (str): Specify key to be used for sorting the collection. [optional]  # noqa: E501
-            offset (int): The number of items to skip before starting to collect the result set. [optional]  # noqa: E501
-            limit (int): The numbers of items to return. [optional]  # noqa: E501
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]  # noqa: E501
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]  # noqa: E501
-            updated_at_gte (str): Filter where updated_at is after the given date. [optional]  # noqa: E501
-            updated_at_lte (str): Filter where updated_at is before the given date. [optional]  # noqa: E501
+            sort (str): Specify key to be used for sorting the collection.. [optional]  # noqa: E501
+            offset (int): The number of items to skip before starting to collect the result set.. [optional]  # noqa: E501
+            limit (int): The numbers of items to return.. [optional]  # noqa: E501
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]  # noqa: E501
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]  # noqa: E501
+            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]  # noqa: E501
+            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -229,13 +229,13 @@ class ListDisputesQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            sort (str): Specify key to be used for sorting the collection. [optional]  # noqa: E501
-            offset (int): The number of items to skip before starting to collect the result set. [optional]  # noqa: E501
-            limit (int): The numbers of items to return. [optional]  # noqa: E501
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]  # noqa: E501
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]  # noqa: E501
-            updated_at_gte (str): Filter where updated_at is after the given date. [optional]  # noqa: E501
-            updated_at_lte (str): Filter where updated_at is before the given date. [optional]  # noqa: E501
+            sort (str): Specify key to be used for sorting the collection.. [optional]  # noqa: E501
+            offset (int): The number of items to skip before starting to collect the result set.. [optional]  # noqa: E501
+            limit (int): The numbers of items to return.. [optional]  # noqa: E501
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]  # noqa: E501
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]  # noqa: E501
+            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]  # noqa: E501
+            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

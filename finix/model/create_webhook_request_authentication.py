@@ -89,9 +89,9 @@ class CreateWebhookRequestAuthentication(ModelNormal):
         """
         lazy_import()
         return {
-            'type': (str,),  # noqa: E501
             'basic': (CreateWebhookRequestAuthenticationBasic,),  # noqa: E501
             'bearer': (CreateWebhookRequestAuthenticationBearer,),  # noqa: E501
+            'type': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -100,9 +100,9 @@ class CreateWebhookRequestAuthentication(ModelNormal):
 
 
     attribute_map = {
-        'type': 'type',  # noqa: E501
         'basic': 'basic',  # noqa: E501
         'bearer': 'bearer',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     read_only_vars = {
@@ -146,9 +146,9 @@ class CreateWebhookRequestAuthentication(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str): The type of authentication the webhook will use: - NONE: No authentication will be used. - BASIC: Basic authentication. - BEARER: Oauth2's Bearer Token.. [optional]  # noqa: E501
             basic (CreateWebhookRequestAuthenticationBasic): [optional]  # noqa: E501
             bearer (CreateWebhookRequestAuthenticationBearer): [optional]  # noqa: E501
+            type (str): The type of authentication the webhook will use: - **NONE**: No authentication will be used. - **BASIC**: Basic authentication. - **BEARER**: Oauth2's Bearer Token.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -230,9 +230,9 @@ class CreateWebhookRequestAuthentication(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str): The type of authentication the webhook will use: - NONE: No authentication will be used. - BASIC: Basic authentication. - BEARER: Oauth2's Bearer Token.. [optional]  # noqa: E501
             basic (CreateWebhookRequestAuthenticationBasic): [optional]  # noqa: E501
             bearer (CreateWebhookRequestAuthenticationBearer): [optional]  # noqa: E501
+            type (str): The type of authentication the webhook will use: - **NONE**: No authentication will be used. - **BASIC**: Basic authentication. - **BEARER**: Oauth2's Bearer Token.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

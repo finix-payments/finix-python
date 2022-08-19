@@ -157,21 +157,21 @@ class ListBalanceTransfersQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            limit (int): The numbers of items to return. [optional]  # noqa: E501
-            offset (int): The number of items to skip before starting to collect the result set. [optional]  # noqa: E501
-            page_number (int): The page number to list. [optional]  # noqa: E501
-            page_size (int): The size of the page. [optional]  # noqa: E501
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]  # noqa: E501
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]  # noqa: E501
-            updated_at_gte (str): Filter where updated_at is after the given date. [optional]  # noqa: E501
-            updated_at_lte (str): Filter where updated_at is before the given date. [optional]  # noqa: E501
-            idempotency_id (str): Filter by idempotency_id. [optional]  # noqa: E501
-            amount (int): Filter by an amount equal to the given value. [optional]  # noqa: E501
-            description (str): Filter by the `description` value . [optional]  # noqa: E501
-            destination (str): Filter by the `Payment Instrument` saved in `destination`. [optional]  # noqa: E501
-            external_reference_id (str): Filter by the value saved in `external_reference_id`. [optional]  # noqa: E501
-            reference_id (str): Filter by the value saved in `reference_id`. [optional]  # noqa: E501
-            source (str): Filter by the `Payment Instrument` saved in `source`. [optional]  # noqa: E501
+            limit (int): The numbers of items to return.. [optional]  # noqa: E501
+            offset (int): The number of items to skip before starting to collect the result set.. [optional]  # noqa: E501
+            page_number (int): The page number to list.. [optional]  # noqa: E501
+            page_size (int): The size of the page.. [optional]  # noqa: E501
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]  # noqa: E501
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]  # noqa: E501
+            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]  # noqa: E501
+            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]  # noqa: E501
+            idempotency_id (str): Filter by `idempotency_id`.. [optional]  # noqa: E501
+            amount (int): Filter by an amount equal to the given value.. [optional]  # noqa: E501
+            description (str): Filter by the `Description` value .. [optional]  # noqa: E501
+            destination (str): Filter by the `Payment Instrument` saved in `Destination`.. [optional]  # noqa: E501
+            external_reference_id (str): Filter by the value saved in `external_reference_id`.. [optional]  # noqa: E501
+            reference_id (str): Filter by the value saved in `reference_id`.. [optional]  # noqa: E501
+            source (str): Filter by the `Payment Instrument` saved in `source`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -253,21 +253,21 @@ class ListBalanceTransfersQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            limit (int): The numbers of items to return. [optional]  # noqa: E501
-            offset (int): The number of items to skip before starting to collect the result set. [optional]  # noqa: E501
-            page_number (int): The page number to list. [optional]  # noqa: E501
-            page_size (int): The size of the page. [optional]  # noqa: E501
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]  # noqa: E501
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]  # noqa: E501
-            updated_at_gte (str): Filter where updated_at is after the given date. [optional]  # noqa: E501
-            updated_at_lte (str): Filter where updated_at is before the given date. [optional]  # noqa: E501
-            idempotency_id (str): Filter by idempotency_id. [optional]  # noqa: E501
-            amount (int): Filter by an amount equal to the given value. [optional]  # noqa: E501
-            description (str): Filter by the `description` value . [optional]  # noqa: E501
-            destination (str): Filter by the `Payment Instrument` saved in `destination`. [optional]  # noqa: E501
-            external_reference_id (str): Filter by the value saved in `external_reference_id`. [optional]  # noqa: E501
-            reference_id (str): Filter by the value saved in `reference_id`. [optional]  # noqa: E501
-            source (str): Filter by the `Payment Instrument` saved in `source`. [optional]  # noqa: E501
+            limit (int): The numbers of items to return.. [optional]  # noqa: E501
+            offset (int): The number of items to skip before starting to collect the result set.. [optional]  # noqa: E501
+            page_number (int): The page number to list.. [optional]  # noqa: E501
+            page_size (int): The size of the page.. [optional]  # noqa: E501
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]  # noqa: E501
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]  # noqa: E501
+            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]  # noqa: E501
+            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]  # noqa: E501
+            idempotency_id (str): Filter by `idempotency_id`.. [optional]  # noqa: E501
+            amount (int): Filter by an amount equal to the given value.. [optional]  # noqa: E501
+            description (str): Filter by the `Description` value .. [optional]  # noqa: E501
+            destination (str): Filter by the `Payment Instrument` saved in `Destination`.. [optional]  # noqa: E501
+            external_reference_id (str): Filter by the value saved in `external_reference_id`.. [optional]  # noqa: E501
+            reference_id (str): Filter by the value saved in `reference_id`.. [optional]  # noqa: E501
+            source (str): Filter by the `Payment Instrument` saved in `source`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

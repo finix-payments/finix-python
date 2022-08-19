@@ -28,7 +28,7 @@ from finix.exceptions import ApiAttributeError
 
 
 
-class AuthorizationExternalResponses(ModelNormal):
+class UpdateIdentityRequestEntityIncorporationDate(ModelNormal):
     """
 
     Attributes:
@@ -76,8 +76,9 @@ class AuthorizationExternalResponses(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'body': (str,),  # noqa: E501
-            'content_type': (str,),  # noqa: E501
+            'year': (int,),  # noqa: E501
+            'day': (int,),  # noqa: E501
+            'month': (int,),  # noqa: E501
         }
 
     @cached_property
@@ -86,8 +87,9 @@ class AuthorizationExternalResponses(ModelNormal):
 
 
     attribute_map = {
-        'body': 'body',  # noqa: E501
-        'content_type': 'content_type',  # noqa: E501
+        'year': 'year',  # noqa: E501
+        'day': 'day',  # noqa: E501
+        'month': 'month',  # noqa: E501
     }
 
     read_only_vars = {
@@ -98,7 +100,7 @@ class AuthorizationExternalResponses(ModelNormal):
     @classmethod
     @convert_js_args_to_python_args
     def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
-        """AuthorizationExternalResponses - a model defined in OpenAPI
+        """UpdateIdentityRequestEntityIncorporationDate - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -131,8 +133,9 @@ class AuthorizationExternalResponses(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            body (str): [optional]  # noqa: E501
-            content_type (str): [optional]  # noqa: E501
+            year (int): [optional]  # noqa: E501
+            day (int): [optional]  # noqa: E501
+            month (int): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -181,7 +184,7 @@ class AuthorizationExternalResponses(ModelNormal):
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
-        """AuthorizationExternalResponses - a model defined in OpenAPI
+        """UpdateIdentityRequestEntityIncorporationDate - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -214,8 +217,9 @@ class AuthorizationExternalResponses(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            body (str): [optional]  # noqa: E501
-            content_type (str): [optional]  # noqa: E501
+            year (int): [optional]  # noqa: E501
+            day (int): [optional]  # noqa: E501
+            month (int): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

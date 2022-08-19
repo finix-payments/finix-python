@@ -25,6 +25,7 @@ from finix.model.error404_not_found_list import Error404NotFoundList
 from finix.model.error406_not_acceptable import Error406NotAcceptable
 from finix.model.merchant_profile import MerchantProfile
 from finix.model.merchant_profiles_list import MerchantProfilesList
+from finix.model.update_merchant_profile_request import UpdateMerchantProfileRequest
 from finix.model.finix_utils import FinixList
 
 from functools import wraps
@@ -126,7 +127,6 @@ class MerchantProfilesApi(object):
                 'all': [
                     'id',
                     'before_cursor',
-                    'after_cursor',
                     'limit',
                 ],
                 'required': [],
@@ -147,21 +147,17 @@ class MerchantProfilesApi(object):
                         (str,),
                     'before_cursor':
                         (str,),
-                    'after_cursor':
-                        (str,),
                     'limit':
                         (int,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'before_cursor': 'before_cursor',
-                    'after_cursor': 'after_cursor',
                     'limit': 'limit',
                 },
                 'location_map': {
                     'id': 'query',
                     'before_cursor': 'query',
-                    'after_cursor': 'query',
                     'limit': 'query',
                 },
                 'collection_format_map': {
@@ -189,7 +185,7 @@ class MerchantProfilesApi(object):
             params_map={
                 'all': [
                     'merchant_profile_id',
-                    'body',
+                    'update_merchant_profile_request',
                 ],
                 'required': [
                     'merchant_profile_id',
@@ -209,15 +205,15 @@ class MerchantProfilesApi(object):
                 'openapi_types': {
                     'merchant_profile_id':
                         (str,),
-                    'body':
-                        ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),
+                    'update_merchant_profile_request':
+                        (UpdateMerchantProfileRequest,),
                 },
                 'attribute_map': {
                     'merchant_profile_id': 'merchant_profile_id',
                 },
                 'location_map': {
                     'merchant_profile_id': 'path',
-                    'body': 'body',
+                    'update_merchant_profile_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -238,9 +234,9 @@ class MerchantProfilesApi(object):
         merchant_profile_id,
         **kwargs
     ):
-        """Show Merchant Profile  # noqa: E501
+        """Fetch a Merchant Profile  # noqa: E501
 
-        Get the merchant profile object  # noqa: E501
+        Retrieve the details of a previosuly created `merchant_profile`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -248,7 +244,7 @@ class MerchantProfilesApi(object):
         >>> result = thread.get()
 
         Args:
-            merchant_profile_id (str): ID of merchant profile
+            merchant_profile_id (str): ID of `merchant_profile`.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -317,7 +313,7 @@ class MerchantProfilesApi(object):
     ):
         """List Merchant Profiles  # noqa: E501
 
-        Get list of all the merchant_profiles objects  # noqa: E501
+        Retireve a list of all `merchant_profiles`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -326,10 +322,9 @@ class MerchantProfilesApi(object):
 
 
         Keyword Args:
-            id (str): Filter by id. [optional]
+            id (str): Filter by `id`.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
-            after_cursor (str): Return every resource created after the cursor value.. [optional]
-            limit (int): The numbers of items to return. [optional]
+            limit (int): The numbers of items to return.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -397,7 +392,7 @@ class MerchantProfilesApi(object):
     ):
         """Update a Merchant Profile  # noqa: E501
 
-        Update a merchant profile  # noqa: E501
+        Update a `merchant_profile`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -405,10 +400,10 @@ class MerchantProfilesApi(object):
         >>> result = thread.get()
 
         Args:
-            merchant_profile_id (str): ID of merchant profile
+            merchant_profile_id (str): ID of `merchant_profile`.
 
         Keyword Args:
-            body ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]
+            update_merchant_profile_request (UpdateMerchantProfileRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

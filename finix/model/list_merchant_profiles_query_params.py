@@ -78,7 +78,6 @@ class ListMerchantProfilesQueryParams(ModelNormal):
         return {
             'id': (str,),  # noqa: E501
             'before_cursor': (str,),  # noqa: E501
-            'after_cursor': (str,),  # noqa: E501
             'limit': (int,),  # noqa: E501
         }
 
@@ -90,7 +89,6 @@ class ListMerchantProfilesQueryParams(ModelNormal):
     attribute_map = {
         'id': 'id',  # noqa: E501
         'before_cursor': 'before_cursor',  # noqa: E501
-        'after_cursor': 'after_cursor',  # noqa: E501
         'limit': 'limit',  # noqa: E501
     }
 
@@ -135,10 +133,9 @@ class ListMerchantProfilesQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str): Filter by id. [optional]  # noqa: E501
+            id (str): Filter by `id`.. [optional]  # noqa: E501
             before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
-            after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
-            limit (int): The numbers of items to return. [optional]  # noqa: E501
+            limit (int): The numbers of items to return.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -220,10 +217,9 @@ class ListMerchantProfilesQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str): Filter by id. [optional]  # noqa: E501
+            id (str): Filter by `id`.. [optional]  # noqa: E501
             before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
-            after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
-            limit (int): The numbers of items to return. [optional]  # noqa: E501
+            limit (int): The numbers of items to return.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

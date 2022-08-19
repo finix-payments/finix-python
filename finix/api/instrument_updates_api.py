@@ -226,7 +226,7 @@ class InstrumentUpdatesApi(object):
     ):
         """Create Instrument Updates  # noqa: E501
 
-        To update the card details of your customers, create an `instrument_updates` resource. Include the `Payment Instrument` IDs you want to update in a CSV. For more info, the following guide on using our [Account Updater](/docs/guides/payments/account-updater/).  # noqa: E501
+        To update the card details of your customers, create an `instrument_updates` resource. Include the `Payment Instrument` IDs you want to update in a CSV.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -388,7 +388,7 @@ class InstrumentUpdatesApi(object):
         >>> result = thread.get()
 
         Args:
-            instrument_updates_id (str): The Id of the instrument update.
+            instrument_updates_id (str): The ID of the `instrument_update`.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status

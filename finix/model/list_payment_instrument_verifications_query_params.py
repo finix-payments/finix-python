@@ -28,7 +28,7 @@ from finix.exceptions import ApiAttributeError
 
 
 
-class ProcessorSystemConfigConfigurationTemplates(ModelNormal):
+class ListPaymentInstrumentVerificationsQueryParams(ModelNormal):
     """
 
     Attributes:
@@ -76,7 +76,10 @@ class ProcessorSystemConfigConfigurationTemplates(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'country': ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)},),  # noqa: E501
+            'limit': (int,),  # noqa: E501
+            'offset': (int,),  # noqa: E501
+            'page_number': (int,),  # noqa: E501
+            'page_size': (int,),  # noqa: E501
         }
 
     @cached_property
@@ -85,7 +88,10 @@ class ProcessorSystemConfigConfigurationTemplates(ModelNormal):
 
 
     attribute_map = {
-        'country': 'country',  # noqa: E501
+        'limit': 'limit',  # noqa: E501
+        'offset': 'offset',  # noqa: E501
+        'page_number': 'pageNumber',  # noqa: E501
+        'page_size': 'pageSize',  # noqa: E501
     }
 
     read_only_vars = {
@@ -96,7 +102,7 @@ class ProcessorSystemConfigConfigurationTemplates(ModelNormal):
     @classmethod
     @convert_js_args_to_python_args
     def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
-        """ProcessorSystemConfigConfigurationTemplates - a model defined in OpenAPI
+        """ListPaymentInstrumentVerificationsQueryParams - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -129,7 +135,10 @@ class ProcessorSystemConfigConfigurationTemplates(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            country ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}): [optional]  # noqa: E501
+            limit (int): The number of entries to return.. [optional]  # noqa: E501
+            offset (int): The number of items to skip before starting to collect the result set.. [optional]  # noqa: E501
+            page_number (int): The page number to list.. [optional]  # noqa: E501
+            page_size (int): The size of the page.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -178,7 +187,7 @@ class ProcessorSystemConfigConfigurationTemplates(ModelNormal):
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
-        """ProcessorSystemConfigConfigurationTemplates - a model defined in OpenAPI
+        """ListPaymentInstrumentVerificationsQueryParams - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -211,7 +220,10 @@ class ProcessorSystemConfigConfigurationTemplates(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            country ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}): [optional]  # noqa: E501
+            limit (int): The number of entries to return.. [optional]  # noqa: E501
+            offset (int): The number of items to skip before starting to collect the result set.. [optional]  # noqa: E501
+            page_number (int): The page number to list.. [optional]  # noqa: E501
+            page_size (int): The size of the page.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -92,12 +92,12 @@ class PaymentInstrumentLinks(ModelNormal):
         """
         lazy_import()
         return {
-            'application': (MerchantLinksApplication,),  # noqa: E501
-            'authorizations': (PaymentInstrumentLinksAuthorizations,),  # noqa: E501
-            'identity': (MerchantLinksIdentity,),  # noqa: E501
             'self': (ApplicationLinksSelf,),  # noqa: E501
+            'authorizations': (PaymentInstrumentLinksAuthorizations,),  # noqa: E501
             'transfers': (PaymentInstrumentLinksTransfers,),  # noqa: E501
             'verifications': (MerchantLinksVerifications,),  # noqa: E501
+            'application': (MerchantLinksApplication,),  # noqa: E501
+            'identity': (MerchantLinksIdentity,),  # noqa: E501
         }
 
     @cached_property
@@ -106,12 +106,12 @@ class PaymentInstrumentLinks(ModelNormal):
 
 
     attribute_map = {
-        'application': 'application',  # noqa: E501
-        'authorizations': 'authorizations',  # noqa: E501
-        'identity': 'identity',  # noqa: E501
         'self': 'self',  # noqa: E501
+        'authorizations': 'authorizations',  # noqa: E501
         'transfers': 'transfers',  # noqa: E501
         'verifications': 'verifications',  # noqa: E501
+        'application': 'application',  # noqa: E501
+        'identity': 'identity',  # noqa: E501
     }
 
     read_only_vars = {
@@ -155,12 +155,12 @@ class PaymentInstrumentLinks(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            application (MerchantLinksApplication): [optional]  # noqa: E501
-            authorizations (PaymentInstrumentLinksAuthorizations): [optional]  # noqa: E501
-            identity (MerchantLinksIdentity): [optional]  # noqa: E501
             self (ApplicationLinksSelf): [optional]  # noqa: E501
+            authorizations (PaymentInstrumentLinksAuthorizations): [optional]  # noqa: E501
             transfers (PaymentInstrumentLinksTransfers): [optional]  # noqa: E501
             verifications (MerchantLinksVerifications): [optional]  # noqa: E501
+            application (MerchantLinksApplication): [optional]  # noqa: E501
+            identity (MerchantLinksIdentity): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -242,12 +242,12 @@ class PaymentInstrumentLinks(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            application (MerchantLinksApplication): [optional]  # noqa: E501
-            authorizations (PaymentInstrumentLinksAuthorizations): [optional]  # noqa: E501
-            identity (MerchantLinksIdentity): [optional]  # noqa: E501
             self (ApplicationLinksSelf): [optional]  # noqa: E501
+            authorizations (PaymentInstrumentLinksAuthorizations): [optional]  # noqa: E501
             transfers (PaymentInstrumentLinksTransfers): [optional]  # noqa: E501
             verifications (MerchantLinksVerifications): [optional]  # noqa: E501
+            application (MerchantLinksApplication): [optional]  # noqa: E501
+            identity (MerchantLinksIdentity): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -980,7 +980,7 @@ class FilesApi(object):
     ):
         """List All External Links  # noqa: E501
 
-        List the previously `external_links` for a `File`. For more info, see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix/#create-an-external-link).  # noqa: E501
+        List the previously created `external_links` for a `File`. For more info, see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix/#create-an-external-link).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -991,14 +991,14 @@ class FilesApi(object):
             file_id (str): Your `File` ID.
 
         Keyword Args:
-            sort (str): Specify key to be used for sorting the collection. [optional]
+            sort (str): Specify key to be used for sorting the collection.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
-            limit (int): The numbers of items to return. [optional]
-            id (str): Filter by id. [optional]
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]
-            updated_at_gte (str): Filter where updated_at is after the given date. [optional]
-            updated_at_lte (str): Filter where updated_at is before the given date. [optional]
+            limit (int): The numbers of items to return.. [optional]
+            id (str): Filter by `id`.. [optional]
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
+            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]
+            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -1077,14 +1077,14 @@ class FilesApi(object):
 
 
         Keyword Args:
-            sort (str): Specify key to be used for sorting the collection. [optional]
+            sort (str): Specify key to be used for sorting the collection.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
-            limit (int): The numbers of items to return. [optional]
-            id (str): Filter by id. [optional]
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]
-            updated_at_gte (str): Filter where updated_at is after the given date. [optional]
-            updated_at_lte (str): Filter where updated_at is before the given date. [optional]
+            limit (int): The numbers of items to return.. [optional]
+            id (str): Filter by `id`.. [optional]
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
+            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]
+            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.

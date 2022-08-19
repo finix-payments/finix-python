@@ -129,7 +129,7 @@ class UploadFileRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            file (file_type): Path to the file you want to upload (e.g. **/Users/Desktop/finix_file.png**).. [optional]  # noqa: E501
+            file (file_type): Path to the file you want to upload<br>(e.g. **/Users/Desktop/finix_file.png**).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -211,7 +211,7 @@ class UploadFileRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            file (file_type): Path to the file you want to upload (e.g. **/Users/Desktop/finix_file.png**).. [optional]  # noqa: E501
+            file (file_type): Path to the file you want to upload<br>(e.g. **/Users/Desktop/finix_file.png**).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

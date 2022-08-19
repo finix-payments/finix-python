@@ -651,7 +651,7 @@ class TransfersApi(object):
     ):
         """Refund or Reverse a Transfer  # noqa: E501
 
-        Reverse a transfer with a `type` of **DEBIT**. This reversal creates a new `Transfer` resource with a `type` of **REVERSAL**.   The refund can get delivered in most cases without the physical card. The card only needs to be swiped (to receive the refund) when:  - The payment type is **DEBIT**, and the transaction is no longer in the batch. - The payment type is **CREDIT**, and the transaction is no longer in the batch and is older than 45 days.  # noqa: E501
+        Reverse a transfer with a `type` of **DEBIT**. This reversal creates a new `Transfer` resource with a `type` of **REVERSAL**.   The refund can get delivered in most cases without the physical card. The card only needs to be swiped (to receive the refund) when:  - The payment type is **DEBIT**, and the transaction is no longer in the Settlement batch. - The payment type is **CREDIT**, and the transaction is no longer in the batch and is older than 45 days.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -659,7 +659,7 @@ class TransfersApi(object):
         >>> result = thread.get()
 
         Args:
-            transfer_id (str): ID of `transfer` object
+            transfer_id (str): ID of `Transfer` object.
 
         Keyword Args:
             create_reversal_request (CreateReversalRequest): [optional]
@@ -728,9 +728,9 @@ class TransfersApi(object):
         transfer_id,
         **kwargs
     ):
-        """Get a Transfer  # noqa: E501
+        """Fetch a Transfer  # noqa: E501
 
-        Retrieve a `transfer`.  # noqa: E501
+        Retrieve a `Transfer`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -738,7 +738,7 @@ class TransfersApi(object):
         >>> result = thread.get()
 
         Args:
-            transfer_id (str): ID of `transfer` object.
+            transfer_id (str): ID of `Transfer` resource.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -816,7 +816,7 @@ class TransfersApi(object):
         >>> result = thread.get()
 
         Args:
-            transfer_id (str): ID of `transfer` object
+            transfer_id (str): ID of `Transfer` object.
 
         Keyword Args:
             limit (int): The number of entries to return.. [optional]
@@ -899,37 +899,37 @@ class TransfersApi(object):
 
 
         Keyword Args:
-            sort (str): Specify key to be used for sorting the collection. [optional]
+            sort (str): Specify key to be used for sorting the collection.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
-            limit (int): The numbers of items to return. [optional]
-            amount (int): Filter by an amount equal to the given value. [optional]
-            amount_gte (int): Filter by an amount greater than or equal. [optional]
-            amount_gt (int): Filter by an amount greater than. [optional]
-            amount_lte (int): Filter by an amount less than or equal. [optional]
-            amount_lt (int): Filter by an amount less than. [optional]
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]
-            idempotency_id (str): Filter by idempotency_id. [optional]
-            id (str): Filter by id. [optional]
+            limit (int): The numbers of items to return.. [optional]
+            amount (int): Filter by an amount equal to the given value.. [optional]
+            amount_gte (int): Filter by an amount greater than or equal.. [optional]
+            amount_gt (int): Filter by an amount greater than.. [optional]
+            amount_lte (int): Filter by an amount less than or equal.. [optional]
+            amount_lt (int): Filter by an amount less than.. [optional]
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
+            idempotency_id (str): Filter by `idempotency_id`.. [optional]
+            id (str): Filter by `id`.. [optional]
             state (str): Filter by Transaction state.. [optional]
-            ready_to_settle_at_gte (str): Filter by ready_to_settle_at. [optional]
-            ready_to_settle_at_lte (str): Filter by ready_to_settle_at. [optional]
-            statement_descriptor (int): Filter by statement_descriptor. [optional]
-            trace_id (str): Filter by trace_id. [optional]
-            updated_at_gte (str): Filter where updated_at is after the given date. [optional]
-            updated_at_lte (str): Filter where updated_at is before the given date. [optional]
-            instrument_bin (str): Filter by Bank Identification Number (BIN). The BIN is the first 6 digits of the masked number. [optional]
-            instrument_account_last4 (str): Filter Transactions by the last 4 digits of the bank account. The bank account last 4 are the last 4 digits of the masked number instrument_account_last4=9444 BIN . [optional]
-            instrument_brand_type (str): Filter by card brand. Available card brand types can be found in the drop-down. [optional]
-            merchant_identity_id (str): Filter by Identity ID. [optional]
-            merchant_identity_name (str): Filter Transactions by Identity name. The name is not case-sensitive. [optional]
-            instrument_name (str): Filter Transactions by payment instrument name. [optional]
-            instrument_type (str): Filter Transactions by payment instrument type. Available instrument types include: Bank Account or Payment Card. [optional]
-            merchant_id (str): Filter by Merchant ID. [optional]
-            merchant_mid (str): Filter by Merchant Identification Number (MID). [optional]
-            instrument_card_last4 (str): Filter by the payment card last 4 digits. [optional]
-            merchant_processor_id (str): Filter by Processor ID. [optional]
-            type (str): Filter by Transfer type. Available type filters include: All, Debits, Refunds, or Credits.. [optional]
+            ready_to_settle_at_gte (str): Filter by `ready_to_settle_at`.. [optional]
+            ready_to_settle_at_lte (str): Filter by `ready_to_settle_at`.. [optional]
+            statement_descriptor (int): Filter by `statement_descriptor`.. [optional]
+            trace_id (str): Filter by `trace_id`.. [optional]
+            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]
+            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]
+            instrument_bin (str): Filter by Bank Identification Number (BIN). The BIN is the first 6 digits of the masked number.. [optional]
+            instrument_account_last4 (str): Filter Transactions by the last 4 digits of the bank account. The bank account last 4 are the last 4 digits of the masked number instrument_account_last4=9444 BIN.. [optional]
+            instrument_brand_type (str): Filter by card brand. Available card brand types can be found in the drop-down.. [optional]
+            merchant_identity_id (str): Filter by `Identity` ID.. [optional]
+            merchant_identity_name (str): Filter Transactions by `Identity` name. The name is not case-sensitive.. [optional]
+            instrument_name (str): Filter Transactions by `Payment Instrument` name.. [optional]
+            instrument_type (str): Filter Transactions by `Payment Instrument` type. Available instrument types include: Bank Account or Payment Card. [optional]
+            merchant_id (str): Filter by `Merchant` ID.. [optional]
+            merchant_mid (str): Filter by Merchant Identification Number (MID).. [optional]
+            instrument_card_last4 (str): Filter by the payment card last 4 digits.. [optional]
+            merchant_processor_id (str): Filter by `Processor` ID.. [optional]
+            type (str): Filter by `Transfer` type. Available type filters include: All, Debits, Refunds, or Credits.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -1006,7 +1006,7 @@ class TransfersApi(object):
         >>> result = thread.get()
 
         Args:
-            transfer_id (str): ID of `transfer` object.
+            transfer_id (str): ID of `Transfer` resource.
 
         Keyword Args:
             update_transfer_request (UpdateTransferRequest): [optional]

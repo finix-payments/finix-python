@@ -230,6 +230,77 @@ class VerificationsApi(object):
             },
             api_client=api_client
         )
+        self._list_by_payment_instrument_id_endpoint = finix.api_client.Endpoint(
+            settings={
+                'response_type': (VerificationsList,),
+                'auth': [
+                    'BasicAuth'
+                ],
+                'endpoint_path': '/payment_instruments/{payment_instrument_id}/verifications',
+                'operation_id': 'list_by_payment_instrument_id',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'payment_instrument_id',
+                    'limit',
+                    'offset',
+                    'page_number',
+                    'page_size',
+                ],
+                'required': [
+                    'payment_instrument_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'payment_instrument_id':
+                        (str,),
+                    'limit':
+                        (int,),
+                    'offset':
+                        (int,),
+                    'page_number':
+                        (int,),
+                    'page_size':
+                        (int,),
+                },
+                'attribute_map': {
+                    'payment_instrument_id': 'payment_instrument_id',
+                    'limit': 'limit',
+                    'offset': 'offset',
+                    'page_number': 'pageNumber',
+                    'page_size': 'pageSize',
+                },
+                'location_map': {
+                    'payment_instrument_id': 'path',
+                    'limit': 'query',
+                    'offset': 'query',
+                    'page_number': 'query',
+                    'page_size': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/hal+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
         self._list_endpoint = finix.api_client.Endpoint(
             settings={
                 'response_type': (VerificationsList,),
@@ -294,9 +365,9 @@ class VerificationsApi(object):
         self,
         **kwargs
     ):
-        """Perform a Verification  # noqa: E501
+        """Create a Merchant Verification  # noqa: E501
 
-        Create a `verification` to verify an `Identity` or `Payment Instrument`.  Verifications can also be created directly on the resources you want to verify: - `POST /merchants/{id}/verifications` - `POST /payment_instruments/{id}/verifications`  # noqa: E501
+        Create a `Verification` to verify a merchant's `Identity`.  Verifications can also be created directly on the resources you want to verify: - `POST /merchants/{merchant_id}/verifications`  Verify `Payment Instruments` directly on the resource:  - `POST /payment_instruments/{payment_instrument_id}/verifications`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -369,7 +440,7 @@ class VerificationsApi(object):
         verification_id,
         **kwargs
     ):
-        """Get a Verification  # noqa: E501
+        """Fetch a Verification  # noqa: E501
 
         Retrieve the details of a `Verification`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -449,7 +520,7 @@ class VerificationsApi(object):
     ):
         """List Merchant Verifications  # noqa: E501
 
-        Get a list of all the `Verifications` in the `Merchant` object.  # noqa: E501
+        Get a list of all the `Verifications` for a `Merchant` resource.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -525,6 +596,90 @@ class VerificationsApi(object):
         fl = FinixList(ret, self.list_by_merchant_id,  **kwargs)
         return fl
 
+    def list_by_payment_instrument_id(
+        self,
+        payment_instrument_id,
+        **kwargs
+    ):
+        """List Payment Instrument Verifications  # noqa: E501
+
+        List all the `Verifications` created for a `Payment Instrument`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.list_by_payment_instrument_id(payment_instrument_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            payment_instrument_id (str): ID of `Payment Instrument `object.
+
+        Keyword Args:
+            limit (int): The number of entries to return.. [optional]
+            offset (int): The number of items to skip before starting to collect the result set.. [optional]
+            page_number (int): The page number to list.. [optional]
+            page_size (int): The size of the page.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            VerificationsList
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', False
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', False
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['payment_instrument_id'] = \
+            payment_instrument_id
+        ret = self._list_by_payment_instrument_id_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list_by_payment_instrument_id,  **kwargs)
+        return fl
+
     def list(
         self,
         **kwargs
@@ -540,7 +695,7 @@ class VerificationsApi(object):
 
 
         Keyword Args:
-            limit (int): The numbers of items to return. [optional]
+            limit (int): The numbers of items to return.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status

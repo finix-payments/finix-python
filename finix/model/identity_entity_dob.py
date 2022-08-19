@@ -53,6 +53,15 @@ class IdentityEntityDob(ModelNormal):
     }
 
     validations = {
+        ('day',): {
+            'inclusive_minimum': 1,
+        },
+        ('month',): {
+            'inclusive_minimum': 1,
+        },
+        ('year',): {
+            'inclusive_minimum': 1900,
+        },
     }
 
     @cached_property
@@ -133,9 +142,9 @@ class IdentityEntityDob(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            day (int): [optional]  # noqa: E501
-            month (int): [optional]  # noqa: E501
-            year (int): [optional]  # noqa: E501
+            day (int): Day of birth (between 1 and 31).. [optional]  # noqa: E501
+            month (int): Month of birth (between 1 and 12).. [optional]  # noqa: E501
+            year (int): Year of birth (4-digit). Year must be greater than 1900.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -217,9 +226,9 @@ class IdentityEntityDob(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            day (int): [optional]  # noqa: E501
-            month (int): [optional]  # noqa: E501
-            year (int): [optional]  # noqa: E501
+            day (int): Day of birth (between 1 and 31).. [optional]  # noqa: E501
+            month (int): Month of birth (between 1 and 12).. [optional]  # noqa: E501
+            year (int): Year of birth (4-digit). Year must be greater than 1900.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

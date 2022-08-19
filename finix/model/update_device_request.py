@@ -27,8 +27,12 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
+def lazy_import():
+    from finix.model.tags import Tags
+    globals()['Tags'] = Tags
 
-class CreateIdentityRequestEntityBusinessAddress(ModelNormal):
+
+class UpdateDeviceRequest(ModelNormal):
     """
 
     Attributes:
@@ -50,27 +54,12 @@ class CreateIdentityRequestEntityBusinessAddress(ModelNormal):
     """
 
     allowed_values = {
+        ('action',): {
+            'DEACTIVATE': "DEACTIVATE",
+        },
     }
 
     validations = {
-        ('city',): {
-            'min_length': 1,
-        },
-        ('country',): {
-            'min_length': 1,
-        },
-        ('region',): {
-            'min_length': 1,
-        },
-        ('line2',): {
-            'min_length': 1,
-        },
-        ('line1',): {
-            'min_length': 1,
-        },
-        ('postal_code',): {
-            'min_length': 1,
-        },
     }
 
     @cached_property
@@ -79,9 +68,10 @@ class CreateIdentityRequestEntityBusinessAddress(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
+        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
-    _nullable = True
+    _nullable = False
 
     @cached_property
     def openapi_types():
@@ -93,13 +83,12 @@ class CreateIdentityRequestEntityBusinessAddress(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
+        lazy_import()
         return {
-            'city': (str,),  # noqa: E501
-            'country': (str,),  # noqa: E501
-            'region': (str,),  # noqa: E501
-            'line2': (str,),  # noqa: E501
-            'line1': (str,),  # noqa: E501
-            'postal_code': (str,),  # noqa: E501
+            'action': (str,),  # noqa: E501
+            'activation_code': (str,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
+            'idle_message': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -108,12 +97,10 @@ class CreateIdentityRequestEntityBusinessAddress(ModelNormal):
 
 
     attribute_map = {
-        'city': 'city',  # noqa: E501
-        'country': 'country',  # noqa: E501
-        'region': 'region',  # noqa: E501
-        'line2': 'line2',  # noqa: E501
-        'line1': 'line1',  # noqa: E501
-        'postal_code': 'postal_code',  # noqa: E501
+        'action': 'action',  # noqa: E501
+        'activation_code': 'activation_code',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
+        'idle_message': 'idle_message',  # noqa: E501
     }
 
     read_only_vars = {
@@ -124,7 +111,7 @@ class CreateIdentityRequestEntityBusinessAddress(ModelNormal):
     @classmethod
     @convert_js_args_to_python_args
     def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
-        """CreateIdentityRequestEntityBusinessAddress - a model defined in OpenAPI
+        """UpdateDeviceRequest - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -157,12 +144,10 @@ class CreateIdentityRequestEntityBusinessAddress(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            city (str): City (max 20 characters).. [optional]  # noqa: E501
-            country (str): 3-Letter Country code (e.g. USA).. [optional]  # noqa: E501
-            region (str): 2-letter state code.. [optional]  # noqa: E501
-            line2 (str): Second line of the address (max 35 characters).. [optional]  # noqa: E501
-            line1 (str): First line of the address (max 35 characters).. [optional]  # noqa: E501
-            postal_code (str): Zip or Postal code (max 7 characters).. [optional]  # noqa: E501
+            action (str): The action you want to perform on the device.. [optional] if omitted the server will use the default value of "DEACTIVATE"  # noqa: E501
+            activation_code (str): Used when `action` is **ACTIVATE**. The input the code thats show up on the device screen.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            idle_message (str): Message to display on the idle screen.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -211,7 +196,7 @@ class CreateIdentityRequestEntityBusinessAddress(ModelNormal):
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
-        """CreateIdentityRequestEntityBusinessAddress - a model defined in OpenAPI
+        """UpdateDeviceRequest - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -244,12 +229,10 @@ class CreateIdentityRequestEntityBusinessAddress(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            city (str): City (max 20 characters).. [optional]  # noqa: E501
-            country (str): 3-Letter Country code (e.g. USA).. [optional]  # noqa: E501
-            region (str): 2-letter state code.. [optional]  # noqa: E501
-            line2 (str): Second line of the address (max 35 characters).. [optional]  # noqa: E501
-            line1 (str): First line of the address (max 35 characters).. [optional]  # noqa: E501
-            postal_code (str): Zip or Postal code (max 7 characters).. [optional]  # noqa: E501
+            action (str): The action you want to perform on the device.. [optional] if omitted the server will use the default value of "DEACTIVATE"  # noqa: E501
+            activation_code (str): Used when `action` is **ACTIVATE**. The input the code thats show up on the device screen.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            idle_message (str): Message to display on the idle screen.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -28,7 +28,7 @@ from finix.exceptions import ApiAttributeError
 
 
 
-class InputDetails(ModelNormal):
+class AuthorizationCapturedExternalResponses(ModelNormal):
     """
 
     Attributes:
@@ -76,9 +76,8 @@ class InputDetails(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'input_text': (str,),  # noqa: E501
-            'selection': (int,),  # noqa: E501
-            'signature_data': (str,),  # noqa: E501
+            'body': (str,),  # noqa: E501
+            'content_type': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -87,9 +86,8 @@ class InputDetails(ModelNormal):
 
 
     attribute_map = {
-        'input_text': 'input_text',  # noqa: E501
-        'selection': 'selection',  # noqa: E501
-        'signature_data': 'signature_data',  # noqa: E501
+        'body': 'body',  # noqa: E501
+        'content_type': 'content_type',  # noqa: E501
     }
 
     read_only_vars = {
@@ -100,7 +98,7 @@ class InputDetails(ModelNormal):
     @classmethod
     @convert_js_args_to_python_args
     def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
-        """InputDetails - a model defined in OpenAPI
+        """AuthorizationCapturedExternalResponses - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -133,9 +131,8 @@ class InputDetails(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            input_text (str): [optional]  # noqa: E501
-            selection (int): [optional]  # noqa: E501
-            signature_data (str): [optional]  # noqa: E501
+            body (str): [optional]  # noqa: E501
+            content_type (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -184,7 +181,7 @@ class InputDetails(ModelNormal):
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
-        """InputDetails - a model defined in OpenAPI
+        """AuthorizationCapturedExternalResponses - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -217,9 +214,8 @@ class InputDetails(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            input_text (str): [optional]  # noqa: E501
-            selection (int): [optional]  # noqa: E501
-            signature_data (str): [optional]  # noqa: E501
+            body (str): [optional]  # noqa: E501
+            content_type (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

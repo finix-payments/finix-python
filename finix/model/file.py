@@ -83,18 +83,18 @@ class File(ModelNormal):
         lazy_import()
         return {
             'id': (str,),  # noqa: E501
-            'status': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
-            'linked_type': (str,),  # noqa: E501
-            'linked_to': (str,),  # noqa: E501
-            'extension': (str, none_type,),  # noqa: E501
-            'display_name': (str,),  # noqa: E501
-            'type': (str,),  # noqa: E501
-            'platform_id': (str,),  # noqa: E501
             'application_id': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'display_name': (str,),  # noqa: E501
+            'extension': (str, none_type,),  # noqa: E501
             'identity_id': (str, none_type,),  # noqa: E501
+            'linked_to': (str,),  # noqa: E501
+            'linked_type': (str,),  # noqa: E501
+            'platform_id': (str,),  # noqa: E501
+            'status': (str,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
+            'type': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -104,18 +104,18 @@ class File(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'status': 'status',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'updated_at': 'updated_at',  # noqa: E501
-        'linked_type': 'linked_type',  # noqa: E501
-        'linked_to': 'linked_to',  # noqa: E501
-        'extension': 'extension',  # noqa: E501
-        'display_name': 'display_name',  # noqa: E501
-        'type': 'type',  # noqa: E501
-        'platform_id': 'platform_id',  # noqa: E501
         'application_id': 'application_id',  # noqa: E501
-        'tags': 'tags',  # noqa: E501
+        'display_name': 'display_name',  # noqa: E501
+        'extension': 'extension',  # noqa: E501
         'identity_id': 'identity_id',  # noqa: E501
+        'linked_to': 'linked_to',  # noqa: E501
+        'linked_type': 'linked_type',  # noqa: E501
+        'platform_id': 'platform_id',  # noqa: E501
+        'status': 'status',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     read_only_vars = {
@@ -160,18 +160,18 @@ class File(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): The ID of the `File` resource.. [optional]  # noqa: E501
-            status (str): The status of the file's review. The statuses available includes:<br><li><strong>REQUIRES_UPLOAD</strong>: A file still needs to be uploaded to the file object.<br><li><strong>PENDING</strong>: Finix's underwriting team is still reviewing the uploaded files.<br><li><strong>INVALID</strong>: The file couldn't be read.<br><li><strong>UPLOADED</strong>: The file has been uploaded to the resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
-            linked_type (str): Autofills to **Merchant**.. [optional]  # noqa: E501
-            linked_to (str): The resource ID the `File` is linked to.. [optional]  # noqa: E501
-            extension (str, none_type): The extension of the file.. [optional]  # noqa: E501
-            display_name (str): The name of the `File` object. If you don't provide a name, Finix will name the object with the convention: **FILE_(file_id)**.. [optional]  # noqa: E501
-            type (str): The type of document.. [optional]  # noqa: E501
-            platform_id (str): The ID of the `Platform` that the `File` was created under.. [optional]  # noqa: E501
             application_id (str): The ID of the `Application` that the `File` was created under.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            display_name (str): The name of the `File` object. If you don't provide a name, Finix will name the object with the convention: **FILE_(file_id)**.. [optional]  # noqa: E501
+            extension (str, none_type): The extension of the file.. [optional]  # noqa: E501
             identity_id (str, none_type): ID of the `Identity` that created the `File`.. [optional]  # noqa: E501
+            linked_to (str): The resource ID the `File` is linked to.. [optional]  # noqa: E501
+            linked_type (str): Autofills to **Merchant**.. [optional]  # noqa: E501
+            platform_id (str): The ID of the `Platform` that the `File` was created under.. [optional]  # noqa: E501
+            status (str): The status of the file's review. The statuses available includes:<br><li><strong>REQUIRES_UPLOAD</strong>: A file still needs to be uploaded to the file object.<br><li><strong>PENDING</strong>: Finix's underwriting team is still reviewing the uploaded files.<br><li><strong>INVALID</strong>: The file couldn't be read.<br><li><strong>UPLOADED</strong>: The file has been uploaded to the resource.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            type (str): The type of document.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -254,18 +254,18 @@ class File(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): The ID of the `File` resource.. [optional]  # noqa: E501
-            status (str): The status of the file's review. The statuses available includes:<br><li><strong>REQUIRES_UPLOAD</strong>: A file still needs to be uploaded to the file object.<br><li><strong>PENDING</strong>: Finix's underwriting team is still reviewing the uploaded files.<br><li><strong>INVALID</strong>: The file couldn't be read.<br><li><strong>UPLOADED</strong>: The file has been uploaded to the resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
-            linked_type (str): Autofills to **Merchant**.. [optional]  # noqa: E501
-            linked_to (str): The resource ID the `File` is linked to.. [optional]  # noqa: E501
-            extension (str, none_type): The extension of the file.. [optional]  # noqa: E501
-            display_name (str): The name of the `File` object. If you don't provide a name, Finix will name the object with the convention: **FILE_(file_id)**.. [optional]  # noqa: E501
-            type (str): The type of document.. [optional]  # noqa: E501
-            platform_id (str): The ID of the `Platform` that the `File` was created under.. [optional]  # noqa: E501
             application_id (str): The ID of the `Application` that the `File` was created under.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            display_name (str): The name of the `File` object. If you don't provide a name, Finix will name the object with the convention: **FILE_(file_id)**.. [optional]  # noqa: E501
+            extension (str, none_type): The extension of the file.. [optional]  # noqa: E501
             identity_id (str, none_type): ID of the `Identity` that created the `File`.. [optional]  # noqa: E501
+            linked_to (str): The resource ID the `File` is linked to.. [optional]  # noqa: E501
+            linked_type (str): Autofills to **Merchant**.. [optional]  # noqa: E501
+            platform_id (str): The ID of the `Platform` that the `File` was created under.. [optional]  # noqa: E501
+            status (str): The status of the file's review. The statuses available includes:<br><li><strong>REQUIRES_UPLOAD</strong>: A file still needs to be uploaded to the file object.<br><li><strong>PENDING</strong>: Finix's underwriting team is still reviewing the uploaded files.<br><li><strong>INVALID</strong>: The file couldn't be read.<br><li><strong>UPLOADED</strong>: The file has been uploaded to the resource.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            type (str): The type of document.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

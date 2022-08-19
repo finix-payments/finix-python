@@ -191,37 +191,37 @@ class ListTransfersQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            sort (str): Specify key to be used for sorting the collection. [optional]  # noqa: E501
+            sort (str): Specify key to be used for sorting the collection.. [optional]  # noqa: E501
             after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
-            limit (int): The numbers of items to return. [optional]  # noqa: E501
-            amount (int): Filter by an amount equal to the given value. [optional]  # noqa: E501
-            amount_gte (int): Filter by an amount greater than or equal. [optional]  # noqa: E501
-            amount_gt (int): Filter by an amount greater than. [optional]  # noqa: E501
-            amount_lte (int): Filter by an amount less than or equal. [optional]  # noqa: E501
-            amount_lt (int): Filter by an amount less than. [optional]  # noqa: E501
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]  # noqa: E501
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]  # noqa: E501
-            idempotency_id (str): Filter by idempotency_id. [optional]  # noqa: E501
-            id (str): Filter by id. [optional]  # noqa: E501
+            limit (int): The numbers of items to return.. [optional]  # noqa: E501
+            amount (int): Filter by an amount equal to the given value.. [optional]  # noqa: E501
+            amount_gte (int): Filter by an amount greater than or equal.. [optional]  # noqa: E501
+            amount_gt (int): Filter by an amount greater than.. [optional]  # noqa: E501
+            amount_lte (int): Filter by an amount less than or equal.. [optional]  # noqa: E501
+            amount_lt (int): Filter by an amount less than.. [optional]  # noqa: E501
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]  # noqa: E501
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]  # noqa: E501
+            idempotency_id (str): Filter by `idempotency_id`.. [optional]  # noqa: E501
+            id (str): Filter by `id`.. [optional]  # noqa: E501
             state (str): Filter by Transaction state.. [optional]  # noqa: E501
-            ready_to_settle_at_gte (str): Filter by ready_to_settle_at. [optional]  # noqa: E501
-            ready_to_settle_at_lte (str): Filter by ready_to_settle_at. [optional]  # noqa: E501
-            statement_descriptor (int): Filter by statement_descriptor. [optional]  # noqa: E501
-            trace_id (str): Filter by trace_id. [optional]  # noqa: E501
-            updated_at_gte (str): Filter where updated_at is after the given date. [optional]  # noqa: E501
-            updated_at_lte (str): Filter where updated_at is before the given date. [optional]  # noqa: E501
-            instrument_bin (str): Filter by Bank Identification Number (BIN). The BIN is the first 6 digits of the masked number. [optional]  # noqa: E501
-            instrument_account_last4 (str): Filter Transactions by the last 4 digits of the bank account. The bank account last 4 are the last 4 digits of the masked number instrument_account_last4=9444 BIN . [optional]  # noqa: E501
-            instrument_brand_type (str): Filter by card brand. Available card brand types can be found in the drop-down. [optional]  # noqa: E501
-            merchant_identity_id (str): Filter by Identity ID. [optional]  # noqa: E501
-            merchant_identity_name (str): Filter Transactions by Identity name. The name is not case-sensitive. [optional]  # noqa: E501
-            instrument_name (str): Filter Transactions by payment instrument name. [optional]  # noqa: E501
-            instrument_type (str): Filter Transactions by payment instrument type. Available instrument types include: Bank Account or Payment Card. [optional]  # noqa: E501
-            merchant_id (str): Filter by Merchant ID. [optional]  # noqa: E501
-            merchant_mid (str): Filter by Merchant Identification Number (MID). [optional]  # noqa: E501
-            instrument_card_last4 (str): Filter by the payment card last 4 digits. [optional]  # noqa: E501
-            merchant_processor_id (str): Filter by Processor ID. [optional]  # noqa: E501
-            type (str): Filter by Transfer type. Available type filters include: All, Debits, Refunds, or Credits.. [optional]  # noqa: E501
+            ready_to_settle_at_gte (str): Filter by `ready_to_settle_at`.. [optional]  # noqa: E501
+            ready_to_settle_at_lte (str): Filter by `ready_to_settle_at`.. [optional]  # noqa: E501
+            statement_descriptor (int): Filter by `statement_descriptor`.. [optional]  # noqa: E501
+            trace_id (str): Filter by `trace_id`.. [optional]  # noqa: E501
+            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]  # noqa: E501
+            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]  # noqa: E501
+            instrument_bin (str): Filter by Bank Identification Number (BIN). The BIN is the first 6 digits of the masked number.. [optional]  # noqa: E501
+            instrument_account_last4 (str): Filter Transactions by the last 4 digits of the bank account. The bank account last 4 are the last 4 digits of the masked number instrument_account_last4=9444 BIN.. [optional]  # noqa: E501
+            instrument_brand_type (str): Filter by card brand. Available card brand types can be found in the drop-down.. [optional]  # noqa: E501
+            merchant_identity_id (str): Filter by `Identity` ID.. [optional]  # noqa: E501
+            merchant_identity_name (str): Filter Transactions by `Identity` name. The name is not case-sensitive.. [optional]  # noqa: E501
+            instrument_name (str): Filter Transactions by `Payment Instrument` name.. [optional]  # noqa: E501
+            instrument_type (str): Filter Transactions by `Payment Instrument` type. Available instrument types include: Bank Account or Payment Card. [optional]  # noqa: E501
+            merchant_id (str): Filter by `Merchant` ID.. [optional]  # noqa: E501
+            merchant_mid (str): Filter by Merchant Identification Number (MID).. [optional]  # noqa: E501
+            instrument_card_last4 (str): Filter by the payment card last 4 digits.. [optional]  # noqa: E501
+            merchant_processor_id (str): Filter by `Processor` ID.. [optional]  # noqa: E501
+            type (str): Filter by `Transfer` type. Available type filters include: All, Debits, Refunds, or Credits.. [optional]  # noqa: E501
             before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
         """
 
@@ -304,37 +304,37 @@ class ListTransfersQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            sort (str): Specify key to be used for sorting the collection. [optional]  # noqa: E501
+            sort (str): Specify key to be used for sorting the collection.. [optional]  # noqa: E501
             after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
-            limit (int): The numbers of items to return. [optional]  # noqa: E501
-            amount (int): Filter by an amount equal to the given value. [optional]  # noqa: E501
-            amount_gte (int): Filter by an amount greater than or equal. [optional]  # noqa: E501
-            amount_gt (int): Filter by an amount greater than. [optional]  # noqa: E501
-            amount_lte (int): Filter by an amount less than or equal. [optional]  # noqa: E501
-            amount_lt (int): Filter by an amount less than. [optional]  # noqa: E501
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]  # noqa: E501
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]  # noqa: E501
-            idempotency_id (str): Filter by idempotency_id. [optional]  # noqa: E501
-            id (str): Filter by id. [optional]  # noqa: E501
+            limit (int): The numbers of items to return.. [optional]  # noqa: E501
+            amount (int): Filter by an amount equal to the given value.. [optional]  # noqa: E501
+            amount_gte (int): Filter by an amount greater than or equal.. [optional]  # noqa: E501
+            amount_gt (int): Filter by an amount greater than.. [optional]  # noqa: E501
+            amount_lte (int): Filter by an amount less than or equal.. [optional]  # noqa: E501
+            amount_lt (int): Filter by an amount less than.. [optional]  # noqa: E501
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]  # noqa: E501
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]  # noqa: E501
+            idempotency_id (str): Filter by `idempotency_id`.. [optional]  # noqa: E501
+            id (str): Filter by `id`.. [optional]  # noqa: E501
             state (str): Filter by Transaction state.. [optional]  # noqa: E501
-            ready_to_settle_at_gte (str): Filter by ready_to_settle_at. [optional]  # noqa: E501
-            ready_to_settle_at_lte (str): Filter by ready_to_settle_at. [optional]  # noqa: E501
-            statement_descriptor (int): Filter by statement_descriptor. [optional]  # noqa: E501
-            trace_id (str): Filter by trace_id. [optional]  # noqa: E501
-            updated_at_gte (str): Filter where updated_at is after the given date. [optional]  # noqa: E501
-            updated_at_lte (str): Filter where updated_at is before the given date. [optional]  # noqa: E501
-            instrument_bin (str): Filter by Bank Identification Number (BIN). The BIN is the first 6 digits of the masked number. [optional]  # noqa: E501
-            instrument_account_last4 (str): Filter Transactions by the last 4 digits of the bank account. The bank account last 4 are the last 4 digits of the masked number instrument_account_last4=9444 BIN . [optional]  # noqa: E501
-            instrument_brand_type (str): Filter by card brand. Available card brand types can be found in the drop-down. [optional]  # noqa: E501
-            merchant_identity_id (str): Filter by Identity ID. [optional]  # noqa: E501
-            merchant_identity_name (str): Filter Transactions by Identity name. The name is not case-sensitive. [optional]  # noqa: E501
-            instrument_name (str): Filter Transactions by payment instrument name. [optional]  # noqa: E501
-            instrument_type (str): Filter Transactions by payment instrument type. Available instrument types include: Bank Account or Payment Card. [optional]  # noqa: E501
-            merchant_id (str): Filter by Merchant ID. [optional]  # noqa: E501
-            merchant_mid (str): Filter by Merchant Identification Number (MID). [optional]  # noqa: E501
-            instrument_card_last4 (str): Filter by the payment card last 4 digits. [optional]  # noqa: E501
-            merchant_processor_id (str): Filter by Processor ID. [optional]  # noqa: E501
-            type (str): Filter by Transfer type. Available type filters include: All, Debits, Refunds, or Credits.. [optional]  # noqa: E501
+            ready_to_settle_at_gte (str): Filter by `ready_to_settle_at`.. [optional]  # noqa: E501
+            ready_to_settle_at_lte (str): Filter by `ready_to_settle_at`.. [optional]  # noqa: E501
+            statement_descriptor (int): Filter by `statement_descriptor`.. [optional]  # noqa: E501
+            trace_id (str): Filter by `trace_id`.. [optional]  # noqa: E501
+            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]  # noqa: E501
+            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]  # noqa: E501
+            instrument_bin (str): Filter by Bank Identification Number (BIN). The BIN is the first 6 digits of the masked number.. [optional]  # noqa: E501
+            instrument_account_last4 (str): Filter Transactions by the last 4 digits of the bank account. The bank account last 4 are the last 4 digits of the masked number instrument_account_last4=9444 BIN.. [optional]  # noqa: E501
+            instrument_brand_type (str): Filter by card brand. Available card brand types can be found in the drop-down.. [optional]  # noqa: E501
+            merchant_identity_id (str): Filter by `Identity` ID.. [optional]  # noqa: E501
+            merchant_identity_name (str): Filter Transactions by `Identity` name. The name is not case-sensitive.. [optional]  # noqa: E501
+            instrument_name (str): Filter Transactions by `Payment Instrument` name.. [optional]  # noqa: E501
+            instrument_type (str): Filter Transactions by `Payment Instrument` type. Available instrument types include: Bank Account or Payment Card. [optional]  # noqa: E501
+            merchant_id (str): Filter by `Merchant` ID.. [optional]  # noqa: E501
+            merchant_mid (str): Filter by Merchant Identification Number (MID).. [optional]  # noqa: E501
+            instrument_card_last4 (str): Filter by the payment card last 4 digits.. [optional]  # noqa: E501
+            merchant_processor_id (str): Filter by `Processor` ID.. [optional]  # noqa: E501
+            type (str): Filter by `Transfer` type. Available type filters include: All, Debits, Refunds, or Credits.. [optional]  # noqa: E501
             before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
         """
 

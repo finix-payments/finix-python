@@ -96,7 +96,6 @@ class Processor(ModelNormal):
             'updated_at': (datetime,),  # noqa: E501
             'application': (str,),  # noqa: E501
             'application_config': (ProcessorApplicationConfig,),  # noqa: E501
-            'config': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'default_merchant_profile': (str, none_type,),  # noqa: E501
             'enabled': (bool,),  # noqa: E501
             'processor': (str,),  # noqa: E501
@@ -115,7 +114,6 @@ class Processor(ModelNormal):
         'updated_at': 'updated_at',  # noqa: E501
         'application': 'application',  # noqa: E501
         'application_config': 'application_config',  # noqa: E501
-        'config': 'config',  # noqa: E501
         'default_merchant_profile': 'default_merchant_profile',  # noqa: E501
         'enabled': 'enabled',  # noqa: E501
         'processor': 'processor',  # noqa: E501
@@ -169,7 +167,6 @@ class Processor(ModelNormal):
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             application (str): The ID of the `Application` resource.. [optional]  # noqa: E501
             application_config (ProcessorApplicationConfig): [optional]  # noqa: E501
-            config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             default_merchant_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
             enabled (bool): Details if the `Processor` resource is enabled. Set to **false** to disable the `Processor`.. [optional]  # noqa: E501
             processor (str): The name of the processor.. [optional]  # noqa: E501
@@ -261,7 +258,6 @@ class Processor(ModelNormal):
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             application (str): The ID of the `Application` resource.. [optional]  # noqa: E501
             application_config (ProcessorApplicationConfig): [optional]  # noqa: E501
-            config ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
             default_merchant_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
             enabled (bool): Details if the `Processor` resource is enabled. Set to **false** to disable the `Processor`.. [optional]  # noqa: E501
             processor (str): The name of the processor.. [optional]  # noqa: E501

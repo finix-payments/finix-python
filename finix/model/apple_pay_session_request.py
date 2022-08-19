@@ -135,8 +135,8 @@ class ApplePaySessionRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            display_name (str): This will be the merchant name shown to users when making a purchase via Apple Pay.1. [optional]  # noqa: E501
-            domain (str): The domain where the buyer is initiating the payment.. [optional]  # noqa: E501
+            display_name (str): This will be the merchant name shown to users when making a purchase via Apple Pay.. [optional]  # noqa: E501
+            domain (str): The domain (or website) where the buyer is initiating the payment.. [optional]  # noqa: E501
             merchant_identity (str): The `merchant_identity_id` used when registering the business with Apple Pay through our registration API.. [optional]  # noqa: E501
             validation_url (str): A unique validation URL that will be provided by the Apple SDK front-end for every payment.. [optional]  # noqa: E501
         """
@@ -220,8 +220,8 @@ class ApplePaySessionRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            display_name (str): This will be the merchant name shown to users when making a purchase via Apple Pay.1. [optional]  # noqa: E501
-            domain (str): The domain where the buyer is initiating the payment.. [optional]  # noqa: E501
+            display_name (str): This will be the merchant name shown to users when making a purchase via Apple Pay.. [optional]  # noqa: E501
+            domain (str): The domain (or website) where the buyer is initiating the payment.. [optional]  # noqa: E501
             merchant_identity (str): The `merchant_identity_id` used when registering the business with Apple Pay through our registration API.. [optional]  # noqa: E501
             validation_url (str): A unique validation URL that will be provided by the Apple SDK front-end for every payment.. [optional]  # noqa: E501
         """

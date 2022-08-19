@@ -229,7 +229,7 @@ class FeeProfilesApi(object):
     ):
         """Create a Fee Profile  # noqa: E501
 
-        Create fee profiles  # noqa: E501
+        Create a `fee_profile`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -304,7 +304,7 @@ class FeeProfilesApi(object):
     ):
         """Fetch a Fee Profile  # noqa: E501
 
-        Get fee profile  # noqa: E501
+        Get a `fee_profile`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -312,7 +312,7 @@ class FeeProfilesApi(object):
         >>> result = thread.get()
 
         Args:
-            fee_profile_id (str): The ID of the fee profile.
+            fee_profile_id (str): The ID of the `fee_profile`.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -381,7 +381,7 @@ class FeeProfilesApi(object):
     ):
         """List Fee Profiles  # noqa: E501
 
-        Get all fee profiles  # noqa: E501
+        List all `Fee Profiles`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -392,7 +392,7 @@ class FeeProfilesApi(object):
         Keyword Args:
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
-            limit (int): The numbers of items to return. [optional]
+            limit (int): The numbers of items to return.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

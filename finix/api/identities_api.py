@@ -686,7 +686,7 @@ class IdentitiesApi(object):
         >>> result = thread.get()
 
         Args:
-            identity_id (str): ID of identity to fetch
+            identity_id (str): ID of `Identity` to verify.
 
         Keyword Args:
             create_verification_request (CreateVerificationRequest): [optional]
@@ -765,7 +765,7 @@ class IdentitiesApi(object):
         >>> result = thread.get()
 
         Args:
-            identity_id (str): ID of the `identity` to fetch
+            identity_id (str): ID of the `Identity` to fetch.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -843,18 +843,18 @@ class IdentitiesApi(object):
 
 
         Keyword Args:
-            sort (str): Specify key to be used for sorting the collection. [optional]
+            sort (str): Specify key to be used for sorting the collection.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
-            limit (int): The numbers of items to return. [optional]
-            id (str): Filter by id. [optional]
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]
-            default_statement_descriptor (str): Filter by the default_statement_descriptor. [optional]
+            limit (int): The numbers of items to return.. [optional]
+            id (str): Filter by `id`.. [optional]
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
+            default_statement_descriptor (str): Filter by the `default_statement_descriptor`.. [optional]
             business_name (str): Filter by the full business name. Partial business names are not supported.. [optional]
-            business_type (str): Filter by the business type. Partial business types are not supported. [optional]
+            business_type (str): Filter by the business type. Partial business types are not supported.. [optional]
             email (str): Filter by the email address or email domain. Partial emails are not supported.. [optional]
-            first_name (str): Filter by the first name of the person associated to the Identity.. [optional]
-            last_name (str): Filter by the last name of the person associated to the identity.. [optional]
+            first_name (str): Filter by the first name of the person associated to the `Identity`.. [optional]
+            last_name (str): Filter by the last name of the person associated to the `Identity`.. [optional]
             title (str): Filter by the title if available.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -1015,7 +1015,7 @@ class IdentitiesApi(object):
         >>> result = thread.get()
 
         Args:
-            identity_id (str): ID of the `identity` to fetch
+            identity_id (str): ID of the `Identity` to fetch.
 
         Keyword Args:
             update_identity_request (UpdateIdentityRequest): [optional]

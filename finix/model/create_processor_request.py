@@ -110,12 +110,11 @@ class CreateProcessorRequest(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, type, config, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, type, *args, **kwargs):  # noqa: E501
         """CreateProcessorRequest - a model defined in OpenAPI
 
         Args:
-            type (str):
-            config (CreateProcessorRequestConfig):
+            type (str): The type of processor. Use **DUMMY_V1** for sandbox.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -148,6 +147,7 @@ class CreateProcessorRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            config (CreateProcessorRequestConfig): [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 
@@ -177,7 +177,6 @@ class CreateProcessorRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.type = type
-        self.config = config
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -198,12 +197,11 @@ class CreateProcessorRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, type, config, *args, **kwargs):  # noqa: E501
+    def __init__(self, type, *args, **kwargs):  # noqa: E501
         """CreateProcessorRequest - a model defined in OpenAPI
 
         Args:
-            type (str):
-            config (CreateProcessorRequestConfig):
+            type (str): The type of processor. Use **DUMMY_V1** for sandbox.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -236,6 +234,7 @@ class CreateProcessorRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            config (CreateProcessorRequestConfig): [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 
@@ -263,7 +262,6 @@ class CreateProcessorRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.type = type
-        self.config = config
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

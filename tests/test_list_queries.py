@@ -188,6 +188,14 @@ def test_list_merchant_verifications(client00):
     assert next_list2[0].id != next_list3[0].id
 
 
+def test_list_payment_instrument_verification(client06):
+    id = 'PImc5nvdnp15atLxEBAGtxJs'
+    response = client06.verifications.list_by_payment_instrument_id(id, limit=5)
+    assert isinstance(response, FinixList)
+    assert len(response) <= 5
+    assert response[0].id[:2] == 'VI'
+
+
 def test_list_merchant_profiles(client02):
     response = client02.merchant_profiles.list(limit=5)
     assert isinstance(response, FinixList)

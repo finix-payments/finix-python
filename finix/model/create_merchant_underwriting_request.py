@@ -86,10 +86,9 @@ class CreateMerchantUnderwritingRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': (Tags,),  # noqa: E501
+            'processor': (str, none_type,),  # noqa: E501
             'gateway': (str,),  # noqa: E501
-            'processor': (str,),  # noqa: E501
-            'processor_specific_parameters': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
         }
 
     @cached_property
@@ -98,10 +97,9 @@ class CreateMerchantUnderwritingRequest(ModelNormal):
 
 
     attribute_map = {
-        'tags': 'tags',  # noqa: E501
-        'gateway': 'gateway',  # noqa: E501
         'processor': 'processor',  # noqa: E501
-        'processor_specific_parameters': 'processor_specific_parameters',  # noqa: E501
+        'gateway': 'gateway',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
     }
 
     read_only_vars = {
@@ -111,8 +109,11 @@ class CreateMerchantUnderwritingRequest(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, processor, *args, **kwargs):  # noqa: E501
         """CreateMerchantUnderwritingRequest - a model defined in OpenAPI
+
+        Args:
+            processor (str, none_type): Name of acquiring processor that settles the `Merchant's` transactions. Set to **null** to use your sandbox.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -145,10 +146,8 @@ class CreateMerchantUnderwritingRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             gateway (str): Name of the gateway that processes the `Merchant's` transaction.. [optional]  # noqa: E501
-            processor (str): Name of acquiring processor that settles the `Merchant's` transactions.. [optional]  # noqa: E501
-            processor_specific_parameters ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Additional information required by the processor being used.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -176,6 +175,7 @@ class CreateMerchantUnderwritingRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.processor = processor
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -196,8 +196,11 @@ class CreateMerchantUnderwritingRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, processor, *args, **kwargs):  # noqa: E501
         """CreateMerchantUnderwritingRequest - a model defined in OpenAPI
+
+        Args:
+            processor (str, none_type): Name of acquiring processor that settles the `Merchant's` transactions. Set to **null** to use your sandbox.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -230,10 +233,8 @@ class CreateMerchantUnderwritingRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             gateway (str): Name of the gateway that processes the `Merchant's` transaction.. [optional]  # noqa: E501
-            processor (str): Name of acquiring processor that settles the `Merchant's` transactions.. [optional]  # noqa: E501
-            processor_specific_parameters ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Additional information required by the processor being used.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -259,6 +260,7 @@ class CreateMerchantUnderwritingRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.processor = processor
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

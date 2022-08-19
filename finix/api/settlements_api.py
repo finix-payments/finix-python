@@ -30,7 +30,6 @@ from finix.model.remove_settlement_transfer import RemoveSettlementTransfer
 from finix.model.settlement import Settlement
 from finix.model.settlements_list import SettlementsList
 from finix.model.transfers_list import TransfersList
-from finix.model.update_settlement_request import UpdateSettlementRequest
 from finix.model.finix_utils import FinixList
 
 from functools import wraps
@@ -447,63 +446,6 @@ class SettlementsApi(object):
             },
             api_client=api_client
         )
-        self._update_endpoint = finix.api_client.Endpoint(
-            settings={
-                'response_type': (Settlement,),
-                'auth': [
-                    'BasicAuth'
-                ],
-                'endpoint_path': '/settlements/{settlement_id}',
-                'operation_id': 'update',
-                'http_method': 'PUT',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'settlement_id',
-                    'update_settlement_request',
-                ],
-                'required': [
-                    'settlement_id',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'settlement_id':
-                        (str,),
-                    'update_settlement_request':
-                        (UpdateSettlementRequest,),
-                },
-                'attribute_map': {
-                    'settlement_id': 'settlement_id',
-                },
-                'location_map': {
-                    'settlement_id': 'path',
-                    'update_settlement_request': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/hal+json'
-                ],
-                'content_type': [
-                    'application/hal+json'
-                ]
-            },
-            api_client=api_client
-        )
 
     def create(
         self,
@@ -512,7 +454,7 @@ class SettlementsApi(object):
     ):
         """Create a Batch Settlement  # noqa: E501
 
-        Create a batch `Settlement`. A `Settlement` is a collection of **SUCCEEDED** Transfers that are ready to get paid out to a `Merchant`.  # noqa: E501
+        Send this POST request to batch every `Transfer` that got updated to **SUCCEEDED** into a `Settlement`. The new `Settlement` will include every `Transfer` that got updated to **SUCCEEDED** since the last `Settlement` got approved.  The `Settlement` that gets created will not accrue any further transactions and gets immediately submitted for approval. - Any refunded `Transfers` get included in `Settlements` as a deduction. - **PENDING** `Transfers` don't get included in `Settlements`.  - The `total_amount` minus the `total_fee` equals the `net_amount`. The `net_amount` is the amount in cents that gets deposited into the merchant's bank account.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -520,7 +462,7 @@ class SettlementsApi(object):
         >>> result = thread.get()
 
         Args:
-            identity_id (str): ID of identity to fetch
+            identity_id (str): ID of the `Identity` for the merchant you want to settle. 
 
         Keyword Args:
             create_settlement_request (CreateSettlementRequest): [optional]
@@ -589,7 +531,7 @@ class SettlementsApi(object):
         settlement_id,
         **kwargs
     ):
-        """Get a Settlement  # noqa: E501
+        """Fetch a Settlement  # noqa: E501
 
         Retreive the details of a `Settlement`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -669,7 +611,7 @@ class SettlementsApi(object):
     ):
         """List Settlement Funding Transfers  # noqa: E501
 
-        Retrieve the `Transfers` in a `Settlement` that have `type` **CREDIT**.  # noqa: E501
+        Retrieve the `Transfers` in a `Settlement` that have `type` **CREDIT** or **DEBIT**.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -680,7 +622,7 @@ class SettlementsApi(object):
             settlement_id (str): ID of `Settlement` object.
 
         Keyword Args:
-            limit (int): The numbers of items to return. [optional]
+            limit (int): The numbers of items to return.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -763,7 +705,7 @@ class SettlementsApi(object):
             settlement_id (str): ID of `Settlement` object.
 
         Keyword Args:
-            limit (int): The numbers of items to return. [optional]
+            limit (int): The numbers of items to return.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -832,9 +774,9 @@ class SettlementsApi(object):
         self,
         **kwargs
     ):
-        """List Settlements  # noqa: E501
+        """List All Settlements  # noqa: E501
 
-        Retrieve a list of `Settlements`.  # noqa: E501
+        Retrieve a list of `Settlements`.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -843,12 +785,12 @@ class SettlementsApi(object):
 
 
         Keyword Args:
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]
-            updated_at_gte (str): Filter where updated_at is after the given date. [optional]
-            updated_at_lte (str): Filter where updated_at is before the given date. [optional]
-            id (str): Filter by id. [optional]
-            limit (int): The numbers of items to return. [optional]
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
+            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]
+            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]
+            id (str): Filter by `id`.. [optional]
+            limit (int): The numbers of items to return.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -989,83 +931,4 @@ class SettlementsApi(object):
         kwargs['settlement_id'] = \
             settlement_id
         return self._remove_transfers_from_settlement_endpoint.call_with_http_info(**kwargs)
-
-    def update(
-        self,
-        settlement_id,
-        **kwargs
-    ):
-        """Update a Settlement  # noqa: E501
-
-        Update a `Settlement`.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.update(settlement_id, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            settlement_id (str): ID of `Settlement` object.
-
-        Keyword Args:
-            update_settlement_request (UpdateSettlementRequest): [optional]
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is True.
-            _spec_property_naming (bool): True if the variable names in the input data
-                are serialized names, as specified in the OpenAPI document.
-                False if the variable names in the input data
-                are pythonic names, e.g. snake case (default)
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            Settlement
-                If the method is called asynchronously, returns the request
-                thread.
-        """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', False
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['settlement_id'] = \
-            settlement_id
-        return self._update_endpoint.call_with_http_info(**kwargs)
 
