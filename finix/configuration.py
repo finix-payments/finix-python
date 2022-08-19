@@ -25,7 +25,6 @@ JSON_SCHEMA_VALIDATION_KEYWORDS = {
 
 class Environment (str, enum.Enum):
     SANDBOX = 'https://finix.sandbox-payments-api.com'
-    PRODUCTION = 'https://finix.live-payments-api.com'
 
 class Configuration(object):
     """
