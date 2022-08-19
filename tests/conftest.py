@@ -72,6 +72,17 @@ def client05(): # used for merchant update endpoint
 
 
 @pytest.fixture
+def client06(): # used for list verification by payment instrument id endpoint
+    configuration = Configuration(
+        username = 'USpEbizhxFRAFT7oYgWjX87B',
+        password = '6d3ace2c-23f9-4e59-8b75-a1a5b8a53055',
+        environment = Environment.SANDBOX
+    )
+    client = finix.FinixClient(configuration)
+    return client
+
+
+@pytest.fixture
 def authorization(client00):
     request = CreateAuthorizationRequest(
         source="PIe2YvpcjvoVJ6PzoRPBK137",
