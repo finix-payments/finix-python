@@ -28,7 +28,7 @@ from finix.exceptions import ApiAttributeError
 
 
 
-class AdditionalPurchaseDataItemData(ModelNormal):
+class CreateAssociatedIdentityRequestEntityDob(ModelNormal):
     """
 
     Attributes:
@@ -76,15 +76,9 @@ class AdditionalPurchaseDataItemData(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'amount_excluding_sales_tax': (int,),  # noqa: E501
-            'amount_including_sales_tax': (int,),  # noqa: E501
-            'commodity_code': (str,),  # noqa: E501
-            'cost_per_unit': (int,),  # noqa: E501
-            'item_description': (str,),  # noqa: E501
-            'item_discount_amount': (int,),  # noqa: E501
-            'merchant_product_code': (str,),  # noqa: E501
-            'quantity': (int,),  # noqa: E501
-            'unit_of_measure': (str,),  # noqa: E501
+            'year': (int,),  # noqa: E501
+            'day': (int,),  # noqa: E501
+            'month': (int,),  # noqa: E501
         }
 
     @cached_property
@@ -93,15 +87,9 @@ class AdditionalPurchaseDataItemData(ModelNormal):
 
 
     attribute_map = {
-        'amount_excluding_sales_tax': 'amount_excluding_sales_tax',  # noqa: E501
-        'amount_including_sales_tax': 'amount_including_sales_tax',  # noqa: E501
-        'commodity_code': 'commodity_code',  # noqa: E501
-        'cost_per_unit': 'cost_per_unit',  # noqa: E501
-        'item_description': 'item_description',  # noqa: E501
-        'item_discount_amount': 'item_discount_amount',  # noqa: E501
-        'merchant_product_code': 'merchant_product_code',  # noqa: E501
-        'quantity': 'quantity',  # noqa: E501
-        'unit_of_measure': 'unit_of_measure',  # noqa: E501
+        'year': 'year',  # noqa: E501
+        'day': 'day',  # noqa: E501
+        'month': 'month',  # noqa: E501
     }
 
     read_only_vars = {
@@ -111,19 +99,8 @@ class AdditionalPurchaseDataItemData(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, amount_excluding_sales_tax, amount_including_sales_tax, commodity_code, cost_per_unit, item_description, item_discount_amount, merchant_product_code, quantity, unit_of_measure, *args, **kwargs):  # noqa: E501
-        """AdditionalPurchaseDataItemData - a model defined in OpenAPI
-
-        Args:
-            amount_excluding_sales_tax (int): Total cost in cents of the line item excluding tax.
-            amount_including_sales_tax (int): Total cost in cents of the line item including tax.
-            commodity_code (str): A commodity code is a numeric code representing a particular product or service as defined by the National Institute of Governmental Purchasing. The code can be 3, 5, 7, or 11 digits in length. The longer the code the more granular the description of the product/service. (max 12 characters).
-            cost_per_unit (int): The price in cents of one unit of the item purchased
-            item_description (str): Required when `item_data` is supplied (max 25 characters)
-            item_discount_amount (int): Item discount amount in cents 
-            merchant_product_code (str): Merchant defined product code (max 12 characters).
-            quantity (int): The number of items purchased. Must be greater than 0.
-            unit_of_measure (str): The unit of measure of the purchased item (max 3 characters).
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+        """CreateAssociatedIdentityRequestEntityDob - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -156,6 +133,9 @@ class AdditionalPurchaseDataItemData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            year (int): [optional]  # noqa: E501
+            day (int): [optional]  # noqa: E501
+            month (int): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -183,15 +163,6 @@ class AdditionalPurchaseDataItemData(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.amount_excluding_sales_tax = amount_excluding_sales_tax
-        self.amount_including_sales_tax = amount_including_sales_tax
-        self.commodity_code = commodity_code
-        self.cost_per_unit = cost_per_unit
-        self.item_description = item_description
-        self.item_discount_amount = item_discount_amount
-        self.merchant_product_code = merchant_product_code
-        self.quantity = quantity
-        self.unit_of_measure = unit_of_measure
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -212,19 +183,8 @@ class AdditionalPurchaseDataItemData(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, amount_excluding_sales_tax, amount_including_sales_tax, commodity_code, cost_per_unit, item_description, item_discount_amount, merchant_product_code, quantity, unit_of_measure, *args, **kwargs):  # noqa: E501
-        """AdditionalPurchaseDataItemData - a model defined in OpenAPI
-
-        Args:
-            amount_excluding_sales_tax (int): Total cost in cents of the line item excluding tax.
-            amount_including_sales_tax (int): Total cost in cents of the line item including tax.
-            commodity_code (str): A commodity code is a numeric code representing a particular product or service as defined by the National Institute of Governmental Purchasing. The code can be 3, 5, 7, or 11 digits in length. The longer the code the more granular the description of the product/service. (max 12 characters).
-            cost_per_unit (int): The price in cents of one unit of the item purchased
-            item_description (str): Required when `item_data` is supplied (max 25 characters)
-            item_discount_amount (int): Item discount amount in cents 
-            merchant_product_code (str): Merchant defined product code (max 12 characters).
-            quantity (int): The number of items purchased. Must be greater than 0.
-            unit_of_measure (str): The unit of measure of the purchased item (max 3 characters).
+    def __init__(self, *args, **kwargs):  # noqa: E501
+        """CreateAssociatedIdentityRequestEntityDob - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -257,6 +217,9 @@ class AdditionalPurchaseDataItemData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            year (int): [optional]  # noqa: E501
+            day (int): [optional]  # noqa: E501
+            month (int): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -282,15 +245,6 @@ class AdditionalPurchaseDataItemData(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.amount_excluding_sales_tax = amount_excluding_sales_tax
-        self.amount_including_sales_tax = amount_including_sales_tax
-        self.commodity_code = commodity_code
-        self.cost_per_unit = cost_per_unit
-        self.item_description = item_description
-        self.item_discount_amount = item_discount_amount
-        self.merchant_product_code = merchant_product_code
-        self.quantity = quantity
-        self.unit_of_measure = unit_of_measure
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

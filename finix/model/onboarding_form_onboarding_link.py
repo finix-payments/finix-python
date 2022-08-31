@@ -28,7 +28,7 @@ from finix.exceptions import ApiAttributeError
 
 
 
-class ProcessorSystemConfigConfigurationTemplates(ModelNormal):
+class OnboardingFormOnboardingLink(ModelNormal):
     """
 
     Attributes:
@@ -76,7 +76,8 @@ class ProcessorSystemConfigConfigurationTemplates(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'country': ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)},),  # noqa: E501
+            'expires_at': (str,),  # noqa: E501
+            'link_url': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -85,7 +86,8 @@ class ProcessorSystemConfigConfigurationTemplates(ModelNormal):
 
 
     attribute_map = {
-        'country': 'country',  # noqa: E501
+        'expires_at': 'expires_at',  # noqa: E501
+        'link_url': 'link_url',  # noqa: E501
     }
 
     read_only_vars = {
@@ -96,7 +98,7 @@ class ProcessorSystemConfigConfigurationTemplates(ModelNormal):
     @classmethod
     @convert_js_args_to_python_args
     def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
-        """ProcessorSystemConfigConfigurationTemplates - a model defined in OpenAPI
+        """OnboardingFormOnboardingLink - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -129,7 +131,8 @@ class ProcessorSystemConfigConfigurationTemplates(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            country ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}): [optional]  # noqa: E501
+            expires_at (str): A UTC timestamp detailing when the onboarding form expires and will no longer be available via `link_url`. To generate a new link to the same form, see [Get an Onboarding Form URL](/guides/onboarding/onboarding-form/#get-an-onboarding-form-url).. [optional]  # noqa: E501
+            link_url (str): The URL of the user's Finix Onboarding Form. Users can use the `link_url` to return to the form until the link expires.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -178,7 +181,7 @@ class ProcessorSystemConfigConfigurationTemplates(ModelNormal):
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
-        """ProcessorSystemConfigConfigurationTemplates - a model defined in OpenAPI
+        """OnboardingFormOnboardingLink - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -211,7 +214,8 @@ class ProcessorSystemConfigConfigurationTemplates(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            country ({str: ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},)}): [optional]  # noqa: E501
+            expires_at (str): A UTC timestamp detailing when the onboarding form expires and will no longer be available via `link_url`. To generate a new link to the same form, see [Get an Onboarding Form URL](/guides/onboarding/onboarding-form/#get-an-onboarding-form-url).. [optional]  # noqa: E501
+            link_url (str): The URL of the user's Finix Onboarding Form. Users can use the `link_url` to return to the form until the link expires.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

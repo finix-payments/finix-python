@@ -59,11 +59,6 @@ class CreateApplicationRequest(ModelNormal):
     }
 
     validations = {
-        ('user',): {
-            'regex': {
-                'pattern': r'^(US)[a-zA-Z0-9]{16,32}$',  # noqa: E501
-            },
-        },
     }
 
     @cached_property
@@ -89,11 +84,11 @@ class CreateApplicationRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'entity': (IdentityEntityForm,),  # noqa: E501
             'user': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'entity': (IdentityEntityForm,),  # noqa: E501
             'max_transaction_amount': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
         }
 
     @cached_property
@@ -102,11 +97,11 @@ class CreateApplicationRequest(ModelNormal):
 
 
     attribute_map = {
-        'entity': 'entity',  # noqa: E501
         'user': 'user',  # noqa: E501
-        'tags': 'tags',  # noqa: E501
+        'entity': 'entity',  # noqa: E501
         'max_transaction_amount': 'max_transaction_amount',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
     }
 
     read_only_vars = {
@@ -116,11 +111,10 @@ class CreateApplicationRequest(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, entity, user, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, user, *args, **kwargs):  # noqa: E501
         """CreateApplicationRequest - a model defined in OpenAPI
 
         Args:
-            entity (IdentityEntityForm):
             user (str): ID of the `User` resource.
 
         Keyword Args:
@@ -154,9 +148,10 @@ class CreateApplicationRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
+            entity (IdentityEntityForm): [optional]  # noqa: E501
             max_transaction_amount (int, none_type): Maximum amount that can be processed for a single transaction in cents (max 12 characters).. [optional]  # noqa: E501
-            name (str, none_type): Merchant's full legal business name (If INDIVIDUAL_SOLE_PROPRIETORSHIP, please input first name, Full legal last name and middle initial; max 120 characters).. [optional]  # noqa: E501
+            name (str, none_type): Merchant's full legal business name (If **INDIVIDUAL_SOLE_PROPRIETORSHIP**, enter first name, Full legal last name and middle initial; max 120 characters).. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -184,7 +179,6 @@ class CreateApplicationRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.entity = entity
         self.user = user
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
@@ -206,11 +200,10 @@ class CreateApplicationRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, entity, user, *args, **kwargs):  # noqa: E501
+    def __init__(self, user, *args, **kwargs):  # noqa: E501
         """CreateApplicationRequest - a model defined in OpenAPI
 
         Args:
-            entity (IdentityEntityForm):
             user (str): ID of the `User` resource.
 
         Keyword Args:
@@ -244,9 +237,10 @@ class CreateApplicationRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
+            entity (IdentityEntityForm): [optional]  # noqa: E501
             max_transaction_amount (int, none_type): Maximum amount that can be processed for a single transaction in cents (max 12 characters).. [optional]  # noqa: E501
-            name (str, none_type): Merchant's full legal business name (If INDIVIDUAL_SOLE_PROPRIETORSHIP, please input first name, Full legal last name and middle initial; max 120 characters).. [optional]  # noqa: E501
+            name (str, none_type): Merchant's full legal business name (If **INDIVIDUAL_SOLE_PROPRIETORSHIP**, enter first name, Full legal last name and middle initial; max 120 characters).. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -272,7 +266,6 @@ class CreateApplicationRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.entity = entity
         self.user = user
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

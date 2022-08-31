@@ -19,6 +19,7 @@ from finix.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from finix.model.create_associated_identity_request import CreateAssociatedIdentityRequest
 from finix.model.create_identity_request import CreateIdentityRequest
 from finix.model.create_verification_request import CreateVerificationRequest
 from finix.model.error401_unauthorized import Error401Unauthorized
@@ -79,7 +80,7 @@ class IdentitiesApi(object):
             params_map={
                 'all': [
                     'identity_id',
-                    'create_identity_request',
+                    'create_associated_identity_request',
                 ],
                 'required': [
                     'identity_id',
@@ -99,15 +100,15 @@ class IdentitiesApi(object):
                 'openapi_types': {
                     'identity_id':
                         (str,),
-                    'create_identity_request':
-                        (CreateIdentityRequest,),
+                    'create_associated_identity_request':
+                        (CreateAssociatedIdentityRequest,),
                 },
                 'attribute_map': {
                     'identity_id': 'identity_id',
                 },
                 'location_map': {
                     'identity_id': 'path',
-                    'create_identity_request': 'body',
+                    'create_associated_identity_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -536,7 +537,7 @@ class IdentitiesApi(object):
             identity_id (str): ID of `Identity` to associate object with.
 
         Keyword Args:
-            create_identity_request (CreateIdentityRequest): [optional]
+            create_associated_identity_request (CreateAssociatedIdentityRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -603,7 +604,7 @@ class IdentitiesApi(object):
     ):
         """Create an Identity  # noqa: E501
 
-        Create an `Identity` for your merchant or buyer.  Creating `Identities` for merchants requires they provide [KYC details](/docs/guides/getting-started/).  Related Guides: [Getting Started](/docs/guides/getting-started/), [Onboarding](/docs/guides/onboarding/)  # noqa: E501
+        Create an `Identity` for your merchant or buyer.  All fields for a buyer's `Identity` are optional.   Providing `business_type` indicates that the `Identity` is being created for a Merchant.  Creating `Identities` for merchants requires they provide [KYC details](/docs/guides/getting-started/). - When creating an `Identity` for a buyer , don't pass the `business_type` field. Including a value for `business_type` configures the created `Identity` to get processed as a merchant. - When creating an `Identity` for a buyer, all fields are optional . Related Guides: [Getting Started](/docs/guides/getting-started/), [Onboarding](/docs/guides/onboarding/)  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -612,7 +613,7 @@ class IdentitiesApi(object):
 
 
         Keyword Args:
-            create_identity_request (CreateIdentityRequest): [optional]
+            create_identity_request (CreateIdentityRequest): . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -686,7 +687,7 @@ class IdentitiesApi(object):
         >>> result = thread.get()
 
         Args:
-            identity_id (str): ID of identity to fetch
+            identity_id (str): ID of `Identity` to verify.
 
         Keyword Args:
             create_verification_request (CreateVerificationRequest): [optional]
@@ -765,7 +766,7 @@ class IdentitiesApi(object):
         >>> result = thread.get()
 
         Args:
-            identity_id (str): ID of the `identity` to fetch
+            identity_id (str): ID of the `Identity` to fetch.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -843,18 +844,18 @@ class IdentitiesApi(object):
 
 
         Keyword Args:
-            sort (str): Specify key to be used for sorting the collection. [optional]
+            sort (str): Specify key to be used for sorting the collection.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
-            limit (int): The numbers of items to return. [optional]
-            id (str): Filter by id. [optional]
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]
-            default_statement_descriptor (str): Filter by the default_statement_descriptor. [optional]
+            limit (int): The numbers of items to return.. [optional]
+            id (str): Filter by `id`.. [optional]
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
+            default_statement_descriptor (str): Filter by the `default_statement_descriptor`.. [optional]
             business_name (str): Filter by the full business name. Partial business names are not supported.. [optional]
-            business_type (str): Filter by the business type. Partial business types are not supported. [optional]
+            business_type (str): Filter by the business type. Partial business types are not supported.. [optional]
             email (str): Filter by the email address or email domain. Partial emails are not supported.. [optional]
-            first_name (str): Filter by the first name of the person associated to the Identity.. [optional]
-            last_name (str): Filter by the last name of the person associated to the identity.. [optional]
+            first_name (str): Filter by the first name of the person associated to the `Identity`.. [optional]
+            last_name (str): Filter by the last name of the person associated to the `Identity`.. [optional]
             title (str): Filter by the title if available.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -1015,7 +1016,7 @@ class IdentitiesApi(object):
         >>> result = thread.get()
 
         Args:
-            identity_id (str): ID of the `identity` to fetch
+            identity_id (str): ID of the `Identity` to fetch.
 
         Keyword Args:
             update_identity_request (UpdateIdentityRequest): [optional]

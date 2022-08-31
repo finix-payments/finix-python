@@ -75,16 +75,6 @@ class Dispute(ModelNormal):
     }
 
     validations = {
-        ('id',): {
-            'regex': {
-                'pattern': r'^(DI)[a-zA-Z0-9]{16,32}$',  # noqa: E501
-            },
-        },
-        ('transfer',): {
-            'regex': {
-                'pattern': r'^(TR)[a-zA-Z0-9]{16,32}$',  # noqa: E501
-            },
-        },
     }
 
     @cached_property
@@ -110,7 +100,6 @@ class Dispute(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': (Tags,),  # noqa: E501
             'id': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
@@ -125,6 +114,7 @@ class Dispute(ModelNormal):
             'reason': (str,),  # noqa: E501
             'respond_by': (datetime, none_type,),  # noqa: E501
             'state': (str,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
             'transfer': (str,),  # noqa: E501
             'links': (DisputeLinks,),  # noqa: E501
         }
@@ -135,7 +125,6 @@ class Dispute(ModelNormal):
 
 
     attribute_map = {
-        'tags': 'tags',  # noqa: E501
         'id': 'id',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'updated_at': 'updated_at',  # noqa: E501
@@ -150,6 +139,7 @@ class Dispute(ModelNormal):
         'reason': 'reason',  # noqa: E501
         'respond_by': 'respond_by',  # noqa: E501
         'state': 'state',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
         'transfer': 'transfer',  # noqa: E501
         'links': '_links',  # noqa: E501
     }
@@ -195,7 +185,6 @@ class Dispute(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             id (str): The ID of the `Dispute` resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
@@ -203,13 +192,14 @@ class Dispute(ModelNormal):
             amount (int, none_type): The total amount of the `Dispute` (in cents).. [optional]  # noqa: E501
             application (str): The ID of the `Application` resource the `Dispute` was created under.. [optional]  # noqa: E501
             currency (Currency): [optional]  # noqa: E501
-            dispute_details ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Details about the `Dispute` recieved by the `Processor`.. [optional]  # noqa: E501
+            dispute_details ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Details about the `Dispute` recieved by the `Processor`. May be any type of data.. [optional]  # noqa: E501
             identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            message (str, none_type): Message field that provides additional details. This field is typically null.. [optional]  # noqa: E501
+            message (str, none_type): Message field that provides additional details. This field is typically **null**.. [optional]  # noqa: E501
             occurred_at (datetime, none_type): Point in time when dispute occurred.. [optional]  # noqa: E501
-            reason (str): The system-defined reason for the `Dispute`. Available values include:<ul><li>**INQUIRY**<li>**QUALITY**<li>**CLERICAL**<li>**FRAUD**<li>**TECHNICAL**</ul>. [optional]  # noqa: E501
+            reason (str): The system-defined reason for the `Dispute`. Available values include:<ul><li>**INQUIRY**<li>**QUALITY**<li>**FRAUD**. [optional]  # noqa: E501
             respond_by (datetime, none_type): Point in time when dispute has to be resolved and the `Merchant` needs to respond by.. [optional]  # noqa: E501
             state (str): The current state of the `Dispute`.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             transfer (str): ID of the `Transfer` resource.. [optional]  # noqa: E501
             links (DisputeLinks): [optional]  # noqa: E501
         """
@@ -293,7 +283,6 @@ class Dispute(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             id (str): The ID of the `Dispute` resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
@@ -301,13 +290,14 @@ class Dispute(ModelNormal):
             amount (int, none_type): The total amount of the `Dispute` (in cents).. [optional]  # noqa: E501
             application (str): The ID of the `Application` resource the `Dispute` was created under.. [optional]  # noqa: E501
             currency (Currency): [optional]  # noqa: E501
-            dispute_details ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Details about the `Dispute` recieved by the `Processor`.. [optional]  # noqa: E501
+            dispute_details ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Details about the `Dispute` recieved by the `Processor`. May be any type of data.. [optional]  # noqa: E501
             identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            message (str, none_type): Message field that provides additional details. This field is typically null.. [optional]  # noqa: E501
+            message (str, none_type): Message field that provides additional details. This field is typically **null**.. [optional]  # noqa: E501
             occurred_at (datetime, none_type): Point in time when dispute occurred.. [optional]  # noqa: E501
-            reason (str): The system-defined reason for the `Dispute`. Available values include:<ul><li>**INQUIRY**<li>**QUALITY**<li>**CLERICAL**<li>**FRAUD**<li>**TECHNICAL**</ul>. [optional]  # noqa: E501
+            reason (str): The system-defined reason for the `Dispute`. Available values include:<ul><li>**INQUIRY**<li>**QUALITY**<li>**FRAUD**. [optional]  # noqa: E501
             respond_by (datetime, none_type): Point in time when dispute has to be resolved and the `Merchant` needs to respond by.. [optional]  # noqa: E501
             state (str): The current state of the `Dispute`.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             transfer (str): ID of the `Transfer` resource.. [optional]  # noqa: E501
             links (DisputeLinks): [optional]  # noqa: E501
         """

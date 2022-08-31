@@ -86,8 +86,7 @@ class CreateFeeProfileRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'fixed_fee': (int,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'application': (str,),  # noqa: E501
             'ach_basis_points': (int,),  # noqa: E501
             'ach_credit_return_fixed_fee': (int, none_type,),  # noqa: E501
             'ach_debit_return_fixed_fee': (int, none_type,),  # noqa: E501
@@ -100,10 +99,7 @@ class CreateFeeProfileRequest(ModelNormal):
             'american_express_externally_funded_fixed_fee': (int, none_type,),  # noqa: E501
             'ancillary_fixed_fee_primary': (int, none_type,),  # noqa: E501
             'ancillary_fixed_fee_secondary': (int, none_type,),  # noqa: E501
-            'application': (str,),  # noqa: E501
             'basis_points': (int,),  # noqa: E501
-            'externally_funded_basis_points': (int, none_type,),  # noqa: E501
-            'externally_funded_fixed_fee': (int, none_type,),  # noqa: E501
             'charge_interchange': (bool,),  # noqa: E501
             'diners_club_basis_points': (int, none_type,),  # noqa: E501
             'diners_club_charge_interchange': (bool, none_type,),  # noqa: E501
@@ -118,6 +114,9 @@ class CreateFeeProfileRequest(ModelNormal):
             'discover_network_authorization_fixed_fee': (int, none_type,),  # noqa: E501
             'dispute_fixed_fee': (int, none_type,),  # noqa: E501
             'dispute_inquiry_fixed_fee': (int, none_type,),  # noqa: E501
+            'externally_funded_basis_points': (int, none_type,),  # noqa: E501
+            'externally_funded_fixed_fee': (int, none_type,),  # noqa: E501
+            'fixed_fee': (int,),  # noqa: E501
             'jcb_basis_points': (int, none_type,),  # noqa: E501
             'jcb_charge_interchange': (bool, none_type,),  # noqa: E501
             'jcb_fixed_fee': (int, none_type,),  # noqa: E501
@@ -129,6 +128,7 @@ class CreateFeeProfileRequest(ModelNormal):
             'mastercard_fixed_fee': (int, none_type,),  # noqa: E501
             'qualified_tiers': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'rounding_mode': (str,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
             'visa_acquirer_processing_fixed_fee': (int, none_type,),  # noqa: E501
             'visa_assessments_basis_points': (int, none_type,),  # noqa: E501
             'visa_base_ii_credit_voucher_fixed_fee': (int, none_type,),  # noqa: E501
@@ -146,8 +146,7 @@ class CreateFeeProfileRequest(ModelNormal):
 
 
     attribute_map = {
-        'fixed_fee': 'fixed_fee',  # noqa: E501
-        'tags': 'tags',  # noqa: E501
+        'application': 'application',  # noqa: E501
         'ach_basis_points': 'ach_basis_points',  # noqa: E501
         'ach_credit_return_fixed_fee': 'ach_credit_return_fixed_fee',  # noqa: E501
         'ach_debit_return_fixed_fee': 'ach_debit_return_fixed_fee',  # noqa: E501
@@ -160,10 +159,7 @@ class CreateFeeProfileRequest(ModelNormal):
         'american_express_externally_funded_fixed_fee': 'american_express_externally_funded_fixed_fee',  # noqa: E501
         'ancillary_fixed_fee_primary': 'ancillary_fixed_fee_primary',  # noqa: E501
         'ancillary_fixed_fee_secondary': 'ancillary_fixed_fee_secondary',  # noqa: E501
-        'application': 'application',  # noqa: E501
         'basis_points': 'basis_points',  # noqa: E501
-        'externally_funded_basis_points': 'externally_funded_basis_points',  # noqa: E501
-        'externally_funded_fixed_fee': 'externally_funded_fixed_fee',  # noqa: E501
         'charge_interchange': 'charge_interchange',  # noqa: E501
         'diners_club_basis_points': 'diners_club_basis_points',  # noqa: E501
         'diners_club_charge_interchange': 'diners_club_charge_interchange',  # noqa: E501
@@ -178,6 +174,9 @@ class CreateFeeProfileRequest(ModelNormal):
         'discover_network_authorization_fixed_fee': 'discover_network_authorization_fixed_fee',  # noqa: E501
         'dispute_fixed_fee': 'dispute_fixed_fee',  # noqa: E501
         'dispute_inquiry_fixed_fee': 'dispute_inquiry_fixed_fee',  # noqa: E501
+        'externally_funded_basis_points': 'externally_funded_basis_points',  # noqa: E501
+        'externally_funded_fixed_fee': 'externally_funded_fixed_fee',  # noqa: E501
+        'fixed_fee': 'fixed_fee',  # noqa: E501
         'jcb_basis_points': 'jcb_basis_points',  # noqa: E501
         'jcb_charge_interchange': 'jcb_charge_interchange',  # noqa: E501
         'jcb_fixed_fee': 'jcb_fixed_fee',  # noqa: E501
@@ -189,6 +188,7 @@ class CreateFeeProfileRequest(ModelNormal):
         'mastercard_fixed_fee': 'mastercard_fixed_fee',  # noqa: E501
         'qualified_tiers': 'qualified_tiers',  # noqa: E501
         'rounding_mode': 'rounding_mode',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
         'visa_acquirer_processing_fixed_fee': 'visa_acquirer_processing_fixed_fee',  # noqa: E501
         'visa_assessments_basis_points': 'visa_assessments_basis_points',  # noqa: E501
         'visa_base_ii_credit_voucher_fixed_fee': 'visa_base_II_credit_voucher_fixed_fee',  # noqa: E501
@@ -207,11 +207,11 @@ class CreateFeeProfileRequest(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, fixed_fee, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, application, *args, **kwargs):  # noqa: E501
         """CreateFeeProfileRequest - a model defined in OpenAPI
 
         Args:
-            fixed_fee (int): Fee in cents incurred for each individual card-based `Transfer`.
+            application (str): The ID of the resource.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -244,7 +244,6 @@ class CreateFeeProfileRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             ach_basis_points (int): Percentage-based fee incurred against the full amount of an eCheck (also called ACH payments). Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
             ach_credit_return_fixed_fee (int, none_type): A fixed amount in cents that will be charged to the merchant for processing an echeck (also called ACH payments) credit return.. [optional]  # noqa: E501
             ach_debit_return_fixed_fee (int, none_type): A fixed amount in cents that will be charged to the merchant for processing an echeck (also called ACH payment) debit return.. [optional]  # noqa: E501
@@ -257,10 +256,7 @@ class CreateFeeProfileRequest(ModelNormal):
             american_express_externally_funded_fixed_fee (int, none_type): Fee in cents incurred for each individual American Express externally funded `Transfer`.. [optional]  # noqa: E501
             ancillary_fixed_fee_primary (int, none_type): An additional fixed fee that can be charged per `Transfer`.. [optional]  # noqa: E501
             ancillary_fixed_fee_secondary (int, none_type): An additional fixed fee that can be charged per `Transfer` if `ancillary_fixed_fee_primary` is included.. [optional]  # noqa: E501
-            application (str): The ID of the resource.. [optional]  # noqa: E501
             basis_points (int): Percentage-based fee incurred against the full amount of each card-based `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
-            externally_funded_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each `Transfer` that's card-based and externally funded. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
-            externally_funded_fixed_fee (int, none_type): Fee in cents incurred for each individual `Transfer` that's card-based and externally funded.. [optional]  # noqa: E501
             charge_interchange (bool): Set to **True** to incur interchange fees for card-based `Transfers`.. [optional]  # noqa: E501
             diners_club_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each Diners `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
             diners_club_charge_interchange (bool, none_type): Set to **True** to incur interchange fees for Diners `Transfers`.. [optional]  # noqa: E501
@@ -275,6 +271,9 @@ class CreateFeeProfileRequest(ModelNormal):
             discover_network_authorization_fixed_fee (int, none_type): This fee applies to all Discover network `authorizations` and replaces the previously assessed Data Transmission.. [optional]  # noqa: E501
             dispute_fixed_fee (int, none_type): Applied when a `dispute` is created or updated to a **PENDING** state.. [optional]  # noqa: E501
             dispute_inquiry_fixed_fee (int, none_type): Applied when a `dispute` is created or updated to a **INQUIRY** state.. [optional]  # noqa: E501
+            externally_funded_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each `Transfer` that's card-based and externally funded. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
+            externally_funded_fixed_fee (int, none_type): Fee in cents incurred for each individual `Transfer` that's card-based and externally funded.. [optional]  # noqa: E501
+            fixed_fee (int): Fee in cents incurred for each individual card-based `Transfer`.. [optional]  # noqa: E501
             jcb_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each JCB `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
             jcb_charge_interchange (bool, none_type): Set to **True** to incur interchange fees for JCB Transfers.. [optional]  # noqa: E501
             jcb_fixed_fee (int, none_type): Fee in cents incurred for each individual JCB `Transfer`.. [optional]  # noqa: E501
@@ -284,8 +283,9 @@ class CreateFeeProfileRequest(ModelNormal):
             mastercard_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each MasterCard `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
             mastercard_charge_interchange (bool, none_type): Set to **True** to incur interchange fees for MasterCard `Transfers`.. [optional]  # noqa: E501
             mastercard_fixed_fee (int, none_type): Fee in cents incurred for each individual MasterCard `Transfer`.. [optional]  # noqa: E501
-            qualified_tiers ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            qualified_tiers ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): The top of the qualified tier tree.. [optional]  # noqa: E501
             rounding_mode (str): <ul><li>Include <strong>AGGREGATE</strong> if you want to round after the settlement calculation.<li>By default, rounding happens before the sum of the settlement calculation (i.e. round each fee transfer)</ul>. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             visa_acquirer_processing_fixed_fee (int, none_type): Applied to all U.S.-based credit card authorizations acquired in the U.S. regardless of where the issuer/cardholder is located. If your business is based in the U.S., the acquirer processing fee will apply to all Visa credit card authorizations.. [optional]  # noqa: E501
             visa_assessments_basis_points (int, none_type): Applies to all Visa credit transactions.. [optional]  # noqa: E501
             visa_base_ii_credit_voucher_fixed_fee (int, none_type): Applies to all U.S.-based refunds.. [optional]  # noqa: E501
@@ -322,7 +322,7 @@ class CreateFeeProfileRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.fixed_fee = fixed_fee
+        self.application = application
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -343,11 +343,11 @@ class CreateFeeProfileRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, fixed_fee, *args, **kwargs):  # noqa: E501
+    def __init__(self, application, *args, **kwargs):  # noqa: E501
         """CreateFeeProfileRequest - a model defined in OpenAPI
 
         Args:
-            fixed_fee (int): Fee in cents incurred for each individual card-based `Transfer`.
+            application (str): The ID of the resource.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -380,7 +380,6 @@ class CreateFeeProfileRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             ach_basis_points (int): Percentage-based fee incurred against the full amount of an eCheck (also called ACH payments). Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
             ach_credit_return_fixed_fee (int, none_type): A fixed amount in cents that will be charged to the merchant for processing an echeck (also called ACH payments) credit return.. [optional]  # noqa: E501
             ach_debit_return_fixed_fee (int, none_type): A fixed amount in cents that will be charged to the merchant for processing an echeck (also called ACH payment) debit return.. [optional]  # noqa: E501
@@ -393,10 +392,7 @@ class CreateFeeProfileRequest(ModelNormal):
             american_express_externally_funded_fixed_fee (int, none_type): Fee in cents incurred for each individual American Express externally funded `Transfer`.. [optional]  # noqa: E501
             ancillary_fixed_fee_primary (int, none_type): An additional fixed fee that can be charged per `Transfer`.. [optional]  # noqa: E501
             ancillary_fixed_fee_secondary (int, none_type): An additional fixed fee that can be charged per `Transfer` if `ancillary_fixed_fee_primary` is included.. [optional]  # noqa: E501
-            application (str): The ID of the resource.. [optional]  # noqa: E501
             basis_points (int): Percentage-based fee incurred against the full amount of each card-based `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
-            externally_funded_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each `Transfer` that's card-based and externally funded. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
-            externally_funded_fixed_fee (int, none_type): Fee in cents incurred for each individual `Transfer` that's card-based and externally funded.. [optional]  # noqa: E501
             charge_interchange (bool): Set to **True** to incur interchange fees for card-based `Transfers`.. [optional]  # noqa: E501
             diners_club_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each Diners `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
             diners_club_charge_interchange (bool, none_type): Set to **True** to incur interchange fees for Diners `Transfers`.. [optional]  # noqa: E501
@@ -411,6 +407,9 @@ class CreateFeeProfileRequest(ModelNormal):
             discover_network_authorization_fixed_fee (int, none_type): This fee applies to all Discover network `authorizations` and replaces the previously assessed Data Transmission.. [optional]  # noqa: E501
             dispute_fixed_fee (int, none_type): Applied when a `dispute` is created or updated to a **PENDING** state.. [optional]  # noqa: E501
             dispute_inquiry_fixed_fee (int, none_type): Applied when a `dispute` is created or updated to a **INQUIRY** state.. [optional]  # noqa: E501
+            externally_funded_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each `Transfer` that's card-based and externally funded. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
+            externally_funded_fixed_fee (int, none_type): Fee in cents incurred for each individual `Transfer` that's card-based and externally funded.. [optional]  # noqa: E501
+            fixed_fee (int): Fee in cents incurred for each individual card-based `Transfer`.. [optional]  # noqa: E501
             jcb_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each JCB `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
             jcb_charge_interchange (bool, none_type): Set to **True** to incur interchange fees for JCB Transfers.. [optional]  # noqa: E501
             jcb_fixed_fee (int, none_type): Fee in cents incurred for each individual JCB `Transfer`.. [optional]  # noqa: E501
@@ -420,8 +419,9 @@ class CreateFeeProfileRequest(ModelNormal):
             mastercard_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each MasterCard `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
             mastercard_charge_interchange (bool, none_type): Set to **True** to incur interchange fees for MasterCard `Transfers`.. [optional]  # noqa: E501
             mastercard_fixed_fee (int, none_type): Fee in cents incurred for each individual MasterCard `Transfer`.. [optional]  # noqa: E501
-            qualified_tiers ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): [optional]  # noqa: E501
+            qualified_tiers ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): The top of the qualified tier tree.. [optional]  # noqa: E501
             rounding_mode (str): <ul><li>Include <strong>AGGREGATE</strong> if you want to round after the settlement calculation.<li>By default, rounding happens before the sum of the settlement calculation (i.e. round each fee transfer)</ul>. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             visa_acquirer_processing_fixed_fee (int, none_type): Applied to all U.S.-based credit card authorizations acquired in the U.S. regardless of where the issuer/cardholder is located. If your business is based in the U.S., the acquirer processing fee will apply to all Visa credit card authorizations.. [optional]  # noqa: E501
             visa_assessments_basis_points (int, none_type): Applies to all Visa credit transactions.. [optional]  # noqa: E501
             visa_base_ii_credit_voucher_fixed_fee (int, none_type): Applies to all U.S.-based refunds.. [optional]  # noqa: E501
@@ -456,7 +456,7 @@ class CreateFeeProfileRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.fixed_fee = fixed_fee
+        self.application = application
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

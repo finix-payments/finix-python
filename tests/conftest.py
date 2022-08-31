@@ -70,6 +70,15 @@ def client05(): # used for merchant update endpoint
     client = finix.FinixClient(configuration)
     return client
 
+@pytest.fixture
+def client06(): # used for merchant update endpoint
+    configuration = Configuration(
+        username = 'USj46WbwgnjapmdYFnEDP3Ec',
+        password = 'b9b4042c-9621-438d-a84b-8557d4bda84d',
+        environment = Environment.SANDBOX
+    )
+    client = finix.FinixClient(configuration)
+    return client
 
 @pytest.fixture
 def authorization(client00):
@@ -209,9 +218,6 @@ def identity_merchant(client00):
         ),
 	    entity=CreateIdentityRequestEntity(
 	        last_name="lbc",
-	        max_transaction_amount=12000000,
-	        has_accepted_credit_cards_previously=True,
-	        default_statement_descriptor="Petes Coffee",
 	        personal_address=CreateIdentityRequestEntityPersonalAddress(
 	            city="San Mateo",
 	            country="USA",
@@ -220,39 +226,9 @@ def identity_merchant(client00):
 	            line1="741 Douglass St",
 	            postal_code="94114"
             ),
-	        incorporation_date=CreateIdentityRequestEntityIncorporationDate(
-	            year=1978,
-	            day=27,
-	            month=6
-            ),
-	        business_address=CreateIdentityRequestEntityBusinessAddress(
-	            city="San Mateo",
-	            country="USA",
-	            region="CA",
-	            line2="Apartment 8",
-	            line1="741 Douglass St",
-	            postal_code="94114"
-            ),
-	        ownership_type="PRIVATE",
 	        first_name="dwayne",
-	        title="CEO",
-	        business_tax_id="123456789",
-	        doing_business_as="Petes Coffee",
-	        principal_percentage_ownership=50,
 	        email="user@example.org",
-	        mcc="0742",
-	        phone="1234567890",
-	        business_name="Petes Coffee",
-	        tax_id="123456789",
-	        business_type="INDIVIDUAL_SOLE_PROPRIETORSHIP",
-	        business_phone="+1 (408) 756-4497",
-	        dob=CreateIdentityRequestEntityDob(
-	            year=1978,
-	            day=27,
-	            month=6
-            ),
-	        url="www.PetesCoffee.com",
-	        annual_card_volume=12000000,
+	        phone="1234567890"
         )
     ) 
     response = client00.identities.create(create_identity_request=request)
@@ -306,9 +282,6 @@ def merchant(client00):
         ),
 	    entity=CreateIdentityRequestEntity(
 	        last_name="lbc",
-	        max_transaction_amount=12000000,
-	        has_accepted_credit_cards_previously=True,
-	        default_statement_descriptor="Petes Coffee",
 	        personal_address=CreateIdentityRequestEntityPersonalAddress(
 	            city="San Mateo",
 	            country="USA",
@@ -317,39 +290,9 @@ def merchant(client00):
 	            line1="741 Douglass St",
 	            postal_code="94114"
             ),
-	        incorporation_date=CreateIdentityRequestEntityIncorporationDate(
-	            year=1978,
-	            day=27,
-	            month=6
-            ),
-	        business_address=CreateIdentityRequestEntityBusinessAddress(
-	            city="San Mateo",
-	            country="USA",
-	            region="CA",
-	            line2="Apartment 8",
-	            line1="741 Douglass St",
-	            postal_code="94114"
-            ),
-	        ownership_type="PRIVATE",
 	        first_name="dwayne",
-	        title="CEO",
-	        business_tax_id="123456789",
-	        doing_business_as="Petes Coffee",
-	        principal_percentage_ownership=50,
 	        email="user@example.org",
-	        mcc="0742",
-	        phone="1234567890",
-	        business_name="Petes Coffee",
-	        tax_id="123456789",
-	        business_type="INDIVIDUAL_SOLE_PROPRIETORSHIP",
-	        business_phone="+1 (408) 756-4497",
-	        dob=CreateIdentityRequestEntityDob(
-	            year=1978,
-	            day=27,
-	            month=6
-            ),
-	        url="www.PetesCoffee.com",
-	        annual_card_volume=12000000,
+	        phone="1234567890"
         )
     ) 
     response1 = client00.identities.create(create_identity_request=request_first)
@@ -433,4 +376,24 @@ def webhook(client00):
         enabled = False
     )
     client00.webhooks.update(response.id,update_webhook_request=request_next)
+    return response
+
+@pytest.fixture
+def onboarding_form(client00):
+    request = CreateOnboardingFormRequest(
+        onboarding_data = CreateOnboardingFormRequestOnboardingData(
+            max_transaction_amount = 100000
+        ),
+        merchant_processors = [CreateOnboardingFormRequestMerchantProcessorsInner(
+            processor = "LITLE_V1"
+        )],
+        onboarding_link_details = CreateOnboardingFormRequestOnboardingLinkDetails(
+            return_url = "https://www.finix.com/docs",
+            expired_session_url = "https://www.finix.com/",
+            terms_of_service_url = "https://www.finix.com/terms-and-policies",
+            fee_details_url = "https://www.finix.com/docs",
+            expiration_in_minutes = "30"
+        )
+    )
+    response = client00.onboarding_forms.create_onboarding_form(create_onboarding_form_request=request)
     return response

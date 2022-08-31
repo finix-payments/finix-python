@@ -69,12 +69,6 @@ class Identity(ModelNormal):
         ('application',): {
             'min_length': 1,
         },
-        ('created_at',): {
-            'min_length': 1,
-        },
-        ('updated_at',): {
-            'min_length': 1,
-        },
     }
 
     @cached_property
@@ -101,12 +95,12 @@ class Identity(ModelNormal):
         lazy_import()
         return {
             'id': (str,),  # noqa: E501
+            'created_at': (datetime,),  # noqa: E501
+            'updated_at': (datetime,),  # noqa: E501
+            'additional_underwriting_data': (IdentityAdditionalUnderwritingData,),  # noqa: E501
             'application': (str,),  # noqa: E501
             'entity': (IdentityEntity,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
-            'created_at': (str,),  # noqa: E501
-            'updated_at': (str,),  # noqa: E501
-            'additional_underwriting_data': (IdentityAdditionalUnderwritingData,),  # noqa: E501
             'links': (IdentityLinks,),  # noqa: E501
         }
 
@@ -117,12 +111,12 @@ class Identity(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'application': 'application',  # noqa: E501
-        'entity': 'entity',  # noqa: E501
-        'tags': 'tags',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'updated_at': 'updated_at',  # noqa: E501
         'additional_underwriting_data': 'additional_underwriting_data',  # noqa: E501
+        'application': 'application',  # noqa: E501
+        'entity': 'entity',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
         'links': '_links',  # noqa: E501
     }
 
@@ -168,12 +162,12 @@ class Identity(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): The ID of the `Identity` resource.. [optional]  # noqa: E501
+            created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
+            updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
+            additional_underwriting_data (IdentityAdditionalUnderwritingData): [optional]  # noqa: E501
             application (str): ID of the `Application` associated with the `Identity`.. [optional]  # noqa: E501
             entity (IdentityEntity): [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
-            created_at (str): Timestamp of when the `Identity` was created. [optional]  # noqa: E501
-            updated_at (str): Timestamp of when the `Identity` was last updated.. [optional]  # noqa: E501
-            additional_underwriting_data (IdentityAdditionalUnderwritingData): [optional]  # noqa: E501
             links (IdentityLinks): [optional]  # noqa: E501
         """
 
@@ -257,12 +251,12 @@ class Identity(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): The ID of the `Identity` resource.. [optional]  # noqa: E501
+            created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
+            updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
+            additional_underwriting_data (IdentityAdditionalUnderwritingData): [optional]  # noqa: E501
             application (str): ID of the `Application` associated with the `Identity`.. [optional]  # noqa: E501
             entity (IdentityEntity): [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
-            created_at (str): Timestamp of when the `Identity` was created. [optional]  # noqa: E501
-            updated_at (str): Timestamp of when the `Identity` was last updated.. [optional]  # noqa: E501
-            additional_underwriting_data (IdentityAdditionalUnderwritingData): [optional]  # noqa: E501
             links (IdentityLinks): [optional]  # noqa: E501
         """
 

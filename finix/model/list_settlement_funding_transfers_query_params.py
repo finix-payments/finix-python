@@ -133,7 +133,7 @@ class ListSettlementFundingTransfersQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            limit (int): The numbers of items to return. [optional]  # noqa: E501
+            limit (int): The numbers of items to return.. [optional]  # noqa: E501
             after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
             before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
         """
@@ -217,7 +217,7 @@ class ListSettlementFundingTransfersQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            limit (int): The numbers of items to return. [optional]  # noqa: E501
+            limit (int): The numbers of items to return.. [optional]  # noqa: E501
             after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
             before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
         """

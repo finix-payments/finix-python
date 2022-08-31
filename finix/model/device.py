@@ -30,11 +30,9 @@ from finix.exceptions import ApiAttributeError
 def lazy_import():
     from finix.model.device_config_details import DeviceConfigDetails
     from finix.model.device_links import DeviceLinks
-    from finix.model.input_details import InputDetails
     from finix.model.tags import Tags
     globals()['DeviceConfigDetails'] = DeviceConfigDetails
     globals()['DeviceLinks'] = DeviceLinks
-    globals()['InputDetails'] = InputDetails
     globals()['Tags'] = Tags
 
 
@@ -63,11 +61,6 @@ class Device(ModelNormal):
     }
 
     validations = {
-        ('merchant',): {
-            'regex': {
-                'pattern': r'^(MU)[a-zA-Z0-9]{16,32}$',  # noqa: E501
-            },
-        },
     }
 
     @cached_property
@@ -93,20 +86,19 @@ class Device(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': (Tags,),  # noqa: E501
-            'description': (str, none_type,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
             'configuration_details': (DeviceConfigDetails,),  # noqa: E501
             'connection': (str,),  # noqa: E501
+            'description': (str, none_type,),  # noqa: E501
             'enabled': (bool,),  # noqa: E501
             'idle_message': (str, none_type,),  # noqa: E501
-            'input_details': (InputDetails,),  # noqa: E501
             'merchant': (str,),  # noqa: E501
             'model': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'serial_number': (str, none_type,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
             'links': (DeviceLinks,),  # noqa: E501
         }
 
@@ -116,20 +108,19 @@ class Device(ModelNormal):
 
 
     attribute_map = {
-        'tags': 'tags',  # noqa: E501
-        'description': 'description',  # noqa: E501
         'id': 'id',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'updated_at': 'updated_at',  # noqa: E501
         'configuration_details': 'configuration_details',  # noqa: E501
         'connection': 'connection',  # noqa: E501
+        'description': 'description',  # noqa: E501
         'enabled': 'enabled',  # noqa: E501
         'idle_message': 'idle_message',  # noqa: E501
-        'input_details': 'input_details',  # noqa: E501
         'merchant': 'merchant',  # noqa: E501
         'model': 'model',  # noqa: E501
         'name': 'name',  # noqa: E501
         'serial_number': 'serial_number',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
         'links': '_links',  # noqa: E501
     }
 
@@ -174,20 +165,19 @@ class Device(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
-            description (str, none_type): Additional information about device (e.g. self serving terminal).. [optional]  # noqa: E501
             id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             configuration_details (DeviceConfigDetails): [optional]  # noqa: E501
-            connection (str): Details if the `Device` is connected and online.. [optional]  # noqa: E501
+            connection (str): Details if the `Device` is connected and online. Only returned when `include_connection parameter` provided.. [optional]  # noqa: E501
+            description (str, none_type): Additional information about device (e.g. self serving terminal).. [optional]  # noqa: E501
             enabled (bool): Details if the `Device` resource is enabled. Set to **false** to disable the `Device`.. [optional]  # noqa: E501
-            idle_message (str, none_type): ID of `Device`.. [optional]  # noqa: E501
-            input_details (InputDetails): [optional]  # noqa: E501
+            idle_message (str, none_type): The message that diplays on the device after a period of inactivity.. [optional]  # noqa: E501
             merchant (str): ID of the `Merchant` resource.. [optional]  # noqa: E501
-            model (str): Please select one of the following values which will let Finix know the type of device being used:<ul><li>BBPOS<li>MX915<li>MX925<li>IPP320<li>IPP350<li>ISC250<li>ISC480<li>ISMP4<li>LANE\\_3000<li>ANDROID. [optional]  # noqa: E501
+            model (str): Details the model of the card reader.. [optional]  # noqa: E501
             name (str): Name of the `Device`.. [optional]  # noqa: E501
             serial_number (str, none_type): Serial number of the device.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             links (DeviceLinks): [optional]  # noqa: E501
         """
 
@@ -270,20 +260,19 @@ class Device(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
-            description (str, none_type): Additional information about device (e.g. self serving terminal).. [optional]  # noqa: E501
             id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             configuration_details (DeviceConfigDetails): [optional]  # noqa: E501
-            connection (str): Details if the `Device` is connected and online.. [optional]  # noqa: E501
+            connection (str): Details if the `Device` is connected and online. Only returned when `include_connection parameter` provided.. [optional]  # noqa: E501
+            description (str, none_type): Additional information about device (e.g. self serving terminal).. [optional]  # noqa: E501
             enabled (bool): Details if the `Device` resource is enabled. Set to **false** to disable the `Device`.. [optional]  # noqa: E501
-            idle_message (str, none_type): ID of `Device`.. [optional]  # noqa: E501
-            input_details (InputDetails): [optional]  # noqa: E501
+            idle_message (str, none_type): The message that diplays on the device after a period of inactivity.. [optional]  # noqa: E501
             merchant (str): ID of the `Merchant` resource.. [optional]  # noqa: E501
-            model (str): Please select one of the following values which will let Finix know the type of device being used:<ul><li>BBPOS<li>MX915<li>MX925<li>IPP320<li>IPP350<li>ISC250<li>ISC480<li>ISMP4<li>LANE\\_3000<li>ANDROID. [optional]  # noqa: E501
+            model (str): Details the model of the card reader.. [optional]  # noqa: E501
             name (str): Name of the `Device`.. [optional]  # noqa: E501
             serial_number (str, none_type): Serial number of the device.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             links (DeviceLinks): [optional]  # noqa: E501
         """
 

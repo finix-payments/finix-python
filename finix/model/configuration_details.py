@@ -165,7 +165,7 @@ class ConfigurationDetails(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             allow_debit (bool): Allow transaction to be processed on Debit rails. If `false`, Debit card transactions will be processed on Credit rails.. [optional]  # noqa: E501
             allow_partial_approvals (bool): Determines if a transaction can be partially approved (Usually **null**).. [optional]  # noqa: E501
-            bypass_device_on_capture (bool): Sets whether or not the device will be used to capture transactions. This field must be set to true (defaults to false).. [optional]  # noqa: E501
+            bypass_device_on_capture (bool): Sets whether the device will be used to capture `Authorizations`. The device is required to be connected if `bypass_device_on_capture` is set to false. (defaults to true).. [optional]  # noqa: E501
             cashback_options (ConfigurationDetailsCashbackOptions): [optional]  # noqa: E501
             check_for_duplicate_transactions (bool): Sets whether the device will check for duplicate transactions.. [optional]  # noqa: E501
             is_cash_back_allowed (bool): Sets whether the device will allow cash back.. [optional]  # noqa: E501
@@ -260,7 +260,7 @@ class ConfigurationDetails(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             allow_debit (bool): Allow transaction to be processed on Debit rails. If `false`, Debit card transactions will be processed on Credit rails.. [optional]  # noqa: E501
             allow_partial_approvals (bool): Determines if a transaction can be partially approved (Usually **null**).. [optional]  # noqa: E501
-            bypass_device_on_capture (bool): Sets whether or not the device will be used to capture transactions. This field must be set to true (defaults to false).. [optional]  # noqa: E501
+            bypass_device_on_capture (bool): Sets whether the device will be used to capture `Authorizations`. The device is required to be connected if `bypass_device_on_capture` is set to false. (defaults to true).. [optional]  # noqa: E501
             cashback_options (ConfigurationDetailsCashbackOptions): [optional]  # noqa: E501
             check_for_duplicate_transactions (bool): Sets whether the device will check for duplicate transactions.. [optional]  # noqa: E501
             is_cash_back_allowed (bool): Sets whether the device will allow cash back.. [optional]  # noqa: E501

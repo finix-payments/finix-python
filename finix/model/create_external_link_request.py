@@ -87,9 +87,9 @@ class CreateExternalLinkRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'type': (str,),  # noqa: E501
             'duration': (int,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
+            'type': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -98,9 +98,9 @@ class CreateExternalLinkRequest(ModelNormal):
 
 
     attribute_map = {
-        'type': 'type',  # noqa: E501
         'duration': 'duration',  # noqa: E501
         'tags': 'tags',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     read_only_vars = {
@@ -144,9 +144,9 @@ class CreateExternalLinkRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str): <ul><li>Set to <strong>UPLOAD</strong> to create a link that can be used to upload files to Finix.<li>Set to <strong>DOWNLOAD</strong> to create a link where the uploaded file can be downloaded from.<li>Set to <strong>VIEW</strong> to create a link that displays the file in browser.. [optional]  # noqa: E501
             duration (int): Set how long (in minutes) the external link should be active for. The link can be active for up to 7 days in the future.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
+            type (str): <ul><li>Set to <strong>UPLOAD</strong> to create a link that can be used to upload files to Finix.<li>Set to <strong>DOWNLOAD</strong> to create a link where the uploaded file can be downloaded from.<li>Set to <strong>VIEW</strong> to create a link that displays the file in browser.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -228,9 +228,9 @@ class CreateExternalLinkRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str): <ul><li>Set to <strong>UPLOAD</strong> to create a link that can be used to upload files to Finix.<li>Set to <strong>DOWNLOAD</strong> to create a link where the uploaded file can be downloaded from.<li>Set to <strong>VIEW</strong> to create a link that displays the file in browser.. [optional]  # noqa: E501
             duration (int): Set how long (in minutes) the external link should be active for. The link can be active for up to 7 days in the future.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
+            type (str): <ul><li>Set to <strong>UPLOAD</strong> to create a link that can be used to upload files to Finix.<li>Set to <strong>DOWNLOAD</strong> to create a link where the uploaded file can be downloaded from.<li>Set to <strong>VIEW</strong> to create a link that displays the file in browser.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

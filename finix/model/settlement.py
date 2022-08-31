@@ -58,6 +58,12 @@ class Settlement(ModelNormal):
     """
 
     allowed_values = {
+        ('status',): {
+            'APPROVED': "APPROVED",
+            'AWAITING_APPROVAL': "AWAITING_APPROVAL",
+            'CANCELLED': "CANCELLED",
+            'PENDING': "PENDING",
+        },
         ('type',): {
             'MERCHANT_REVENUE': "MERCHANT_REVENUE",
             'PLATFORM_FEE': "PLATFORM_FEE",
@@ -67,21 +73,9 @@ class Settlement(ModelNormal):
             'APPLICATION': "APPLICATION",
             'PLATFORM': "PLATFORM",
         },
-        ('status',): {
-            'APPROVED': "APPROVED",
-            'AWAITING_APPROVAL': "AWAITING_APPROVAL",
-            'CANCELLED': "CANCELLED",
-            'PENDING': "PENDING",
-            'STAGED': "STAGED",
-        },
     }
 
     validations = {
-        ('destination',): {
-            'regex': {
-                'pattern': r'^(PI)[a-zA-Z0-9]{16,32}$',  # noqa: E501
-            },
-        },
     }
 
     @cached_property
@@ -107,8 +101,6 @@ class Settlement(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': (Tags,),  # noqa: E501
-            'type': (str,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
@@ -122,9 +114,11 @@ class Settlement(ModelNormal):
             'payment_type': (str, none_type,),  # noqa: E501
             'processor': (str,),  # noqa: E501
             'status': (str,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
             'total_amount': (int,),  # noqa: E501
             'total_fee': (int,),  # noqa: E501
             'total_fees': (int,),  # noqa: E501
+            'type': (str,),  # noqa: E501
             'links': (SettlementLinks,),  # noqa: E501
         }
 
@@ -134,8 +128,6 @@ class Settlement(ModelNormal):
 
 
     attribute_map = {
-        'tags': 'tags',  # noqa: E501
-        'type': 'type',  # noqa: E501
         'id': 'id',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'updated_at': 'updated_at',  # noqa: E501
@@ -149,9 +141,11 @@ class Settlement(ModelNormal):
         'payment_type': 'payment_type',  # noqa: E501
         'processor': 'processor',  # noqa: E501
         'status': 'status',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
         'total_amount': 'total_amount',  # noqa: E501
         'total_fee': 'total_fee',  # noqa: E501
         'total_fees': 'total_fees',  # noqa: E501
+        'type': 'type',  # noqa: E501
         'links': '_links',  # noqa: E501
     }
 
@@ -196,8 +190,6 @@ class Settlement(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
-            type (str): Type of `Settlement`.. [optional]  # noqa: E501
             id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
@@ -210,10 +202,12 @@ class Settlement(ModelNormal):
             net_amount (int): The amount in cents that will be deposited into the merchant's bank account.. [optional]  # noqa: E501
             payment_type (str, none_type): The type of `Payment Instrument` used in the `Funding Transfer` (or the original payment).. [optional]  # noqa: E501
             processor (str): Name of the `Settlement` processor.. [optional]  # noqa: E501
-            status (str): The status of the `Settlement`. Available values include:<ul><li>**PENDING**<li>**STAGED**<li>**AWAITING_APPROVAL**<li>**APPROVED**.</ul> Merchants only receive payouts when `Settlements` are **APPROVED**. For more information, see [Payouts](/guides/payouts/payouts/).. [optional]  # noqa: E501
+            status (str): The status of the `Settlement`. Available values include:<ul><li>**PENDING**<li>**AWAITING_APPROVAL**<li>**APPROVED**.</ul> Merchants only receive payouts when `Settlements` are **APPROVED** and receive the resulting funding `Transfer` . For more information, see [Payouts](/guides/payouts/payouts/).. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             total_amount (int): Total amount of the `Settlement` (in cents).. [optional]  # noqa: E501
             total_fee (int): Sum of the fees in the `Settlement`.. [optional]  # noqa: E501
-            total_fees (int): Sum of the fees in the `Settlement`.. [optional]  # noqa: E501
+            total_fees (int): Sum of the fees  (including Subcription Billing) in the `Settlement`.. [optional]  # noqa: E501
+            type (str): Type of `Settlement`.. [optional]  # noqa: E501
             links (SettlementLinks): [optional]  # noqa: E501
         """
 
@@ -296,8 +290,6 @@ class Settlement(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
-            type (str): Type of `Settlement`.. [optional]  # noqa: E501
             id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
@@ -310,10 +302,12 @@ class Settlement(ModelNormal):
             net_amount (int): The amount in cents that will be deposited into the merchant's bank account.. [optional]  # noqa: E501
             payment_type (str, none_type): The type of `Payment Instrument` used in the `Funding Transfer` (or the original payment).. [optional]  # noqa: E501
             processor (str): Name of the `Settlement` processor.. [optional]  # noqa: E501
-            status (str): The status of the `Settlement`. Available values include:<ul><li>**PENDING**<li>**STAGED**<li>**AWAITING_APPROVAL**<li>**APPROVED**.</ul> Merchants only receive payouts when `Settlements` are **APPROVED**. For more information, see [Payouts](/guides/payouts/payouts/).. [optional]  # noqa: E501
+            status (str): The status of the `Settlement`. Available values include:<ul><li>**PENDING**<li>**AWAITING_APPROVAL**<li>**APPROVED**.</ul> Merchants only receive payouts when `Settlements` are **APPROVED** and receive the resulting funding `Transfer` . For more information, see [Payouts](/guides/payouts/payouts/).. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             total_amount (int): Total amount of the `Settlement` (in cents).. [optional]  # noqa: E501
             total_fee (int): Sum of the fees in the `Settlement`.. [optional]  # noqa: E501
-            total_fees (int): Sum of the fees in the `Settlement`.. [optional]  # noqa: E501
+            total_fees (int): Sum of the fees  (including Subcription Billing) in the `Settlement`.. [optional]  # noqa: E501
+            type (str): Type of `Settlement`.. [optional]  # noqa: E501
             links (SettlementLinks): [optional]  # noqa: E501
         """
 

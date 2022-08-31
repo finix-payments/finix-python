@@ -28,8 +28,10 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from finix.model.list_links import ListLinks
     from finix.model.subscription_amount_list_embedded import SubscriptionAmountListEmbedded
     from finix.model.users_list_page import UsersListPage
+    globals()['ListLinks'] = ListLinks
     globals()['SubscriptionAmountListEmbedded'] = SubscriptionAmountListEmbedded
     globals()['UsersListPage'] = UsersListPage
 
@@ -86,6 +88,7 @@ class SubscriptionAmountList(ModelNormal):
         return {
             'page': (UsersListPage,),  # noqa: E501
             'embedded': (SubscriptionAmountListEmbedded,),  # noqa: E501
+            'links': (ListLinks,),  # noqa: E501
         }
 
     @cached_property
@@ -96,6 +99,7 @@ class SubscriptionAmountList(ModelNormal):
     attribute_map = {
         'page': 'page',  # noqa: E501
         'embedded': '_embedded',  # noqa: E501
+        'links': '_links',  # noqa: E501
     }
 
     read_only_vars = {
@@ -141,6 +145,7 @@ class SubscriptionAmountList(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             page (UsersListPage): [optional]  # noqa: E501
             embedded (SubscriptionAmountListEmbedded): [optional]  # noqa: E501
+            links (ListLinks): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -224,6 +229,7 @@ class SubscriptionAmountList(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             page (UsersListPage): [optional]  # noqa: E501
             embedded (SubscriptionAmountListEmbedded): [optional]  # noqa: E501
+            links (ListLinks): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

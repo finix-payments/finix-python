@@ -32,7 +32,7 @@ def test_create_payment_instrument(client00):
     )
     response = client00.payment_instruments.create(create_payment_instrument_request=request)
     assert response.id[:2] == 'PI'
-    assert response.last_four == '0006'
+    assert response.last_four == "0006"
     assert response.tags['card_name'] == 'Finix Card Python'
 
 

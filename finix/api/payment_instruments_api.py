@@ -297,21 +297,21 @@ class PaymentInstrumentsApi(object):
             },
             params_map={
                 'all': [
-                    'limit',
-                    'after_cursor',
                     'account_last4',
                     'account_routing_number',
+                    'after_cursor',
                     'application',
+                    'before_cursor',
                     'bin',
                     'created_at_gte',
                     'created_at_lte',
                     'expiration_month',
                     'expiration_year',
                     'last_four',
+                    'limit',
                     'name',
                     'owner_identity_id',
                     'type',
-                    'before_cursor',
                 ],
                 'required': [],
                 'nullable': [
@@ -334,15 +334,15 @@ class PaymentInstrumentsApi(object):
                     },
                 },
                 'openapi_types': {
-                    'limit':
-                        (int,),
-                    'after_cursor':
-                        (str,),
                     'account_last4':
                         (str,),
                     'account_routing_number':
                         (str,),
+                    'after_cursor':
+                        (str,),
                     'application':
+                        (str,),
+                    'before_cursor':
                         (str,),
                     'bin':
                         (str,),
@@ -356,48 +356,48 @@ class PaymentInstrumentsApi(object):
                         (str,),
                     'last_four':
                         (str,),
+                    'limit':
+                        (int,),
                     'name':
                         (str,),
                     'owner_identity_id':
                         (str,),
                     'type':
                         (str,),
-                    'before_cursor':
-                        (str,),
                 },
                 'attribute_map': {
-                    'limit': 'limit',
-                    'after_cursor': 'after_cursor',
                     'account_last4': 'account_last4',
                     'account_routing_number': 'account_routing_number',
+                    'after_cursor': 'after_cursor',
                     'application': 'application',
+                    'before_cursor': 'before_cursor',
                     'bin': 'bin',
                     'created_at_gte': 'created_at.gte',
                     'created_at_lte': 'created_at.lte',
                     'expiration_month': 'expiration_month',
                     'expiration_year': 'expiration_year',
                     'last_four': 'last_four',
+                    'limit': 'limit',
                     'name': 'name',
                     'owner_identity_id': 'owner_identity_id',
                     'type': 'type',
-                    'before_cursor': 'before_cursor',
                 },
                 'location_map': {
-                    'limit': 'query',
-                    'after_cursor': 'query',
                     'account_last4': 'query',
                     'account_routing_number': 'query',
+                    'after_cursor': 'query',
                     'application': 'query',
+                    'before_cursor': 'query',
                     'bin': 'query',
                     'created_at_gte': 'query',
                     'created_at_lte': 'query',
                     'expiration_month': 'query',
                     'expiration_year': 'query',
                     'last_four': 'query',
+                    'limit': 'query',
                     'name': 'query',
                     'owner_identity_id': 'query',
                     'type': 'query',
-                    'before_cursor': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -548,7 +548,7 @@ class PaymentInstrumentsApi(object):
     ):
         """Create a Payment Instrument  # noqa: E501
 
-        Create a `Payment Instrument` resource using a card or bank account.  To accept payment details, review our guide on how to [tokenize cards using hosted fields](/guides/payments/tokenization-with-hosted-fields).  > The creation of `Payment Instruments` using cards directly via Finix's API should only be done for testing purposes. You must use the Hosted Tokenization fields or javascript client to remain out of PCI scope.  # noqa: E501
+        Create a `Payment Instrument` resource using a card or bank account.  To accept payment details, review our guide on how to [tokenize cards using hosted fields](/guides/payments/tokenization-with-hosted-fields).  - The creation of `Payment Instruments` directly via Finix's API should only be done for testing purposes. You must use the Hosted Tokenization fields or the javascript client to remain out of PCI scope.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -557,7 +557,7 @@ class PaymentInstrumentsApi(object):
 
 
         Keyword Args:
-            create_payment_instrument_request (CreatePaymentInstrumentRequest): [optional]
+            create_payment_instrument_request (CreatePaymentInstrumentRequest): . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -621,7 +621,7 @@ class PaymentInstrumentsApi(object):
         payment_instrument_id,
         **kwargs
     ):
-        """Get a Payment Instrument  # noqa: E501
+        """Fetch a Payment Instrument  # noqa: E501
 
         Retrieve the details of a `Payment Instrument`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -709,7 +709,7 @@ class PaymentInstrumentsApi(object):
         >>> result = thread.get()
 
         Args:
-            payment_instrument_id (str): ID of object
+            payment_instrument_id (str): ID of `Payment Instrument` object.
 
         Keyword Args:
             limit (int): The number of entries to return.. [optional]
@@ -792,21 +792,21 @@ class PaymentInstrumentsApi(object):
 
 
         Keyword Args:
-            limit (int): The numbers of items to return. [optional]
-            after_cursor (str): Return every resource created after the cursor value.. [optional]
             account_last4 (str): Filter by the last 4 digits of the account if available.. [optional]
             account_routing_number (str): Filter by the account routing number if available.. [optional]
-            application (str): Filter by application id. [optional]
-            bin (str): Filter by Bank Identification Number (BIN). The BIN is the first 6 digits of the masked number. [optional]
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]
-            expiration_month (str): Filter by the expiration month associated with the `Payment Instrument` if applicable. This filter only applies to payment cards.. [optional]
-            expiration_year (str): Filter by the 4 digit expiration year associated with the Payment Instrument if applicable. This filter only applies to payment cards. [optional]
-            last_four (str): Filter by the last 4 digits of the Payment Instrument card. This filter only applies to payment cards.. [optional]
-            name (str): Filter by the name.. [optional]
-            owner_identity_id (str): Filter by the owner id of the associated identity.. [optional]
-            type (str): Filter by the payment instrument type.. [optional]
+            after_cursor (str): Return every resource created after the cursor value.. [optional]
+            application (str): Filter by `Application` ID.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
+            bin (str): Filter by Bank Identification Number (BIN). The BIN is the first 6 digits of the masked number.. [optional]
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
+            expiration_month (str): Filter by the expiration month associated with the `Payment Instrument` if applicable. This filter only applies to payment cards.. [optional]
+            expiration_year (str): Filter by the 4 digit expiration year associated with the Payment Instrument if applicable. This filter only applies to payment cards.. [optional]
+            last_four (str): Filter by the last 4 digits of the `Payment Instrument` card. This filter only applies to payment cards.. [optional]
+            limit (int): The numbers of items to return.. [optional]
+            name (str): Filter by the name.. [optional]
+            owner_identity_id (str): Filter by the owner id of the associated `Identity`.. [optional]
+            type (str): Filter by the `Payment Instrument` type.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

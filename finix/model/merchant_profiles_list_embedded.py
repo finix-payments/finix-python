@@ -135,7 +135,7 @@ class MerchantProfilesListEmbedded(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            merchant_profiles ([MerchantProfile]): [optional]  # noqa: E501
+            merchant_profiles ([MerchantProfile]): `merchant_profile` objects.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -217,7 +217,7 @@ class MerchantProfilesListEmbedded(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            merchant_profiles ([MerchantProfile]): [optional]  # noqa: E501
+            merchant_profiles ([MerchantProfile]): `merchant_profile` objects.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

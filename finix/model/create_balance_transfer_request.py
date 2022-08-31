@@ -93,12 +93,12 @@ class CreateBalanceTransferRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'destination': (str, none_type,),  # noqa: E501
-            'currency': (Currency,),  # noqa: E501
             'amount': (int,),  # noqa: E501
-            'source': (str,),  # noqa: E501
-            'processor_type': (str,),  # noqa: E501
+            'currency': (Currency,),  # noqa: E501
             'description': (str,),  # noqa: E501
+            'destination': (str, none_type,),  # noqa: E501
+            'processor_type': (str,),  # noqa: E501
+            'source': (str,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
         }
 
@@ -108,12 +108,12 @@ class CreateBalanceTransferRequest(ModelNormal):
 
 
     attribute_map = {
-        'destination': 'destination',  # noqa: E501
-        'currency': 'currency',  # noqa: E501
         'amount': 'amount',  # noqa: E501
-        'source': 'source',  # noqa: E501
-        'processor_type': 'processor_type',  # noqa: E501
+        'currency': 'currency',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'destination': 'destination',  # noqa: E501
+        'processor_type': 'processor_type',  # noqa: E501
+        'source': 'source',  # noqa: E501
         'tags': 'tags',  # noqa: E501
     }
 
@@ -124,15 +124,16 @@ class CreateBalanceTransferRequest(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, destination, currency, amount, source, processor_type, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, amount, currency, description, destination, processor_type, source, *args, **kwargs):  # noqa: E501
         """CreateBalanceTransferRequest - a model defined in OpenAPI
 
         Args:
-            destination (str, none_type): Choose the value that best applies to the account where funds will get credited.
-            currency (Currency):
             amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).
-            source (str): Choose the value that best applies to the account where funds will get debited.
+            currency (Currency):
+            description (str): Additional information about the `balance_transfer` (e.g. **Transferring funds for Holidays**).
+            destination (str, none_type): The account where funds get credited. For balance transfers, this is an aliased ID and will have the value of `FOR_BENEFIT_OF_ACCOUNT` or `OPERATING_ACCOUNT`.
             processor_type (str): Pass **LITLE_V1**; `balance_transfers` are only avalible for platforms with **LITLE_V1** credentials.
+            source (str): The account where funds get debited. For balance transfers, this is an aliased ID and will have the value of `FOR_BENEFIT_OF_ACCOUNT` or `OPERATING_ACCOUNT`.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -165,7 +166,6 @@ class CreateBalanceTransferRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            description (str): Additional information about the `balance_transfer` (e.g. **Transferring funds for Holidays**).. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 
@@ -194,11 +194,12 @@ class CreateBalanceTransferRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.destination = destination
-        self.currency = currency
         self.amount = amount
-        self.source = source
+        self.currency = currency
+        self.description = description
+        self.destination = destination
         self.processor_type = processor_type
+        self.source = source
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -219,15 +220,16 @@ class CreateBalanceTransferRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, destination, currency, amount, source, processor_type, *args, **kwargs):  # noqa: E501
+    def __init__(self, amount, currency, description, destination, processor_type, source, *args, **kwargs):  # noqa: E501
         """CreateBalanceTransferRequest - a model defined in OpenAPI
 
         Args:
-            destination (str, none_type): Choose the value that best applies to the account where funds will get credited.
-            currency (Currency):
             amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).
-            source (str): Choose the value that best applies to the account where funds will get debited.
+            currency (Currency):
+            description (str): Additional information about the `balance_transfer` (e.g. **Transferring funds for Holidays**).
+            destination (str, none_type): The account where funds get credited. For balance transfers, this is an aliased ID and will have the value of `FOR_BENEFIT_OF_ACCOUNT` or `OPERATING_ACCOUNT`.
             processor_type (str): Pass **LITLE_V1**; `balance_transfers` are only avalible for platforms with **LITLE_V1** credentials.
+            source (str): The account where funds get debited. For balance transfers, this is an aliased ID and will have the value of `FOR_BENEFIT_OF_ACCOUNT` or `OPERATING_ACCOUNT`.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -260,7 +262,6 @@ class CreateBalanceTransferRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            description (str): Additional information about the `balance_transfer` (e.g. **Transferring funds for Holidays**).. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 
@@ -287,11 +288,12 @@ class CreateBalanceTransferRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.destination = destination
-        self.currency = currency
         self.amount = amount
-        self.source = source
+        self.currency = currency
+        self.description = description
+        self.destination = destination
         self.processor_type = processor_type
+        self.source = source
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

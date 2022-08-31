@@ -28,8 +28,10 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from finix.model.list_links import ListLinks
     from finix.model.page_offset import PageOffset
     from finix.model.payment_instrument_updates_list_embedded import PaymentInstrumentUpdatesListEmbedded
+    globals()['ListLinks'] = ListLinks
     globals()['PageOffset'] = PageOffset
     globals()['PaymentInstrumentUpdatesListEmbedded'] = PaymentInstrumentUpdatesListEmbedded
 
@@ -86,7 +88,7 @@ class PaymentInstrumentUpdatesList(ModelNormal):
         return {
             'page': (PageOffset,),  # noqa: E501
             'embedded': (PaymentInstrumentUpdatesListEmbedded,),  # noqa: E501
-            'links': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'links': (ListLinks,),  # noqa: E501
         }
 
     @cached_property
@@ -107,11 +109,8 @@ class PaymentInstrumentUpdatesList(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, page, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """PaymentInstrumentUpdatesList - a model defined in OpenAPI
-
-        Args:
-            page (PageOffset):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -144,8 +143,9 @@ class PaymentInstrumentUpdatesList(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            page (PageOffset): [optional]  # noqa: E501
             embedded (PaymentInstrumentUpdatesListEmbedded): [optional]  # noqa: E501
-            links ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            links (ListLinks): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -173,7 +173,6 @@ class PaymentInstrumentUpdatesList(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.page = page
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -194,11 +193,8 @@ class PaymentInstrumentUpdatesList(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, page, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """PaymentInstrumentUpdatesList - a model defined in OpenAPI
-
-        Args:
-            page (PageOffset):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -231,8 +227,9 @@ class PaymentInstrumentUpdatesList(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            page (PageOffset): [optional]  # noqa: E501
             embedded (PaymentInstrumentUpdatesListEmbedded): [optional]  # noqa: E501
-            links ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
+            links (ListLinks): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -258,7 +255,6 @@ class PaymentInstrumentUpdatesList(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.page = page
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

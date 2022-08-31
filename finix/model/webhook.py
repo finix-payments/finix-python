@@ -59,11 +59,6 @@ class Webhook(ModelNormal):
     }
 
     validations = {
-        ('id',): {
-            'regex': {
-                'pattern': r'^(WH)[a-zA-Z0-9]{16,32}$',  # noqa: E501
-            },
-        },
     }
 
     @cached_property

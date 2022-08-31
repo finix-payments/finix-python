@@ -86,8 +86,8 @@ class CreateWebhookRequest(ModelNormal):
         lazy_import()
         return {
             'url': (str,),  # noqa: E501
-            'enabled': (bool,),  # noqa: E501
             'authentication': (CreateWebhookRequestAuthentication,),  # noqa: E501
+            'enabled': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -97,8 +97,8 @@ class CreateWebhookRequest(ModelNormal):
 
     attribute_map = {
         'url': 'url',  # noqa: E501
-        'enabled': 'enabled',  # noqa: E501
         'authentication': 'authentication',  # noqa: E501
+        'enabled': 'enabled',  # noqa: E501
     }
 
     read_only_vars = {
@@ -108,8 +108,11 @@ class CreateWebhookRequest(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, url, *args, **kwargs):  # noqa: E501
         """CreateWebhookRequest - a model defined in OpenAPI
+
+        Args:
+            url (str): The HTTP or HTTPS URL where callbacks (i.e. events) will be sent via POST request (max 120 characters).
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -142,9 +145,8 @@ class CreateWebhookRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            url (str): The HTTP or HTTPS URL where callbacks (i.e. events) will be sent via POST request (max 120 characters).. [optional]  # noqa: E501
-            enabled (bool): Set to false to disable Webhooks. Default value when created is true.. [optional]  # noqa: E501
             authentication (CreateWebhookRequestAuthentication): [optional]  # noqa: E501
+            enabled (bool): Set to false to disable Webhooks. Default value when created is true.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -172,6 +174,7 @@ class CreateWebhookRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.url = url
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -192,8 +195,11 @@ class CreateWebhookRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, url, *args, **kwargs):  # noqa: E501
         """CreateWebhookRequest - a model defined in OpenAPI
+
+        Args:
+            url (str): The HTTP or HTTPS URL where callbacks (i.e. events) will be sent via POST request (max 120 characters).
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -226,9 +232,8 @@ class CreateWebhookRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            url (str): The HTTP or HTTPS URL where callbacks (i.e. events) will be sent via POST request (max 120 characters).. [optional]  # noqa: E501
-            enabled (bool): Set to false to disable Webhooks. Default value when created is true.. [optional]  # noqa: E501
             authentication (CreateWebhookRequestAuthentication): [optional]  # noqa: E501
+            enabled (bool): Set to false to disable Webhooks. Default value when created is true.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -254,6 +259,7 @@ class CreateWebhookRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.url = url
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

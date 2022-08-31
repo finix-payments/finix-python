@@ -60,10 +60,13 @@ class CreateSubscriptionEnrollmentRequest(ModelNormal):
         ('merchant',): {
             'min_length': 1,
         },
+        ('nickname',): {
+            'min_length': 1,
+        },
         ('started_at',): {
             'min_length': 1,
         },
-        ('nickname',): {
+        ('ended_at',): {
             'min_length': 1,
         },
     }
@@ -92,8 +95,9 @@ class CreateSubscriptionEnrollmentRequest(ModelNormal):
         lazy_import()
         return {
             'merchant': (str,),  # noqa: E501
-            'started_at': (str,),  # noqa: E501
             'nickname': (str,),  # noqa: E501
+            'started_at': (str,),  # noqa: E501
+            'ended_at': (str, none_type,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
         }
 
@@ -104,8 +108,9 @@ class CreateSubscriptionEnrollmentRequest(ModelNormal):
 
     attribute_map = {
         'merchant': 'merchant',  # noqa: E501
-        'started_at': 'started_at',  # noqa: E501
         'nickname': 'nickname',  # noqa: E501
+        'started_at': 'started_at',  # noqa: E501
+        'ended_at': 'ended_at',  # noqa: E501
         'tags': 'tags',  # noqa: E501
     }
 
@@ -116,13 +121,13 @@ class CreateSubscriptionEnrollmentRequest(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, merchant, started_at, nickname, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, merchant, nickname, started_at, *args, **kwargs):  # noqa: E501
         """CreateSubscriptionEnrollmentRequest - a model defined in OpenAPI
 
         Args:
             merchant (str): ID of the `Merchant` resource.
-            started_at (str): When the `subscription_enrollment` will begin in **DateTime** format. The start date must be a future date.
             nickname (str): Human readable name.
+            started_at (str): When the `subscription_enrollment` will begin in **DateTime** format. The start date must be a future date.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -155,6 +160,7 @@ class CreateSubscriptionEnrollmentRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            ended_at (str, none_type): When the `subscription_enrollment` will end in **DateTime** format. If left **null**, the Fee will continue in perpetuity and won't end.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 
@@ -184,8 +190,8 @@ class CreateSubscriptionEnrollmentRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.merchant = merchant
-        self.started_at = started_at
         self.nickname = nickname
+        self.started_at = started_at
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -206,13 +212,13 @@ class CreateSubscriptionEnrollmentRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, merchant, started_at, nickname, *args, **kwargs):  # noqa: E501
+    def __init__(self, merchant, nickname, started_at, *args, **kwargs):  # noqa: E501
         """CreateSubscriptionEnrollmentRequest - a model defined in OpenAPI
 
         Args:
             merchant (str): ID of the `Merchant` resource.
-            started_at (str): When the `subscription_enrollment` will begin in **DateTime** format. The start date must be a future date.
             nickname (str): Human readable name.
+            started_at (str): When the `subscription_enrollment` will begin in **DateTime** format. The start date must be a future date.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -245,6 +251,7 @@ class CreateSubscriptionEnrollmentRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            ended_at (str, none_type): When the `subscription_enrollment` will end in **DateTime** format. If left **null**, the Fee will continue in perpetuity and won't end.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 
@@ -272,8 +279,8 @@ class CreateSubscriptionEnrollmentRequest(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.merchant = merchant
-        self.started_at = started_at
         self.nickname = nickname
+        self.started_at = started_at
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

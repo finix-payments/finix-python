@@ -121,11 +121,6 @@ class Fee(ModelNormal):
     }
 
     validations = {
-        ('id',): {
-            'regex': {
-                'pattern': r'^(FE)[a-zA-Z0-9]{16,32}$',  # noqa: E501
-            },
-        },
     }
 
     @cached_property
@@ -151,7 +146,6 @@ class Fee(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': (Tags,),  # noqa: E501
             'id': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
@@ -164,6 +158,7 @@ class Fee(ModelNormal):
             'linked_id': (str,),  # noqa: E501
             'linked_type': (str,),  # noqa: E501
             'merchant': (str,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
             'links': (FeeLinks,),  # noqa: E501
         }
 
@@ -173,7 +168,6 @@ class Fee(ModelNormal):
 
 
     attribute_map = {
-        'tags': 'tags',  # noqa: E501
         'id': 'id',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'updated_at': 'updated_at',  # noqa: E501
@@ -186,6 +180,7 @@ class Fee(ModelNormal):
         'linked_id': 'linked_id',  # noqa: E501
         'linked_type': 'linked_type',  # noqa: E501
         'merchant': 'merchant',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
         'links': '_links',  # noqa: E501
     }
 
@@ -230,7 +225,6 @@ class Fee(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             id (str): The ID of the `fee` resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
@@ -241,8 +235,9 @@ class Fee(ModelNormal):
             fee_type (str): The type of `fee`.. [optional]  # noqa: E501
             label (str, none_type): The name of the `fee` object that was include in `label` when creating the fee.. [optional]  # noqa: E501
             linked_id (str): ID of the linked resource.. [optional]  # noqa: E501
-            linked_type (str): The type of entity the `fee` is linked (**null** by default).. [optional]  # noqa: E501
+            linked_type (str): The type of entity the `fee` is linked to (**null** by default).. [optional]  # noqa: E501
             merchant (str): The `Merchant` ID that the fee is being debited from.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             links (FeeLinks): [optional]  # noqa: E501
         """
 
@@ -325,7 +320,6 @@ class Fee(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             id (str): The ID of the `fee` resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
@@ -336,8 +330,9 @@ class Fee(ModelNormal):
             fee_type (str): The type of `fee`.. [optional]  # noqa: E501
             label (str, none_type): The name of the `fee` object that was include in `label` when creating the fee.. [optional]  # noqa: E501
             linked_id (str): ID of the linked resource.. [optional]  # noqa: E501
-            linked_type (str): The type of entity the `fee` is linked (**null** by default).. [optional]  # noqa: E501
+            linked_type (str): The type of entity the `fee` is linked to (**null** by default).. [optional]  # noqa: E501
             merchant (str): The `Merchant` ID that the fee is being debited from.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             links (FeeLinks): [optional]  # noqa: E501
         """
 

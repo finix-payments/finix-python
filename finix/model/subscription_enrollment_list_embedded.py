@@ -138,7 +138,7 @@ class SubscriptionEnrollmentListEmbedded(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            subscription_enrollments ([SubscriptionEnrollment]): `Subscription Enrollments` resource.. [optional]  # noqa: E501
+            subscription_enrollments ([SubscriptionEnrollment]): `Subscription Enrollment` resources.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -220,7 +220,7 @@ class SubscriptionEnrollmentListEmbedded(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            subscription_enrollments ([SubscriptionEnrollment]): `Subscription Enrollments` resource.. [optional]  # noqa: E501
+            subscription_enrollments ([SubscriptionEnrollment]): `Subscription Enrollment` resources.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

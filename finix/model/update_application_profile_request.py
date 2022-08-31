@@ -82,9 +82,9 @@ class UpdateApplicationProfileRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': (Tags,),  # noqa: E501
             'fee_profile': (str, none_type,),  # noqa: E501
             'risk_profile': (str, none_type,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
         }
 
     @cached_property
@@ -93,9 +93,9 @@ class UpdateApplicationProfileRequest(ModelNormal):
 
 
     attribute_map = {
-        'tags': 'tags',  # noqa: E501
         'fee_profile': 'fee_profile',  # noqa: E501
         'risk_profile': 'risk_profile',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
     }
 
     read_only_vars = {
@@ -139,9 +139,9 @@ class UpdateApplicationProfileRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             fee_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
             risk_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -223,9 +223,9 @@ class UpdateApplicationProfileRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             fee_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
             risk_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

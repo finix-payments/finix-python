@@ -28,7 +28,7 @@ from finix.exceptions import ApiAttributeError
 
 
 
-class AuthorizationExternalResponses(ModelNormal):
+class OnboardingFormOnboardingData(ModelNormal):
     """
 
     Attributes:
@@ -76,8 +76,11 @@ class AuthorizationExternalResponses(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'body': (str,),  # noqa: E501
-            'content_type': (str,),  # noqa: E501
+            'entity': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'associated_entities': ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}],),  # noqa: E501
+            'payment_instruments': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'additional_underwriting_data': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'max_transaction_amount': (int,),  # noqa: E501
         }
 
     @cached_property
@@ -86,8 +89,11 @@ class AuthorizationExternalResponses(ModelNormal):
 
 
     attribute_map = {
-        'body': 'body',  # noqa: E501
-        'content_type': 'content_type',  # noqa: E501
+        'entity': 'entity',  # noqa: E501
+        'associated_entities': 'associated_entities',  # noqa: E501
+        'payment_instruments': 'payment_instruments',  # noqa: E501
+        'additional_underwriting_data': 'additional_underwriting_data',  # noqa: E501
+        'max_transaction_amount': 'max_transaction_amount',  # noqa: E501
     }
 
     read_only_vars = {
@@ -98,7 +104,7 @@ class AuthorizationExternalResponses(ModelNormal):
     @classmethod
     @convert_js_args_to_python_args
     def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
-        """AuthorizationExternalResponses - a model defined in OpenAPI
+        """OnboardingFormOnboardingData - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -131,8 +137,11 @@ class AuthorizationExternalResponses(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            body (str): [optional]  # noqa: E501
-            content_type (str): [optional]  # noqa: E501
+            entity ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): The `entity` information saved in the `Identity` of the user.. [optional]  # noqa: E501
+            associated_entities ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): The `entities` saved in the `associated_identities` of the user. For more information, see [Create an Associated Identity](/api/#operation/createAssociatedIdentity).. [optional]  # noqa: E501
+            payment_instruments ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): The `Payment Instrument` that'll be used to payout the user. For more information, see [Payouts](/guides/payouts).. [optional]  # noqa: E501
+            additional_underwriting_data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Additional underwriting data about the user.. [optional]  # noqa: E501
+            max_transaction_amount (int): Maximum amount that can be transacted for a single transaction in cents (max 12 characters). Must be equal to or less than your `max_transaction_amount`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -181,7 +190,7 @@ class AuthorizationExternalResponses(ModelNormal):
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
-        """AuthorizationExternalResponses - a model defined in OpenAPI
+        """OnboardingFormOnboardingData - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -214,8 +223,11 @@ class AuthorizationExternalResponses(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            body (str): [optional]  # noqa: E501
-            content_type (str): [optional]  # noqa: E501
+            entity ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): The `entity` information saved in the `Identity` of the user.. [optional]  # noqa: E501
+            associated_entities ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): The `entities` saved in the `associated_identities` of the user. For more information, see [Create an Associated Identity](/api/#operation/createAssociatedIdentity).. [optional]  # noqa: E501
+            payment_instruments ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): The `Payment Instrument` that'll be used to payout the user. For more information, see [Payouts](/guides/payouts).. [optional]  # noqa: E501
+            additional_underwriting_data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Additional underwriting data about the user.. [optional]  # noqa: E501
+            max_transaction_amount (int): Maximum amount that can be transacted for a single transaction in cents (max 12 characters). Must be equal to or less than your `max_transaction_amount`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

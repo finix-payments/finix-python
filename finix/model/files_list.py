@@ -86,8 +86,8 @@ class FilesList(ModelNormal):
         """
         lazy_import()
         return {
-            'embedded': (FilesListEmbedded,),  # noqa: E501
             'page': (PageCursor,),  # noqa: E501
+            'embedded': (FilesListEmbedded,),  # noqa: E501
             'links': (ListLinks,),  # noqa: E501
         }
 
@@ -97,8 +97,8 @@ class FilesList(ModelNormal):
 
 
     attribute_map = {
-        'embedded': '_embedded',  # noqa: E501
         'page': 'page',  # noqa: E501
+        'embedded': '_embedded',  # noqa: E501
         'links': '_links',  # noqa: E501
     }
 
@@ -143,8 +143,8 @@ class FilesList(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            embedded (FilesListEmbedded): [optional]  # noqa: E501
             page (PageCursor): [optional]  # noqa: E501
+            embedded (FilesListEmbedded): [optional]  # noqa: E501
             links (ListLinks): [optional]  # noqa: E501
         """
 
@@ -227,8 +227,8 @@ class FilesList(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            embedded (FilesListEmbedded): [optional]  # noqa: E501
             page (PageCursor): [optional]  # noqa: E501
+            embedded (FilesListEmbedded): [optional]  # noqa: E501
             links (ListLinks): [optional]  # noqa: E501
         """
 

@@ -84,9 +84,9 @@ class CreateSettlementRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'processor': (str,),  # noqa: E501
-            'merchant_id': (str,),  # noqa: E501
             'currency': (Currency,),  # noqa: E501
+            'merchant_id': (str,),  # noqa: E501
+            'processor': (str,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
         }
 
@@ -96,9 +96,9 @@ class CreateSettlementRequest(ModelNormal):
 
 
     attribute_map = {
-        'processor': 'processor',  # noqa: E501
-        'merchant_id': 'merchant_id',  # noqa: E501
         'currency': 'currency',  # noqa: E501
+        'merchant_id': 'merchant_id',  # noqa: E501
+        'processor': 'processor',  # noqa: E501
         'tags': 'tags',  # noqa: E501
     }
 
@@ -109,12 +109,8 @@ class CreateSettlementRequest(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, processor, merchant_id, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """CreateSettlementRequest - a model defined in OpenAPI
-
-        Args:
-            processor (str): If the `Application` has more than one associated `processor`, it's required when creating `settlements` to include the `processor` (e.g. DUMMY_V1).
-            merchant_id (str): If the `Application` has more than one associated `processor`, this field is required.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -148,6 +144,8 @@ class CreateSettlementRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             currency (Currency): [optional]  # noqa: E501
+            merchant_id (str): If the `Application` has more than one associated `processor`, this field is required.. [optional]  # noqa: E501
+            processor (str): If the `Application` has more than one associated `processor`, it's required when creating `settlements` to include the `processor` (e.g. **DUMMY_V1**).. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 
@@ -176,8 +174,6 @@ class CreateSettlementRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.processor = processor
-        self.merchant_id = merchant_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -198,12 +194,8 @@ class CreateSettlementRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, processor, merchant_id, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """CreateSettlementRequest - a model defined in OpenAPI
-
-        Args:
-            processor (str): If the `Application` has more than one associated `processor`, it's required when creating `settlements` to include the `processor` (e.g. DUMMY_V1).
-            merchant_id (str): If the `Application` has more than one associated `processor`, this field is required.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -237,6 +229,8 @@ class CreateSettlementRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             currency (Currency): [optional]  # noqa: E501
+            merchant_id (str): If the `Application` has more than one associated `processor`, this field is required.. [optional]  # noqa: E501
+            processor (str): If the `Application` has more than one associated `processor`, it's required when creating `settlements` to include the `processor` (e.g. **DUMMY_V1**).. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 
@@ -263,8 +257,6 @@ class CreateSettlementRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.processor = processor
-        self.merchant_id = merchant_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

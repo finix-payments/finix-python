@@ -362,7 +362,7 @@ class BalanceTransfersApi(object):
         balance_transfers_id,
         **kwargs
     ):
-        """Get a Balance Transfer  # noqa: E501
+        """Fetch a Balance Transfer  # noqa: E501
 
         Retrieve the details of a `balance_transfer`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -450,21 +450,21 @@ class BalanceTransfersApi(object):
 
 
         Keyword Args:
-            limit (int): The numbers of items to return. [optional]
-            offset (int): The number of items to skip before starting to collect the result set. [optional]
-            page_number (int): The page number to list. [optional]
-            page_size (int): The size of the page. [optional]
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]
-            updated_at_gte (str): Filter where updated_at is after the given date. [optional]
-            updated_at_lte (str): Filter where updated_at is before the given date. [optional]
-            idempotency_id (str): Filter by idempotency_id. [optional]
-            amount (int): Filter by an amount equal to the given value. [optional]
-            description (str): Filter by the `description` value . [optional]
-            destination (str): Filter by the `Payment Instrument` saved in `destination`. [optional]
-            external_reference_id (str): Filter by the value saved in `external_reference_id`. [optional]
-            reference_id (str): Filter by the value saved in `reference_id`. [optional]
-            source (str): Filter by the `Payment Instrument` saved in `source`. [optional]
+            limit (int): The numbers of items to return.. [optional]
+            offset (int): The number of items to skip before starting to collect the result set.. [optional]
+            page_number (int): The page number to list.. [optional]
+            page_size (int): The size of the page.. [optional]
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
+            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]
+            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]
+            idempotency_id (str): Filter by `idempotency_id`.. [optional]
+            amount (int): Filter by an amount equal to the given value.. [optional]
+            description (str): Filter by the `Description` value .. [optional]
+            destination (str): Filter by the `Payment Instrument` saved in `Destination`.. [optional]
+            external_reference_id (str): Filter by the value saved in `external_reference_id`.. [optional]
+            reference_id (str): Filter by the value saved in `reference_id`.. [optional]
+            source (str): Filter by the `Payment Instrument` saved in `source`.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

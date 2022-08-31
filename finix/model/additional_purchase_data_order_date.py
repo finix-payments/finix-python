@@ -99,13 +99,8 @@ class AdditionalPurchaseDataOrderDate(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, day, month, year, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """AdditionalPurchaseDataOrderDate - a model defined in OpenAPI
-
-        Args:
-            day (int): Day of purchase (between 1 and 31)
-            month (int): Month of purchase (between 1 and 12)
-            year (int): Year of purchase (4-digit)
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -138,6 +133,9 @@ class AdditionalPurchaseDataOrderDate(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            day (int): Day of purchase (between 1 and 31). [optional]  # noqa: E501
+            month (int): Month of purchase (between 1 and 12). [optional]  # noqa: E501
+            year (int): Year of purchase (4-digit). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -165,9 +163,6 @@ class AdditionalPurchaseDataOrderDate(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.day = day
-        self.month = month
-        self.year = year
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -188,13 +183,8 @@ class AdditionalPurchaseDataOrderDate(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, day, month, year, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """AdditionalPurchaseDataOrderDate - a model defined in OpenAPI
-
-        Args:
-            day (int): Day of purchase (between 1 and 31)
-            month (int): Month of purchase (between 1 and 12)
-            year (int): Year of purchase (4-digit)
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -227,6 +217,9 @@ class AdditionalPurchaseDataOrderDate(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            day (int): Day of purchase (between 1 and 31). [optional]  # noqa: E501
+            month (int): Month of purchase (between 1 and 12). [optional]  # noqa: E501
+            year (int): Year of purchase (4-digit). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -252,9 +245,6 @@ class AdditionalPurchaseDataOrderDate(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.day = day
-        self.month = month
-        self.year = year
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

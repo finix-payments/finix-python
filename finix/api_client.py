@@ -18,21 +18,23 @@ from urllib.parse import quote
 from urllib3.fields import RequestField
 
 
-import finix.api.transfers_api
-import finix.api.payment_instruments_api
 import finix.api.authorizations_api
-import finix.api.identities_api
-import finix.api.disputes_api
-import finix.api.devices_api
-import finix.api.webhooks_api
 import finix.api.balance_transfers_api
+import finix.api.compliance_forms_api
+import finix.api.devices_api
+import finix.api.disputes_api
+import finix.api.fee_profiles_api
 import finix.api.files_api
-import finix.api.merchants_api
-import finix.api.settlements_api
-import finix.api.verifications_api
+import finix.api.identities_api
 import finix.api.instrument_updates_api
 import finix.api.merchant_profiles_api
-import finix.api.fee_profiles_api
+import finix.api.merchants_api
+import finix.api.onboarding_forms_api
+import finix.api.payment_instruments_api
+import finix.api.settlements_api
+import finix.api.transfers_api
+import finix.api.verifications_api
+import finix.api.webhooks_api
 
 from finix import rest
 from finix.configuration import Configuration
@@ -89,22 +91,23 @@ class FinixClient(object):
         self._user_agent = 'finix-python/3.0.0'
 
         self.set_default_header('Finix-Version','2022-02-01')
-        self.transfers = finix.api.transfers_api.TransfersApi(self)
-        self.payment_instruments = finix.api.payment_instruments_api.PaymentInstrumentsApi(self)
         self.authorizations = finix.api.authorizations_api.AuthorizationsApi(self)
-        self.identities = finix.api.identities_api.IdentitiesApi(self)
-        self.disputes = finix.api.disputes_api.DisputesApi(self)
-        self.devices = finix.api.devices_api.DevicesApi(self)
-        self.webhooks = finix.api.webhooks_api.WebhooksApi(self)
         self.balance_transfers = finix.api.balance_transfers_api.BalanceTransfersApi(self)
+        self.compliance_forms = finix.api.compliance_forms_api.ComplianceFormsApi(self)
+        self.devices = finix.api.devices_api.DevicesApi(self)
+        self.disputes = finix.api.disputes_api.DisputesApi(self)
+        self.fee_profiles = finix.api.fee_profiles_api.FeeProfilesApi(self)
         self.files = finix.api.files_api.FilesApi(self)
-        self.merchants = finix.api.merchants_api.MerchantsApi(self)
-        self.settlements = finix.api.settlements_api.SettlementsApi(self)
-        self.verifications = finix.api.verifications_api.VerificationsApi(self)
+        self.identities = finix.api.identities_api.IdentitiesApi(self)
         self.instrument_updates = finix.api.instrument_updates_api.InstrumentUpdatesApi(self)
         self.merchant_profiles = finix.api.merchant_profiles_api.MerchantProfilesApi(self)
-        self.fee_profiles = finix.api.fee_profiles_api.FeeProfilesApi(self)
-
+        self.merchants = finix.api.merchants_api.MerchantsApi(self)
+        self.onboarding_forms = finix.api.onboarding_forms_api.OnboardingFormsApi(self)
+        self.payment_instruments = finix.api.payment_instruments_api.PaymentInstrumentsApi(self)
+        self.settlements = finix.api.settlements_api.SettlementsApi(self)
+        self.transfers = finix.api.transfers_api.TransfersApi(self)
+        self.verifications = finix.api.verifications_api.VerificationsApi(self)
+        self.webhooks = finix.api.webhooks_api.WebhooksApi(self)
     def __enter__(self):
         return self
 

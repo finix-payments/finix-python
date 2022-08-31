@@ -27,14 +27,8 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
-def lazy_import():
-    from finix.model.error422_invalid_field_list_embedded_links import Error422InvalidFieldListEmbeddedLinks
-    from finix.model.log_ref import LogRef
-    globals()['Error422InvalidFieldListEmbeddedLinks'] = Error422InvalidFieldListEmbeddedLinks
-    globals()['LogRef'] = LogRef
 
-
-class Error422InvalidFieldListEmbeddedErrors(ModelNormal):
+class TransferLinksDisputedTransfer(ModelNormal):
     """
 
     Attributes:
@@ -56,9 +50,6 @@ class Error422InvalidFieldListEmbeddedErrors(ModelNormal):
     """
 
     allowed_values = {
-        ('code',): {
-            'INVALID_FIELD': "INVALID_FIELD",
-        },
     }
 
     validations = {
@@ -70,7 +61,6 @@ class Error422InvalidFieldListEmbeddedErrors(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -85,13 +75,8 @@ class Error422InvalidFieldListEmbeddedErrors(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        lazy_import()
         return {
-            'code': (str,),  # noqa: E501
-            'field': (str,),  # noqa: E501
-            'logref': (LogRef,),  # noqa: E501
-            'message': (str,),  # noqa: E501
-            'links': (Error422InvalidFieldListEmbeddedLinks,),  # noqa: E501
+            'href': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -100,11 +85,7 @@ class Error422InvalidFieldListEmbeddedErrors(ModelNormal):
 
 
     attribute_map = {
-        'code': 'code',  # noqa: E501
-        'field': 'field',  # noqa: E501
-        'logref': 'logref',  # noqa: E501
-        'message': 'message',  # noqa: E501
-        'links': '_links',  # noqa: E501
+        'href': 'href',  # noqa: E501
     }
 
     read_only_vars = {
@@ -115,7 +96,7 @@ class Error422InvalidFieldListEmbeddedErrors(ModelNormal):
     @classmethod
     @convert_js_args_to_python_args
     def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
-        """Error422InvalidFieldListEmbeddedErrors - a model defined in OpenAPI
+        """TransferLinksDisputedTransfer - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -148,11 +129,7 @@ class Error422InvalidFieldListEmbeddedErrors(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            code (str): [optional] if omitted the server will use the default value of "INVALID_FIELD"  # noqa: E501
-            field (str): [optional]  # noqa: E501
-            logref (LogRef): [optional]  # noqa: E501
-            message (str): [optional]  # noqa: E501
-            links (Error422InvalidFieldListEmbeddedLinks): [optional]  # noqa: E501
+            href (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -201,7 +178,7 @@ class Error422InvalidFieldListEmbeddedErrors(ModelNormal):
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
-        """Error422InvalidFieldListEmbeddedErrors - a model defined in OpenAPI
+        """TransferLinksDisputedTransfer - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -234,11 +211,7 @@ class Error422InvalidFieldListEmbeddedErrors(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            code (str): [optional] if omitted the server will use the default value of "INVALID_FIELD"  # noqa: E501
-            field (str): [optional]  # noqa: E501
-            logref (LogRef): [optional]  # noqa: E501
-            message (str): [optional]  # noqa: E501
-            links (Error422InvalidFieldListEmbeddedLinks): [optional]  # noqa: E501
+            href (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -85,8 +85,8 @@ class CreateSubscriptionAmountRequestFeeAmountData(ModelNormal):
         """
         lazy_import()
         return {
-            'currency': (Currency,),  # noqa: E501
             'amount': (int,),  # noqa: E501
+            'currency': (Currency,),  # noqa: E501
             'label': (str,),  # noqa: E501
         }
 
@@ -96,8 +96,8 @@ class CreateSubscriptionAmountRequestFeeAmountData(ModelNormal):
 
 
     attribute_map = {
-        'currency': 'currency',  # noqa: E501
         'amount': 'amount',  # noqa: E501
+        'currency': 'currency',  # noqa: E501
         'label': 'label',  # noqa: E501
     }
 
@@ -108,13 +108,12 @@ class CreateSubscriptionAmountRequestFeeAmountData(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, currency, amount, label, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, amount, currency, *args, **kwargs):  # noqa: E501
         """CreateSubscriptionAmountRequestFeeAmountData - a model defined in OpenAPI
 
         Args:
-            currency (Currency):
             amount (int): A positive integer in cents representing how much to charge on a recurring basis.
-            label (str): The display name of the `Subscirption Amount` that can be used for filtering purposes.
+            currency (Currency):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -147,6 +146,7 @@ class CreateSubscriptionAmountRequestFeeAmountData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            label (str): The display name of the `Subscirption Amount` that can be used for filtering purposes.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -174,9 +174,8 @@ class CreateSubscriptionAmountRequestFeeAmountData(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.currency = currency
         self.amount = amount
-        self.label = label
+        self.currency = currency
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -197,13 +196,12 @@ class CreateSubscriptionAmountRequestFeeAmountData(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, currency, amount, label, *args, **kwargs):  # noqa: E501
+    def __init__(self, amount, currency, *args, **kwargs):  # noqa: E501
         """CreateSubscriptionAmountRequestFeeAmountData - a model defined in OpenAPI
 
         Args:
-            currency (Currency):
             amount (int): A positive integer in cents representing how much to charge on a recurring basis.
-            label (str): The display name of the `Subscirption Amount` that can be used for filtering purposes.
+            currency (Currency):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -236,6 +234,7 @@ class CreateSubscriptionAmountRequestFeeAmountData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            label (str): The display name of the `Subscirption Amount` that can be used for filtering purposes.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -261,9 +260,8 @@ class CreateSubscriptionAmountRequestFeeAmountData(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.currency = currency
         self.amount = amount
-        self.label = label
+        self.currency = currency
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
