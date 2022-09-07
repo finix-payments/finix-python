@@ -395,14 +395,14 @@ class IdentitiesApi(object):
             },
             api_client=api_client
         )
-        self._list_assocaiated_identities_endpoint = finix.api_client.Endpoint(
+        self._list_associated_identities_endpoint = finix.api_client.Endpoint(
             settings={
                 'response_type': (IdentitiesList,),
                 'auth': [
                     'BasicAuth'
                 ],
                 'endpoint_path': '/identities/{identity_id}/associated_identities',
-                'operation_id': 'list_assocaiated_identities',
+                'operation_id': 'list_associated_identities',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -918,7 +918,7 @@ class IdentitiesApi(object):
         fl = FinixList(ret, self.list,  **kwargs)
         return fl
 
-    def list_assocaiated_identities(
+    def list_associated_identities(
         self,
         identity_id,
         **kwargs
@@ -929,7 +929,7 @@ class IdentitiesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_assocaiated_identities(identity_id, async_req=True)
+        >>> thread = api.list_associated_identities(identity_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -997,8 +997,8 @@ class IdentitiesApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['identity_id'] = \
             identity_id
-        ret = self._list_assocaiated_identities_endpoint.call_with_http_info(**kwargs)
-        fl = FinixList(ret, self.list_assocaiated_identities,  **kwargs)
+        ret = self._list_associated_identities_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list_associated_identities,  **kwargs)
         return fl
 
     def update(

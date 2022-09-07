@@ -57,9 +57,9 @@ class CreatePaymentInstrumentRequest(ModelNormal):
 
     allowed_values = {
         ('type',): {
-            'APPLE_PAY': "APPLE_PAY",
-            'TOKEN': "TOKEN",
             'BANK_ACCOUNT': "BANK_ACCOUNT",
+            'TOKEN': "TOKEN",
+            'APPLE_PAY': "APPLE_PAY",
             'GOOGLE_PAY': "GOOGLE_PAY",
             'PAYMENT_CARD': "PAYMENT_CARD",
         },

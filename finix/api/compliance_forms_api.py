@@ -25,6 +25,7 @@ from finix.model.error403_forbidden_list import Error403ForbiddenList
 from finix.model.error404_not_found_list import Error404NotFoundList
 from finix.model.error406_not_acceptable import Error406NotAcceptable
 from finix.model.error422_invalid_field_list import Error422InvalidFieldList
+from finix.model.update_compliance_form_request import UpdateComplianceFormRequest
 from finix.model.finix_utils import FinixList
 
 from functools import wraps
@@ -60,14 +61,14 @@ class ComplianceFormsApi(object):
         if api_client is None:
             api_client = finix.api_client.FinixClient()
         self._api_client = api_client
-        self._get_compliance_forms_endpoint = finix.api_client.Endpoint(
+        self._list_endpoint = finix.api_client.Endpoint(
             settings={
                 'response_type': (ComplianceForm,),
                 'auth': [
                     'BasicAuth'
                 ],
                 'endpoint_path': '/compliance_forms/{compliance_forms_id}',
-                'operation_id': 'get_compliance_forms',
+                'operation_id': 'list',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -112,20 +113,21 @@ class ComplianceFormsApi(object):
             },
             api_client=api_client
         )
-        self._update_compliance_forms_endpoint = finix.api_client.Endpoint(
+        self._update_endpoint = finix.api_client.Endpoint(
             settings={
                 'response_type': (ComplianceForm,),
                 'auth': [
                     'BasicAuth'
                 ],
                 'endpoint_path': '/compliance_forms/{compliance_forms_id}',
-                'operation_id': 'update_compliance_forms',
+                'operation_id': 'update',
                 'http_method': 'PUT',
                 'servers': None,
             },
             params_map={
                 'all': [
                     'compliance_forms_id',
+                    'update_compliance_form_request',
                 ],
                 'required': [
                     'compliance_forms_id',
@@ -145,12 +147,15 @@ class ComplianceFormsApi(object):
                 'openapi_types': {
                     'compliance_forms_id':
                         (str,),
+                    'update_compliance_form_request':
+                        (UpdateComplianceFormRequest,),
                 },
                 'attribute_map': {
                     'compliance_forms_id': 'compliance_forms_id',
                 },
                 'location_map': {
                     'compliance_forms_id': 'path',
+                    'update_compliance_form_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -160,12 +165,14 @@ class ComplianceFormsApi(object):
                     'application/json',
                     'application/hal+json'
                 ],
-                'content_type': [],
+                'content_type': [
+                    'application/json'
+                ]
             },
             api_client=api_client
         )
 
-    def get_compliance_forms(
+    def list(
         self,
         compliance_forms_id,
         **kwargs
@@ -176,7 +183,7 @@ class ComplianceFormsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_compliance_forms(compliance_forms_id, async_req=True)
+        >>> thread = api.list(compliance_forms_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -241,9 +248,9 @@ class ComplianceFormsApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['compliance_forms_id'] = \
             compliance_forms_id
-        return self._get_compliance_forms_endpoint.call_with_http_info(**kwargs)
+        return self._list_endpoint.call_with_http_info(**kwargs)
 
-    def update_compliance_forms(
+    def update(
         self,
         compliance_forms_id,
         **kwargs
@@ -254,13 +261,14 @@ class ComplianceFormsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_compliance_forms(compliance_forms_id, async_req=True)
+        >>> thread = api.update(compliance_forms_id, async_req=True)
         >>> result = thread.get()
 
         Args:
             compliance_forms_id (str): ID of the `compliance_form`.
 
         Keyword Args:
+            update_compliance_form_request (UpdateComplianceFormRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -319,5 +327,5 @@ class ComplianceFormsApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['compliance_forms_id'] = \
             compliance_forms_id
-        return self._update_compliance_forms_endpoint.call_with_http_info(**kwargs)
+        return self._update_endpoint.call_with_http_info(**kwargs)
 

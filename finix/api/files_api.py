@@ -174,14 +174,14 @@ class FilesApi(object):
             },
             api_client=api_client
         )
-        self._download_file_endpoint = finix.api_client.Endpoint(
+        self._download_endpoint = finix.api_client.Endpoint(
             settings={
                 'response_type': (file_type,),
                 'auth': [
                     'BasicAuth'
                 ],
                 'endpoint_path': '/files/{file_id}/download',
-                'operation_id': 'download_file',
+                'operation_id': 'download',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -523,14 +523,14 @@ class FilesApi(object):
             },
             api_client=api_client
         )
-        self._upload_file_endpoint = finix.api_client.Endpoint(
+        self._upload_endpoint = finix.api_client.Endpoint(
             settings={
                 'response_type': (File,),
                 'auth': [
                     'BasicAuth'
                 ],
                 'endpoint_path': '/files/{file_id}/upload',
-                'operation_id': 'upload_file',
+                'operation_id': 'upload',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -735,7 +735,7 @@ class FilesApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self._create_endpoint.call_with_http_info(**kwargs)
 
-    def download_file(
+    def download(
         self,
         file_id,
         **kwargs
@@ -746,7 +746,7 @@ class FilesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.download_file(file_id, async_req=True)
+        >>> thread = api.download(file_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -811,7 +811,7 @@ class FilesApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['file_id'] = \
             file_id
-        return self._download_file_endpoint.call_with_http_info(**kwargs)
+        return self._download_endpoint.call_with_http_info(**kwargs)
 
     def get_external_link(
         self,
@@ -1146,7 +1146,7 @@ class FilesApi(object):
         fl = FinixList(ret, self.list,  **kwargs)
         return fl
 
-    def upload_file(
+    def upload(
         self,
         file_id,
         **kwargs
@@ -1157,7 +1157,7 @@ class FilesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.upload_file(file_id, async_req=True)
+        >>> thread = api.upload(file_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -1223,5 +1223,5 @@ class FilesApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['file_id'] = \
             file_id
-        return self._upload_file_endpoint.call_with_http_info(**kwargs)
+        return self._upload_endpoint.call_with_http_info(**kwargs)
 

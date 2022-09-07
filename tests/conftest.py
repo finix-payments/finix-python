@@ -81,6 +81,16 @@ def client06(): # used for merchant update endpoint
     return client
 
 @pytest.fixture
+def client07(): # used for merchant update endpoint
+    configuration = Configuration(
+        username = 'US8MrUh4Eb1L9Kn6rgSKdem4',
+        password = '94879501-e840-4263-ae01-b65e10084893',
+        environment = Environment.SANDBOX
+    )
+    client = finix.FinixClient(configuration)
+    return client
+
+@pytest.fixture
 def authorization(client00):
     request = CreateAuthorizationRequest(
         source="PIe2YvpcjvoVJ6PzoRPBK137",
@@ -395,5 +405,5 @@ def onboarding_form(client00):
             expiration_in_minutes = "30"
         )
     )
-    response = client00.onboarding_forms.create_onboarding_form(create_onboarding_form_request=request)
+    response = client00.onboarding_forms.create(create_onboarding_form_request=request)
     return response

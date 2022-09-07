@@ -962,14 +962,14 @@ paths:
           $ref: '#/components/responses/ErrorNotFound'
         '406':
           $ref: '#/components/responses/Error406NotAcceptable'
-      x-java-method-name: listAssocaiatedIdentities
+      x-java-method-name: listAssociatedIdentities
       x-group-parameters: true
       x-codeSamples:
       - lang: cURL
         label: curl
         source: "curl https://finix.sandbox-payments-api.com/identities/IDf33pdVaTZGXVFNccdKvaPu/associated_identities\
           \ \\\n  -H \"Content-Type: application/vnd.json+api\" \\\n  -u USsRhsHYZGBPnQw8CByJyEQW:8a14c2f9-d94b-4c72-8f5c-a62908e5b30e\n"
-      x-python-method-name: list_assocaiated_identities
+      x-python-method-name: list_associated_identities
       x-returns-list: true
     parameters:
     - description: ID of `Identity` to associate object with.
@@ -2558,11 +2558,12 @@ paths:
       description: Upload files directly with a `multipart/form-data` request. For
         more info see, [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix/#step-2-upload-the-file).
       parameters: []
+      x-java-method-name: upload
       tags:
       - Files
       requestBody:
         $ref: '#/components/requestBodies/UploadFileRequest'
-      x-python-method-name: upload_file
+      x-python-method-name: upload
   /files/{file_id}/download:
     parameters:
     - schema:
@@ -2587,6 +2588,7 @@ paths:
         '406':
           $ref: '#/components/responses/Error406NotAcceptable'
       operationId: downloadFile
+      x-java-method-name: download
       description: Download a file that was uploaded to a `File` resource. For more
         info, see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix).
       x-codeSamples:
@@ -2594,7 +2596,7 @@ paths:
         label: curl
         source: "curl https://finix.sandbox-payments-api.com/files/FILE_bJecqoRPasStGPVpvKHtgA/download\
           \ \\\n  -H \"Content-Type: application/vnd.json+api\" \\\n  -u USsRhsHYZGBPnQw8CByJyEQW:8a14c2f9-d94b-4c72-8f5c-a62908e5b30e\n"
-      x-python-method-name: download_file
+      x-python-method-name: download
   /files/{file_id}/external_links/{external_link_id}:
     parameters:
     - schema:
@@ -2650,6 +2652,7 @@ paths:
           $ref: '#/components/responses/Error406NotAcceptable'
       tags:
       - Payment Instruments
+      x-java-method-name: createApplePaySession
       requestBody:
         $ref: '#/components/requestBodies/CreateApplePaySessionRequest'
       description: 'Create an `apple_pay_session` to process Apple Pay transactions
@@ -2761,12 +2764,13 @@ paths:
         '406':
           $ref: '#/components/responses/Error406NotAcceptable'
       operationId: getComplianceForms
+      x-java-method-name: list
       description: 'A webhook notifies you when Finix creates a `compliance_form`.
 
 
         Use the ID in the webhook to fetch the `compliance_form` resource from the
         `/compliance_forms/:COMPLIANCE_FORM_ID:` endpoint.'
-      x-python-method-name: get_compliance_forms
+      x-python-method-name: list
     put:
       summary: Complete Compliance Forms
       operationId: updateComplianceForms
@@ -2804,7 +2808,10 @@ paths:
         For more information, see [Managing Compliance Forms](/guides/security-and-compliance/pci-dss-compliance/managing-pci-compliance/#completing-compliance-forms).'
       tags:
       - Compliance Forms
-      x-python-method-name: update_compliance_forms
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateComplianceForm'
+      x-java-method-name: update
+      x-python-method-name: update
   /onboarding_forms:
     post:
       summary: Create an Onboarding Form
@@ -2832,7 +2839,8 @@ paths:
         $ref: '#/components/requestBodies/CreateOnboardingFormRequest'
       tags:
       - Onboarding Forms
-      x-python-method-name: create_onboarding_form
+      x-java-method-name: create
+      x-python-method-name: create
     parameters: []
   /onboarding_forms/{onboarding_form_id}:
     parameters:
@@ -2853,7 +2861,8 @@ paths:
       description: Retrieve the details of an `onboarding_form`.
       tags:
       - Onboarding Forms
-      x-python-method-name: get_onboarding_form
+      x-java-method-name: get
+      x-python-method-name: get
   /onboarding_forms/{onboarding_form_id}/links:
     parameters:
     - schema:
@@ -2884,7 +2893,8 @@ paths:
         $ref: '#/components/requestBodies/CreateOnboardingFormLinkRequest'
       tags:
       - Onboarding Forms
-      x-python-method-name: create_onboarding_form_link
+      x-java-method-name: createLink
+      x-python-method-name: create_link
 components:
   headers:
     date:
@@ -13978,14 +13988,14 @@ components:
         instrument_type:
           type: string
           enum:
-          - APPLE_PAY
-          - TOKEN
-          - PAYMENT_CARD_PRESENT
-          - SWIPED_PAYMENT_CARD
           - BANK_ACCOUNT
+          - TOKEN
+          - APPLE_PAY
           - VIRTUAL
-          - VANTIV_OMNI_TOKEN
+          - PAYMENT_CARD_PRESENT
           - GOOGLE_PAY
+          - VANTIV_OMNI_TOKEN
+          - SWIPED_PAYMENT_CARD
           - PAYMENT_CARD
           description: The type of `Payment Instrument`.
         last_four:
@@ -14019,14 +14029,14 @@ components:
         type:
           type: string
           enum:
-          - APPLE_PAY
-          - TOKEN
-          - PAYMENT_CARD_PRESENT
-          - SWIPED_PAYMENT_CARD
           - BANK_ACCOUNT
+          - TOKEN
+          - APPLE_PAY
           - VIRTUAL
-          - VANTIV_OMNI_TOKEN
+          - PAYMENT_CARD_PRESENT
           - GOOGLE_PAY
+          - VANTIV_OMNI_TOKEN
+          - SWIPED_PAYMENT_CARD
           - PAYMENT_CARD
           description: Type of `Payment Instrument`.
         _links:
@@ -14146,9 +14156,9 @@ components:
         type:
           type: string
           enum:
-          - APPLE_PAY
-          - TOKEN
           - BANK_ACCOUNT
+          - TOKEN
+          - APPLE_PAY
           - GOOGLE_PAY
           - PAYMENT_CARD
           description: Type of `Payment Instrument`.

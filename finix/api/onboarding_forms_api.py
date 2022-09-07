@@ -63,14 +63,14 @@ class OnboardingFormsApi(object):
         if api_client is None:
             api_client = finix.api_client.FinixClient()
         self._api_client = api_client
-        self._create_onboarding_form_endpoint = finix.api_client.Endpoint(
+        self._create_endpoint = finix.api_client.Endpoint(
             settings={
                 'response_type': (OnboardingForm,),
                 'auth': [
                     'BasicAuth'
                 ],
                 'endpoint_path': '/onboarding_forms',
-                'operation_id': 'create_onboarding_form',
+                'operation_id': 'create',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -114,14 +114,14 @@ class OnboardingFormsApi(object):
             },
             api_client=api_client
         )
-        self._create_onboarding_form_link_endpoint = finix.api_client.Endpoint(
+        self._create_link_endpoint = finix.api_client.Endpoint(
             settings={
                 'response_type': (OnboardingFormLink,),
                 'auth': [
                     'BasicAuth'
                 ],
                 'endpoint_path': '/onboarding_forms/{onboarding_form_id}/links',
-                'operation_id': 'create_onboarding_form_link',
+                'operation_id': 'create_link',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -172,14 +172,14 @@ class OnboardingFormsApi(object):
             },
             api_client=api_client
         )
-        self._get_onboarding_form_endpoint = finix.api_client.Endpoint(
+        self._get_endpoint = finix.api_client.Endpoint(
             settings={
                 'response_type': (OnboardingForm,),
                 'auth': [
                     'BasicAuth'
                 ],
                 'endpoint_path': '/onboarding_forms/{onboarding_form_id}',
-                'operation_id': 'get_onboarding_form',
+                'operation_id': 'get',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -225,7 +225,7 @@ class OnboardingFormsApi(object):
             api_client=api_client
         )
 
-    def create_onboarding_form(
+    def create(
         self,
         **kwargs
     ):
@@ -235,7 +235,7 @@ class OnboardingFormsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_onboarding_form(async_req=True)
+        >>> thread = api.create(async_req=True)
         >>> result = thread.get()
 
 
@@ -297,9 +297,9 @@ class OnboardingFormsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self._create_onboarding_form_endpoint.call_with_http_info(**kwargs)
+        return self._create_endpoint.call_with_http_info(**kwargs)
 
-    def create_onboarding_form_link(
+    def create_link(
         self,
         onboarding_form_id,
         **kwargs
@@ -310,7 +310,7 @@ class OnboardingFormsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_onboarding_form_link(onboarding_form_id, async_req=True)
+        >>> thread = api.create_link(onboarding_form_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -376,9 +376,9 @@ class OnboardingFormsApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['onboarding_form_id'] = \
             onboarding_form_id
-        return self._create_onboarding_form_link_endpoint.call_with_http_info(**kwargs)
+        return self._create_link_endpoint.call_with_http_info(**kwargs)
 
-    def get_onboarding_form(
+    def get(
         self,
         onboarding_form_id,
         **kwargs
@@ -389,7 +389,7 @@ class OnboardingFormsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_onboarding_form(onboarding_form_id, async_req=True)
+        >>> thread = api.get(onboarding_form_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -454,5 +454,5 @@ class OnboardingFormsApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['onboarding_form_id'] = \
             onboarding_form_id
-        return self._get_onboarding_form_endpoint.call_with_http_info(**kwargs)
+        return self._get_endpoint.call_with_http_info(**kwargs)
 

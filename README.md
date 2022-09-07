@@ -80,7 +80,7 @@ except finix.ApiException as e:
 
 ## Supported APIs
 - Transfers
-- Authorizaitons
+- Authorizations
 - Identities
 - Merchants
 - Payment Instruments
@@ -94,3 +94,5 @@ except finix.ApiException as e:
 - Verifications
 - Merchant Profiles
 - Fee Profiles
+- Onboarding Forms
+- Compliance Forms
