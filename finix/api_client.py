@@ -88,7 +88,7 @@ class FinixClient(object):
             self._default_headers[header_name] = header_value
         self._cookie = cookie
         # Set default User-Agent.
-        self._user_agent = 'finix-python/3.0.0'
+        self._user_agent = 'finix-python/4.0.0'
 
         self.set_default_header('Finix-Version','2022-02-01')
         self.authorizations = finix.api.authorizations_api.AuthorizationsApi(self)
