@@ -132,7 +132,7 @@ class CreateInstrumentUpdateRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             file (file_type): The binary contents of the file.. [optional]  # noqa: E501
-            request (str): A JSON string of your request. The JSON object needs to contain the following two fields: - `merchant`: ID of the `Merchant` object that you want to associate with the Account Updater batch for your own accounting purposes. You can only associate one `Merchant` to each - `idemopotency_id`: A randomly generated value that will be associated with this `instrument_update` resource.. [optional]  # noqa: E501
+            request (str): A JSON string of your request. The JSON object needs to contain the following two fields: - `merchant`: ID of the `Merchant` object that you want to associate with the Account Updater batch for your own accounting purposes. You can only associate one `Merchant` to each. - `idemopotency_id`: A randomly generated value that will be associated with this `instrument_update` resource.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -215,7 +215,7 @@ class CreateInstrumentUpdateRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             file (file_type): The binary contents of the file.. [optional]  # noqa: E501
-            request (str): A JSON string of your request. The JSON object needs to contain the following two fields: - `merchant`: ID of the `Merchant` object that you want to associate with the Account Updater batch for your own accounting purposes. You can only associate one `Merchant` to each - `idemopotency_id`: A randomly generated value that will be associated with this `instrument_update` resource.. [optional]  # noqa: E501
+            request (str): A JSON string of your request. The JSON object needs to contain the following two fields: - `merchant`: ID of the `Merchant` object that you want to associate with the Account Updater batch for your own accounting purposes. You can only associate one `Merchant` to each. - `idemopotency_id`: A randomly generated value that will be associated with this `instrument_update` resource.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

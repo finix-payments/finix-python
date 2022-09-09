@@ -416,10 +416,6 @@ conf = finix.Configuration(
             {
                 'url': "https://finix.sandbox-payments-api.com",
                 'description': "Sandbox server to be used for testing and development",
-            },
-            {
-                'url': "https://finix.live-payments-api.com",
-                'description': "Live server to be used for production charges",
             }
         ]
 

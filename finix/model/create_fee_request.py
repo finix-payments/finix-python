@@ -29,10 +29,8 @@ from finix.exceptions import ApiAttributeError
 
 def lazy_import():
     from finix.model.currency import Currency
-    from finix.model.fee_type import FeeType
     from finix.model.tags import Tags
     globals()['Currency'] = Currency
-    globals()['FeeType'] = FeeType
     globals()['Tags'] = Tags
 
 
@@ -59,6 +57,9 @@ class CreateFeeRequest(ModelNormal):
 
     allowed_values = {
         ('fee_subtype',): {
+            'CUSTOM': "CUSTOM",
+        },
+        ('fee_type',): {
             'CUSTOM': "CUSTOM",
         },
         ('linked_type',): {
@@ -98,13 +99,13 @@ class CreateFeeRequest(ModelNormal):
             'amount': (int,),  # noqa: E501
             'currency': (Currency,),  # noqa: E501
             'fee_subtype': (str,),  # noqa: E501
-            'fee_type': (FeeType,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'fee_type': (str,),  # noqa: E501
+            'merchant_id': (str, none_type,),  # noqa: E501
             'label': (str,),  # noqa: E501
             'linked_id': (str,),  # noqa: E501
             'linked_type': (str,),  # noqa: E501
-            'merchant_id': (str, none_type,),  # noqa: E501
             'settlement_delay_days': (int, none_type,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
         }
 
     @cached_property
@@ -117,12 +118,12 @@ class CreateFeeRequest(ModelNormal):
         'currency': 'currency',  # noqa: E501
         'fee_subtype': 'fee_subtype',  # noqa: E501
         'fee_type': 'fee_type',  # noqa: E501
-        'tags': 'tags',  # noqa: E501
+        'merchant_id': 'merchant_id',  # noqa: E501
         'label': 'label',  # noqa: E501
         'linked_id': 'linked_id',  # noqa: E501
         'linked_type': 'linked_type',  # noqa: E501
-        'merchant_id': 'merchant_id',  # noqa: E501
         'settlement_delay_days': 'settlement_delay_days',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
     }
 
     read_only_vars = {
@@ -132,16 +133,17 @@ class CreateFeeRequest(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, amount, currency, fee_type, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, amount, currency, merchant_id, *args, **kwargs):  # noqa: E501
         """CreateFeeRequest - a model defined in OpenAPI
 
         Args:
             amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).
             currency (Currency):
-            fee_type (FeeType):
+            merchant_id (str, none_type): The ID of the resource.
 
         Keyword Args:
             fee_subtype (str): Subtype of the fee. Set to **CUSTOM**.. defaults to "CUSTOM", must be one of ["CUSTOM", ]  # noqa: E501
+            fee_type (str): The type of the fee. Must be set to **CUSTOM**.. defaults to "CUSTOM", must be one of ["CUSTOM", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -172,15 +174,15 @@ class CreateFeeRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             label (str): The display name of the `Fee` that can be used for filtering purposes.. [optional]  # noqa: E501
             linked_id (str): ID of the linked resource. [optional]  # noqa: E501
             linked_type (str): The type of entity the fee is linked to (**null** by default).. [optional]  # noqa: E501
-            merchant_id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
             settlement_delay_days (int, none_type): Delays in days, when the fee will be submitted for settlement.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         fee_subtype = kwargs.get('fee_subtype', "CUSTOM")
+        fee_type = kwargs.get('fee_type', "CUSTOM")
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
@@ -210,6 +212,7 @@ class CreateFeeRequest(ModelNormal):
         self.currency = currency
         self.fee_subtype = fee_subtype
         self.fee_type = fee_type
+        self.merchant_id = merchant_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -230,16 +233,17 @@ class CreateFeeRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, amount, currency, fee_type, *args, **kwargs):  # noqa: E501
+    def __init__(self, amount, currency, merchant_id, *args, **kwargs):  # noqa: E501
         """CreateFeeRequest - a model defined in OpenAPI
 
         Args:
             amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).
             currency (Currency):
-            fee_type (FeeType):
+            merchant_id (str, none_type): The ID of the resource.
 
         Keyword Args:
             fee_subtype (str): Subtype of the fee. Set to **CUSTOM**.. defaults to "CUSTOM", must be one of ["CUSTOM", ]  # noqa: E501
+            fee_type (str): The type of the fee. Must be set to **CUSTOM**.. defaults to "CUSTOM", must be one of ["CUSTOM", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -270,15 +274,15 @@ class CreateFeeRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             label (str): The display name of the `Fee` that can be used for filtering purposes.. [optional]  # noqa: E501
             linked_id (str): ID of the linked resource. [optional]  # noqa: E501
             linked_type (str): The type of entity the fee is linked to (**null** by default).. [optional]  # noqa: E501
-            merchant_id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
             settlement_delay_days (int, none_type): Delays in days, when the fee will be submitted for settlement.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         fee_subtype = kwargs.get('fee_subtype', "CUSTOM")
+        fee_type = kwargs.get('fee_type', "CUSTOM")
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
@@ -306,6 +310,7 @@ class CreateFeeRequest(ModelNormal):
         self.currency = currency
         self.fee_subtype = fee_subtype
         self.fee_type = fee_type
+        self.merchant_id = merchant_id
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -27,8 +27,18 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
+def lazy_import():
+    from finix.model.create_onboarding_form_request_merchant_processors_inner import CreateOnboardingFormRequestMerchantProcessorsInner
+    from finix.model.onboarding_form_onboarding_data import OnboardingFormOnboardingData
+    from finix.model.onboarding_form_onboarding_link import OnboardingFormOnboardingLink
+    from finix.model.tags import Tags
+    globals()['CreateOnboardingFormRequestMerchantProcessorsInner'] = CreateOnboardingFormRequestMerchantProcessorsInner
+    globals()['OnboardingFormOnboardingData'] = OnboardingFormOnboardingData
+    globals()['OnboardingFormOnboardingLink'] = OnboardingFormOnboardingLink
+    globals()['Tags'] = Tags
 
-class CreateIdentityRequestEntityDob(ModelNormal):
+
+class OnboardingForm(ModelNormal):
     """
 
     Attributes:
@@ -50,6 +60,10 @@ class CreateIdentityRequestEntityDob(ModelNormal):
     """
 
     allowed_values = {
+        ('status',): {
+            'IN_PROGRESS': "IN_PROGRESS",
+            'COMPLETED': "COMPLETED",
+        },
     }
 
     validations = {
@@ -61,6 +75,7 @@ class CreateIdentityRequestEntityDob(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
+        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -75,10 +90,16 @@ class CreateIdentityRequestEntityDob(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
+        lazy_import()
         return {
-            'year': (int,),  # noqa: E501
-            'day': (int,),  # noqa: E501
-            'month': (int,),  # noqa: E501
+            'id': (str,),  # noqa: E501
+            'onboarding_data': (OnboardingFormOnboardingData,),  # noqa: E501
+            'merchant_processors': ([CreateOnboardingFormRequestMerchantProcessorsInner],),  # noqa: E501
+            'onboarding_link': (OnboardingFormOnboardingLink,),  # noqa: E501
+            'status': (str,),  # noqa: E501
+            'created_at': (datetime,),  # noqa: E501
+            'updated_at': (datetime,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
         }
 
     @cached_property
@@ -87,9 +108,14 @@ class CreateIdentityRequestEntityDob(ModelNormal):
 
 
     attribute_map = {
-        'year': 'year',  # noqa: E501
-        'day': 'day',  # noqa: E501
-        'month': 'month',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'onboarding_data': 'onboarding_data',  # noqa: E501
+        'merchant_processors': 'merchant_processors',  # noqa: E501
+        'onboarding_link': 'onboarding_link',  # noqa: E501
+        'status': 'status',  # noqa: E501
+        'created_at': 'created_at',  # noqa: E501
+        'updated_at': 'updated_at',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
     }
 
     read_only_vars = {
@@ -100,7 +126,7 @@ class CreateIdentityRequestEntityDob(ModelNormal):
     @classmethod
     @convert_js_args_to_python_args
     def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
-        """CreateIdentityRequestEntityDob - a model defined in OpenAPI
+        """OnboardingForm - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -133,9 +159,14 @@ class CreateIdentityRequestEntityDob(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            year (int): [optional]  # noqa: E501
-            day (int): [optional]  # noqa: E501
-            month (int): [optional]  # noqa: E501
+            id (str): The ID of the `onboarding_form` resource.. [optional]  # noqa: E501
+            onboarding_data (OnboardingFormOnboardingData): [optional]  # noqa: E501
+            merchant_processors ([CreateOnboardingFormRequestMerchantProcessorsInner]): An array of objects with the processors and gateways users will be onboarded to.. [optional]  # noqa: E501
+            onboarding_link (OnboardingFormOnboardingLink): [optional]  # noqa: E501
+            status (str): Status of the `onboarding_from`.. [optional]  # noqa: E501
+            created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
+            updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -184,7 +215,7 @@ class CreateIdentityRequestEntityDob(ModelNormal):
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
-        """CreateIdentityRequestEntityDob - a model defined in OpenAPI
+        """OnboardingForm - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -217,9 +248,14 @@ class CreateIdentityRequestEntityDob(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            year (int): [optional]  # noqa: E501
-            day (int): [optional]  # noqa: E501
-            month (int): [optional]  # noqa: E501
+            id (str): The ID of the `onboarding_form` resource.. [optional]  # noqa: E501
+            onboarding_data (OnboardingFormOnboardingData): [optional]  # noqa: E501
+            merchant_processors ([CreateOnboardingFormRequestMerchantProcessorsInner]): An array of objects with the processors and gateways users will be onboarded to.. [optional]  # noqa: E501
+            onboarding_link (OnboardingFormOnboardingLink): [optional]  # noqa: E501
+            status (str): Status of the `onboarding_from`.. [optional]  # noqa: E501
+            created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
+            updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

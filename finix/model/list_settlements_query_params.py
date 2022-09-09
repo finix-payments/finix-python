@@ -143,12 +143,12 @@ class ListSettlementsQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]  # noqa: E501
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]  # noqa: E501
-            updated_at_gte (str): Filter where updated_at is after the given date. [optional]  # noqa: E501
-            updated_at_lte (str): Filter where updated_at is before the given date. [optional]  # noqa: E501
-            id (str): Filter by id. [optional]  # noqa: E501
-            limit (int): The numbers of items to return. [optional]  # noqa: E501
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]  # noqa: E501
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]  # noqa: E501
+            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]  # noqa: E501
+            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]  # noqa: E501
+            id (str): Filter by `id`.. [optional]  # noqa: E501
+            limit (int): The numbers of items to return.. [optional]  # noqa: E501
             after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
             before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
         """
@@ -232,12 +232,12 @@ class ListSettlementsQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]  # noqa: E501
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]  # noqa: E501
-            updated_at_gte (str): Filter where updated_at is after the given date. [optional]  # noqa: E501
-            updated_at_lte (str): Filter where updated_at is before the given date. [optional]  # noqa: E501
-            id (str): Filter by id. [optional]  # noqa: E501
-            limit (int): The numbers of items to return. [optional]  # noqa: E501
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]  # noqa: E501
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]  # noqa: E501
+            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]  # noqa: E501
+            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]  # noqa: E501
+            id (str): Filter by `id`.. [optional]  # noqa: E501
+            limit (int): The numbers of items to return.. [optional]  # noqa: E501
             after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
             before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
         """

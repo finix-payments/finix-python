@@ -7,7 +7,9 @@ from finix.models import *
 def test_http401():
     client = finix.FinixClient()
     request = CreateTransferRequest(
-        hello = 2 * 3
+        hello = 2 * 3,
+        currency=Currency("USD"),
+	    amount=666
     )
     with pytest.raises(finix.ApiException) as e:
         client.transfers.create(create_transfer_request=request)

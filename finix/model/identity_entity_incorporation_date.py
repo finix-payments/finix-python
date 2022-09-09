@@ -133,9 +133,9 @@ class IdentityEntityIncorporationDate(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            day (int): [optional]  # noqa: E501
-            month (int): [optional]  # noqa: E501
-            year (int): [optional]  # noqa: E501
+            day (int): Day business was incorporated (between 1 and 31).. [optional]  # noqa: E501
+            month (int): Month business was incorporated (between 1 and 12).. [optional]  # noqa: E501
+            year (int): Year business was incorporated (4-digit).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -217,9 +217,9 @@ class IdentityEntityIncorporationDate(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            day (int): [optional]  # noqa: E501
-            month (int): [optional]  # noqa: E501
-            year (int): [optional]  # noqa: E501
+            day (int): Day business was incorporated (between 1 and 31).. [optional]  # noqa: E501
+            month (int): Month business was incorporated (between 1 and 12).. [optional]  # noqa: E501
+            year (int): Year business was incorporated (4-digit).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

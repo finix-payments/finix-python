@@ -28,7 +28,7 @@ from finix.exceptions import ApiAttributeError
 
 
 
-class CreateIdentityRequestEntityIncorporationDate(ModelNormal):
+class TransferLinksSource(ModelNormal):
     """
 
     Attributes:
@@ -76,9 +76,7 @@ class CreateIdentityRequestEntityIncorporationDate(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'year': (int,),  # noqa: E501
-            'day': (int,),  # noqa: E501
-            'month': (int,),  # noqa: E501
+            'href': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -87,9 +85,7 @@ class CreateIdentityRequestEntityIncorporationDate(ModelNormal):
 
 
     attribute_map = {
-        'year': 'year',  # noqa: E501
-        'day': 'day',  # noqa: E501
-        'month': 'month',  # noqa: E501
+        'href': 'href',  # noqa: E501
     }
 
     read_only_vars = {
@@ -100,7 +96,7 @@ class CreateIdentityRequestEntityIncorporationDate(ModelNormal):
     @classmethod
     @convert_js_args_to_python_args
     def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
-        """CreateIdentityRequestEntityIncorporationDate - a model defined in OpenAPI
+        """TransferLinksSource - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -133,9 +129,7 @@ class CreateIdentityRequestEntityIncorporationDate(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            year (int): [optional]  # noqa: E501
-            day (int): [optional]  # noqa: E501
-            month (int): [optional]  # noqa: E501
+            href (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -184,7 +178,7 @@ class CreateIdentityRequestEntityIncorporationDate(ModelNormal):
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
-        """CreateIdentityRequestEntityIncorporationDate - a model defined in OpenAPI
+        """TransferLinksSource - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -217,9 +211,7 @@ class CreateIdentityRequestEntityIncorporationDate(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            year (int): [optional]  # noqa: E501
-            day (int): [optional]  # noqa: E501
-            month (int): [optional]  # noqa: E501
+            href (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

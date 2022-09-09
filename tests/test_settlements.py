@@ -42,15 +42,3 @@ def test_create_settlement(client04):
     assert e.value.reason == 'Unprocessable Entity'
     assert 'There are no unsettled SUCCEEDED transfers to be settled.' in e.value.body[0].message
 
-
-def test_update_settlement(client04):
-    id = 'STmCc8GbjjX33SdymwNhb9Et'
-    request = UpdateSettlementRequest(
-        tags=Tags(
-            test_key_201 = "test_val_201"
-        ),
-        destination = 'PIxnmQc5LPYMZWKbbp3K3weX'
-    )
-    response = client04.settlements.update(id,update_settlement_request=request)
-    assert response.id[:2] == 'ST'
-    assert response.type == 'MERCHANT_REVENUE'

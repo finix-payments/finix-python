@@ -55,7 +55,7 @@ def test_upload_file(client00, file):
     request = UploadFileRequest(
         file=open('tests/test_file.png', 'rb')
     )
-    response = client00.files.upload_file(fid, upload_file_request=request)
+    response = client00.files.upload(fid, upload_file_request=request)
     assert response.id[:4] == 'FILE'
     assert response.extension == 'png'
     assert response.tags['test_key_100'] == 'test_val_100'
@@ -63,5 +63,5 @@ def test_upload_file(client00, file):
 
 def test_download_file(client00):
     id = 'FILE_bJecqoRPasStEPVpvKHtgA'
-    response = client00.files.download_file(id)
+    response = client00.files.download(id)
     assert isinstance(response.read(), bytes)

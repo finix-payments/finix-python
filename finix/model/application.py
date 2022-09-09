@@ -56,33 +56,23 @@ class Application(ModelNormal):
     """
 
     allowed_values = {
-        ('settlement_funding_identifier',): {
+        ('fee_ready_to_settle_upon',): {
             'None': None,
-            'UNSET': "UNSET",
+            'RECONCILIATION': "RECONCILIATION",
+            'SUCCESSFUL_CAPTURE': "SUCCESSFUL_CAPTURE",
         },
         ('ready_to_settle_upon',): {
             'None': None,
             'RECONCILIATION': "RECONCILIATION",
             'SUCCESSFUL_CAPTURE': "SUCCESSFUL_CAPTURE",
         },
-        ('fee_ready_to_settle_upon',): {
+        ('settlement_funding_identifier',): {
             'None': None,
-            'RECONCILIATION': "RECONCILIATION",
-            'SUCCESSFUL_CAPTURE': "SUCCESSFUL_CAPTURE",
+            'UNSET': "UNSET",
         },
     }
 
     validations = {
-        ('id',): {
-            'regex': {
-                'pattern': r'^(AP)[a-zA-Z0-9]{16,32}$',  # noqa: E501
-            },
-        },
-        ('owner',): {
-            'regex': {
-                'pattern': r'^(ID)[a-zA-Z0-9]{16,32}$',  # noqa: E501
-            },
-        },
     }
 
     @cached_property
@@ -108,7 +98,6 @@ class Application(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': (Tags,),  # noqa: E501
             'id': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
@@ -116,13 +105,14 @@ class Application(ModelNormal):
             'card_expiration_date_required': (bool,),  # noqa: E501
             'creating_transfer_from_report_enabled': (bool,),  # noqa: E501
             'enabled': (bool,),  # noqa: E501
+            'fee_ready_to_settle_upon': (str, none_type,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'owner': (str,),  # noqa: E501
             'processing_enabled': (bool,),  # noqa: E501
+            'ready_to_settle_upon': (str, none_type,),  # noqa: E501
             'settlement_enabled': (bool,),  # noqa: E501
             'settlement_funding_identifier': (str, none_type,),  # noqa: E501
-            'ready_to_settle_upon': (str, none_type,),  # noqa: E501
-            'fee_ready_to_settle_upon': (str, none_type,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
             'links': (ApplicationLinks,),  # noqa: E501
         }
 
@@ -132,7 +122,6 @@ class Application(ModelNormal):
 
 
     attribute_map = {
-        'tags': 'tags',  # noqa: E501
         'id': 'id',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'updated_at': 'updated_at',  # noqa: E501
@@ -140,13 +129,14 @@ class Application(ModelNormal):
         'card_expiration_date_required': 'card_expiration_date_required',  # noqa: E501
         'creating_transfer_from_report_enabled': 'creating_transfer_from_report_enabled',  # noqa: E501
         'enabled': 'enabled',  # noqa: E501
+        'fee_ready_to_settle_upon': 'fee_ready_to_settle_upon',  # noqa: E501
         'name': 'name',  # noqa: E501
         'owner': 'owner',  # noqa: E501
         'processing_enabled': 'processing_enabled',  # noqa: E501
+        'ready_to_settle_upon': 'ready_to_settle_upon',  # noqa: E501
         'settlement_enabled': 'settlement_enabled',  # noqa: E501
         'settlement_funding_identifier': 'settlement_funding_identifier',  # noqa: E501
-        'ready_to_settle_upon': 'ready_to_settle_upon',  # noqa: E501
-        'fee_ready_to_settle_upon': 'fee_ready_to_settle_upon',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
         'links': '_links',  # noqa: E501
     }
 
@@ -191,7 +181,6 @@ class Application(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             id (str): ID of the `Application` resource.. [optional]  # noqa: E501
             created_at (datetime): Point in time when this object was created.. [optional]  # noqa: E501
             updated_at (datetime): Point in time when this object was most recently updated.. [optional]  # noqa: E501
@@ -199,13 +188,14 @@ class Application(ModelNormal):
             card_expiration_date_required (bool): Details if the `Application` requires the card's expiration date.. [optional]  # noqa: E501
             creating_transfer_from_report_enabled (bool): Details if the `Application` is automatically set to create `Transfers` once settlement reports get generated.. [optional]  # noqa: E501
             enabled (bool): Details if the `Application` is enabled and active. Set to **false** to disable the `Application`.. [optional]  # noqa: E501
+            fee_ready_to_settle_upon (str, none_type): Details when the `fees` of `Authroizations` submitted under the `Application` will be ready to settle.. [optional]  # noqa: E501
             name (str): The name of the `Application`.. [optional]  # noqa: E501
             owner (str): ID of the `Identity` resource that created the `Application`.. [optional]  # noqa: E501
             processing_enabled (bool): Details if transaction processing is enabled for the `Application`. . [optional]  # noqa: E501
+            ready_to_settle_upon (str, none_type): Details when `Authroizations` submitted under the `Application` will be ready to settle.. [optional]  # noqa: E501
             settlement_enabled (bool): Details if settlement processing is enabled for the `Application`. . [optional]  # noqa: E501
             settlement_funding_identifier (str, none_type): [optional] if omitted the server will use the default value of "UNSET"  # noqa: E501
-            ready_to_settle_upon (str, none_type): Details when `Authroizations` submitted under the `Application` will be ready to settle.. [optional]  # noqa: E501
-            fee_ready_to_settle_upon (str, none_type): Details when the `fees` of `Authroizations` submitted under the `Application` will be ready to settle.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             links (ApplicationLinks): [optional]  # noqa: E501
         """
 
@@ -288,7 +278,6 @@ class Application(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             id (str): ID of the `Application` resource.. [optional]  # noqa: E501
             created_at (datetime): Point in time when this object was created.. [optional]  # noqa: E501
             updated_at (datetime): Point in time when this object was most recently updated.. [optional]  # noqa: E501
@@ -296,13 +285,14 @@ class Application(ModelNormal):
             card_expiration_date_required (bool): Details if the `Application` requires the card's expiration date.. [optional]  # noqa: E501
             creating_transfer_from_report_enabled (bool): Details if the `Application` is automatically set to create `Transfers` once settlement reports get generated.. [optional]  # noqa: E501
             enabled (bool): Details if the `Application` is enabled and active. Set to **false** to disable the `Application`.. [optional]  # noqa: E501
+            fee_ready_to_settle_upon (str, none_type): Details when the `fees` of `Authroizations` submitted under the `Application` will be ready to settle.. [optional]  # noqa: E501
             name (str): The name of the `Application`.. [optional]  # noqa: E501
             owner (str): ID of the `Identity` resource that created the `Application`.. [optional]  # noqa: E501
             processing_enabled (bool): Details if transaction processing is enabled for the `Application`. . [optional]  # noqa: E501
+            ready_to_settle_upon (str, none_type): Details when `Authroizations` submitted under the `Application` will be ready to settle.. [optional]  # noqa: E501
             settlement_enabled (bool): Details if settlement processing is enabled for the `Application`. . [optional]  # noqa: E501
             settlement_funding_identifier (str, none_type): [optional] if omitted the server will use the default value of "UNSET"  # noqa: E501
-            ready_to_settle_upon (str, none_type): Details when `Authroizations` submitted under the `Application` will be ready to settle.. [optional]  # noqa: E501
-            fee_ready_to_settle_upon (str, none_type): Details when the `fees` of `Authroizations` submitted under the `Application` will be ready to settle.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             links (ApplicationLinks): [optional]  # noqa: E501
         """
 

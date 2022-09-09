@@ -155,18 +155,18 @@ class ListIdentitiesQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            sort (str): Specify key to be used for sorting the collection. [optional]  # noqa: E501
+            sort (str): Specify key to be used for sorting the collection.. [optional]  # noqa: E501
             after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
-            limit (int): The numbers of items to return. [optional]  # noqa: E501
-            id (str): Filter by id. [optional]  # noqa: E501
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]  # noqa: E501
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]  # noqa: E501
-            default_statement_descriptor (str): Filter by the default_statement_descriptor. [optional]  # noqa: E501
+            limit (int): The numbers of items to return.. [optional]  # noqa: E501
+            id (str): Filter by `id`.. [optional]  # noqa: E501
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]  # noqa: E501
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]  # noqa: E501
+            default_statement_descriptor (str): Filter by the `default_statement_descriptor`.. [optional]  # noqa: E501
             business_name (str): Filter by the full business name. Partial business names are not supported.. [optional]  # noqa: E501
-            business_type (str): Filter by the business type. Partial business types are not supported. [optional]  # noqa: E501
+            business_type (str): Filter by the business type. Partial business types are not supported.. [optional]  # noqa: E501
             email (str): Filter by the email address or email domain. Partial emails are not supported.. [optional]  # noqa: E501
-            first_name (str): Filter by the first name of the person associated to the Identity.. [optional]  # noqa: E501
-            last_name (str): Filter by the last name of the person associated to the identity.. [optional]  # noqa: E501
+            first_name (str): Filter by the first name of the person associated to the `Identity`.. [optional]  # noqa: E501
+            last_name (str): Filter by the last name of the person associated to the `Identity`.. [optional]  # noqa: E501
             title (str): Filter by the title if available.. [optional]  # noqa: E501
             before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
         """
@@ -250,18 +250,18 @@ class ListIdentitiesQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            sort (str): Specify key to be used for sorting the collection. [optional]  # noqa: E501
+            sort (str): Specify key to be used for sorting the collection.. [optional]  # noqa: E501
             after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
-            limit (int): The numbers of items to return. [optional]  # noqa: E501
-            id (str): Filter by id. [optional]  # noqa: E501
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]  # noqa: E501
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]  # noqa: E501
-            default_statement_descriptor (str): Filter by the default_statement_descriptor. [optional]  # noqa: E501
+            limit (int): The numbers of items to return.. [optional]  # noqa: E501
+            id (str): Filter by `id`.. [optional]  # noqa: E501
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]  # noqa: E501
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]  # noqa: E501
+            default_statement_descriptor (str): Filter by the `default_statement_descriptor`.. [optional]  # noqa: E501
             business_name (str): Filter by the full business name. Partial business names are not supported.. [optional]  # noqa: E501
-            business_type (str): Filter by the business type. Partial business types are not supported. [optional]  # noqa: E501
+            business_type (str): Filter by the business type. Partial business types are not supported.. [optional]  # noqa: E501
             email (str): Filter by the email address or email domain. Partial emails are not supported.. [optional]  # noqa: E501
-            first_name (str): Filter by the first name of the person associated to the Identity.. [optional]  # noqa: E501
-            last_name (str): Filter by the last name of the person associated to the identity.. [optional]  # noqa: E501
+            first_name (str): Filter by the first name of the person associated to the `Identity`.. [optional]  # noqa: E501
+            last_name (str): Filter by the last name of the person associated to the `Identity`.. [optional]  # noqa: E501
             title (str): Filter by the title if available.. [optional]  # noqa: E501
             before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
         """

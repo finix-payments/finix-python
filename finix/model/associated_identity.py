@@ -27,8 +27,16 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
+def lazy_import():
+    from finix.model.associated_identity_entity import AssociatedIdentityEntity
+    from finix.model.identity_links import IdentityLinks
+    from finix.model.tags import Tags
+    globals()['AssociatedIdentityEntity'] = AssociatedIdentityEntity
+    globals()['IdentityLinks'] = IdentityLinks
+    globals()['Tags'] = Tags
 
-class CreateIdentityRequestEntityBusinessAddress(ModelNormal):
+
+class AssociatedIdentity(ModelNormal):
     """
 
     Attributes:
@@ -53,22 +61,10 @@ class CreateIdentityRequestEntityBusinessAddress(ModelNormal):
     }
 
     validations = {
-        ('city',): {
+        ('id',): {
             'min_length': 1,
         },
-        ('country',): {
-            'min_length': 1,
-        },
-        ('region',): {
-            'min_length': 1,
-        },
-        ('line2',): {
-            'min_length': 1,
-        },
-        ('line1',): {
-            'min_length': 1,
-        },
-        ('postal_code',): {
+        ('application',): {
             'min_length': 1,
         },
     }
@@ -79,9 +75,10 @@ class CreateIdentityRequestEntityBusinessAddress(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
+        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
-    _nullable = True
+    _nullable = False
 
     @cached_property
     def openapi_types():
@@ -93,13 +90,15 @@ class CreateIdentityRequestEntityBusinessAddress(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
+        lazy_import()
         return {
-            'city': (str,),  # noqa: E501
-            'country': (str,),  # noqa: E501
-            'region': (str,),  # noqa: E501
-            'line2': (str,),  # noqa: E501
-            'line1': (str,),  # noqa: E501
-            'postal_code': (str,),  # noqa: E501
+            'id': (str,),  # noqa: E501
+            'created_at': (datetime,),  # noqa: E501
+            'updated_at': (datetime,),  # noqa: E501
+            'application': (str,),  # noqa: E501
+            'entity': (AssociatedIdentityEntity,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
+            'links': (IdentityLinks,),  # noqa: E501
         }
 
     @cached_property
@@ -108,12 +107,13 @@ class CreateIdentityRequestEntityBusinessAddress(ModelNormal):
 
 
     attribute_map = {
-        'city': 'city',  # noqa: E501
-        'country': 'country',  # noqa: E501
-        'region': 'region',  # noqa: E501
-        'line2': 'line2',  # noqa: E501
-        'line1': 'line1',  # noqa: E501
-        'postal_code': 'postal_code',  # noqa: E501
+        'id': 'id',  # noqa: E501
+        'created_at': 'created_at',  # noqa: E501
+        'updated_at': 'updated_at',  # noqa: E501
+        'application': 'application',  # noqa: E501
+        'entity': 'entity',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
+        'links': '_links',  # noqa: E501
     }
 
     read_only_vars = {
@@ -124,7 +124,7 @@ class CreateIdentityRequestEntityBusinessAddress(ModelNormal):
     @classmethod
     @convert_js_args_to_python_args
     def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
-        """CreateIdentityRequestEntityBusinessAddress - a model defined in OpenAPI
+        """AssociatedIdentity - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -157,12 +157,13 @@ class CreateIdentityRequestEntityBusinessAddress(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            city (str): City (max 20 characters).. [optional]  # noqa: E501
-            country (str): 3-Letter Country code (e.g. USA).. [optional]  # noqa: E501
-            region (str): 2-letter state code.. [optional]  # noqa: E501
-            line2 (str): Second line of the address (max 35 characters).. [optional]  # noqa: E501
-            line1 (str): First line of the address (max 35 characters).. [optional]  # noqa: E501
-            postal_code (str): Zip or Postal code (max 7 characters).. [optional]  # noqa: E501
+            id (str): The ID of the `Identity` resource.. [optional]  # noqa: E501
+            created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
+            updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
+            application (str): ID of the `Application` associated with the `Identity`.. [optional]  # noqa: E501
+            entity (AssociatedIdentityEntity): [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            links (IdentityLinks): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -211,7 +212,7 @@ class CreateIdentityRequestEntityBusinessAddress(ModelNormal):
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
-        """CreateIdentityRequestEntityBusinessAddress - a model defined in OpenAPI
+        """AssociatedIdentity - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -244,12 +245,13 @@ class CreateIdentityRequestEntityBusinessAddress(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            city (str): City (max 20 characters).. [optional]  # noqa: E501
-            country (str): 3-Letter Country code (e.g. USA).. [optional]  # noqa: E501
-            region (str): 2-letter state code.. [optional]  # noqa: E501
-            line2 (str): Second line of the address (max 35 characters).. [optional]  # noqa: E501
-            line1 (str): First line of the address (max 35 characters).. [optional]  # noqa: E501
-            postal_code (str): Zip or Postal code (max 7 characters).. [optional]  # noqa: E501
+            id (str): The ID of the `Identity` resource.. [optional]  # noqa: E501
+            created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
+            updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
+            application (str): ID of the `Application` associated with the `Identity`.. [optional]  # noqa: E501
+            entity (AssociatedIdentityEntity): [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            links (IdentityLinks): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

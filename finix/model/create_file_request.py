@@ -97,8 +97,8 @@ class CreateFileRequest(ModelNormal):
         return {
             'display_name': (str,),  # noqa: E501
             'linked_to': (str,),  # noqa: E501
-            'type': (str,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
+            'type': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -109,8 +109,8 @@ class CreateFileRequest(ModelNormal):
     attribute_map = {
         'display_name': 'display_name',  # noqa: E501
         'linked_to': 'linked_to',  # noqa: E501
-        'type': 'type',  # noqa: E501
         'tags': 'tags',  # noqa: E501
+        'type': 'type',  # noqa: E501
     }
 
     read_only_vars = {
@@ -156,8 +156,8 @@ class CreateFileRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             display_name (str): The name of the `File` you'll create.. [optional]  # noqa: E501
             linked_to (str): The resource ID that you want linked to the `File` (e.g. Merchant ID).. [optional]  # noqa: E501
-            type (str): The type of document. | Available values include: <br>Identity Verification<ul><li> **DRIVERS\\_LICENSE\\_FRONT**<li>**DRIVERS\\_LICENSE\\_BACK**<li>**IDENTIFICATION\\_CARD\\_FRONT**<li>**IDENTIFICATION\\_CARD\\_BACK**</ul>Bank account validation<ul><li>**BANK\\_STATEMENT**</ul>Business Verification<ul><li>**TAX\\_DOCUMENT**<li>**BUSINESS\\_REGISTRATION**<li>**BUSINESS\\_ADDRESS\\_VERIFICATION**</ul>Additional<ul><li>**OTHER**<li>**PCI\\_DOCUMENT**<li>**PASSPORT**<ul>. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
+            type (str): The type of document. | Available values include: <br>Identity Verification<ul><li> **DRIVERS\\_LICENSE\\_FRONT**<li>**DRIVERS\\_LICENSE\\_BACK**<li>**IDENTIFICATION\\_CARD\\_FRONT**<li>**IDENTIFICATION\\_CARD\\_BACK**</ul>Bank account validation<ul><li>**BANK\\_STATEMENT**</ul>Business Verification<ul><li>**TAX\\_DOCUMENT**<li>**BUSINESS\\_REGISTRATION**<li>**BUSINESS\\_ADDRESS\\_VERIFICATION**</ul>Additional<ul><li>**OTHER**<li>**PCI\\_DOCUMENT**<li>**PASSPORT**<ul>. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -241,8 +241,8 @@ class CreateFileRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             display_name (str): The name of the `File` you'll create.. [optional]  # noqa: E501
             linked_to (str): The resource ID that you want linked to the `File` (e.g. Merchant ID).. [optional]  # noqa: E501
-            type (str): The type of document. | Available values include: <br>Identity Verification<ul><li> **DRIVERS\\_LICENSE\\_FRONT**<li>**DRIVERS\\_LICENSE\\_BACK**<li>**IDENTIFICATION\\_CARD\\_FRONT**<li>**IDENTIFICATION\\_CARD\\_BACK**</ul>Bank account validation<ul><li>**BANK\\_STATEMENT**</ul>Business Verification<ul><li>**TAX\\_DOCUMENT**<li>**BUSINESS\\_REGISTRATION**<li>**BUSINESS\\_ADDRESS\\_VERIFICATION**</ul>Additional<ul><li>**OTHER**<li>**PCI\\_DOCUMENT**<li>**PASSPORT**<ul>. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
+            type (str): The type of document. | Available values include: <br>Identity Verification<ul><li> **DRIVERS\\_LICENSE\\_FRONT**<li>**DRIVERS\\_LICENSE\\_BACK**<li>**IDENTIFICATION\\_CARD\\_FRONT**<li>**IDENTIFICATION\\_CARD\\_BACK**</ul>Bank account validation<ul><li>**BANK\\_STATEMENT**</ul>Business Verification<ul><li>**TAX\\_DOCUMENT**<li>**BUSINESS\\_REGISTRATION**<li>**BUSINESS\\_ADDRESS\\_VERIFICATION**</ul>Additional<ul><li>**OTHER**<li>**PCI\\_DOCUMENT**<li>**PASSPORT**<ul>. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

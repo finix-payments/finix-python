@@ -446,9 +446,9 @@ class DisputesApi(object):
         dispute_id,
         **kwargs
     ):
-        """Create Dispute Evidence  # noqa: E501
+        """Upload Dispute Evidence  # noqa: E501
 
-        Upload dispute evidence for a `Dispute`.  There are four values available for `state` that details the status of the evidence upload:  * **PENDING**: The evidence file has not yet been submitted to the `Processor`. No user action is required. * **SUCCEEDED**: The evidence file has been successfully sent to the `Processor`. No further user action is required. * **CANCELED**: The evidence file upload was not completed due to user action. * **FAILED**: An issue occurred. User action is required. Any of the following issues could have occurred:     * There was an error in the system and the user should retry uploading their evidence file.     * There is an issue with the file and the user should retry uploading a different file.     * There is an issue and the user should contact Support.   # noqa: E501
+        Upload dispute evidence for a `Dispute`.  - You can upload up to 8 files; the total size of the uploaded files combined cannot exceed 10 MB. - The allowed file formats include JPG, PNG, PDF, or TIFF. - Individual PNG and JPEG files can't exceed 50 KB; PDF and TIFF files can't exceed 1 MB.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -525,7 +525,7 @@ class DisputesApi(object):
         dispute_id,
         **kwargs
     ):
-        """Get Dispute  # noqa: E501
+        """Fetch a Dispute  # noqa: E501
 
         Retrieve the details of a previously created `Dispute`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -698,7 +698,7 @@ class DisputesApi(object):
             dispute_id (str): ID of `Dispute` to mange evidence for.
 
         Keyword Args:
-            limit (int): The numbers of items to return. [optional]
+            limit (int): The numbers of items to return.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -778,13 +778,13 @@ class DisputesApi(object):
 
 
         Keyword Args:
-            sort (str): Specify key to be used for sorting the collection. [optional]
-            offset (int): The number of items to skip before starting to collect the result set. [optional]
-            limit (int): The numbers of items to return. [optional]
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]
-            updated_at_gte (str): Filter where updated_at is after the given date. [optional]
-            updated_at_lte (str): Filter where updated_at is before the given date. [optional]
+            sort (str): Specify key to be used for sorting the collection.. [optional]
+            offset (int): The number of items to skip before starting to collect the result set.. [optional]
+            limit (int): The numbers of items to return.. [optional]
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
+            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]
+            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -863,7 +863,7 @@ class DisputesApi(object):
             dispute_id (str): ID of the `Dispute` resource.
 
         Keyword Args:
-            limit (int): The numbers of items to return. [optional]
+            limit (int): The numbers of items to return.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status

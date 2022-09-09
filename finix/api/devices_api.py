@@ -26,6 +26,7 @@ from finix.model.error403_forbidden_list import Error403ForbiddenList
 from finix.model.error404_not_found_list import Error404NotFoundList
 from finix.model.error406_not_acceptable import Error406NotAcceptable
 from finix.model.error_generic import ErrorGeneric
+from finix.model.update_device_request import UpdateDeviceRequest
 from finix.model.finix_utils import FinixList
 
 from functools import wraps
@@ -132,6 +133,7 @@ class DevicesApi(object):
             params_map={
                 'all': [
                     'device_id',
+                    'include_connection',
                 ],
                 'required': [
                     'device_id',
@@ -151,12 +153,16 @@ class DevicesApi(object):
                 'openapi_types': {
                     'device_id':
                         (str,),
+                    'include_connection':
+                        (bool,),
                 },
                 'attribute_map': {
                     'device_id': 'device_id',
+                    'include_connection': 'include_connection',
                 },
                 'location_map': {
                     'device_id': 'path',
+                    'include_connection': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -183,7 +189,7 @@ class DevicesApi(object):
             params_map={
                 'all': [
                     'device_id',
-                    'body',
+                    'update_device_request',
                 ],
                 'required': [
                     'device_id',
@@ -203,15 +209,15 @@ class DevicesApi(object):
                 'openapi_types': {
                     'device_id':
                         (str,),
-                    'body':
-                        ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),
+                    'update_device_request':
+                        (UpdateDeviceRequest,),
                 },
                 'attribute_map': {
                     'device_id': 'device_id',
                 },
                 'location_map': {
                     'device_id': 'path',
-                    'body': 'body',
+                    'update_device_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -311,9 +317,9 @@ class DevicesApi(object):
         device_id,
         **kwargs
     ):
-        """Get Device  # noqa: E501
+        """Fetch a Device  # noqa: E501
 
-        Retrieve the details of an existing `Device`.  To check the connectivity of the device, include `?include_connection\\=true \\` at the end of the request endpoint.  # noqa: E501
+        Retrieve the details of an existing `Device`.  To check the connectivity of the device, include `?include_connection\\=true\\` at the end of the request endpoint.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -324,6 +330,7 @@ class DevicesApi(object):
             device_id (str): ID of the `Device`.
 
         Keyword Args:
+            include_connection (bool): Specifies whether the connection information should be included.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -389,9 +396,9 @@ class DevicesApi(object):
         device_id,
         **kwargs
     ):
-        """Update a Device  # noqa: E501
+        """Initiate Action on Device  # noqa: E501
 
-        Update a `Device` to activate or deactivate it.  # noqa: E501
+        Initiate an action on a `Device`. These actions include activation, rebooting, setting an idle message, or deactivate it.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -402,7 +409,7 @@ class DevicesApi(object):
             device_id (str): ID of the `Device`.
 
         Keyword Args:
-            body ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]
+            update_device_request (UpdateDeviceRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

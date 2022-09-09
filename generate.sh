@@ -14,7 +14,6 @@ openapi-generator generate \
   --global-property apiDocs=false \
   --global-property modelDocs=false \
   --global-property apiTests=false \
-  --global-property modelTests=false
-
-
+  --global-property modelTests=false 
+  
   rm -rf .openapi-generator

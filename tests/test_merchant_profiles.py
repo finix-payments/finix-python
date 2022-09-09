@@ -15,7 +15,7 @@ def test_update_merchant_profile(client03):
     request = {
         'tags':{'test_key_100':'test_val_100'}
     }
-    response = client03.merchant_profiles.update(id,body=request)
+    response = client03.merchant_profiles.update(id,update_merchant_profile_request=request)
     assert response.id[:2] == 'MP'
     assert response.application == 'AP7yJr75Zycq9Fz6CpK8h9gn'
     assert response.tags['test_key_100'] == 'test_val_100'

@@ -30,10 +30,10 @@ from finix.exceptions import ApiAttributeError
 def lazy_import():
     from finix.model.country import Country
     from finix.model.currency import Currency
-    from finix.model.processor_system_config_configuration_templates import ProcessorSystemConfigConfigurationTemplates
+    from finix.model.processor_system_config_config import ProcessorSystemConfigConfig
     globals()['Country'] = Country
     globals()['Currency'] = Currency
-    globals()['ProcessorSystemConfigConfigurationTemplates'] = ProcessorSystemConfigConfigurationTemplates
+    globals()['ProcessorSystemConfigConfig'] = ProcessorSystemConfigConfig
 
 
 class ProcessorSystemConfig(ModelNormal):
@@ -58,9 +58,6 @@ class ProcessorSystemConfig(ModelNormal):
     """
 
     allowed_values = {
-        ('class_key_identifier',): {
-            'IO.FINIX.VISA.DIRECT.CLIENT.VISASYSTEMCONFIG': "io.finix.visa.direct.client.VisaSystemConfig",
-        },
         ('acquirer_country_code',): {
             '004': "004",
             '008': "008",
@@ -312,6 +309,9 @@ class ProcessorSystemConfig(ModelNormal):
             '887': "887",
             '894': "894",
         },
+        ('class_key_identifier',): {
+            'IO.FINIX.VISA.DIRECT.CLIENT.VISASYSTEMCONFIG': "io.finix.visa.direct.client.VisaSystemConfig",
+        },
         ('source_of_funds',): {
             '01': "01",
             '02': "02",
@@ -323,11 +323,6 @@ class ProcessorSystemConfig(ModelNormal):
     }
 
     validations = {
-        ('acquiring_bin',): {
-            'regex': {
-                'pattern': r'^\d{6}$',  # noqa: E501
-            },
-        },
     }
 
     @cached_property
@@ -353,13 +348,13 @@ class ProcessorSystemConfig(ModelNormal):
         """
         lazy_import()
         return {
-            'class_key_identifier': (str,),  # noqa: E501
             'acquirer_country_code': (str,),  # noqa: E501
             'acquiring_bin': (str,),  # noqa: E501
             'allow_credit_for_partner': (bool,),  # noqa: E501
             'available_countries': ([Country],),  # noqa: E501
             'business_application_id': (str, none_type,),  # noqa: E501
-            'configuration_templates': (ProcessorSystemConfigConfigurationTemplates,),  # noqa: E501
+            'class_key_identifier': (str,),  # noqa: E501
+            'config': (ProcessorSystemConfigConfig,),  # noqa: E501
             'default_currencies': ([Currency],),  # noqa: E501
             'disable_ppgs': (bool,),  # noqa: E501
             'fee_program_indicator': (str,),  # noqa: E501
@@ -392,13 +387,13 @@ class ProcessorSystemConfig(ModelNormal):
 
 
     attribute_map = {
-        'class_key_identifier': 'CLASS_KEY_IDENTIFIER',  # noqa: E501
         'acquirer_country_code': 'acquirer_country_code',  # noqa: E501
         'acquiring_bin': 'acquiring_bin',  # noqa: E501
         'allow_credit_for_partner': 'allow_credit_for_partner',  # noqa: E501
         'available_countries': 'available_countries',  # noqa: E501
         'business_application_id': 'business_application_id',  # noqa: E501
-        'configuration_templates': 'configuration_templates',  # noqa: E501
+        'class_key_identifier': 'class_key_identifier',  # noqa: E501
+        'config': 'config',  # noqa: E501
         'default_currencies': 'default_currencies',  # noqa: E501
         'disable_ppgs': 'disable_ppgs',  # noqa: E501
         'fee_program_indicator': 'fee_program_indicator',  # noqa: E501
@@ -466,13 +461,13 @@ class ProcessorSystemConfig(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            class_key_identifier (str): Field used by processor to communicate with Finix.. [optional] if omitted the server will use the default value of "io.finix.visa.direct.client.VisaSystemConfig"  # noqa: E501
             acquirer_country_code (str): The 3 letter ISO 4217 country code for the country transactions are originating from.. [optional]  # noqa: E501
             acquiring_bin (str): The Bank Identification Number (BIN) the `Processor` is registered under with Visa Direct.. [optional]  # noqa: E501
             allow_credit_for_partner (bool): Field used by Finix and processor to handle transactions.. [optional]  # noqa: E501
             available_countries ([Country]): Details the countries the `Processor` is avalible in.. [optional]  # noqa: E501
             business_application_id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            configuration_templates (ProcessorSystemConfigConfigurationTemplates): [optional]  # noqa: E501
+            class_key_identifier (str): Field used by processor to communicate with Finix.. [optional] if omitted the server will use the default value of "io.finix.visa.direct.client.VisaSystemConfig"  # noqa: E501
+            config (ProcessorSystemConfigConfig): [optional]  # noqa: E501
             default_currencies ([Currency]): ISO 4217 3 letter currency code.. [optional]  # noqa: E501
             disable_ppgs (bool): Set to **true** to enables the option to push payments to other U.S. debit networks using our Visa Direct integration.. [optional]  # noqa: E501
             fee_program_indicator (str): Details the price of a Visa Direct payout.. [optional]  # noqa: E501
@@ -578,13 +573,13 @@ class ProcessorSystemConfig(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            class_key_identifier (str): Field used by processor to communicate with Finix.. [optional] if omitted the server will use the default value of "io.finix.visa.direct.client.VisaSystemConfig"  # noqa: E501
             acquirer_country_code (str): The 3 letter ISO 4217 country code for the country transactions are originating from.. [optional]  # noqa: E501
             acquiring_bin (str): The Bank Identification Number (BIN) the `Processor` is registered under with Visa Direct.. [optional]  # noqa: E501
             allow_credit_for_partner (bool): Field used by Finix and processor to handle transactions.. [optional]  # noqa: E501
             available_countries ([Country]): Details the countries the `Processor` is avalible in.. [optional]  # noqa: E501
             business_application_id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            configuration_templates (ProcessorSystemConfigConfigurationTemplates): [optional]  # noqa: E501
+            class_key_identifier (str): Field used by processor to communicate with Finix.. [optional] if omitted the server will use the default value of "io.finix.visa.direct.client.VisaSystemConfig"  # noqa: E501
+            config (ProcessorSystemConfigConfig): [optional]  # noqa: E501
             default_currencies ([Currency]): ISO 4217 3 letter currency code.. [optional]  # noqa: E501
             disable_ppgs (bool): Set to **true** to enables the option to push payments to other U.S. debit networks using our Visa Direct integration.. [optional]  # noqa: E501
             fee_program_indicator (str): Details the price of a Visa Direct payout.. [optional]  # noqa: E501

@@ -97,8 +97,12 @@ class CreateSubscriptionScheduleRequestFixedTimeIntervalOffset(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, hourly_interval, interval_count, *args, **kwargs):  # noqa: E501
         """CreateSubscriptionScheduleRequestFixedTimeIntervalOffset - a model defined in OpenAPI
+
+        Args:
+            hourly_interval (int): Hourly increments between recurring charges
+            interval_count (int): Number of recurring charges
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -131,8 +135,6 @@ class CreateSubscriptionScheduleRequestFixedTimeIntervalOffset(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            hourly_interval (int): Hourly increments between recurring charges. [optional]  # noqa: E501
-            interval_count (int): Number of recurring charges. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -160,6 +162,8 @@ class CreateSubscriptionScheduleRequestFixedTimeIntervalOffset(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.hourly_interval = hourly_interval
+        self.interval_count = interval_count
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -180,8 +184,12 @@ class CreateSubscriptionScheduleRequestFixedTimeIntervalOffset(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, hourly_interval, interval_count, *args, **kwargs):  # noqa: E501
         """CreateSubscriptionScheduleRequestFixedTimeIntervalOffset - a model defined in OpenAPI
+
+        Args:
+            hourly_interval (int): Hourly increments between recurring charges
+            interval_count (int): Number of recurring charges
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -214,8 +222,6 @@ class CreateSubscriptionScheduleRequestFixedTimeIntervalOffset(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            hourly_interval (int): Hourly increments between recurring charges. [optional]  # noqa: E501
-            interval_count (int): Number of recurring charges. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -241,6 +247,8 @@ class CreateSubscriptionScheduleRequestFixedTimeIntervalOffset(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.hourly_interval = hourly_interval
+        self.interval_count = interval_count
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

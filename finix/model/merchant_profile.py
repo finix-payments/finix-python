@@ -59,11 +59,6 @@ class MerchantProfile(ModelNormal):
     }
 
     validations = {
-        ('reserve_profile',): {
-            'regex': {
-                'pattern': r'^(SP)[a-zA-Z0-9]{16,32}$',  # noqa: E501
-            },
-        },
     }
 
     @cached_property
@@ -89,14 +84,13 @@ class MerchantProfile(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': (Tags,),  # noqa: E501
             'id': (str, none_type,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
             'application': (str,),  # noqa: E501
             'fee_profile': (str, none_type,),  # noqa: E501
-            'reserve_profile': (str,),  # noqa: E501
             'risk_profile': (str, none_type,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
             'links': (MerchantProfileLinks,),  # noqa: E501
         }
 
@@ -106,14 +100,13 @@ class MerchantProfile(ModelNormal):
 
 
     attribute_map = {
-        'tags': 'tags',  # noqa: E501
         'id': 'id',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'updated_at': 'updated_at',  # noqa: E501
         'application': 'application',  # noqa: E501
         'fee_profile': 'fee_profile',  # noqa: E501
-        'reserve_profile': 'reserve_profile',  # noqa: E501
         'risk_profile': 'risk_profile',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
         'links': '_links',  # noqa: E501
     }
 
@@ -158,14 +151,13 @@ class MerchantProfile(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             application (str): The ID of the resource.. [optional]  # noqa: E501
             fee_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            reserve_profile (str): [optional]  # noqa: E501
             risk_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             links (MerchantProfileLinks): [optional]  # noqa: E501
         """
 
@@ -248,14 +240,13 @@ class MerchantProfile(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             application (str): The ID of the resource.. [optional]  # noqa: E501
             fee_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            reserve_profile (str): [optional]  # noqa: E501
             risk_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             links (MerchantProfileLinks): [optional]  # noqa: E501
         """
 

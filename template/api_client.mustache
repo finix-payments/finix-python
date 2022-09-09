@@ -15,21 +15,13 @@ from urllib3.fields import RequestField
 import tornado.gen
 {{/tornado}}
 
-import {{packageName}}.api.transfers_api
-import {{packageName}}.api.payment_instruments_api
-import {{packageName}}.api.authorizations_api
-import {{packageName}}.api.identities_api
-import {{packageName}}.api.disputes_api
-import {{packageName}}.api.devices_api
-import {{packageName}}.api.webhooks_api
-import {{packageName}}.api.balance_transfers_api
-import {{packageName}}.api.files_api
-import {{packageName}}.api.merchants_api
-import {{packageName}}.api.settlements_api
-import {{packageName}}.api.verifications_api
-import {{packageName}}.api.instrument_updates_api
-import {{packageName}}.api.merchant_profiles_api
-import {{packageName}}.api.fee_profiles_api
+{{#apiInfo}}
+{{#apis}}
+{{#operations}}
+import {{packageName}}.api.{{classVarName}}
+{{/operations}}
+{{/apis}}
+{{/apiInfo}}
 
 from {{packageName}} import rest
 from {{packageName}}.configuration import Configuration
@@ -88,22 +80,13 @@ class FinixClient(object):
         {{#version}}
         self.set_default_header('Finix-Version','{{{.}}}')
         {{/version}}
-        self.transfers = {{packageName}}.api.transfers_api.TransfersApi(self)
-        self.payment_instruments = {{packageName}}.api.payment_instruments_api.PaymentInstrumentsApi(self)
-        self.authorizations = {{packageName}}.api.authorizations_api.AuthorizationsApi(self)
-        self.identities = {{packageName}}.api.identities_api.IdentitiesApi(self)
-        self.disputes = {{packageName}}.api.disputes_api.DisputesApi(self)
-        self.devices = {{packageName}}.api.devices_api.DevicesApi(self)
-        self.webhooks = {{packageName}}.api.webhooks_api.WebhooksApi(self)
-        self.balance_transfers = {{packageName}}.api.balance_transfers_api.BalanceTransfersApi(self)
-        self.files = {{packageName}}.api.files_api.FilesApi(self)
-        self.merchants = {{packageName}}.api.merchants_api.MerchantsApi(self)
-        self.settlements = {{packageName}}.api.settlements_api.SettlementsApi(self)
-        self.verifications = {{packageName}}.api.verifications_api.VerificationsApi(self)
-        self.instrument_updates = {{packageName}}.api.instrument_updates_api.InstrumentUpdatesApi(self)
-        self.merchant_profiles = {{packageName}}.api.merchant_profiles_api.MerchantProfilesApi(self)
-        self.fee_profiles = {{packageName}}.api.fee_profiles_api.FeeProfilesApi(self)
-
+        {{#apiInfo}}
+        {{#apis}}
+        {{#operations}}
+        self.{{#lambda.lowercase}}{{baseName}}{{/lambda.lowercase}} = {{packageName}}.api.{{classVarName}}.{{classname}}(self)
+        {{/operations}}
+        {{/apis}}
+        {{/apiInfo}}
     def __enter__(self):
         return self
 

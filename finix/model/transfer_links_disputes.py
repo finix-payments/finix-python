@@ -27,12 +27,8 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
-def lazy_import():
-    from finix.model.application_links_application_profile import ApplicationLinksApplicationProfile
-    globals()['ApplicationLinksApplicationProfile'] = ApplicationLinksApplicationProfile
 
-
-class Error422InvalidFieldListEmbeddedLinks(ModelNormal):
+class TransferLinksDisputes(ModelNormal):
     """
 
     Attributes:
@@ -65,7 +61,6 @@ class Error422InvalidFieldListEmbeddedLinks(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -80,9 +75,8 @@ class Error422InvalidFieldListEmbeddedLinks(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        lazy_import()
         return {
-            'source': (ApplicationLinksApplicationProfile,),  # noqa: E501
+            'href': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -91,7 +85,7 @@ class Error422InvalidFieldListEmbeddedLinks(ModelNormal):
 
 
     attribute_map = {
-        'source': 'source',  # noqa: E501
+        'href': 'href',  # noqa: E501
     }
 
     read_only_vars = {
@@ -102,7 +96,7 @@ class Error422InvalidFieldListEmbeddedLinks(ModelNormal):
     @classmethod
     @convert_js_args_to_python_args
     def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
-        """Error422InvalidFieldListEmbeddedLinks - a model defined in OpenAPI
+        """TransferLinksDisputes - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -135,7 +129,7 @@ class Error422InvalidFieldListEmbeddedLinks(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            source (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            href (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -184,7 +178,7 @@ class Error422InvalidFieldListEmbeddedLinks(ModelNormal):
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
-        """Error422InvalidFieldListEmbeddedLinks - a model defined in OpenAPI
+        """TransferLinksDisputes - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -217,7 +211,7 @@ class Error422InvalidFieldListEmbeddedLinks(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            source (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            href (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

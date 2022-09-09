@@ -246,10 +246,10 @@ class MerchantsApi(object):
                     'id',
                     'created_at_gte',
                     'created_at_lte',
-                    'sort',
                     'after_cursor',
-                    'limit',
                     'before_cursor',
+                    'limit',
+                    'sort',
                 ],
                 'required': [],
                 'nullable': [
@@ -271,32 +271,32 @@ class MerchantsApi(object):
                         (str,),
                     'created_at_lte':
                         (str,),
-                    'sort':
-                        (str,),
                     'after_cursor':
+                        (str,),
+                    'before_cursor':
                         (str,),
                     'limit':
                         (int,),
-                    'before_cursor':
+                    'sort':
                         (str,),
                 },
                 'attribute_map': {
                     'id': 'id',
                     'created_at_gte': 'created_at.gte',
                     'created_at_lte': 'created_at.lte',
-                    'sort': 'sort',
                     'after_cursor': 'after_cursor',
-                    'limit': 'limit',
                     'before_cursor': 'before_cursor',
+                    'limit': 'limit',
+                    'sort': 'sort',
                 },
                 'location_map': {
                     'id': 'query',
                     'created_at_gte': 'query',
                     'created_at_lte': 'query',
-                    'sort': 'query',
                     'after_cursor': 'query',
-                    'limit': 'query',
                     'before_cursor': 'query',
+                    'limit': 'query',
+                    'sort': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -374,7 +374,7 @@ class MerchantsApi(object):
     ):
         """Create a Merchant  # noqa: E501
 
-        Create a `Merchant` to start the underwriting process for your merchant. `Merchants` must be created under an [`Identity`](#tag/Identities).  > A bank account must be associated with the previously created `Identity` before a `Merchant` can be succefully onboarded and verified.  `Merchant` resources can have three possible `onboarding_states`:  1. **PROVISIONING**: The request is pending (the state may change after two minutes).     * `processing_enabled`: **False**     * `settlement_enabled`: **False**  1. **APPROVED**: The `Merchant` has been approved and can begin processing payments.     * `processing_enabled`: **True**    * `settlement_enabled`: **True**  1. **REJECTED**: The `Merchant` was rejected by the processor because of invalid information or it failed a regulatory and/or compliance check (e.g. KYC, OFAC, or MATCH). Make any changes that are needed, and [try verifying the `Merchant` again](#operation/createMerchantVerification).     * `processing_enabled`: **False**     * `settlement_enabled`: **False**   > Provisioning a `Merchant` account is an asynchronous request. We recommend creating a [`Webhook`](#tag/Webhooks) to listen for the state change.  # noqa: E501
+        Create a `Merchant` to start the underwriting (also called provisioning) process for your merchant. `Merchants` must be created under an [`Identity`](#tag/Identities).  > A bank account must be associated with the previously created `Identity` before a `Merchant` can be succefully onboarded and verified.  `Merchant` resources can have three possible `onboarding_states`:  1. **PROVISIONING**: The request is pending (the state can change after two minutes).     * `processing_enabled`: **False**     * `settlement_enabled`: **False**  1. **APPROVED**: The `Merchant` has been approved and can begin processing payments.     * `processing_enabled`: **True**    * `settlement_enabled`: **True**  1. **REJECTED**: The `Merchant` was rejected by the processor because of invalid information or it failed a regulatory and/or compliance check (e.g. KYC, OFAC, or MATCH). Make any changes that are needed, and [try verifying the `Merchant` again](#operation/createMerchantVerification).     * `processing_enabled`: **False**     * `settlement_enabled`: **False**   > Provisioning a `Merchant` account is an asynchronous request. We recommend creating a [`Webhook`](#tag/Webhooks) to listen for the state change.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -453,7 +453,7 @@ class MerchantsApi(object):
     ):
         """Verify a Merchant  # noqa: E501
 
-        Verify a merchant either to reattempt provisioning, or when the merchant's `Identity` was updated.  # noqa: E501
+        If the `onboarding_state` for a `Merchant` returns **FAILED**, correct the `Identity` information saved for the `Merchant`. Once corrected, try verifying (also called provisioning) the `Merchant` again with another request.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -530,7 +530,7 @@ class MerchantsApi(object):
         merchant_id,
         **kwargs
     ):
-        """Get a Merchant  # noqa: E501
+        """Fetch a Merchant  # noqa: E501
 
         Retrieve the details of a `Merchant`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -618,13 +618,13 @@ class MerchantsApi(object):
 
 
         Keyword Args:
-            id (str): Filter by id. [optional]
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]
-            sort (str): Specify key to be used for sorting the collection. [optional]
+            id (str): Filter by `id`.. [optional]
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
-            limit (int): The numbers of items to return. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
+            limit (int): The numbers of items to return.. [optional]
+            sort (str): Specify key to be used for sorting the collection.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

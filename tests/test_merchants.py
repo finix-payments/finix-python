@@ -70,39 +70,9 @@ def test_create_merchant(client00):
 	            line1="741 Douglass St",
 	            postal_code="94114"
             ),
-	        incorporation_date=CreateIdentityRequestEntityIncorporationDate(
-	            year=1978,
-	            day=27,
-	            month=6
-            ),
-	        business_address=CreateIdentityRequestEntityBusinessAddress(
-	            city="San Mateo",
-	            country="USA",
-	            region="CA",
-	            line2="Apartment 8",
-	            line1="741 Douglass St",
-	            postal_code="94114"
-            ),
-	        ownership_type="PRIVATE",
 	        first_name="dwayne",
-	        title="CEO",
-	        business_tax_id="123456789",
-	        doing_business_as="Petes Coffee",
-	        principal_percentage_ownership=50,
 	        email="user@example.org",
-	        mcc="0742",
-	        phone="1234567890",
-	        business_name="Petes Coffee",
-	        tax_id="123456789",
-	        business_type="INDIVIDUAL_SOLE_PROPRIETORSHIP",
-	        business_phone="+1 (408) 756-4497",
-	        dob=CreateIdentityRequestEntityDob(
-	            year=1978,
-	            day=27,
-	            month=6
-            ),
-	        url="www.PetesCoffee.com",
-	        annual_card_volume=12000000,
+	        phone="1234567890"
         )
     ) 
     response1 = client00.identities.create(create_identity_request=request_first)

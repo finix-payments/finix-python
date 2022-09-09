@@ -27,8 +27,16 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
+def lazy_import():
+    from finix.model.create_onboarding_form_request_merchant_processors_inner import CreateOnboardingFormRequestMerchantProcessorsInner
+    from finix.model.create_onboarding_form_request_onboarding_data import CreateOnboardingFormRequestOnboardingData
+    from finix.model.create_onboarding_form_request_onboarding_link_details import CreateOnboardingFormRequestOnboardingLinkDetails
+    globals()['CreateOnboardingFormRequestMerchantProcessorsInner'] = CreateOnboardingFormRequestMerchantProcessorsInner
+    globals()['CreateOnboardingFormRequestOnboardingData'] = CreateOnboardingFormRequestOnboardingData
+    globals()['CreateOnboardingFormRequestOnboardingLinkDetails'] = CreateOnboardingFormRequestOnboardingLinkDetails
 
-class UpdateIdentityRequestEntityBusinessAddress(ModelNormal):
+
+class CreateOnboardingFormRequest(ModelNormal):
     """
 
     Attributes:
@@ -53,24 +61,6 @@ class UpdateIdentityRequestEntityBusinessAddress(ModelNormal):
     }
 
     validations = {
-        ('city',): {
-            'min_length': 1,
-        },
-        ('country',): {
-            'min_length': 1,
-        },
-        ('region',): {
-            'min_length': 1,
-        },
-        ('line2',): {
-            'min_length': 1,
-        },
-        ('line1',): {
-            'min_length': 1,
-        },
-        ('postal_code',): {
-            'min_length': 1,
-        },
     }
 
     @cached_property
@@ -79,9 +69,10 @@ class UpdateIdentityRequestEntityBusinessAddress(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
+        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
-    _nullable = True
+    _nullable = False
 
     @cached_property
     def openapi_types():
@@ -93,13 +84,11 @@ class UpdateIdentityRequestEntityBusinessAddress(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
+        lazy_import()
         return {
-            'city': (str,),  # noqa: E501
-            'country': (str,),  # noqa: E501
-            'region': (str,),  # noqa: E501
-            'line2': (str,),  # noqa: E501
-            'line1': (str,),  # noqa: E501
-            'postal_code': (str,),  # noqa: E501
+            'onboarding_data': (CreateOnboardingFormRequestOnboardingData,),  # noqa: E501
+            'merchant_processors': ([CreateOnboardingFormRequestMerchantProcessorsInner],),  # noqa: E501
+            'onboarding_link_details': (CreateOnboardingFormRequestOnboardingLinkDetails,),  # noqa: E501
         }
 
     @cached_property
@@ -108,12 +97,9 @@ class UpdateIdentityRequestEntityBusinessAddress(ModelNormal):
 
 
     attribute_map = {
-        'city': 'city',  # noqa: E501
-        'country': 'country',  # noqa: E501
-        'region': 'region',  # noqa: E501
-        'line2': 'line2',  # noqa: E501
-        'line1': 'line1',  # noqa: E501
-        'postal_code': 'postal_code',  # noqa: E501
+        'onboarding_data': 'onboarding_data',  # noqa: E501
+        'merchant_processors': 'merchant_processors',  # noqa: E501
+        'onboarding_link_details': 'onboarding_link_details',  # noqa: E501
     }
 
     read_only_vars = {
@@ -124,7 +110,7 @@ class UpdateIdentityRequestEntityBusinessAddress(ModelNormal):
     @classmethod
     @convert_js_args_to_python_args
     def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
-        """UpdateIdentityRequestEntityBusinessAddress - a model defined in OpenAPI
+        """CreateOnboardingFormRequest - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -157,12 +143,9 @@ class UpdateIdentityRequestEntityBusinessAddress(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            city (str): City (max 20 characters).. [optional]  # noqa: E501
-            country (str): [optional]  # noqa: E501
-            region (str): 2-letter state code.. [optional]  # noqa: E501
-            line2 (str): Second line of the address (max 35 characters).. [optional]  # noqa: E501
-            line1 (str): First line of the address (max 35 characters).. [optional]  # noqa: E501
-            postal_code (str): Zip or Postal code (max 7 characters).. [optional]  # noqa: E501
+            onboarding_data (CreateOnboardingFormRequestOnboardingData): [optional]  # noqa: E501
+            merchant_processors ([CreateOnboardingFormRequestMerchantProcessorsInner]): An array of objects with the processors and gateways users will be onboarded to.. [optional]  # noqa: E501
+            onboarding_link_details (CreateOnboardingFormRequestOnboardingLinkDetails): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -211,7 +194,7 @@ class UpdateIdentityRequestEntityBusinessAddress(ModelNormal):
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
-        """UpdateIdentityRequestEntityBusinessAddress - a model defined in OpenAPI
+        """CreateOnboardingFormRequest - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -244,12 +227,9 @@ class UpdateIdentityRequestEntityBusinessAddress(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            city (str): City (max 20 characters).. [optional]  # noqa: E501
-            country (str): [optional]  # noqa: E501
-            region (str): 2-letter state code.. [optional]  # noqa: E501
-            line2 (str): Second line of the address (max 35 characters).. [optional]  # noqa: E501
-            line1 (str): First line of the address (max 35 characters).. [optional]  # noqa: E501
-            postal_code (str): Zip or Postal code (max 7 characters).. [optional]  # noqa: E501
+            onboarding_data (CreateOnboardingFormRequestOnboardingData): [optional]  # noqa: E501
+            merchant_processors ([CreateOnboardingFormRequestMerchantProcessorsInner]): An array of objects with the processors and gateways users will be onboarded to.. [optional]  # noqa: E501
+            onboarding_link_details (CreateOnboardingFormRequestOnboardingLinkDetails): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

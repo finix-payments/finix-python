@@ -28,7 +28,7 @@ from finix.exceptions import ApiAttributeError
 
 
 
-class UpdateIdentityRequestEntityDob(ModelNormal):
+class CreateAssociatedIdentityRequestEntityPersonalAddress(ModelNormal):
     """
 
     Attributes:
@@ -53,6 +53,24 @@ class UpdateIdentityRequestEntityDob(ModelNormal):
     }
 
     validations = {
+        ('city',): {
+            'min_length': 1,
+        },
+        ('country',): {
+            'min_length': 1,
+        },
+        ('region',): {
+            'min_length': 1,
+        },
+        ('line2',): {
+            'min_length': 1,
+        },
+        ('line1',): {
+            'min_length': 1,
+        },
+        ('postal_code',): {
+            'min_length': 1,
+        },
     }
 
     @cached_property
@@ -76,9 +94,12 @@ class UpdateIdentityRequestEntityDob(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'year': (int,),  # noqa: E501
-            'day': (int,),  # noqa: E501
-            'month': (int,),  # noqa: E501
+            'city': (str,),  # noqa: E501
+            'country': (str,),  # noqa: E501
+            'region': (str,),  # noqa: E501
+            'line2': (str,),  # noqa: E501
+            'line1': (str,),  # noqa: E501
+            'postal_code': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -87,9 +108,12 @@ class UpdateIdentityRequestEntityDob(ModelNormal):
 
 
     attribute_map = {
-        'year': 'year',  # noqa: E501
-        'day': 'day',  # noqa: E501
-        'month': 'month',  # noqa: E501
+        'city': 'city',  # noqa: E501
+        'country': 'country',  # noqa: E501
+        'region': 'region',  # noqa: E501
+        'line2': 'line2',  # noqa: E501
+        'line1': 'line1',  # noqa: E501
+        'postal_code': 'postal_code',  # noqa: E501
     }
 
     read_only_vars = {
@@ -100,7 +124,7 @@ class UpdateIdentityRequestEntityDob(ModelNormal):
     @classmethod
     @convert_js_args_to_python_args
     def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
-        """UpdateIdentityRequestEntityDob - a model defined in OpenAPI
+        """CreateAssociatedIdentityRequestEntityPersonalAddress - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -133,9 +157,12 @@ class UpdateIdentityRequestEntityDob(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            year (int): [optional]  # noqa: E501
-            day (int): [optional]  # noqa: E501
-            month (int): [optional]  # noqa: E501
+            city (str): City (max 20 characters).. [optional]  # noqa: E501
+            country (str): 3-Letter country code (e.g. USA).. [optional]  # noqa: E501
+            region (str): 2-letter State code.. [optional]  # noqa: E501
+            line2 (str): Second line of the address (max 35 characters).. [optional]  # noqa: E501
+            line1 (str): First line of the address (max 35 characters).. [optional]  # noqa: E501
+            postal_code (str): Zip or Postal code (max 7 characters).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -184,7 +211,7 @@ class UpdateIdentityRequestEntityDob(ModelNormal):
 
     @convert_js_args_to_python_args
     def __init__(self, *args, **kwargs):  # noqa: E501
-        """UpdateIdentityRequestEntityDob - a model defined in OpenAPI
+        """CreateAssociatedIdentityRequestEntityPersonalAddress - a model defined in OpenAPI
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -217,9 +244,12 @@ class UpdateIdentityRequestEntityDob(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            year (int): [optional]  # noqa: E501
-            day (int): [optional]  # noqa: E501
-            month (int): [optional]  # noqa: E501
+            city (str): City (max 20 characters).. [optional]  # noqa: E501
+            country (str): 3-Letter country code (e.g. USA).. [optional]  # noqa: E501
+            region (str): 2-letter State code.. [optional]  # noqa: E501
+            line2 (str): Second line of the address (max 35 characters).. [optional]  # noqa: E501
+            line1 (str): First line of the address (max 35 characters).. [optional]  # noqa: E501
+            postal_code (str): Zip or Postal code (max 7 characters).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

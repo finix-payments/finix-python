@@ -28,16 +28,18 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from finix.model.additional_buyer_charges import AdditionalBuyerCharges
     from finix.model.additional_purchase_data import AdditionalPurchaseData
     from finix.model.card_present_instrument_form import CardPresentInstrumentForm
     from finix.model.configuration_details import ConfigurationDetails
-    from finix.model.create_authorization_request3d_secure_authentication import CreateAuthorizationRequest3dSecureAuthentication
+    from finix.model.create_transfer_request3d_secure_authentication import CreateTransferRequest3dSecureAuthentication
     from finix.model.currency import Currency
     from finix.model.tags import Tags
+    globals()['AdditionalBuyerCharges'] = AdditionalBuyerCharges
     globals()['AdditionalPurchaseData'] = AdditionalPurchaseData
     globals()['CardPresentInstrumentForm'] = CardPresentInstrumentForm
     globals()['ConfigurationDetails'] = ConfigurationDetails
-    globals()['CreateAuthorizationRequest3dSecureAuthentication'] = CreateAuthorizationRequest3dSecureAuthentication
+    globals()['CreateTransferRequest3dSecureAuthentication'] = CreateTransferRequest3dSecureAuthentication
     globals()['Currency'] = Currency
     globals()['Tags'] = Tags
 
@@ -64,24 +66,6 @@ class CreateTransferRequest(ModelNormal):
     """
 
     allowed_values = {
-        ('gateway',): {
-            'None': None,
-            'CLOUD_V1': "TRIPOS_CLOUD_V1",
-            'MOBILE_V1': "TRIPOS_MOBILE_V1",
-        },
-        ('input_method',): {
-            'None': None,
-            'UNKNOWN': "UNKNOWN",
-            'SWIPED': "SWIPED",
-            'MANUAL_KEY_ENTRY': "MANUAL_KEY_ENTRY",
-            'CONTACTLESS_MSD': "CONTACTLESS_MSD",
-            'CONTACTLESS_EMV': "CONTACTLESS_EMV",
-            'SWIPED_FALLBACK': "SWIPED_FALLBACK",
-            'KEYED_FALLBACK': "KEYED_FALLBACK",
-            'CONTACTLESS': "CONTACTLESS",
-            'DIGITAL_WALLET': "DIGITAL_WALLET",
-            'CHIP_ENTRY': "CHIP_ENTRY",
-        },
         ('operation_key',): {
             'None': None,
             'PUSH_TO_CARD': "PUSH_TO_CARD",
@@ -121,28 +105,25 @@ class CreateTransferRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': (Tags,),  # noqa: E501
-            'adjustment_request': (bool, none_type,),  # noqa: E501
             'amount': (int,),  # noqa: E501
-            'config_override': ({str: (str,)}, none_type,),  # noqa: E501
             'currency': (Currency,),  # noqa: E501
+            'additional_buyer_charges': (AdditionalBuyerCharges,),  # noqa: E501
+            'additional_purchase_data': (AdditionalPurchaseData,),  # noqa: E501
+            'adjustment_request': (bool, none_type,),  # noqa: E501
             'destination': (str, none_type,),  # noqa: E501
             'device': (str, none_type,),  # noqa: E501
             'device_configuration': (ConfigurationDetails,),  # noqa: E501
             'fee': (int,),  # noqa: E501
-            'gateway': (str, none_type,),  # noqa: E501
-            '_3d_secure_authentication': (CreateAuthorizationRequest3dSecureAuthentication,),  # noqa: E501
+            'fraud_session_id': (str,),  # noqa: E501
             'idempotency_id': (str, none_type,),  # noqa: E501
-            'input_method': (str, none_type,),  # noqa: E501
             'merchant': (str, none_type,),  # noqa: E501
-            'merchant_identity': (str, none_type,),  # noqa: E501
             'operation_key': (str, none_type,),  # noqa: E501
             'payment_instrument': (CardPresentInstrumentForm,),  # noqa: E501
             'processor': (str,),  # noqa: E501
             'source': (str,),  # noqa: E501
             'statement_descriptor': (str, none_type,),  # noqa: E501
-            'fraud_session_id': (str,),  # noqa: E501
-            'additional_purchase_data': (AdditionalPurchaseData,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
+            '_3d_secure_authentication': (CreateTransferRequest3dSecureAuthentication,),  # noqa: E501
         }
 
     @cached_property
@@ -151,28 +132,25 @@ class CreateTransferRequest(ModelNormal):
 
 
     attribute_map = {
-        'tags': 'tags',  # noqa: E501
-        'adjustment_request': 'adjustment_request',  # noqa: E501
         'amount': 'amount',  # noqa: E501
-        'config_override': 'config_override',  # noqa: E501
         'currency': 'currency',  # noqa: E501
+        'additional_buyer_charges': 'additional_buyer_charges',  # noqa: E501
+        'additional_purchase_data': 'additional_purchase_data',  # noqa: E501
+        'adjustment_request': 'adjustment_request',  # noqa: E501
         'destination': 'destination',  # noqa: E501
         'device': 'device',  # noqa: E501
         'device_configuration': 'device_configuration',  # noqa: E501
         'fee': 'fee',  # noqa: E501
-        'gateway': 'gateway',  # noqa: E501
-        '_3d_secure_authentication': '3d_secure_authentication',  # noqa: E501
+        'fraud_session_id': 'fraud_session_id',  # noqa: E501
         'idempotency_id': 'idempotency_id',  # noqa: E501
-        'input_method': 'input_method',  # noqa: E501
         'merchant': 'merchant',  # noqa: E501
-        'merchant_identity': 'merchant_identity',  # noqa: E501
         'operation_key': 'operation_key',  # noqa: E501
         'payment_instrument': 'payment_instrument',  # noqa: E501
         'processor': 'processor',  # noqa: E501
         'source': 'source',  # noqa: E501
         'statement_descriptor': 'statement_descriptor',  # noqa: E501
-        'fraud_session_id': 'fraud_session_id',  # noqa: E501
-        'additional_purchase_data': 'additional_purchase_data',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
+        '_3d_secure_authentication': '3d_secure_authentication',  # noqa: E501
     }
 
     read_only_vars = {
@@ -182,8 +160,12 @@ class CreateTransferRequest(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, amount, currency, *args, **kwargs):  # noqa: E501
         """CreateTransferRequest - a model defined in OpenAPI
+
+        Args:
+            amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).
+            currency (Currency):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -216,28 +198,23 @@ class CreateTransferRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
+            additional_buyer_charges (AdditionalBuyerCharges): [optional]  # noqa: E501
+            additional_purchase_data (AdditionalPurchaseData): [optional]  # noqa: E501
             adjustment_request (bool, none_type): Details if the `transfer` was created to adjust funds.. [optional]  # noqa: E501
-            amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).. [optional]  # noqa: E501
-            config_override ({str: (str,)}, none_type): [optional]  # noqa: E501
-            currency (Currency): [optional]  # noqa: E501
             destination (str, none_type): ID of the `Payment Instrument` where funds will be sent.. [optional]  # noqa: E501
             device (str, none_type): The ID of the activated device.. [optional]  # noqa: E501
             device_configuration (ConfigurationDetails): [optional]  # noqa: E501
             fee (int): The amount of the `Transfer` you'd like to collect as your fee in cents. Defaults to zero (must be less than or equal to the `amount`).. [optional]  # noqa: E501
-            gateway (str, none_type): Name of the gateway that processed this `transfer`. (Finix Core only).. [optional]  # noqa: E501
-            _3d_secure_authentication (CreateAuthorizationRequest3dSecureAuthentication): [optional]  # noqa: E501
+            fraud_session_id (str): The `fraud_session_session` ID you want to review for fraud. For more info, see [Fraud Detection](/docs/guides/payments/fraud-detection/).. [optional]  # noqa: E501
             idempotency_id (str, none_type): A randomly generated value that'll be associated with the request.. [optional]  # noqa: E501
-            input_method (str, none_type): Details how the card details were entered.. [optional]  # noqa: E501
             merchant (str, none_type): ID of the `Merchant` the `Transfer` was created under.. [optional]  # noqa: E501
-            merchant_identity (str, none_type): ID of the `Identity` the `Merchant` was created under and the `Transfer` was submitted with.. [optional]  # noqa: E501
             operation_key (str, none_type): Details the operation that'll be performed in the transaction.. [optional]  # noqa: E501
             payment_instrument (CardPresentInstrumentForm): [optional]  # noqa: E501
             processor (str): Name of the transaction processor.. [optional]  # noqa: E501
             source (str): ID of the `Payment Instrument` where funds get debited.. [optional]  # noqa: E501
             statement_descriptor (str, none_type): The description of the transaction that appears on the buyer's bank or card statement.. [optional]  # noqa: E501
-            fraud_session_id (str): The `fraud_session_session` ID you want to review for fraud. For more info, see [Fraud Detection](/docs/guides/payments/fraud-detection/).. [optional]  # noqa: E501
-            additional_purchase_data (AdditionalPurchaseData): [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            _3d_secure_authentication (CreateTransferRequest3dSecureAuthentication): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -265,6 +242,8 @@ class CreateTransferRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.amount = amount
+        self.currency = currency
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -285,8 +264,12 @@ class CreateTransferRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, amount, currency, *args, **kwargs):  # noqa: E501
         """CreateTransferRequest - a model defined in OpenAPI
+
+        Args:
+            amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).
+            currency (Currency):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -319,28 +302,23 @@ class CreateTransferRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
+            additional_buyer_charges (AdditionalBuyerCharges): [optional]  # noqa: E501
+            additional_purchase_data (AdditionalPurchaseData): [optional]  # noqa: E501
             adjustment_request (bool, none_type): Details if the `transfer` was created to adjust funds.. [optional]  # noqa: E501
-            amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).. [optional]  # noqa: E501
-            config_override ({str: (str,)}, none_type): [optional]  # noqa: E501
-            currency (Currency): [optional]  # noqa: E501
             destination (str, none_type): ID of the `Payment Instrument` where funds will be sent.. [optional]  # noqa: E501
             device (str, none_type): The ID of the activated device.. [optional]  # noqa: E501
             device_configuration (ConfigurationDetails): [optional]  # noqa: E501
             fee (int): The amount of the `Transfer` you'd like to collect as your fee in cents. Defaults to zero (must be less than or equal to the `amount`).. [optional]  # noqa: E501
-            gateway (str, none_type): Name of the gateway that processed this `transfer`. (Finix Core only).. [optional]  # noqa: E501
-            _3d_secure_authentication (CreateAuthorizationRequest3dSecureAuthentication): [optional]  # noqa: E501
+            fraud_session_id (str): The `fraud_session_session` ID you want to review for fraud. For more info, see [Fraud Detection](/docs/guides/payments/fraud-detection/).. [optional]  # noqa: E501
             idempotency_id (str, none_type): A randomly generated value that'll be associated with the request.. [optional]  # noqa: E501
-            input_method (str, none_type): Details how the card details were entered.. [optional]  # noqa: E501
             merchant (str, none_type): ID of the `Merchant` the `Transfer` was created under.. [optional]  # noqa: E501
-            merchant_identity (str, none_type): ID of the `Identity` the `Merchant` was created under and the `Transfer` was submitted with.. [optional]  # noqa: E501
             operation_key (str, none_type): Details the operation that'll be performed in the transaction.. [optional]  # noqa: E501
             payment_instrument (CardPresentInstrumentForm): [optional]  # noqa: E501
             processor (str): Name of the transaction processor.. [optional]  # noqa: E501
             source (str): ID of the `Payment Instrument` where funds get debited.. [optional]  # noqa: E501
             statement_descriptor (str, none_type): The description of the transaction that appears on the buyer's bank or card statement.. [optional]  # noqa: E501
-            fraud_session_id (str): The `fraud_session_session` ID you want to review for fraud. For more info, see [Fraud Detection](/docs/guides/payments/fraud-detection/).. [optional]  # noqa: E501
-            additional_purchase_data (AdditionalPurchaseData): [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            _3d_secure_authentication (CreateTransferRequest3dSecureAuthentication): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -366,6 +344,8 @@ class CreateTransferRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.amount = amount
+        self.currency = currency
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

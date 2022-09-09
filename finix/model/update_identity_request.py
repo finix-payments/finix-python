@@ -87,8 +87,8 @@ class UpdateIdentityRequest(ModelNormal):
         lazy_import()
         return {
             'additional_underwriting_data': (UpdateIdentityRequestAdditionalUnderwritingData,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
             'entity': (UpdateIdentityRequestEntity,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
         }
 
     @cached_property
@@ -98,8 +98,8 @@ class UpdateIdentityRequest(ModelNormal):
 
     attribute_map = {
         'additional_underwriting_data': 'additional_underwriting_data',  # noqa: E501
-        'tags': 'tags',  # noqa: E501
         'entity': 'entity',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
     }
 
     read_only_vars = {
@@ -144,8 +144,8 @@ class UpdateIdentityRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             additional_underwriting_data (UpdateIdentityRequestAdditionalUnderwritingData): [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
             entity (UpdateIdentityRequestEntity): [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -228,8 +228,8 @@ class UpdateIdentityRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             additional_underwriting_data (UpdateIdentityRequestAdditionalUnderwritingData): [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
             entity (UpdateIdentityRequestEntity): [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

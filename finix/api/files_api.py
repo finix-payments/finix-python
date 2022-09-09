@@ -174,14 +174,14 @@ class FilesApi(object):
             },
             api_client=api_client
         )
-        self._download_file_endpoint = finix.api_client.Endpoint(
+        self._download_endpoint = finix.api_client.Endpoint(
             settings={
                 'response_type': (file_type,),
                 'auth': [
                     'BasicAuth'
                 ],
                 'endpoint_path': '/files/{file_id}/download',
-                'operation_id': 'download_file',
+                'operation_id': 'download',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -523,14 +523,14 @@ class FilesApi(object):
             },
             api_client=api_client
         )
-        self._upload_file_endpoint = finix.api_client.Endpoint(
+        self._upload_endpoint = finix.api_client.Endpoint(
             settings={
                 'response_type': (File,),
                 'auth': [
                     'BasicAuth'
                 ],
                 'endpoint_path': '/files/{file_id}/upload',
-                'operation_id': 'upload_file',
+                'operation_id': 'upload',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -735,18 +735,18 @@ class FilesApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self._create_endpoint.call_with_http_info(**kwargs)
 
-    def download_file(
+    def download(
         self,
         file_id,
         **kwargs
     ):
         """Download a file  # noqa: E501
 
-        Download a file uploaded to a `File` resource. For more info, see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix).  # noqa: E501
+        Download a file that was uploaded to a `File` resource. For more info, see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.download_file(file_id, async_req=True)
+        >>> thread = api.download(file_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -811,7 +811,7 @@ class FilesApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['file_id'] = \
             file_id
-        return self._download_file_endpoint.call_with_http_info(**kwargs)
+        return self._download_endpoint.call_with_http_info(**kwargs)
 
     def get_external_link(
         self,
@@ -980,7 +980,7 @@ class FilesApi(object):
     ):
         """List All External Links  # noqa: E501
 
-        List the previously `external_links` for a `File`. For more info, see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix/#create-an-external-link).  # noqa: E501
+        List the previously created `external_links` for a `File`. For more info, see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix/#create-an-external-link).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -991,14 +991,14 @@ class FilesApi(object):
             file_id (str): Your `File` ID.
 
         Keyword Args:
-            sort (str): Specify key to be used for sorting the collection. [optional]
+            sort (str): Specify key to be used for sorting the collection.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
-            limit (int): The numbers of items to return. [optional]
-            id (str): Filter by id. [optional]
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]
-            updated_at_gte (str): Filter where updated_at is after the given date. [optional]
-            updated_at_lte (str): Filter where updated_at is before the given date. [optional]
+            limit (int): The numbers of items to return.. [optional]
+            id (str): Filter by `id`.. [optional]
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
+            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]
+            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -1077,14 +1077,14 @@ class FilesApi(object):
 
 
         Keyword Args:
-            sort (str): Specify key to be used for sorting the collection. [optional]
+            sort (str): Specify key to be used for sorting the collection.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
-            limit (int): The numbers of items to return. [optional]
-            id (str): Filter by id. [optional]
-            created_at_gte (str): Filter where created_at is after the given date.. [optional]
-            created_at_lte (str): Filter where created_at is before the given date.. [optional]
-            updated_at_gte (str): Filter where updated_at is after the given date. [optional]
-            updated_at_lte (str): Filter where updated_at is before the given date. [optional]
+            limit (int): The numbers of items to return.. [optional]
+            id (str): Filter by `id`.. [optional]
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
+            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]
+            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -1146,7 +1146,7 @@ class FilesApi(object):
         fl = FinixList(ret, self.list,  **kwargs)
         return fl
 
-    def upload_file(
+    def upload(
         self,
         file_id,
         **kwargs
@@ -1157,7 +1157,7 @@ class FilesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.upload_file(file_id, async_req=True)
+        >>> thread = api.upload(file_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -1223,5 +1223,5 @@ class FilesApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['file_id'] = \
             file_id
-        return self._upload_file_endpoint.call_with_http_info(**kwargs)
+        return self._upload_endpoint.call_with_http_info(**kwargs)
 

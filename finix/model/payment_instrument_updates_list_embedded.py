@@ -104,11 +104,8 @@ class PaymentInstrumentUpdatesListEmbedded(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, updates, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """PaymentInstrumentUpdatesListEmbedded - a model defined in OpenAPI
-
-        Args:
-            updates ([InstrumentUpdate]):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -141,6 +138,7 @@ class PaymentInstrumentUpdatesListEmbedded(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            updates ([InstrumentUpdate]): `Update` objects.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -168,7 +166,6 @@ class PaymentInstrumentUpdatesListEmbedded(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.updates = updates
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -189,11 +186,8 @@ class PaymentInstrumentUpdatesListEmbedded(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, updates, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """PaymentInstrumentUpdatesListEmbedded - a model defined in OpenAPI
-
-        Args:
-            updates ([InstrumentUpdate]):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -226,6 +220,7 @@ class PaymentInstrumentUpdatesListEmbedded(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            updates ([InstrumentUpdate]): `Update` objects.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -251,7 +246,6 @@ class PaymentInstrumentUpdatesListEmbedded(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.updates = updates
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

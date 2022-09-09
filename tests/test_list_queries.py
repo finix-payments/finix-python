@@ -65,7 +65,7 @@ def test_list_identities(client00):
 
 def test_list_associated_identities(client00):
     id ='IDpYDM7J9n57q849o9E9yNrG'
-    response = client00.identities.list_assocaiated_identities(id, limit=5)
+    response = client00.identities.list_associated_identities(id, limit=5)
     assert isinstance(response, FinixList)
     assert len(response) <= 5
     assert response[0].id[:2] == 'ID'

@@ -59,21 +59,6 @@ class ApplicationProfile(ModelNormal):
     }
 
     validations = {
-        ('id',): {
-            'regex': {
-                'pattern': r'^(PP)[a-zA-Z0-9]{16,32}$',  # noqa: E501
-            },
-        },
-        ('fee_profile',): {
-            'regex': {
-                'pattern': r'^(FP)[a-zA-Z0-9]{16,32}$',  # noqa: E501
-            },
-        },
-        ('risk_profile',): {
-            'regex': {
-                'pattern': r'^(RP)[a-zA-Z0-9]{16,32}$',  # noqa: E501
-            },
-        },
     }
 
     @cached_property
@@ -99,13 +84,13 @@ class ApplicationProfile(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': (Tags,),  # noqa: E501
             'id': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
             'application': (str,),  # noqa: E501
             'fee_profile': (str, none_type,),  # noqa: E501
             'risk_profile': (str,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
             'links': (ApplicationProfileLinks,),  # noqa: E501
         }
 
@@ -115,13 +100,13 @@ class ApplicationProfile(ModelNormal):
 
 
     attribute_map = {
-        'tags': 'tags',  # noqa: E501
         'id': 'id',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'updated_at': 'updated_at',  # noqa: E501
         'application': 'application',  # noqa: E501
         'fee_profile': 'fee_profile',  # noqa: E501
         'risk_profile': 'risk_profile',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
         'links': '_links',  # noqa: E501
     }
 
@@ -166,13 +151,13 @@ class ApplicationProfile(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             id (str): ID of the `application_profile` resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             application (str): The ID of the `Application` resource.. [optional]  # noqa: E501
             fee_profile (str, none_type): The ID of the `Fee Profile` associated with the `Application`.. [optional]  # noqa: E501
             risk_profile (str): The ID of the `risk_profile` that was created during provisioning.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             links (ApplicationProfileLinks): [optional]  # noqa: E501
         """
 
@@ -255,13 +240,13 @@ class ApplicationProfile(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
             id (str): ID of the `application_profile` resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             application (str): The ID of the `Application` resource.. [optional]  # noqa: E501
             fee_profile (str, none_type): The ID of the `Fee Profile` associated with the `Application`.. [optional]  # noqa: E501
             risk_profile (str): The ID of the `risk_profile` that was created during provisioning.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
             links (ApplicationProfileLinks): [optional]  # noqa: E501
         """
 

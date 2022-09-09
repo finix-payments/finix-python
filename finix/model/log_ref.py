@@ -53,11 +53,6 @@ class LogRef(ModelNormal):
     }
 
     validations = {
-        ('logref',): {
-            'regex': {
-                'pattern': r'^[a-fA-F0-9]{16}',  # noqa: E501
-            },
-        },
     }
 
     @cached_property
