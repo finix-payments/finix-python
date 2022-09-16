@@ -244,6 +244,76 @@ def identity_merchant(client00):
     response = client00.identities.create(create_identity_request=request)
     return response
 
+@pytest.fixture
+def business_identity_merchant(client00):
+    request = CreateIdentityRequest(
+ 	    additional_underwriting_data=CreateIdentityRequestAdditionalUnderwritingData(
+	        merchant_agreement_accepted=True,
+	        merchant_agreement_ip_address="42.1.1.113",
+	        volume_distribution_by_business_type=CreateIdentityRequestAdditionalUnderwritingDataVolumeDistributionByBusinessType(
+	            other_volume_percentage=0,
+	            consumer_to_consumer_volume_percentage=0,
+	            business_to_consumer_volume_percentage=0,
+	            business_to_business_volume_percentage=100,
+	            person_to_person_volume_percentage=0
+            ),
+	        average_ach_transfer_amount=200000,
+	        annual_ach_volume=200000,
+	        credit_check_user_agent="Mozilla 5.0(Macintosh; IntelMac OS X 10 _14_6)",
+	        refund_policy="MERCHANDISE_EXCHANGE_ONLY",
+	        credit_check_timestamp="2021-04-28T16:42:55Z",
+	        credit_check_allowed=True,
+	        merchant_agreement_timestamp="2021-04-28T16:42:55Z",
+	        business_description="BCSB3 vegan cafe",
+	        average_card_transfer_amount=200000,
+	        credit_check_ip_address="42.1.1.113",
+	        merchant_agreement_user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6)",
+	        card_volume_distribution=CreateIdentityRequestAdditionalUnderwritingDataCardVolumeDistribution(
+	            card_present_percentage=30,
+	            mail_order_telephone_order_percentage=10,
+	            ecommerce_percentage=60,
+            )
+        ),
+	    tags=Tags(
+	        test_key_100 = "test_val_100"
+        ),
+	    entity=CreateIdentityRequestEntity(
+	        last_name="lbc",
+	        personal_address=CreateIdentityRequestEntityPersonalAddress(
+	            city="San Mateo",
+	            country="USA",
+	            region="CA",
+	            line2="Apartment 7",
+	            line1="741 Douglass St",
+	            postal_code="94114"
+            ),
+	        first_name="dwayne",
+	        email="user@example.org",
+	        phone="1234567890",
+            business_name="Finix Flowers",
+            business_type="INDIVIDUAL_SOLE_PROPRIETORSHIP",
+            incorporation_date=IdentityEntityIncorporationDate(
+                year=1978,
+                day=27,
+                month=6
+            ),
+            doing_business_as="Finix Flowers",
+            annual_card_volume=12000000,
+            tax_id=123456789,
+            mcc="0742",
+            dob=IdentityEntityDob(
+                year=1978,
+                day=27,
+                month=6
+            ),
+            url="www.finixflowers.com",
+            principal_percentage_ownership=50,
+            default_statement_descriptor="Finix Flowers",
+            max_transaction_amount=12000000
+        ),
+    )
+    response = client00.identities.create(create_identity_request=request)
+    return response
 
 @pytest.fixture
 def instrument_update(client00):

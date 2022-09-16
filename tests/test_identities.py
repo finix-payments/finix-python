@@ -70,15 +70,15 @@ def test_create_identity(client00):
 	        email="user@example.org",
 	        phone="1234567890"
         )
-    ) 
+    )
     response = client00.identities.create(create_identity_request=request)
     assert response.id[:2] == 'ID'
     assert response.entity['last_name'] == 'abc'
     assert response.tags['test_key_102'] == 'test_val_102'
 
 
-def test_create_associated_identity(client00, identity_merchant):
-    id = identity_merchant.id
+def test_create_associated_identity(client00, business_identity_merchant):
+    id = business_identity_merchant.id
     request = CreateAssociatedIdentityRequest(
 	    tags=Tags(
 	        test_key_103 = "test_val_103"
