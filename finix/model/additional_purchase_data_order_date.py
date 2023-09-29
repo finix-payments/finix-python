@@ -53,6 +53,9 @@ class AdditionalPurchaseDataOrderDate(ModelNormal):
     }
 
     validations = {
+        ('year',): {
+            'inclusive_minimum': 1990,
+        },
     }
 
     @cached_property

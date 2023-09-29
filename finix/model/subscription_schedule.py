@@ -31,11 +31,9 @@ def lazy_import():
     from finix.model.subscription_schedule_fixed_time_interval_offset import SubscriptionScheduleFixedTimeIntervalOffset
     from finix.model.subscription_schedule_links import SubscriptionScheduleLinks
     from finix.model.subscription_schedule_period_offset import SubscriptionSchedulePeriodOffset
-    from finix.model.tags import Tags
     globals()['SubscriptionScheduleFixedTimeIntervalOffset'] = SubscriptionScheduleFixedTimeIntervalOffset
     globals()['SubscriptionScheduleLinks'] = SubscriptionScheduleLinks
     globals()['SubscriptionSchedulePeriodOffset'] = SubscriptionSchedulePeriodOffset
-    globals()['Tags'] = Tags
 
 
 class SubscriptionSchedule(ModelNormal):
@@ -117,7 +115,7 @@ class SubscriptionSchedule(ModelNormal):
             'nickname': (str,),  # noqa: E501
             'period_offset': (SubscriptionSchedulePeriodOffset,),  # noqa: E501
             'subscription_type': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'links': (SubscriptionScheduleLinks,),  # noqa: E501
         }
 
@@ -190,7 +188,7 @@ class SubscriptionSchedule(ModelNormal):
             nickname (str): Human readable name.. [optional]  # noqa: E501
             period_offset (SubscriptionSchedulePeriodOffset): [optional]  # noqa: E501
             subscription_type (str): `Subscription Schedule` type.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (SubscriptionScheduleLinks): [optional]  # noqa: E501
         """
 
@@ -282,7 +280,7 @@ class SubscriptionSchedule(ModelNormal):
             nickname (str): Human readable name.. [optional]  # noqa: E501
             period_offset (SubscriptionSchedulePeriodOffset): [optional]  # noqa: E501
             subscription_type (str): `Subscription Schedule` type.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (SubscriptionScheduleLinks): [optional]  # noqa: E501
         """
 

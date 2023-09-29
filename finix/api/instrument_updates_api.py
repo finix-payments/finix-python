@@ -74,6 +74,7 @@ class InstrumentUpdatesApi(object):
             },
             params_map={
                 'all': [
+                    'accept',
                     'create_instrument_update_request',
                 ],
                 'required': [],
@@ -90,12 +91,16 @@ class InstrumentUpdatesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'accept':
+                        (str,),
                     'create_instrument_update_request':
                         (CreateInstrumentUpdateRequest,),
                 },
                 'attribute_map': {
+                    'accept': 'Accept',
                 },
                 'location_map': {
+                    'accept': 'header',
                     'create_instrument_update_request': 'body',
                 },
                 'collection_format_map': {
@@ -103,7 +108,7 @@ class InstrumentUpdatesApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
                     'multipart/form-data'
@@ -125,6 +130,7 @@ class InstrumentUpdatesApi(object):
             params_map={
                 'all': [
                     'instrument_updates_id',
+                    'accept',
                     'format',
                 ],
                 'required': [
@@ -145,15 +151,19 @@ class InstrumentUpdatesApi(object):
                 'openapi_types': {
                     'instrument_updates_id':
                         (str,),
+                    'accept':
+                        (str,),
                     'format':
                         (str,),
                 },
                 'attribute_map': {
                     'instrument_updates_id': 'instrument_updates_id',
+                    'accept': 'Accept',
                     'format': 'format',
                 },
                 'location_map': {
                     'instrument_updates_id': 'path',
+                    'accept': 'header',
                     'format': 'query',
                 },
                 'collection_format_map': {
@@ -161,8 +171,7 @@ class InstrumentUpdatesApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/json',
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -182,6 +191,7 @@ class InstrumentUpdatesApi(object):
             params_map={
                 'all': [
                     'instrument_updates_id',
+                    'accept',
                 ],
                 'required': [
                     'instrument_updates_id',
@@ -201,19 +211,23 @@ class InstrumentUpdatesApi(object):
                 'openapi_types': {
                     'instrument_updates_id':
                         (str,),
+                    'accept':
+                        (str,),
                 },
                 'attribute_map': {
                     'instrument_updates_id': 'instrument_updates_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'instrument_updates_id': 'path',
+                    'accept': 'header',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -235,7 +249,8 @@ class InstrumentUpdatesApi(object):
 
 
         Keyword Args:
-            create_instrument_update_request (CreateInstrumentUpdateRequest): . [optional]
+            accept (str): [optional] if omitted the server will use the default value of "application/hal+json"
+            create_instrument_update_request (CreateInstrumentUpdateRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -312,6 +327,7 @@ class InstrumentUpdatesApi(object):
             instrument_updates_id (str): The ID of the `instrument_updates` resource. This ID was returned when initially creating the `instrument_updates` object.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of "application/hal+json"
             format (str): Specify the format you'd like to download the response in (JSON is the only other format available for download).. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -380,7 +396,7 @@ class InstrumentUpdatesApi(object):
     ):
         """Fetch an Instrument Update  # noqa: E501
 
-        Fetch a specific `instrument_update` from an `instrument_updates` resource. For more information, see the guide on using our [Account Updater](/guides/payments/account-updater).  # noqa: E501
+        Fetch a specific `instrument_update` from an `instrument_updates` resource.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -391,6 +407,7 @@ class InstrumentUpdatesApi(object):
             instrument_updates_id (str): The ID of the `instrument_update`.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of "application/hal+json"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

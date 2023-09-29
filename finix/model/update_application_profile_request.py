@@ -27,10 +27,6 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
-def lazy_import():
-    from finix.model.tags import Tags
-    globals()['Tags'] = Tags
-
 
 class UpdateApplicationProfileRequest(ModelNormal):
     """
@@ -65,7 +61,6 @@ class UpdateApplicationProfileRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -80,11 +75,10 @@ class UpdateApplicationProfileRequest(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        lazy_import()
         return {
-            'fee_profile': (str, none_type,),  # noqa: E501
-            'risk_profile': (str, none_type,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'fee_profile': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'risk_profile': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -139,9 +133,9 @@ class UpdateApplicationProfileRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            fee_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            risk_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            fee_profile ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): The ID of the `Fee Profile` associated with the `Application`.. [optional]  # noqa: E501
+            risk_profile ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): The ID of the `Risk Profile` associated with the `Application`.. [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -223,9 +217,9 @@ class UpdateApplicationProfileRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            fee_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            risk_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            fee_profile ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): The ID of the `Fee Profile` associated with the `Application`.. [optional]  # noqa: E501
+            risk_profile ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): The ID of the `Risk Profile` associated with the `Application`.. [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

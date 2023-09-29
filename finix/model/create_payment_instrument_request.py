@@ -29,9 +29,7 @@ from finix.exceptions import ApiAttributeError
 
 def lazy_import():
     from finix.model.create_payment_instrument_request_address import CreatePaymentInstrumentRequestAddress
-    from finix.model.tags import Tags
     globals()['CreatePaymentInstrumentRequestAddress'] = CreatePaymentInstrumentRequestAddress
-    globals()['Tags'] = Tags
 
 
 class CreatePaymentInstrumentRequest(ModelNormal):
@@ -57,21 +55,29 @@ class CreatePaymentInstrumentRequest(ModelNormal):
 
     allowed_values = {
         ('type',): {
-            'BANK_ACCOUNT': "BANK_ACCOUNT",
-            'TOKEN': "TOKEN",
             'APPLE_PAY': "APPLE_PAY",
+            'BANK_ACCOUNT': "BANK_ACCOUNT",
             'GOOGLE_PAY': "GOOGLE_PAY",
             'PAYMENT_CARD': "PAYMENT_CARD",
+            'TOKEN': "TOKEN",
         },
         ('account_type',): {
-            'CHECKING': "CHECKING",
-            'SAVINGS': "SAVINGS",
-            'CORPORATE': "CORPORATE",
-            'CORP_SAVINGS': "CORP_SAVINGS",
+            'BUSINESS_CHECKING': "BUSINESS_CHECKING",
+            'BUSINESS_SAVINGS': "BUSINESS_SAVINGS",
+            'PERSONAL_CHECKING': "PERSONAL_CHECKING",
+            'PERSONAL_SAVINGS': "PERSONAL_SAVINGS",
         },
     }
 
     validations = {
+        ('account_number',): {
+            'max_length': 17,
+            'min_length': 5,
+        },
+        ('bank_code',): {
+            'max_length': 9,
+            'min_length': 9,
+        },
     }
 
     @cached_property
@@ -100,18 +106,17 @@ class CreatePaymentInstrumentRequest(ModelNormal):
             'address': (CreatePaymentInstrumentRequestAddress,),  # noqa: E501
             'expiration_month': (int,),  # noqa: E501
             'expiration_year': (int,),  # noqa: E501
-            'identity': (str, none_type,),  # noqa: E501
+            'identity': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'number': (str,),  # noqa: E501
             'security_code': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'type': (str,),  # noqa: E501
             'third_party_token': (str,),  # noqa: E501
             'account_number': (str,),  # noqa: E501
             'account_type': (str,),  # noqa: E501
             'attempt_bank_account_validation_check': (bool,),  # noqa: E501
             'bank_code': (str,),  # noqa: E501
-            'country': (str,),  # noqa: E501
             'token': (str,),  # noqa: E501
             'merchant_identity': (str,),  # noqa: E501
         }
@@ -136,7 +141,6 @@ class CreatePaymentInstrumentRequest(ModelNormal):
         'account_type': 'account_type',  # noqa: E501
         'attempt_bank_account_validation_check': 'attempt_bank_account_validation_check',  # noqa: E501
         'bank_code': 'bank_code',  # noqa: E501
-        'country': 'country',  # noqa: E501
         'token': 'token',  # noqa: E501
         'merchant_identity': 'merchant_identity',  # noqa: E501
     }
@@ -185,18 +189,17 @@ class CreatePaymentInstrumentRequest(ModelNormal):
             address (CreatePaymentInstrumentRequestAddress): [optional]  # noqa: E501
             expiration_month (int): The expiration month of the card (e.g. 12 for December).. [optional]  # noqa: E501
             expiration_year (int): The 4-digit expiration year of the card.. [optional]  # noqa: E501
-            identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            name (str): The name of the bank account or card owner.. [optional]  # noqa: E501
+            identity (str): The ID of the `Identity` used to create the `Payment Instrument` resource.. [optional]  # noqa: E501
+            name (str): The name of the bank account or card owner. This value can get truncated to comply with processor requirements.. [optional]  # noqa: E501
             number (str): The card or bank account number (no dashes in between numbers).. [optional]  # noqa: E501
             security_code (str): The 3-4 digit security code of the card (i.e. CVV code).. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             type (str): Type of `Payment Instrument`.. [optional]  # noqa: E501
             third_party_token (str): Stringified token provided by Google. Required to process Google Pay transactions.. [optional]  # noqa: E501
             account_number (str): The bank account number (no dashes in between numbers).. [optional]  # noqa: E501
-            account_type (str): The type of bank account.. [optional]  # noqa: E501
-            attempt_bank_account_validation_check (bool): Set to **true** if you want to request a bank account validation. Default value is **false**.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            account_type (str): The type of bank account. Use the following respective enum when creating a `Payment Instrument` for:<ul><li><strong>PERSONAL_CHECKING: </strong>A personal checking account.</li><li><strong>PERSONAL_SAVINGS: </strong>A personal savings account.</li><li><strong>BUSINESS_CHECKING: </strong>A business checking account.</li><li><strong>BUSINESS_SAVINGS: </strong>A business savings account.</li></ul>. [optional]  # noqa: E501
+            attempt_bank_account_validation_check (bool): Verify and validate the `Payment Instrument` to confirm it can be used for [ACH Direct Debits.](/guides/payments/online-payments/getting-started/finix-api/ach-echeck/) - Set to **True** to verify the `Payment Instrument` can be used for ACH payments.  - Only `Payment Instruments` created from bank accounts can be used for ACH payments.. [optional] if omitted the server will use the default value of False  # noqa: E501
             bank_code (str): The routing number of the bank account.. [optional]  # noqa: E501
-            country (str): 3 Letter country code (e.g. USA).. [optional]  # noqa: E501
             token (str): ID of the `Token` that was returned from the tokenization client or hosted fields. [optional]  # noqa: E501
             merchant_identity (str): The `id` of the identity used when registering the business with Google Pay through our registration API.. [optional]  # noqa: E501
         """
@@ -283,18 +286,17 @@ class CreatePaymentInstrumentRequest(ModelNormal):
             address (CreatePaymentInstrumentRequestAddress): [optional]  # noqa: E501
             expiration_month (int): The expiration month of the card (e.g. 12 for December).. [optional]  # noqa: E501
             expiration_year (int): The 4-digit expiration year of the card.. [optional]  # noqa: E501
-            identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            name (str): The name of the bank account or card owner.. [optional]  # noqa: E501
+            identity (str): The ID of the `Identity` used to create the `Payment Instrument` resource.. [optional]  # noqa: E501
+            name (str): The name of the bank account or card owner. This value can get truncated to comply with processor requirements.. [optional]  # noqa: E501
             number (str): The card or bank account number (no dashes in between numbers).. [optional]  # noqa: E501
             security_code (str): The 3-4 digit security code of the card (i.e. CVV code).. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             type (str): Type of `Payment Instrument`.. [optional]  # noqa: E501
             third_party_token (str): Stringified token provided by Google. Required to process Google Pay transactions.. [optional]  # noqa: E501
             account_number (str): The bank account number (no dashes in between numbers).. [optional]  # noqa: E501
-            account_type (str): The type of bank account.. [optional]  # noqa: E501
-            attempt_bank_account_validation_check (bool): Set to **true** if you want to request a bank account validation. Default value is **false**.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            account_type (str): The type of bank account. Use the following respective enum when creating a `Payment Instrument` for:<ul><li><strong>PERSONAL_CHECKING: </strong>A personal checking account.</li><li><strong>PERSONAL_SAVINGS: </strong>A personal savings account.</li><li><strong>BUSINESS_CHECKING: </strong>A business checking account.</li><li><strong>BUSINESS_SAVINGS: </strong>A business savings account.</li></ul>. [optional]  # noqa: E501
+            attempt_bank_account_validation_check (bool): Verify and validate the `Payment Instrument` to confirm it can be used for [ACH Direct Debits.](/guides/payments/online-payments/getting-started/finix-api/ach-echeck/) - Set to **True** to verify the `Payment Instrument` can be used for ACH payments.  - Only `Payment Instruments` created from bank accounts can be used for ACH payments.. [optional] if omitted the server will use the default value of False  # noqa: E501
             bank_code (str): The routing number of the bank account.. [optional]  # noqa: E501
-            country (str): 3 Letter country code (e.g. USA).. [optional]  # noqa: E501
             token (str): ID of the `Token` that was returned from the tokenization client or hosted fields. [optional]  # noqa: E501
             merchant_identity (str): The `id` of the identity used when registering the business with Google Pay through our registration API.. [optional]  # noqa: E501
         """

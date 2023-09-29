@@ -28,8 +28,8 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from finix.model.application_links_application_profile import ApplicationLinksApplicationProfile
-    globals()['ApplicationLinksApplicationProfile'] = ApplicationLinksApplicationProfile
+    from finix.model.application_links_authorizations import ApplicationLinksAuthorizations
+    globals()['ApplicationLinksAuthorizations'] = ApplicationLinksAuthorizations
 
 
 class SubscriptionSchedulesListLinks(ModelNormal):
@@ -82,9 +82,9 @@ class SubscriptionSchedulesListLinks(ModelNormal):
         """
         lazy_import()
         return {
-            'self': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'next': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'last': (ApplicationLinksApplicationProfile,),  # noqa: E501
+            'self': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'next': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'last': (ApplicationLinksAuthorizations,),  # noqa: E501
         }
 
     @cached_property
@@ -139,9 +139,9 @@ class SubscriptionSchedulesListLinks(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            self (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            next (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            last (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            self (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            next (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            last (ApplicationLinksAuthorizations): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -223,9 +223,9 @@ class SubscriptionSchedulesListLinks(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            self (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            next (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            last (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            self (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            next (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            last (ApplicationLinksAuthorizations): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

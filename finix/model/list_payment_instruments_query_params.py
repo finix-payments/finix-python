@@ -76,6 +76,7 @@ class ListPaymentInstrumentsQueryParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'accept': (str,),  # noqa: E501
             'account_last4': (str,),  # noqa: E501
             'account_routing_number': (str,),  # noqa: E501
             'after_cursor': (str,),  # noqa: E501
@@ -86,11 +87,13 @@ class ListPaymentInstrumentsQueryParams(ModelNormal):
             'created_at_lte': (str,),  # noqa: E501
             'expiration_month': (str,),  # noqa: E501
             'expiration_year': (str,),  # noqa: E501
-            'last_four': (str,),  # noqa: E501
+            'last4': (str,),  # noqa: E501
             'limit': (int,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'owner_identity_id': (str,),  # noqa: E501
             'type': (str,),  # noqa: E501
+            'tags_key': (str,),  # noqa: E501
+            'tags_value': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -99,6 +102,7 @@ class ListPaymentInstrumentsQueryParams(ModelNormal):
 
 
     attribute_map = {
+        'accept': 'Accept',  # noqa: E501
         'account_last4': 'account_last4',  # noqa: E501
         'account_routing_number': 'account_routing_number',  # noqa: E501
         'after_cursor': 'after_cursor',  # noqa: E501
@@ -109,11 +113,13 @@ class ListPaymentInstrumentsQueryParams(ModelNormal):
         'created_at_lte': 'created_at.lte',  # noqa: E501
         'expiration_month': 'expiration_month',  # noqa: E501
         'expiration_year': 'expiration_year',  # noqa: E501
-        'last_four': 'last_four',  # noqa: E501
+        'last4': 'last4',  # noqa: E501
         'limit': 'limit',  # noqa: E501
         'name': 'name',  # noqa: E501
         'owner_identity_id': 'owner_identity_id',  # noqa: E501
         'type': 'type',  # noqa: E501
+        'tags_key': 'tags.key',  # noqa: E501
+        'tags_value': 'tags.value',  # noqa: E501
     }
 
     read_only_vars = {
@@ -157,6 +163,7 @@ class ListPaymentInstrumentsQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            accept (str): Body Header. [optional]  # noqa: E501
             account_last4 (str): Filter by the last 4 digits of the account if available.. [optional]  # noqa: E501
             account_routing_number (str): Filter by the account routing number if available.. [optional]  # noqa: E501
             after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
@@ -167,11 +174,13 @@ class ListPaymentInstrumentsQueryParams(ModelNormal):
             created_at_lte (str): Filter where `created_at` is before the given date.. [optional]  # noqa: E501
             expiration_month (str): Filter by the expiration month associated with the `Payment Instrument` if applicable. This filter only applies to payment cards.. [optional]  # noqa: E501
             expiration_year (str): Filter by the 4 digit expiration year associated with the Payment Instrument if applicable. This filter only applies to payment cards.. [optional]  # noqa: E501
-            last_four (str): Filter by the last 4 digits of the `Payment Instrument` card. This filter only applies to payment cards.. [optional]  # noqa: E501
+            last4 (str): Filter by the last 4 digits of the `Payment Instrument` card. This filter only applies to payment cards.. [optional]  # noqa: E501
             limit (int): The numbers of items to return.. [optional]  # noqa: E501
             name (str): Filter by the name.. [optional]  # noqa: E501
             owner_identity_id (str): Filter by the owner id of the associated `Identity`.. [optional]  # noqa: E501
             type (str): Filter by the `Payment Instrument` type.. [optional]  # noqa: E501
+            tags_key (str): Filter by the [`key` of a `Tag`](/api/overview/#section/Tags).. [optional]  # noqa: E501
+            tags_value (str): Filter by the [value of a `Tag`](https://finix.com/docs/api/overview/#section/Tags).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -253,6 +262,7 @@ class ListPaymentInstrumentsQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            accept (str): Body Header. [optional]  # noqa: E501
             account_last4 (str): Filter by the last 4 digits of the account if available.. [optional]  # noqa: E501
             account_routing_number (str): Filter by the account routing number if available.. [optional]  # noqa: E501
             after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
@@ -263,11 +273,13 @@ class ListPaymentInstrumentsQueryParams(ModelNormal):
             created_at_lte (str): Filter where `created_at` is before the given date.. [optional]  # noqa: E501
             expiration_month (str): Filter by the expiration month associated with the `Payment Instrument` if applicable. This filter only applies to payment cards.. [optional]  # noqa: E501
             expiration_year (str): Filter by the 4 digit expiration year associated with the Payment Instrument if applicable. This filter only applies to payment cards.. [optional]  # noqa: E501
-            last_four (str): Filter by the last 4 digits of the `Payment Instrument` card. This filter only applies to payment cards.. [optional]  # noqa: E501
+            last4 (str): Filter by the last 4 digits of the `Payment Instrument` card. This filter only applies to payment cards.. [optional]  # noqa: E501
             limit (int): The numbers of items to return.. [optional]  # noqa: E501
             name (str): Filter by the name.. [optional]  # noqa: E501
             owner_identity_id (str): Filter by the owner id of the associated `Identity`.. [optional]  # noqa: E501
             type (str): Filter by the `Payment Instrument` type.. [optional]  # noqa: E501
+            tags_key (str): Filter by the [`key` of a `Tag`](/api/overview/#section/Tags).. [optional]  # noqa: E501
+            tags_value (str): Filter by the [value of a `Tag`](https://finix.com/docs/api/overview/#section/Tags).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

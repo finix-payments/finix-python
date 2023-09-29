@@ -29,9 +29,7 @@ from finix.exceptions import ApiAttributeError
 
 def lazy_import():
     from finix.model.subscription_enrollment_links import SubscriptionEnrollmentLinks
-    from finix.model.tags import Tags
     globals()['SubscriptionEnrollmentLinks'] = SubscriptionEnrollmentLinks
-    globals()['Tags'] = Tags
 
 
 class SubscriptionEnrollment(ModelNormal):
@@ -108,7 +106,7 @@ class SubscriptionEnrollment(ModelNormal):
             'nickname': (str,),  # noqa: E501
             'started_at': (str,),  # noqa: E501
             'subscription_schedule': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'links': (SubscriptionEnrollmentLinks,),  # noqa: E501
         }
 
@@ -181,7 +179,7 @@ class SubscriptionEnrollment(ModelNormal):
             nickname (str): Human readable name.. [optional]  # noqa: E501
             started_at (str): When the `subscription_enrollment` will begin in **DateTime** format.. [optional]  # noqa: E501
             subscription_schedule (str): ID of the `Subscription Schedule`.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (SubscriptionEnrollmentLinks): [optional]  # noqa: E501
         """
 
@@ -273,7 +271,7 @@ class SubscriptionEnrollment(ModelNormal):
             nickname (str): Human readable name.. [optional]  # noqa: E501
             started_at (str): When the `subscription_enrollment` will begin in **DateTime** format.. [optional]  # noqa: E501
             subscription_schedule (str): ID of the `Subscription Schedule`.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (SubscriptionEnrollmentLinks): [optional]  # noqa: E501
         """
 

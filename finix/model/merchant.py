@@ -30,10 +30,8 @@ from finix.exceptions import ApiAttributeError
 def lazy_import():
     from finix.model.merchant_links import MerchantLinks
     from finix.model.merchant_processor_details import MerchantProcessorDetails
-    from finix.model.tags import Tags
     globals()['MerchantLinks'] = MerchantLinks
     globals()['MerchantProcessorDetails'] = MerchantProcessorDetails
-    globals()['Tags'] = Tags
 
 
 class Merchant(ModelNormal):
@@ -58,10 +56,26 @@ class Merchant(ModelNormal):
     """
 
     allowed_values = {
+        ('gateway',): {
+            'None': None,
+            'TRIPOS_MOBILE_V1': "TRIPOS_MOBILE_V1",
+            'TRIPOS_CLOUD_V1': "TRIPOS_CLOUD_V1",
+            'DATACAP_V1': "DATACAP_V1",
+        },
         ('onboarding_state',): {
             'PROVISIONING': "PROVISIONING",
             'APPROVED': "APPROVED",
             'REJECTED': "REJECTED",
+        },
+        ('ready_to_settle_upon',): {
+            'RECONCILIATION': "RECONCILIATION",
+            'SUCCESSFUL_CAPTURE': "SUCCESSFUL_CAPTURE",
+            'PROCESSOR_WINDOW': "PROCESSOR_WINDOW",
+        },
+        ('settlement_funding_identifier',): {
+            'UNSET': "UNSET",
+            'MID_AND_DATE': "MID_AND_DATE",
+            'MID_AND_MERCHANT_NAME': "MID_AND_MERCHANT_NAME",
         },
     }
 
@@ -100,6 +114,7 @@ class Merchant(ModelNormal):
             'creating_transfer_from_report_enabled': (bool,),  # noqa: E501
             'convenience_charges_enabled': (bool,),  # noqa: E501
             'fee_ready_to_settle_upon': (str,),  # noqa: E501
+            'gateway': (str, none_type,),  # noqa: E501
             'gross_settlement_enabled': (bool,),  # noqa: E501
             'identity': (str,),  # noqa: E501
             'level_two_level_three_data_enabled': (bool,),  # noqa: E501
@@ -115,7 +130,8 @@ class Merchant(ModelNormal):
             'rent_surcharges_enabled': (bool,),  # noqa: E501
             'settlement_enabled': (bool,),  # noqa: E501
             'settlement_funding_identifier': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'surcharges_enabled': (bool,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'verification': (str,),  # noqa: E501
             'links': (MerchantLinks,),  # noqa: E501
         }
@@ -135,6 +151,7 @@ class Merchant(ModelNormal):
         'creating_transfer_from_report_enabled': 'creating_transfer_from_report_enabled',  # noqa: E501
         'convenience_charges_enabled': 'convenience_charges_enabled',  # noqa: E501
         'fee_ready_to_settle_upon': 'fee_ready_to_settle_upon',  # noqa: E501
+        'gateway': 'gateway',  # noqa: E501
         'gross_settlement_enabled': 'gross_settlement_enabled',  # noqa: E501
         'identity': 'identity',  # noqa: E501
         'level_two_level_three_data_enabled': 'level_two_level_three_data_enabled',  # noqa: E501
@@ -150,6 +167,7 @@ class Merchant(ModelNormal):
         'rent_surcharges_enabled': 'rent_surcharges_enabled',  # noqa: E501
         'settlement_enabled': 'settlement_enabled',  # noqa: E501
         'settlement_funding_identifier': 'settlement_funding_identifier',  # noqa: E501
+        'surcharges_enabled': 'surcharges_enabled',  # noqa: E501
         'tags': 'tags',  # noqa: E501
         'verification': 'verification',  # noqa: E501
         'links': '_links',  # noqa: E501
@@ -196,7 +214,7 @@ class Merchant(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str): The ID of the resource.. [optional]  # noqa: E501
+            id (str): The ID of the `Merchant` resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             application (str): ID of the `Application` the `Merchant` was created under.. [optional]  # noqa: E501
@@ -205,10 +223,11 @@ class Merchant(ModelNormal):
             creating_transfer_from_report_enabled (bool): Set to **true** to automatically create `Transfers` once settlement reports get generated.. [optional]  # noqa: E501
             convenience_charges_enabled (bool): Set to **true** if you want to enable the `Merchant` to accept convenience fees and/or service fees.. [optional]  # noqa: E501
             fee_ready_to_settle_upon (str): Details how the `Merchant` settles fees.. [optional]  # noqa: E501
+            gateway (str, none_type): Name of the gateway that routes the `Merchant's` transactions to the processor.. [optional]  # noqa: E501
             gross_settlement_enabled (bool): Set to **true** to enable gross settlements.. [optional]  # noqa: E501
             identity (str): The ID of the `Identity` resource associated with the `Merchant`.. [optional]  # noqa: E501
             level_two_level_three_data_enabled (bool): Set to **true** to enable the `Merchant` for Level 2 and Level 3 processing. Default value is **false**.. [optional]  # noqa: E501
-            mcc (str, none_type): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf)) that this merchant will be classified under.. [optional]  # noqa: E501
+            mcc (str, none_type): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card\\_x/mcc.pdf)) that this merchant will be classified under. For a list of approved MCCs, see [Approved Merchant Category Codes.](/docs/guides/business/security-and-compliance/approved-merchants/). [optional]  # noqa: E501
             merchant_name (str): The legal name saved in the `Merchant` resource.. [optional]  # noqa: E501
             merchant_profile (str): Details if a merchant's info was submitted to third-party processors for provisioning.. [optional]  # noqa: E501
             mid (str, none_type): MID of the `Merchant`.. [optional]  # noqa: E501
@@ -216,11 +235,12 @@ class Merchant(ModelNormal):
             processor (str): Name of the transaction processor.. [optional]  # noqa: E501
             processor_details (MerchantProcessorDetails): [optional]  # noqa: E501
             processing_enabled (bool): Details if transaction processing is enabled for the `Merchant`.. [optional]  # noqa: E501
-            ready_to_settle_upon (str): Details how `Authorizations` captured by the `Merchant` are settled.. [optional]  # noqa: E501
+            ready_to_settle_upon (str): Details how transactions captured by the `Merchant` are settled.. [optional]  # noqa: E501
             rent_surcharges_enabled (bool): Set to **true** if you want to enable a `Merchant` to accept rent charges.. [optional]  # noqa: E501
             settlement_enabled (bool): Details if settlement processing is enabled for the `Merchant`.. [optional]  # noqa: E501
-            settlement_funding_identifier (str): Include addtional information (like the MID) when submitting funding `Tranfers` to processors.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            settlement_funding_identifier (str): Includes additional information (like the MID or `Merchant` name) when submitting funding `Transfers` to processors. - **UNSET**: No additional details get provided to the processor. - **MID_AND_DATE**: The `MID` of the `Merchant` and the date the funding `Transfer` was submitted (Date is in UTC). e.g **MID:12345678-20220225** - **MID_AND_MERCHANT_NAME**: The `MID` of the `Merchant` and the `Merchant#name` (white spaces will be removed). e.g. **MID:12345678-NameOfMerchant**  These details appear alongside the seller's payout in their bank account as a description of the deposit.. [optional] if omitted the server will use the default value of "UNSET"  # noqa: E501
+            surcharges_enabled (bool): Set to **true** if you want to enable a `Merchant` to accept surcharge fees. For more details, see [Buyer Charges](/guides/payments/modify/buyer-charges/).. [optional] if omitted the server will use the default value of False  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             verification (str): ID of the `Verification` that was submitted to verify the `Merchant`.. [optional]  # noqa: E501
             links (MerchantLinks): [optional]  # noqa: E501
         """
@@ -304,7 +324,7 @@ class Merchant(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str): The ID of the resource.. [optional]  # noqa: E501
+            id (str): The ID of the `Merchant` resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             application (str): ID of the `Application` the `Merchant` was created under.. [optional]  # noqa: E501
@@ -313,10 +333,11 @@ class Merchant(ModelNormal):
             creating_transfer_from_report_enabled (bool): Set to **true** to automatically create `Transfers` once settlement reports get generated.. [optional]  # noqa: E501
             convenience_charges_enabled (bool): Set to **true** if you want to enable the `Merchant` to accept convenience fees and/or service fees.. [optional]  # noqa: E501
             fee_ready_to_settle_upon (str): Details how the `Merchant` settles fees.. [optional]  # noqa: E501
+            gateway (str, none_type): Name of the gateway that routes the `Merchant's` transactions to the processor.. [optional]  # noqa: E501
             gross_settlement_enabled (bool): Set to **true** to enable gross settlements.. [optional]  # noqa: E501
             identity (str): The ID of the `Identity` resource associated with the `Merchant`.. [optional]  # noqa: E501
             level_two_level_three_data_enabled (bool): Set to **true** to enable the `Merchant` for Level 2 and Level 3 processing. Default value is **false**.. [optional]  # noqa: E501
-            mcc (str, none_type): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf)) that this merchant will be classified under.. [optional]  # noqa: E501
+            mcc (str, none_type): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card\\_x/mcc.pdf)) that this merchant will be classified under. For a list of approved MCCs, see [Approved Merchant Category Codes.](/docs/guides/business/security-and-compliance/approved-merchants/). [optional]  # noqa: E501
             merchant_name (str): The legal name saved in the `Merchant` resource.. [optional]  # noqa: E501
             merchant_profile (str): Details if a merchant's info was submitted to third-party processors for provisioning.. [optional]  # noqa: E501
             mid (str, none_type): MID of the `Merchant`.. [optional]  # noqa: E501
@@ -324,11 +345,12 @@ class Merchant(ModelNormal):
             processor (str): Name of the transaction processor.. [optional]  # noqa: E501
             processor_details (MerchantProcessorDetails): [optional]  # noqa: E501
             processing_enabled (bool): Details if transaction processing is enabled for the `Merchant`.. [optional]  # noqa: E501
-            ready_to_settle_upon (str): Details how `Authorizations` captured by the `Merchant` are settled.. [optional]  # noqa: E501
+            ready_to_settle_upon (str): Details how transactions captured by the `Merchant` are settled.. [optional]  # noqa: E501
             rent_surcharges_enabled (bool): Set to **true** if you want to enable a `Merchant` to accept rent charges.. [optional]  # noqa: E501
             settlement_enabled (bool): Details if settlement processing is enabled for the `Merchant`.. [optional]  # noqa: E501
-            settlement_funding_identifier (str): Include addtional information (like the MID) when submitting funding `Tranfers` to processors.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            settlement_funding_identifier (str): Includes additional information (like the MID or `Merchant` name) when submitting funding `Transfers` to processors. - **UNSET**: No additional details get provided to the processor. - **MID_AND_DATE**: The `MID` of the `Merchant` and the date the funding `Transfer` was submitted (Date is in UTC). e.g **MID:12345678-20220225** - **MID_AND_MERCHANT_NAME**: The `MID` of the `Merchant` and the `Merchant#name` (white spaces will be removed). e.g. **MID:12345678-NameOfMerchant**  These details appear alongside the seller's payout in their bank account as a description of the deposit.. [optional] if omitted the server will use the default value of "UNSET"  # noqa: E501
+            surcharges_enabled (bool): Set to **true** if you want to enable a `Merchant` to accept surcharge fees. For more details, see [Buyer Charges](/guides/payments/modify/buyer-charges/).. [optional] if omitted the server will use the default value of False  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             verification (str): ID of the `Verification` that was submitted to verify the `Merchant`.. [optional]  # noqa: E501
             links (MerchantLinks): [optional]  # noqa: E501
         """

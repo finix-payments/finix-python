@@ -29,9 +29,7 @@ from finix.exceptions import ApiAttributeError
 
 def lazy_import():
     from finix.model.currency import Currency
-    from finix.model.tags import Tags
     globals()['Currency'] = Currency
-    globals()['Tags'] = Tags
 
 
 class CreateFeeRequest(ModelNormal):
@@ -100,12 +98,12 @@ class CreateFeeRequest(ModelNormal):
             'currency': (Currency,),  # noqa: E501
             'fee_subtype': (str,),  # noqa: E501
             'fee_type': (str,),  # noqa: E501
-            'merchant_id': (str, none_type,),  # noqa: E501
+            'merchant_id': (str,),  # noqa: E501
             'label': (str,),  # noqa: E501
             'linked_id': (str,),  # noqa: E501
             'linked_type': (str,),  # noqa: E501
             'settlement_delay_days': (int, none_type,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -139,7 +137,7 @@ class CreateFeeRequest(ModelNormal):
         Args:
             amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).
             currency (Currency):
-            merchant_id (str, none_type): The ID of the resource.
+            merchant_id (str): The ID of the `Merchant` resource used to create the `Fee`.
 
         Keyword Args:
             fee_subtype (str): Subtype of the fee. Set to **CUSTOM**.. defaults to "CUSTOM", must be one of ["CUSTOM", ]  # noqa: E501
@@ -177,8 +175,8 @@ class CreateFeeRequest(ModelNormal):
             label (str): The display name of the `Fee` that can be used for filtering purposes.. [optional]  # noqa: E501
             linked_id (str): ID of the linked resource. [optional]  # noqa: E501
             linked_type (str): The type of entity the fee is linked to (**null** by default).. [optional]  # noqa: E501
-            settlement_delay_days (int, none_type): Delays in days, when the fee will be submitted for settlement.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            settlement_delay_days (int, none_type): Delays in days, when the `Transfer` the `Fee` creates will be submitted for settlement.. [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         fee_subtype = kwargs.get('fee_subtype', "CUSTOM")
@@ -239,7 +237,7 @@ class CreateFeeRequest(ModelNormal):
         Args:
             amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).
             currency (Currency):
-            merchant_id (str, none_type): The ID of the resource.
+            merchant_id (str): The ID of the `Merchant` resource used to create the `Fee`.
 
         Keyword Args:
             fee_subtype (str): Subtype of the fee. Set to **CUSTOM**.. defaults to "CUSTOM", must be one of ["CUSTOM", ]  # noqa: E501
@@ -277,8 +275,8 @@ class CreateFeeRequest(ModelNormal):
             label (str): The display name of the `Fee` that can be used for filtering purposes.. [optional]  # noqa: E501
             linked_id (str): ID of the linked resource. [optional]  # noqa: E501
             linked_type (str): The type of entity the fee is linked to (**null** by default).. [optional]  # noqa: E501
-            settlement_delay_days (int, none_type): Delays in days, when the fee will be submitted for settlement.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            settlement_delay_days (int, none_type): Delays in days, when the `Transfer` the `Fee` creates will be submitted for settlement.. [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         fee_subtype = kwargs.get('fee_subtype', "CUSTOM")

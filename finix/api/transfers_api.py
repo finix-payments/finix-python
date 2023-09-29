@@ -79,6 +79,8 @@ class TransfersApi(object):
             },
             params_map={
                 'all': [
+                    'accept',
+                    'finix_version',
                     'create_transfer_request',
                 ],
                 'required': [],
@@ -95,12 +97,20 @@ class TransfersApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'accept':
+                        (str,),
+                    'finix_version':
+                        (str,),
                     'create_transfer_request':
                         (CreateTransferRequest,),
                 },
                 'attribute_map': {
+                    'accept': 'Accept',
+                    'finix_version': 'Finix-Version',
                 },
                 'location_map': {
+                    'accept': 'header',
+                    'finix_version': 'header',
                     'create_transfer_request': 'body',
                 },
                 'collection_format_map': {
@@ -108,10 +118,10 @@ class TransfersApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -130,6 +140,7 @@ class TransfersApi(object):
             params_map={
                 'all': [
                     'transfer_id',
+                    'finix_version',
                     'create_reversal_request',
                 ],
                 'required': [
@@ -150,14 +161,18 @@ class TransfersApi(object):
                 'openapi_types': {
                     'transfer_id':
                         (str,),
+                    'finix_version':
+                        (str,),
                     'create_reversal_request':
                         (CreateReversalRequest,),
                 },
                 'attribute_map': {
                     'transfer_id': 'transfer_id',
+                    'finix_version': 'Finix-Version',
                 },
                 'location_map': {
                     'transfer_id': 'path',
+                    'finix_version': 'header',
                     'create_reversal_request': 'body',
                 },
                 'collection_format_map': {
@@ -165,10 +180,10 @@ class TransfersApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -187,6 +202,7 @@ class TransfersApi(object):
             params_map={
                 'all': [
                     'transfer_id',
+                    'accept',
                 ],
                 'required': [
                     'transfer_id',
@@ -206,19 +222,23 @@ class TransfersApi(object):
                 'openapi_types': {
                     'transfer_id':
                         (str,),
+                    'accept':
+                        (str,),
                 },
                 'attribute_map': {
                     'transfer_id': 'transfer_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'transfer_id': 'path',
+                    'accept': 'header',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -238,6 +258,7 @@ class TransfersApi(object):
             params_map={
                 'all': [
                     'transfer_id',
+                    'accept',
                     'limit',
                     'after_cursor',
                     'before_cursor',
@@ -260,6 +281,8 @@ class TransfersApi(object):
                 'openapi_types': {
                     'transfer_id':
                         (str,),
+                    'accept':
+                        (str,),
                     'limit':
                         (int,),
                     'after_cursor':
@@ -269,12 +292,14 @@ class TransfersApi(object):
                 },
                 'attribute_map': {
                     'transfer_id': 'transfer_id',
+                    'accept': 'Accept',
                     'limit': 'limit',
                     'after_cursor': 'after_cursor',
                     'before_cursor': 'before_cursor',
                 },
                 'location_map': {
                     'transfer_id': 'path',
+                    'accept': 'header',
                     'limit': 'query',
                     'after_cursor': 'query',
                     'before_cursor': 'query',
@@ -284,7 +309,7 @@ class TransfersApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -303,7 +328,7 @@ class TransfersApi(object):
             },
             params_map={
                 'all': [
-                    'sort',
+                    'accept',
                     'after_cursor',
                     'limit',
                     'amount',
@@ -315,9 +340,9 @@ class TransfersApi(object):
                     'created_at_lte',
                     'idempotency_id',
                     'id',
-                    'state',
                     'ready_to_settle_at_gte',
                     'ready_to_settle_at_lte',
+                    'state',
                     'statement_descriptor',
                     'trace_id',
                     'updated_at_gte',
@@ -335,6 +360,8 @@ class TransfersApi(object):
                     'merchant_processor_id',
                     'type',
                     'before_cursor',
+                    'tags_key',
+                    'tags_value',
                 ],
                 'required': [],
                 'nullable': [
@@ -368,7 +395,7 @@ class TransfersApi(object):
                     },
                 },
                 'openapi_types': {
-                    'sort':
+                    'accept':
                         (str,),
                     'after_cursor':
                         (str,),
@@ -392,11 +419,11 @@ class TransfersApi(object):
                         (str,),
                     'id':
                         (str,),
-                    'state':
-                        (str,),
                     'ready_to_settle_at_gte':
                         (str,),
                     'ready_to_settle_at_lte':
+                        (str,),
+                    'state':
                         (str,),
                     'statement_descriptor':
                         (int,),
@@ -432,9 +459,13 @@ class TransfersApi(object):
                         (str,),
                     'before_cursor':
                         (str,),
+                    'tags_key':
+                        (str,),
+                    'tags_value':
+                        (str,),
                 },
                 'attribute_map': {
-                    'sort': 'sort',
+                    'accept': 'Accept',
                     'after_cursor': 'after_cursor',
                     'limit': 'limit',
                     'amount': 'amount',
@@ -446,9 +477,9 @@ class TransfersApi(object):
                     'created_at_lte': 'created_at.lte',
                     'idempotency_id': 'idempotency_id',
                     'id': 'id',
-                    'state': 'state',
                     'ready_to_settle_at_gte': 'ready_to_settle_at.gte',
                     'ready_to_settle_at_lte': 'ready_to_settle_at.lte',
+                    'state': 'state',
                     'statement_descriptor': 'statement_descriptor',
                     'trace_id': 'trace_id',
                     'updated_at_gte': 'updated_at.gte',
@@ -466,9 +497,11 @@ class TransfersApi(object):
                     'merchant_processor_id': 'merchant_processor_id',
                     'type': 'type',
                     'before_cursor': 'before_cursor',
+                    'tags_key': 'tags.key',
+                    'tags_value': 'tags.value',
                 },
                 'location_map': {
-                    'sort': 'query',
+                    'accept': 'header',
                     'after_cursor': 'query',
                     'limit': 'query',
                     'amount': 'query',
@@ -480,9 +513,9 @@ class TransfersApi(object):
                     'created_at_lte': 'query',
                     'idempotency_id': 'query',
                     'id': 'query',
-                    'state': 'query',
                     'ready_to_settle_at_gte': 'query',
                     'ready_to_settle_at_lte': 'query',
+                    'state': 'query',
                     'statement_descriptor': 'query',
                     'trace_id': 'query',
                     'updated_at_gte': 'query',
@@ -500,13 +533,15 @@ class TransfersApi(object):
                     'merchant_processor_id': 'query',
                     'type': 'query',
                     'before_cursor': 'query',
+                    'tags_key': 'query',
+                    'tags_value': 'query',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -526,6 +561,7 @@ class TransfersApi(object):
             params_map={
                 'all': [
                     'transfer_id',
+                    'accept',
                     'update_transfer_request',
                 ],
                 'required': [
@@ -546,14 +582,18 @@ class TransfersApi(object):
                 'openapi_types': {
                     'transfer_id':
                         (str,),
+                    'accept':
+                        (str,),
                     'update_transfer_request':
                         (UpdateTransferRequest,),
                 },
                 'attribute_map': {
                     'transfer_id': 'transfer_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'transfer_id': 'path',
+                    'accept': 'header',
                     'update_transfer_request': 'body',
                 },
                 'collection_format_map': {
@@ -561,10 +601,10 @@ class TransfersApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -576,7 +616,7 @@ class TransfersApi(object):
     ):
         """Create a Transfer  # noqa: E501
 
-        Create a `Transfer`.   > By default, Finix implements a 3 (business) day delay when debiting bank accounts (i.e. eChecks).  # noqa: E501
+        Create a `Transfer`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -585,6 +625,8 @@ class TransfersApi(object):
 
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of "application/hal+json"
+            finix_version (str): Specify the API version of your request. For more details, see [Versioning.](/guides/developers/versioning/). [optional] if omitted the server will use the default value of "2018-01-01"
             create_transfer_request (CreateTransferRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -651,7 +693,7 @@ class TransfersApi(object):
     ):
         """Refund or Reverse a Transfer  # noqa: E501
 
-        Reverse a transfer with a `type` of **DEBIT**. This reversal creates a new `Transfer` resource with a `type` of **REVERSAL**.   The refund can get delivered in most cases without the physical card. The card only needs to be swiped (to receive the refund) when:  - The payment type is **DEBIT**, and the transaction is no longer in the Settlement batch. - The payment type is **CREDIT**, and the transaction is no longer in the batch and is older than 45 days.  # noqa: E501
+        Reverse a transfer with a `type` of **DEBIT**. This reversal creates a new `Transfer` resource with a `type` of **REVERSAL**.   Related Guides: [Refunding Payments](/guides/after-the-payment/refunding-and-cancelling-payments/)  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -662,6 +704,7 @@ class TransfersApi(object):
             transfer_id (str): ID of `Transfer` object.
 
         Keyword Args:
+            finix_version (str): Specify the API version of your request. For more details, see [Versioning.](/guides/developers/versioning/). [optional] if omitted the server will use the default value of "2018-01-01"
             create_reversal_request (CreateReversalRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -741,6 +784,7 @@ class TransfersApi(object):
             transfer_id (str): ID of `Transfer` resource.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of "application/hal+json"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -819,6 +863,7 @@ class TransfersApi(object):
             transfer_id (str): ID of `Transfer` object.
 
         Keyword Args:
+            accept (str): Body Header. [optional] if omitted the server will use the default value of "application/hal+json"
             limit (int): The number of entries to return.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
@@ -899,7 +944,7 @@ class TransfersApi(object):
 
 
         Keyword Args:
-            sort (str): Specify key to be used for sorting the collection.. [optional]
+            accept (str): Body Header. [optional] if omitted the server will use the default value of "application/hal+json"
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             limit (int): The numbers of items to return.. [optional]
             amount (int): Filter by an amount equal to the given value.. [optional]
@@ -911,9 +956,9 @@ class TransfersApi(object):
             created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
             idempotency_id (str): Filter by `idempotency_id`.. [optional]
             id (str): Filter by `id`.. [optional]
+            ready_to_settle_at_gte (str): Filter where `ready_to_settle_at` is after the given date. Only available on `Finix-Version: 2022-02-01`. For more details, see [Versioning](/guides/developers/versioning/).. [optional]
+            ready_to_settle_at_lte (str): Filter where `ready_to_settle_at` is before the given date. Only available on `Finix-Version: 2022-02-01`. For more details, see [Versioning](/guides/developers/versioning/).. [optional]
             state (str): Filter by Transaction state.. [optional]
-            ready_to_settle_at_gte (str): Filter by `ready_to_settle_at`.. [optional]
-            ready_to_settle_at_lte (str): Filter by `ready_to_settle_at`.. [optional]
             statement_descriptor (int): Filter by `statement_descriptor`.. [optional]
             trace_id (str): Filter by `trace_id`.. [optional]
             updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]
@@ -931,6 +976,8 @@ class TransfersApi(object):
             merchant_processor_id (str): Filter by `Processor` ID.. [optional]
             type (str): Filter by `Transfer` type. Available type filters include: All, Debits, Refunds, or Credits.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
+            tags_key (str): Filter by the [`key` of a `Tag`](/api/overview/#section/Tags).. [optional]
+            tags_value (str): Filter by the [value of a `Tag`](https://finix.com/docs/api/overview/#section/Tags).. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1009,6 +1056,7 @@ class TransfersApi(object):
             transfer_id (str): ID of `Transfer` resource.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of "application/hal+json"
             update_transfer_request (UpdateTransferRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.

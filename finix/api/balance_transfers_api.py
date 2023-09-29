@@ -75,6 +75,7 @@ class BalanceTransfersApi(object):
             },
             params_map={
                 'all': [
+                    'accept',
                     'create_balance_transfer_request',
                 ],
                 'required': [],
@@ -91,12 +92,16 @@ class BalanceTransfersApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'accept':
+                        (str,),
                     'create_balance_transfer_request':
                         (CreateBalanceTransferRequest,),
                 },
                 'attribute_map': {
+                    'accept': 'Accept',
                 },
                 'location_map': {
+                    'accept': 'header',
                     'create_balance_transfer_request': 'body',
                 },
                 'collection_format_map': {
@@ -104,10 +109,10 @@ class BalanceTransfersApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -126,6 +131,7 @@ class BalanceTransfersApi(object):
             params_map={
                 'all': [
                     'balance_transfers_id',
+                    'accept',
                 ],
                 'required': [
                     'balance_transfers_id',
@@ -145,19 +151,23 @@ class BalanceTransfersApi(object):
                 'openapi_types': {
                     'balance_transfers_id':
                         (str,),
+                    'accept':
+                        (str,),
                 },
                 'attribute_map': {
                     'balance_transfers_id': 'balance_transfers_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'balance_transfers_id': 'path',
+                    'accept': 'header',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -176,8 +186,8 @@ class BalanceTransfersApi(object):
             },
             params_map={
                 'all': [
+                    'accept',
                     'limit',
-                    'offset',
                     'page_number',
                     'page_size',
                     'created_at_gte',
@@ -206,9 +216,9 @@ class BalanceTransfersApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'accept':
+                        (str,),
                     'limit':
-                        (int,),
-                    'offset':
                         (int,),
                     'page_number':
                         (int,),
@@ -238,8 +248,8 @@ class BalanceTransfersApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'accept': 'Accept',
                     'limit': 'limit',
-                    'offset': 'offset',
                     'page_number': 'pageNumber',
                     'page_size': 'pageSize',
                     'created_at_gte': 'created_at.gte',
@@ -255,8 +265,8 @@ class BalanceTransfersApi(object):
                     'source': 'source',
                 },
                 'location_map': {
+                    'accept': 'header',
                     'limit': 'query',
-                    'offset': 'query',
                     'page_number': 'query',
                     'page_size': 'query',
                     'created_at_gte': 'query',
@@ -276,7 +286,7 @@ class BalanceTransfersApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -298,6 +308,7 @@ class BalanceTransfersApi(object):
 
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of "application/hal+json"
             create_balance_transfer_request (CreateBalanceTransferRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -375,6 +386,7 @@ class BalanceTransfersApi(object):
             balance_transfers_id (str): ID of the `balance_transfer` resource.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of "application/hal+json"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -450,8 +462,8 @@ class BalanceTransfersApi(object):
 
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of "application/hal+json"
             limit (int): The numbers of items to return.. [optional]
-            offset (int): The number of items to skip before starting to collect the result set.. [optional]
             page_number (int): The page number to list.. [optional]
             page_size (int): The size of the page.. [optional]
             created_at_gte (str): Filter where `created_at` is after the given date.. [optional]

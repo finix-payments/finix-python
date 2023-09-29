@@ -30,10 +30,8 @@ from finix.exceptions import ApiAttributeError
 def lazy_import():
     from finix.model.device_config_details import DeviceConfigDetails
     from finix.model.device_links import DeviceLinks
-    from finix.model.tags import Tags
     globals()['DeviceConfigDetails'] = DeviceConfigDetails
     globals()['DeviceLinks'] = DeviceLinks
-    globals()['Tags'] = Tags
 
 
 class Device(ModelNormal):
@@ -58,6 +56,10 @@ class Device(ModelNormal):
     """
 
     allowed_values = {
+        ('connection',): {
+            'OPEN': "OPEN",
+            'CLOSED': "CLOSED",
+        },
     }
 
     validations = {
@@ -86,7 +88,7 @@ class Device(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (str, none_type,),  # noqa: E501
+            'id': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
             'configuration_details': (DeviceConfigDetails,),  # noqa: E501
@@ -98,7 +100,7 @@ class Device(ModelNormal):
             'model': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'serial_number': (str, none_type,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'links': (DeviceLinks,),  # noqa: E501
         }
 
@@ -165,7 +167,7 @@ class Device(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            id (str): The ID of the activated `Device`.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             configuration_details (DeviceConfigDetails): [optional]  # noqa: E501
@@ -177,7 +179,7 @@ class Device(ModelNormal):
             model (str): Details the model of the card reader.. [optional]  # noqa: E501
             name (str): Name of the `Device`.. [optional]  # noqa: E501
             serial_number (str, none_type): Serial number of the device.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (DeviceLinks): [optional]  # noqa: E501
         """
 
@@ -260,7 +262,7 @@ class Device(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            id (str): The ID of the activated `Device`.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             configuration_details (DeviceConfigDetails): [optional]  # noqa: E501
@@ -272,7 +274,7 @@ class Device(ModelNormal):
             model (str): Details the model of the card reader.. [optional]  # noqa: E501
             name (str): Name of the `Device`.. [optional]  # noqa: E501
             serial_number (str, none_type): Serial number of the device.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (DeviceLinks): [optional]  # noqa: E501
         """
 

@@ -29,9 +29,7 @@ from finix.exceptions import ApiAttributeError
 
 def lazy_import():
     from finix.model.application_profile_links import ApplicationProfileLinks
-    from finix.model.tags import Tags
     globals()['ApplicationProfileLinks'] = ApplicationProfileLinks
-    globals()['Tags'] = Tags
 
 
 class ApplicationProfile(ModelNormal):
@@ -90,7 +88,7 @@ class ApplicationProfile(ModelNormal):
             'application': (str,),  # noqa: E501
             'fee_profile': (str, none_type,),  # noqa: E501
             'risk_profile': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'links': (ApplicationProfileLinks,),  # noqa: E501
         }
 
@@ -157,7 +155,7 @@ class ApplicationProfile(ModelNormal):
             application (str): The ID of the `Application` resource.. [optional]  # noqa: E501
             fee_profile (str, none_type): The ID of the `Fee Profile` associated with the `Application`.. [optional]  # noqa: E501
             risk_profile (str): The ID of the `risk_profile` that was created during provisioning.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (ApplicationProfileLinks): [optional]  # noqa: E501
         """
 
@@ -246,7 +244,7 @@ class ApplicationProfile(ModelNormal):
             application (str): The ID of the `Application` resource.. [optional]  # noqa: E501
             fee_profile (str, none_type): The ID of the `Fee Profile` associated with the `Application`.. [optional]  # noqa: E501
             risk_profile (str): The ID of the `risk_profile` that was created during provisioning.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (ApplicationProfileLinks): [optional]  # noqa: E501
         """
 

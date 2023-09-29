@@ -29,9 +29,7 @@ from finix.exceptions import ApiAttributeError
 
 def lazy_import():
     from finix.model.create_associated_identity_request_entity import CreateAssociatedIdentityRequestEntity
-    from finix.model.tags import Tags
     globals()['CreateAssociatedIdentityRequestEntity'] = CreateAssociatedIdentityRequestEntity
-    globals()['Tags'] = Tags
 
 
 class CreateAssociatedIdentityRequest(ModelNormal):
@@ -85,7 +83,7 @@ class CreateAssociatedIdentityRequest(ModelNormal):
         lazy_import()
         return {
             'entity': (CreateAssociatedIdentityRequestEntity,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -140,7 +138,7 @@ class CreateAssociatedIdentityRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             entity (CreateAssociatedIdentityRequestEntity): [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -223,7 +221,7 @@ class CreateAssociatedIdentityRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             entity (CreateAssociatedIdentityRequestEntity): [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

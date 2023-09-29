@@ -21,7 +21,6 @@ from finix.model_utils import (  # noqa: F401
 )
 from finix.model.create_associated_identity_request import CreateAssociatedIdentityRequest
 from finix.model.create_identity_request import CreateIdentityRequest
-from finix.model.create_verification_request import CreateVerificationRequest
 from finix.model.error401_unauthorized import Error401Unauthorized
 from finix.model.error403_forbidden_list import Error403ForbiddenList
 from finix.model.error404_not_found_list import Error404NotFoundList
@@ -30,7 +29,6 @@ from finix.model.error_generic import ErrorGeneric
 from finix.model.identities_list import IdentitiesList
 from finix.model.identity import Identity
 from finix.model.update_identity_request import UpdateIdentityRequest
-from finix.model.verification import Verification
 from finix.model.finix_utils import FinixList
 
 from functools import wraps
@@ -80,6 +78,7 @@ class IdentitiesApi(object):
             params_map={
                 'all': [
                     'identity_id',
+                    'accept',
                     'create_associated_identity_request',
                 ],
                 'required': [
@@ -100,14 +99,18 @@ class IdentitiesApi(object):
                 'openapi_types': {
                     'identity_id':
                         (str,),
+                    'accept':
+                        (str,),
                     'create_associated_identity_request':
                         (CreateAssociatedIdentityRequest,),
                 },
                 'attribute_map': {
                     'identity_id': 'identity_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'identity_id': 'path',
+                    'accept': 'header',
                     'create_associated_identity_request': 'body',
                 },
                 'collection_format_map': {
@@ -115,10 +118,10 @@ class IdentitiesApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -136,6 +139,8 @@ class IdentitiesApi(object):
             },
             params_map={
                 'all': [
+                    'accept',
+                    'finix_version',
                     'create_identity_request',
                 ],
                 'required': [],
@@ -152,12 +157,20 @@ class IdentitiesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'accept':
+                        (str,),
+                    'finix_version':
+                        (str,),
                     'create_identity_request':
                         (CreateIdentityRequest,),
                 },
                 'attribute_map': {
+                    'accept': 'Accept',
+                    'finix_version': 'Finix-Version',
                 },
                 'location_map': {
+                    'accept': 'header',
+                    'finix_version': 'header',
                     'create_identity_request': 'body',
                 },
                 'collection_format_map': {
@@ -165,67 +178,10 @@ class IdentitiesApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
-                ]
-            },
-            api_client=api_client
-        )
-        self._create_identity_verification_endpoint = finix.api_client.Endpoint(
-            settings={
-                'response_type': (Verification,),
-                'auth': [
-                    'BasicAuth'
-                ],
-                'endpoint_path': '/identities/{identity_id}/verifications',
-                'operation_id': 'create_identity_verification',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'identity_id',
-                    'create_verification_request',
-                ],
-                'required': [
-                    'identity_id',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'identity_id':
-                        (str,),
-                    'create_verification_request':
-                        (CreateVerificationRequest,),
-                },
-                'attribute_map': {
-                    'identity_id': 'identity_id',
-                },
-                'location_map': {
-                    'identity_id': 'path',
-                    'create_verification_request': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/hal+json'
-                ],
-                'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -244,6 +200,7 @@ class IdentitiesApi(object):
             params_map={
                 'all': [
                     'identity_id',
+                    'accept',
                 ],
                 'required': [
                     'identity_id',
@@ -263,19 +220,23 @@ class IdentitiesApi(object):
                 'openapi_types': {
                     'identity_id':
                         (str,),
+                    'accept':
+                        (str,),
                 },
                 'attribute_map': {
                     'identity_id': 'identity_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'identity_id': 'path',
+                    'accept': 'header',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -294,7 +255,7 @@ class IdentitiesApi(object):
             },
             params_map={
                 'all': [
-                    'sort',
+                    'accept',
                     'after_cursor',
                     'limit',
                     'id',
@@ -308,6 +269,8 @@ class IdentitiesApi(object):
                     'last_name',
                     'title',
                     'before_cursor',
+                    'tags_key',
+                    'tags_value',
                 ],
                 'required': [],
                 'nullable': [
@@ -323,7 +286,7 @@ class IdentitiesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'sort':
+                    'accept':
                         (str,),
                     'after_cursor':
                         (str,),
@@ -351,9 +314,13 @@ class IdentitiesApi(object):
                         (str,),
                     'before_cursor':
                         (str,),
+                    'tags_key':
+                        (str,),
+                    'tags_value':
+                        (str,),
                 },
                 'attribute_map': {
-                    'sort': 'sort',
+                    'accept': 'Accept',
                     'after_cursor': 'after_cursor',
                     'limit': 'limit',
                     'id': 'id',
@@ -367,9 +334,11 @@ class IdentitiesApi(object):
                     'last_name': 'last_name',
                     'title': 'title',
                     'before_cursor': 'before_cursor',
+                    'tags_key': 'tags.key',
+                    'tags_value': 'tags.value',
                 },
                 'location_map': {
-                    'sort': 'query',
+                    'accept': 'header',
                     'after_cursor': 'query',
                     'limit': 'query',
                     'id': 'query',
@@ -383,13 +352,15 @@ class IdentitiesApi(object):
                     'last_name': 'query',
                     'title': 'query',
                     'before_cursor': 'query',
+                    'tags_key': 'query',
+                    'tags_value': 'query',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -409,6 +380,7 @@ class IdentitiesApi(object):
             params_map={
                 'all': [
                     'identity_id',
+                    'accept',
                     'limit',
                     'after_cursor',
                     'before_cursor',
@@ -431,6 +403,8 @@ class IdentitiesApi(object):
                 'openapi_types': {
                     'identity_id':
                         (str,),
+                    'accept':
+                        (str,),
                     'limit':
                         (int,),
                     'after_cursor':
@@ -440,12 +414,14 @@ class IdentitiesApi(object):
                 },
                 'attribute_map': {
                     'identity_id': 'identity_id',
+                    'accept': 'Accept',
                     'limit': 'limit',
                     'after_cursor': 'after_cursor',
                     'before_cursor': 'before_cursor',
                 },
                 'location_map': {
                     'identity_id': 'path',
+                    'accept': 'header',
                     'limit': 'query',
                     'after_cursor': 'query',
                     'before_cursor': 'query',
@@ -455,7 +431,7 @@ class IdentitiesApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -475,6 +451,7 @@ class IdentitiesApi(object):
             params_map={
                 'all': [
                     'identity_id',
+                    'accept',
                     'update_identity_request',
                 ],
                 'required': [
@@ -495,14 +472,18 @@ class IdentitiesApi(object):
                 'openapi_types': {
                     'identity_id':
                         (str,),
+                    'accept':
+                        (str,),
                     'update_identity_request':
                         (UpdateIdentityRequest,),
                 },
                 'attribute_map': {
                     'identity_id': 'identity_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'identity_id': 'path',
+                    'accept': 'header',
                     'update_identity_request': 'body',
                 },
                 'collection_format_map': {
@@ -510,10 +491,10 @@ class IdentitiesApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -526,7 +507,7 @@ class IdentitiesApi(object):
     ):
         """Create an Associated Identity  # noqa: E501
 
-        Create an associated `Identity` for [every owner with 25% or more ownership](/guides/onboarding/#step-3-add-associated-identities) over the merchant.  # noqa: E501
+        Create an associated `Identity` for [every owner with 25% or more ownership](/guides/onboarding/onboarding-with-api#step-3-add-associated-identities) over the merchant.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -537,6 +518,7 @@ class IdentitiesApi(object):
             identity_id (str): ID of `Identity` to associate object with.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of "application/hal+json"
             create_associated_identity_request (CreateAssociatedIdentityRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -604,7 +586,7 @@ class IdentitiesApi(object):
     ):
         """Create an Identity  # noqa: E501
 
-        Create an `Identity` for your merchant or buyer.  All fields for a buyer's `Identity` are optional.   Providing `business_type` indicates that the `Identity` is being created for a Merchant.  Creating `Identities` for merchants requires they provide [KYC details](/docs/guides/getting-started/). - When creating an `Identity` for a buyer , don't pass the `business_type` field. Including a value for `business_type` configures the created `Identity` to get processed as a merchant. - When creating an `Identity` for a buyer, all fields are optional . Related Guides: [Getting Started](/docs/guides/getting-started/), [Onboarding](/docs/guides/onboarding/)  # noqa: E501
+        Create an `Identity` for your seller or buyer.  All fields for a buyer's `Identity` are optional.   Providing `business_type` indicates that the `Identity` is being created for a Merchant.  Related Guides: [Getting Started](/guides/getting-started/), [Onboarding](/guides/onboarding/)  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -613,7 +595,9 @@ class IdentitiesApi(object):
 
 
         Keyword Args:
-            create_identity_request (CreateIdentityRequest): . [optional]
+            accept (str): [optional] if omitted the server will use the default value of "application/hal+json"
+            finix_version (str): Specify the API version of your request. For more details, see [Versioning.](/guides/developers/versioning/). [optional] if omitted the server will use the default value of "2018-01-01"
+            create_identity_request (CreateIdentityRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -672,85 +656,6 @@ class IdentitiesApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self._create_endpoint.call_with_http_info(**kwargs)
 
-    def create_identity_verification(
-        self,
-        identity_id,
-        **kwargs
-    ):
-        """Verify an Identity  # noqa: E501
-
-        Verify an `Identity`.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.create_identity_verification(identity_id, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            identity_id (str): ID of `Identity` to verify.
-
-        Keyword Args:
-            create_verification_request (CreateVerificationRequest): [optional]
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is True.
-            _spec_property_naming (bool): True if the variable names in the input data
-                are serialized names, as specified in the OpenAPI document.
-                False if the variable names in the input data
-                are pythonic names, e.g. snake case (default)
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            Verification
-                If the method is called asynchronously, returns the request
-                thread.
-        """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', False
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['identity_id'] = \
-            identity_id
-        return self._create_identity_verification_endpoint.call_with_http_info(**kwargs)
-
     def get(
         self,
         identity_id,
@@ -769,6 +674,7 @@ class IdentitiesApi(object):
             identity_id (str): ID of the `Identity` to fetch.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of "application/hal+json"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -835,7 +741,7 @@ class IdentitiesApi(object):
     ):
         """List Identities  # noqa: E501
 
-        Retrieves a list of `Identities`.  # noqa: E501
+        Retrieve a list of `Identities`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -844,7 +750,7 @@ class IdentitiesApi(object):
 
 
         Keyword Args:
-            sort (str): Specify key to be used for sorting the collection.. [optional]
+            accept (str): Body Header. [optional] if omitted the server will use the default value of "application/hal+json"
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             limit (int): The numbers of items to return.. [optional]
             id (str): Filter by `id`.. [optional]
@@ -858,6 +764,8 @@ class IdentitiesApi(object):
             last_name (str): Filter by the last name of the person associated to the `Identity`.. [optional]
             title (str): Filter by the title if available.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
+            tags_key (str): Filter by the [`key` of a `Tag`](/api/overview/#section/Tags).. [optional]
+            tags_value (str): Filter by the [value of a `Tag`](https://finix.com/docs/api/overview/#section/Tags).. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -936,6 +844,7 @@ class IdentitiesApi(object):
             identity_id (str): ID of `Identity` to associate object with.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of "application/hal+json"
             limit (int): The number of entries to return.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
@@ -1008,7 +917,7 @@ class IdentitiesApi(object):
     ):
         """Update an Identity  # noqa: E501
 
-        Update an existing `Identity`.  If you are updating the `Identity` of a `Merchant` that’s already been onboarded, you need to [verify the merchant again](#operation/createMerchantVerification).  # noqa: E501
+        Update an existing `Identity`.  If you are updating the `Identity` of a `Merchant` that’s already been onboarded, you need to [verify the merchant again](/api/tag/Merchants/#tag/Merchants/operation/createMerchantVerification).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1019,6 +928,7 @@ class IdentitiesApi(object):
             identity_id (str): ID of the `Identity` to fetch.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of "application/hal+json"
             update_identity_request (UpdateIdentityRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.

@@ -30,12 +30,12 @@ from finix.exceptions import ApiAttributeError
 def lazy_import():
     from finix.model.create_associated_identity_request_entity_business_address import CreateAssociatedIdentityRequestEntityBusinessAddress
     from finix.model.create_associated_identity_request_entity_dob import CreateAssociatedIdentityRequestEntityDob
-    from finix.model.create_associated_identity_request_entity_incorporation_date import CreateAssociatedIdentityRequestEntityIncorporationDate
     from finix.model.create_associated_identity_request_entity_personal_address import CreateAssociatedIdentityRequestEntityPersonalAddress
+    from finix.model.identity_entity_form_incorporation_date import IdentityEntityFormIncorporationDate
     globals()['CreateAssociatedIdentityRequestEntityBusinessAddress'] = CreateAssociatedIdentityRequestEntityBusinessAddress
     globals()['CreateAssociatedIdentityRequestEntityDob'] = CreateAssociatedIdentityRequestEntityDob
-    globals()['CreateAssociatedIdentityRequestEntityIncorporationDate'] = CreateAssociatedIdentityRequestEntityIncorporationDate
     globals()['CreateAssociatedIdentityRequestEntityPersonalAddress'] = CreateAssociatedIdentityRequestEntityPersonalAddress
+    globals()['IdentityEntityFormIncorporationDate'] = IdentityEntityFormIncorporationDate
 
 
 class CreateAssociatedIdentityRequestEntity(ModelNormal):
@@ -155,11 +155,11 @@ class CreateAssociatedIdentityRequestEntity(ModelNormal):
             'email': (str,),  # noqa: E501
             'first_name': (str,),  # noqa: E501
             'has_accepted_credit_cards_previously': (bool,),  # noqa: E501
-            'incorporation_date': (CreateAssociatedIdentityRequestEntityIncorporationDate,),  # noqa: E501
+            'incorporation_date': (IdentityEntityFormIncorporationDate,),  # noqa: E501
             'last_name': (str,),  # noqa: E501
             'max_transaction_amount': (int,),  # noqa: E501
             'mcc': (str,),  # noqa: E501
-            'ownership_type': (str,),  # noqa: E501
+            'ownership_type': (str, none_type,),  # noqa: E501
             'personal_address': (CreateAssociatedIdentityRequestEntityPersonalAddress,),  # noqa: E501
             'phone': (str,),  # noqa: E501
             'principal_percentage_ownership': (int,),  # noqa: E501
@@ -244,7 +244,7 @@ class CreateAssociatedIdentityRequestEntity(ModelNormal):
             business_address (CreateAssociatedIdentityRequestEntityBusinessAddress): [optional]  # noqa: E501
             business_name (str, none_type): Abbreviated names of the business. If there are no abbreviated name, leave this field blank.. [optional]  # noqa: E501
             business_phone (str): Customer service phone number where the merchant can be reached (max 10 characters).. [optional]  # noqa: E501
-            business_tax_id (str): Details if the `business_tax_id` was provided.. [optional]  # noqa: E501
+            business_tax_id (str): Nine digit Tax Identification Number (TIN), Employer Identification Number (EIN). If the `business_type` is **INDIVIDUAL\\_SOLE\\_PROPRIETORSHIP** and they do not have an EIN, use the sole proprietor's Social Security Number (SSN).. [optional]  # noqa: E501
             business_type (str): Include the value that best applies to the merchant.. [optional]  # noqa: E501
             default_statement_descriptor (str): The description of the merchant that appears on the buyer's bank or card statement.. [optional]  # noqa: E501
             dob (CreateAssociatedIdentityRequestEntityDob): [optional]  # noqa: E501
@@ -252,11 +252,11 @@ class CreateAssociatedIdentityRequestEntity(ModelNormal):
             email (str): The email address of the principal control owner where they can be reached (max 100 characters).. [optional]  # noqa: E501
             first_name (str): The legal first name of the control owner (max 20 characters).. [optional]  # noqa: E501
             has_accepted_credit_cards_previously (bool): Defaults to **false** if not passed.. [optional]  # noqa: E501
-            incorporation_date (CreateAssociatedIdentityRequestEntityIncorporationDate): [optional]  # noqa: E501
+            incorporation_date (IdentityEntityFormIncorporationDate): [optional]  # noqa: E501
             last_name (str): The `Identity` owner's legal last name.. [optional]  # noqa: E501
             max_transaction_amount (int): The maximum amount (in cents) that can be charged for a single transaction (max 12 characters).. [optional]  # noqa: E501
-            mcc (str): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf)) that this merchant will be classified under.. [optional]  # noqa: E501
-            ownership_type (str): Values can be either: <ul><li><strong>PUBLIC</strong> to indicate a publicly-traded company. <li><strong>PRIVATE</strong> for privately-held businesses.. [optional]  # noqa: E501
+            mcc (str): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card\\_x/mcc.pdf)) that this merchant will be classified under. For a list of approved MCCs, see [Approved Merchant Category Codes.](/docs/guides/business/security-and-compliance/approved-merchants/). [optional]  # noqa: E501
+            ownership_type (str, none_type): Values can be either: <ul><li><strong>PUBLIC</strong> to indicate a publicly-traded company. <li><strong>PRIVATE</strong> for privately-held businesses.. [optional]  # noqa: E501
             personal_address (CreateAssociatedIdentityRequestEntityPersonalAddress): [optional]  # noqa: E501
             phone (str): The principal control owner's phone number (max 10 characters).. [optional]  # noqa: E501
             principal_percentage_ownership (int): Percentage of the company owned by the principal control owner (min 0; max 100).. [optional]  # noqa: E501
@@ -348,7 +348,7 @@ class CreateAssociatedIdentityRequestEntity(ModelNormal):
             business_address (CreateAssociatedIdentityRequestEntityBusinessAddress): [optional]  # noqa: E501
             business_name (str, none_type): Abbreviated names of the business. If there are no abbreviated name, leave this field blank.. [optional]  # noqa: E501
             business_phone (str): Customer service phone number where the merchant can be reached (max 10 characters).. [optional]  # noqa: E501
-            business_tax_id (str): Details if the `business_tax_id` was provided.. [optional]  # noqa: E501
+            business_tax_id (str): Nine digit Tax Identification Number (TIN), Employer Identification Number (EIN). If the `business_type` is **INDIVIDUAL\\_SOLE\\_PROPRIETORSHIP** and they do not have an EIN, use the sole proprietor's Social Security Number (SSN).. [optional]  # noqa: E501
             business_type (str): Include the value that best applies to the merchant.. [optional]  # noqa: E501
             default_statement_descriptor (str): The description of the merchant that appears on the buyer's bank or card statement.. [optional]  # noqa: E501
             dob (CreateAssociatedIdentityRequestEntityDob): [optional]  # noqa: E501
@@ -356,11 +356,11 @@ class CreateAssociatedIdentityRequestEntity(ModelNormal):
             email (str): The email address of the principal control owner where they can be reached (max 100 characters).. [optional]  # noqa: E501
             first_name (str): The legal first name of the control owner (max 20 characters).. [optional]  # noqa: E501
             has_accepted_credit_cards_previously (bool): Defaults to **false** if not passed.. [optional]  # noqa: E501
-            incorporation_date (CreateAssociatedIdentityRequestEntityIncorporationDate): [optional]  # noqa: E501
+            incorporation_date (IdentityEntityFormIncorporationDate): [optional]  # noqa: E501
             last_name (str): The `Identity` owner's legal last name.. [optional]  # noqa: E501
             max_transaction_amount (int): The maximum amount (in cents) that can be charged for a single transaction (max 12 characters).. [optional]  # noqa: E501
-            mcc (str): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf)) that this merchant will be classified under.. [optional]  # noqa: E501
-            ownership_type (str): Values can be either: <ul><li><strong>PUBLIC</strong> to indicate a publicly-traded company. <li><strong>PRIVATE</strong> for privately-held businesses.. [optional]  # noqa: E501
+            mcc (str): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card\\_x/mcc.pdf)) that this merchant will be classified under. For a list of approved MCCs, see [Approved Merchant Category Codes.](/docs/guides/business/security-and-compliance/approved-merchants/). [optional]  # noqa: E501
+            ownership_type (str, none_type): Values can be either: <ul><li><strong>PUBLIC</strong> to indicate a publicly-traded company. <li><strong>PRIVATE</strong> for privately-held businesses.. [optional]  # noqa: E501
             personal_address (CreateAssociatedIdentityRequestEntityPersonalAddress): [optional]  # noqa: E501
             phone (str): The principal control owner's phone number (max 10 characters).. [optional]  # noqa: E501
             principal_percentage_ownership (int): Percentage of the company owned by the principal control owner (min 0; max 100).. [optional]  # noqa: E501
