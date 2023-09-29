@@ -31,10 +31,13 @@ import finix.api.merchant_profiles_api
 import finix.api.merchants_api
 import finix.api.onboarding_forms_api
 import finix.api.payment_instruments_api
+import finix.api.payout_profiles_api
 import finix.api.settlements_api
+import finix.api.split_transfers_api
 import finix.api.transfers_api
 import finix.api.verifications_api
 import finix.api.webhooks_api
+import finix.api.default_api
 
 from finix import rest
 from finix.configuration import Configuration
@@ -104,10 +107,13 @@ class FinixClient(object):
         self.merchants = finix.api.merchants_api.MerchantsApi(self)
         self.onboarding_forms = finix.api.onboarding_forms_api.OnboardingFormsApi(self)
         self.payment_instruments = finix.api.payment_instruments_api.PaymentInstrumentsApi(self)
+        self.payout_profiles = finix.api.payout_profiles_api.PayoutProfilesApi(self)
         self.settlements = finix.api.settlements_api.SettlementsApi(self)
+        self.split_transfers = finix.api.split_transfers_api.SplitTransfersApi(self)
         self.transfers = finix.api.transfers_api.TransfersApi(self)
         self.verifications = finix.api.verifications_api.VerificationsApi(self)
         self.webhooks = finix.api.webhooks_api.WebhooksApi(self)
+        self.default = finix.api.default_api.DefaultApi(self)
     def __enter__(self):
         return self
 

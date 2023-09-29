@@ -19,17 +19,17 @@ from finix.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from finix.model.authorization import Authorization
-from finix.model.authorization_captured import AuthorizationCaptured
-from finix.model.authorizations_list import AuthorizationsList
-from finix.model.create_authorization_request import CreateAuthorizationRequest
-from finix.model.error401_unauthorized import Error401Unauthorized
-from finix.model.error403_forbidden_list import Error403ForbiddenList
-from finix.model.error404_not_found_list import Error404NotFoundList
-from finix.model.error406_not_acceptable import Error406NotAcceptable
-from finix.model.error422_invalid_field_list import Error422InvalidFieldList
-from finix.model.error_generic import ErrorGeneric
-from finix.model.update_authorization_request import UpdateAuthorizationRequest
+from typing_extensions import Annotated
+from pydantic import Field, StrictInt, StrictStr
+
+from typing import Optional
+
+from finix.models.authorization import Authorization
+from finix.models.authorization_captured import AuthorizationCaptured
+from finix.models.authorizations_list import AuthorizationsList
+from finix.models.create_authorization_request import CreateAuthorizationRequest
+from finix.models.update_authorization_request import UpdateAuthorizationRequest
+from finix.models.void_authorization import VoidAuthorization
 from finix.model.finix_utils import FinixList
 
 from functools import wraps
@@ -79,6 +79,8 @@ class AuthorizationsApi(object):
             params_map={
                 'all': [
                     'authorization_id',
+                    'accept',
+                    'finix_version',
                     'update_authorization_request',
                 ],
                 'required': [
@@ -99,14 +101,22 @@ class AuthorizationsApi(object):
                 'openapi_types': {
                     'authorization_id':
                         (str,),
+                    'accept':
+                        (str,),
+                    'finix_version':
+                        (str,),
                     'update_authorization_request':
                         (UpdateAuthorizationRequest,),
                 },
                 'attribute_map': {
                     'authorization_id': 'authorization_id',
+                    'accept': 'Accept',
+                    'finix_version': 'Finix-Version',
                 },
                 'location_map': {
                     'authorization_id': 'path',
+                    'accept': 'header',
+                    'finix_version': 'header',
                     'update_authorization_request': 'body',
                 },
                 'collection_format_map': {
@@ -114,10 +124,10 @@ class AuthorizationsApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -135,6 +145,8 @@ class AuthorizationsApi(object):
             },
             params_map={
                 'all': [
+                    'accept',
+                    'finix_version',
                     'create_authorization_request',
                 ],
                 'required': [],
@@ -151,12 +163,20 @@ class AuthorizationsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'accept':
+                        (str,),
+                    'finix_version':
+                        (str,),
                     'create_authorization_request':
                         (CreateAuthorizationRequest,),
                 },
                 'attribute_map': {
+                    'accept': 'Accept',
+                    'finix_version': 'Finix-Version',
                 },
                 'location_map': {
+                    'accept': 'header',
+                    'finix_version': 'header',
                     'create_authorization_request': 'body',
                 },
                 'collection_format_map': {
@@ -164,10 +184,10 @@ class AuthorizationsApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -186,6 +206,7 @@ class AuthorizationsApi(object):
             params_map={
                 'all': [
                     'authorization_id',
+                    'accept',
                 ],
                 'required': [
                     'authorization_id',
@@ -205,19 +226,23 @@ class AuthorizationsApi(object):
                 'openapi_types': {
                     'authorization_id':
                         (str,),
+                    'accept':
+                        (str,),
                 },
                 'attribute_map': {
                     'authorization_id': 'authorization_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'authorization_id': 'path',
+                    'accept': 'header',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -236,17 +261,20 @@ class AuthorizationsApi(object):
             },
             params_map={
                 'all': [
+                    'accept',
                     'amount',
                     'amount_gt',
                     'amount_gte',
                     'amount_lt',
                     'amount_lte',
                     'before_cursor',
+                    'after_cursor',
                     'created_at_gte',
                     'created_at_lte',
                     'idempotency_id',
                     'limit',
-                    'sort',
+                    'tags_key',
+                    'tags_value',
                     'state',
                     'updated_at_gte',
                     'updated_at_lte',
@@ -264,7 +292,7 @@ class AuthorizationsApi(object):
                     'instrument_card_last4',
                     'merchant_processor_id',
                     'type',
-                    'after_cursor',
+                    'finix_version',
                 ],
                 'required': [],
                 'nullable': [
@@ -281,13 +309,15 @@ class AuthorizationsApi(object):
                 'allowed_values': {
                     ('state',): {
 
-                        "SUCCEEDED": "SUCCEEDED",
-                        "FAILED": "FAILED",
-                        "PENDING": "PENDING",
-                        "CANCELED": "CANCELED"
+                        "&#39;SUCCEEDED&#39;": 'SUCCEEDED',
+                        "&#39;FAILED&#39;": 'FAILED',
+                        "&#39;PENDING&#39;": 'PENDING',
+                        "&#39;CANCELED&#39;": 'CANCELED'
                     },
                 },
                 'openapi_types': {
+                    'accept':
+                        (str,),
                     'amount':
                         (int,),
                     'amount_gt':
@@ -300,6 +330,8 @@ class AuthorizationsApi(object):
                         (int,),
                     'before_cursor':
                         (str,),
+                    'after_cursor':
+                        (str,),
                     'created_at_gte':
                         (str,),
                     'created_at_lte':
@@ -308,7 +340,9 @@ class AuthorizationsApi(object):
                         (str,),
                     'limit':
                         (int,),
-                    'sort':
+                    'tags_key':
+                        (str,),
+                    'tags_value':
                         (str,),
                     'state':
                         (str,),
@@ -344,21 +378,24 @@ class AuthorizationsApi(object):
                         (str,),
                     'type':
                         (str,),
-                    'after_cursor':
+                    'finix_version':
                         (str,),
                 },
                 'attribute_map': {
+                    'accept': 'Accept',
                     'amount': 'amount',
                     'amount_gt': 'amount.gt',
                     'amount_gte': 'amount.gte',
                     'amount_lt': 'amount.lt',
                     'amount_lte': 'amount.lte',
                     'before_cursor': 'before_cursor',
+                    'after_cursor': 'after_cursor',
                     'created_at_gte': 'created_at.gte',
                     'created_at_lte': 'created_at.lte',
                     'idempotency_id': 'idempotency_id',
                     'limit': 'limit',
-                    'sort': 'sort',
+                    'tags_key': 'tags.key',
+                    'tags_value': 'tags.value',
                     'state': 'state',
                     'updated_at_gte': 'updated_at.gte',
                     'updated_at_lte': 'updated_at.lte',
@@ -376,20 +413,23 @@ class AuthorizationsApi(object):
                     'instrument_card_last4': 'instrument_card_last4',
                     'merchant_processor_id': 'merchant_processor_id',
                     'type': 'type',
-                    'after_cursor': 'after_cursor',
+                    'finix_version': 'Finix-Version',
                 },
                 'location_map': {
+                    'accept': 'header',
                     'amount': 'query',
                     'amount_gt': 'query',
                     'amount_gte': 'query',
                     'amount_lt': 'query',
                     'amount_lte': 'query',
                     'before_cursor': 'query',
+                    'after_cursor': 'query',
                     'created_at_gte': 'query',
                     'created_at_lte': 'query',
                     'idempotency_id': 'query',
                     'limit': 'query',
-                    'sort': 'query',
+                    'tags_key': 'query',
+                    'tags_value': 'query',
                     'state': 'query',
                     'updated_at_gte': 'query',
                     'updated_at_lte': 'query',
@@ -407,16 +447,83 @@ class AuthorizationsApi(object):
                     'instrument_card_last4': 'query',
                     'merchant_processor_id': 'query',
                     'type': 'query',
-                    'after_cursor': 'query',
+                    'finix_version': 'header',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
+            },
+            api_client=api_client
+        )
+        self._update_endpoint = finix.api_client.Endpoint(
+            settings={
+                'response_type': (AuthorizationCaptured,),
+                'auth': [
+                    'BasicAuth'
+                ],
+                'endpoint_path': '/authorizations/{authorization_id_void_to}',
+                'operation_id': 'update',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'authorization_id_void_to',
+                    'accept',
+                    'finix_version',
+                    'void_authorization',
+                ],
+                'required': [
+                    'authorization_id_void_to',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'authorization_id_void_to':
+                        (str,),
+                    'accept':
+                        (str,),
+                    'finix_version':
+                        (str,),
+                    'void_authorization':
+                        (VoidAuthorization,),
+                },
+                'attribute_map': {
+                    'authorization_id_void_to': 'authorization_id_void_to',
+                    'accept': 'Accept',
+                    'finix_version': 'Finix-Version',
+                },
+                'location_map': {
+                    'authorization_id_void_to': 'path',
+                    'accept': 'header',
+                    'finix_version': 'header',
+                    'void_authorization': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
             api_client=api_client
         )
@@ -428,7 +535,7 @@ class AuthorizationsApi(object):
     ):
         """Capture an Authorization  # noqa: E501
 
-        If successfully captured, the `transfer` field of the `Authorization` will contain the ID of the `Transfer` resource that'll move funds.   By default, `Transfers` are in a **PENDING** state. The **PENDING** state means the request to capture funds hasn't been submitted yet. Capture requests get submitted via a batch request.   Once the `Authorization` is updated with a `capture_amount` (i.e. *Captured*), the state of the `Transfer` will update to **SUCCEEDED**.  > Voided `Authorizations` can't be captured.  # noqa: E501
+        Use a PUT request to capture an `Authorization`. If captured successfully, the `transfer` field of the `Authorization` will contain the ID of the `Transfer` resource that moves funds.  Related Guides: [Creating and Capturing an Authorization](/guides/payments/making-a-payment/creating-and-capturing-an-authorization/), [Level 2 and 3 Processing](/guides/payments/making-a-payment/level-2-and-level-3-processing/), [In-Person Cloud Payments](/guides/payments/in-person-payments/cloud/in-person-cloud-payments/), [Buyer Charges](/guides/payments/making-a-payment/buyer-charges/)  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -439,6 +546,8 @@ class AuthorizationsApi(object):
             authorization_id (str): ID of `Authorization` to fetch.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
+            finix_version (str): Specify the API version of your request. For more details, see [Versioning.](/guides/developers/versioning/). [optional] if omitted the server will use the default value of '2018-01-01'
             update_authorization_request (UpdateAuthorizationRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -506,7 +615,7 @@ class AuthorizationsApi(object):
     ):
         """Create an Authorization  # noqa: E501
 
-        Create an `Authorization` to process a transaction.  `Authorizations` can have six possible `states`, two of which are expected:  - **SUCCEEDED**  - **FAILED**  If the `Authorization` has **SUCCEEDED** , it must be captured before `expires_at` passes or the funds will be released. If the `transfer` field of an `Authorization` is **null**, it hasn't been captured yet.  Learn how to prevent duplicate authorizations by passing an [Idempotency ID](#section/Idempotency-Requests) in the payload. - `Authorizations` on debit cards place a hold on funds in the cardholder's bank account and can lead to lower than expected balances or issues with insufficient funds.  # noqa: E501
+        Create an `Authorization` to process a transaction.  Related Guides: [Creating and Capturing an Authorization](/guides/payments/making-a-payment/creating-and-capturing-an-authorization/), [Level 2 and 3 Processing](/guides/payments/making-a-payment/level-2-and-level-3-processing/), [In-Person Cloud Payments](/guides/payments/in-person-payments/cloud/in-person-cloud-payments/), [Buyer Charges](/guides/payments/making-a-payment/buyer-charges/)  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -515,6 +624,8 @@ class AuthorizationsApi(object):
 
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
+            finix_version (str): Specify the API version of your request. For more details, see [Versioning.](/guides/developers/versioning/). [optional] if omitted the server will use the default value of '2018-01-01'
             create_authorization_request (CreateAuthorizationRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -592,6 +703,7 @@ class AuthorizationsApi(object):
             authorization_id (str): ID of `Authorization` to fetch.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -667,17 +779,20 @@ class AuthorizationsApi(object):
 
 
         Keyword Args:
+            accept (str): Body Header. [optional] if omitted the server will use the default value of 'application/hal+json'
             amount (int): Filter by an amount equal to the given value.. [optional]
             amount_gt (int): Filter by an amount greater than.. [optional]
             amount_gte (int): Filter by an amount greater than or equal.. [optional]
             amount_lt (int): Filter by an amount less than.. [optional]
             amount_lte (int): Filter by an amount less than or equal.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
+            after_cursor (str): Return every resource created after the cursor value.. [optional]
             created_at_gte (str): Filter where `created_at` is after the given date.. [optional]
             created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
             idempotency_id (str): Filter by `idempotency_id`.. [optional]
             limit (int): The numbers of items to return.. [optional]
-            sort (str): Specify key to be used for sorting the collection.. [optional]
+            tags_key (str): Filter by the [`key` of a `Tag`](/api/overview/#section/Tags).. [optional]
+            tags_value (str): Filter by the [value of a `Tag`](https://finix.com/docs/api/overview/#section/Tags).. [optional]
             state (str): Filter by Transaction state.. [optional]
             updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]
             updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]
@@ -695,7 +810,7 @@ class AuthorizationsApi(object):
             instrument_card_last4 (str): Filter by the payment card last 4 digits.. [optional]
             merchant_processor_id (str): Filter by `Processor` ID.. [optional]
             type (str): Type of the `Authorization`.. [optional]
-            after_cursor (str): Return every resource created after the cursor value.. [optional]
+            finix_version (str): Specify the API version of your request. For more details, see [Versioning.](/guides/developers/versioning/). [optional] if omitted the server will use the default value of '2018-01-01'
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -755,4 +870,85 @@ class AuthorizationsApi(object):
         ret = self._list_endpoint.call_with_http_info(**kwargs)
         fl = FinixList(ret, self.list,  **kwargs)
         return fl
+
+    def update(
+        self,
+        authorization_id_void_to,
+        **kwargs
+    ):
+        """Void an Authorization  # noqa: E501
+
+        Use a PUT request to void an `Authorization`. If voided successfully, funds get released and the transaction stops from completing. Additionally, voided `Authorization` can no longer be captured.  Related Guides: [Creating and Capturing an Authorization](/guides/payments/making-a-payment/creating-and-capturing-an-authorization/), [Level 2 and 3 Processing](/guides/payments/making-a-payment/level-2-and-level-3-processing/), [In-Person Cloud Payments](/guides/payments/in-person-payments/cloud/in-person-cloud-payments/), [Buyer Charges](/guides/payments/making-a-payment/buyer-charges/)  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update(authorization_id_void_to, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            authorization_id_void_to (str):
+
+        Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
+            finix_version (str): Specify the API version of your request. For more details, see [Versioning.](/guides/developers/versioning/). [optional] if omitted the server will use the default value of '2018-01-01'
+            void_authorization (VoidAuthorization): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            AuthorizationCaptured
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', False
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', False
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['authorization_id_void_to'] = \
+            authorization_id_void_to
+        return self._update_endpoint.call_with_http_info(**kwargs)
 

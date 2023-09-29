@@ -19,17 +19,16 @@ from finix.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from finix.model.create_settlement_request import CreateSettlementRequest
-from finix.model.error401_unauthorized import Error401Unauthorized
-from finix.model.error403_forbidden_list import Error403ForbiddenList
-from finix.model.error404_not_found_list import Error404NotFoundList
-from finix.model.error406_not_acceptable import Error406NotAcceptable
-from finix.model.error422_invalid_field_list import Error422InvalidFieldList
-from finix.model.error_generic import ErrorGeneric
-from finix.model.remove_settlement_transfer import RemoveSettlementTransfer
-from finix.model.settlement import Settlement
-from finix.model.settlements_list import SettlementsList
-from finix.model.transfers_list import TransfersList
+from typing_extensions import Annotated
+from pydantic import Field, StrictInt, StrictStr
+
+from typing import Optional
+
+from finix.models.close_settlement import CloseSettlement
+from finix.models.remove_settlement_transfer import RemoveSettlementTransfer
+from finix.models.settlement import Settlement
+from finix.models.settlements_list import SettlementsList
+from finix.models.transfers_list import TransfersList
 from finix.model.finix_utils import FinixList
 
 from functools import wraps
@@ -65,77 +64,23 @@ class SettlementsApi(object):
         if api_client is None:
             api_client = finix.api_client.FinixClient()
         self._api_client = api_client
-        self._create_endpoint = finix.api_client.Endpoint(
-            settings={
-                'response_type': (Settlement,),
-                'auth': [
-                    'BasicAuth'
-                ],
-                'endpoint_path': '/identities/{identity_id}/settlements',
-                'operation_id': 'create',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'identity_id',
-                    'create_settlement_request',
-                ],
-                'required': [
-                    'identity_id',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'identity_id':
-                        (str,),
-                    'create_settlement_request':
-                        (CreateSettlementRequest,),
-                },
-                'attribute_map': {
-                    'identity_id': 'identity_id',
-                },
-                'location_map': {
-                    'identity_id': 'path',
-                    'create_settlement_request': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/hal+json'
-                ],
-                'content_type': [
-                    'application/hal+json'
-                ]
-            },
-            api_client=api_client
-        )
-        self._get_endpoint = finix.api_client.Endpoint(
+        self._put_endpoint = finix.api_client.Endpoint(
             settings={
                 'response_type': (Settlement,),
                 'auth': [
                     'BasicAuth'
                 ],
                 'endpoint_path': '/settlements/{settlement_id}',
-                'operation_id': 'get',
-                'http_method': 'GET',
+                'operation_id': 'put',
+                'http_method': 'PUT',
                 'servers': None,
             },
             params_map={
                 'all': [
                     'settlement_id',
+                    'accept',
+                    'finix_version',
+                    'close_settlement',
                 ],
                 'required': [
                     'settlement_id',
@@ -155,19 +100,88 @@ class SettlementsApi(object):
                 'openapi_types': {
                     'settlement_id':
                         (str,),
+                    'accept':
+                        (str,),
+                    'finix_version':
+                        (str,),
+                    'close_settlement':
+                        (CloseSettlement,),
                 },
                 'attribute_map': {
                     'settlement_id': 'settlement_id',
+                    'accept': 'Accept',
+                    'finix_version': 'Finix-Version',
                 },
                 'location_map': {
                     'settlement_id': 'path',
+                    'accept': 'header',
+                    'finix_version': 'header',
+                    'close_settlement': 'body',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self._get_endpoint = finix.api_client.Endpoint(
+            settings={
+                'response_type': (Settlement,),
+                'auth': [
+                    'BasicAuth'
+                ],
+                'endpoint_path': '/settlements/{settlement_id}',
+                'operation_id': 'get',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'settlement_id',
+                    'accept',
+                ],
+                'required': [
+                    'settlement_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'settlement_id':
+                        (str,),
+                    'accept':
+                        (str,),
+                },
+                'attribute_map': {
+                    'settlement_id': 'settlement_id',
+                    'accept': 'Accept',
+                },
+                'location_map': {
+                    'settlement_id': 'path',
+                    'accept': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -187,9 +201,8 @@ class SettlementsApi(object):
             params_map={
                 'all': [
                     'settlement_id',
+                    'accept',
                     'limit',
-                    'after_cursor',
-                    'before_cursor',
                 ],
                 'required': [
                     'settlement_id',
@@ -209,31 +222,27 @@ class SettlementsApi(object):
                 'openapi_types': {
                     'settlement_id':
                         (str,),
+                    'accept':
+                        (str,),
                     'limit':
                         (int,),
-                    'after_cursor':
-                        (str,),
-                    'before_cursor':
-                        (str,),
                 },
                 'attribute_map': {
                     'settlement_id': 'settlement_id',
+                    'accept': 'Accept',
                     'limit': 'limit',
-                    'after_cursor': 'after_cursor',
-                    'before_cursor': 'before_cursor',
                 },
                 'location_map': {
                     'settlement_id': 'path',
+                    'accept': 'header',
                     'limit': 'query',
-                    'after_cursor': 'query',
-                    'before_cursor': 'query',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -253,9 +262,8 @@ class SettlementsApi(object):
             params_map={
                 'all': [
                     'settlement_id',
+                    'accept',
                     'limit',
-                    'after_cursor',
-                    'before_cursor',
                 ],
                 'required': [
                     'settlement_id',
@@ -275,31 +283,27 @@ class SettlementsApi(object):
                 'openapi_types': {
                     'settlement_id':
                         (str,),
+                    'accept':
+                        (str,),
                     'limit':
                         (int,),
-                    'after_cursor':
-                        (str,),
-                    'before_cursor':
-                        (str,),
                 },
                 'attribute_map': {
                     'settlement_id': 'settlement_id',
+                    'accept': 'Accept',
                     'limit': 'limit',
-                    'after_cursor': 'after_cursor',
-                    'before_cursor': 'before_cursor',
                 },
                 'location_map': {
                     'settlement_id': 'path',
+                    'accept': 'header',
                     'limit': 'query',
-                    'after_cursor': 'query',
-                    'before_cursor': 'query',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -320,17 +324,21 @@ class SettlementsApi(object):
                 'all': [
                     'created_at_gte',
                     'created_at_lte',
-                    'updated_at_gte',
-                    'updated_at_lte',
-                    'id',
-                    'limit',
-                    'after_cursor',
-                    'before_cursor',
+                    'amount',
+                    'amount_gt',
+                    'amount_gte',
+                    'amount_lt',
+                    'amount_lte',
+                    'status',
+                    'transfer_id',
+                    'funding_transfer_id',
+                    'accept',
                 ],
                 'required': [],
                 'nullable': [
                 ],
                 'enum': [
+                    'status',
                 ],
                 'validation': [
                 ]
@@ -339,51 +347,69 @@ class SettlementsApi(object):
                 'validations': {
                 },
                 'allowed_values': {
+                    ('status',): {
+
+                        "&#39;PENDING&#39;": 'PENDING',
+                        "&#39;AWAITING_APPROVAL&#39;": 'AWAITING_APPROVAL',
+                        "&#39;APPROVED&#39;": 'APPROVED'
+                    },
                 },
                 'openapi_types': {
                     'created_at_gte':
                         (str,),
                     'created_at_lte':
                         (str,),
-                    'updated_at_gte':
-                        (str,),
-                    'updated_at_lte':
-                        (str,),
-                    'id':
-                        (str,),
-                    'limit':
+                    'amount':
                         (int,),
-                    'after_cursor':
+                    'amount_gt':
+                        (int,),
+                    'amount_gte':
+                        (int,),
+                    'amount_lt':
+                        (int,),
+                    'amount_lte':
+                        (int,),
+                    'status':
                         (str,),
-                    'before_cursor':
+                    'transfer_id':
+                        (str,),
+                    'funding_transfer_id':
+                        (str,),
+                    'accept':
                         (str,),
                 },
                 'attribute_map': {
                     'created_at_gte': 'created_at.gte',
                     'created_at_lte': 'created_at.lte',
-                    'updated_at_gte': 'updated_at.gte',
-                    'updated_at_lte': 'updated_at.lte',
-                    'id': 'id',
-                    'limit': 'limit',
-                    'after_cursor': 'after_cursor',
-                    'before_cursor': 'before_cursor',
+                    'amount': 'amount',
+                    'amount_gt': 'amount.gt',
+                    'amount_gte': 'amount.gte',
+                    'amount_lt': 'amount.lt',
+                    'amount_lte': 'amount.lte',
+                    'status': 'status',
+                    'transfer_id': 'transfer_id',
+                    'funding_transfer_id': 'funding_transfer_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'created_at_gte': 'query',
                     'created_at_lte': 'query',
-                    'updated_at_gte': 'query',
-                    'updated_at_lte': 'query',
-                    'id': 'query',
-                    'limit': 'query',
-                    'after_cursor': 'query',
-                    'before_cursor': 'query',
+                    'amount': 'query',
+                    'amount_gt': 'query',
+                    'amount_gte': 'query',
+                    'amount_lt': 'query',
+                    'amount_lte': 'query',
+                    'status': 'query',
+                    'transfer_id': 'query',
+                    'funding_transfer_id': 'query',
+                    'accept': 'header',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -403,6 +429,7 @@ class SettlementsApi(object):
             params_map={
                 'all': [
                     'settlement_id',
+                    'accept',
                     'remove_settlement_transfer',
                 ],
                 'required': [
@@ -423,14 +450,18 @@ class SettlementsApi(object):
                 'openapi_types': {
                     'settlement_id':
                         (str,),
+                    'accept':
+                        (str,),
                     'remove_settlement_transfer':
                         (RemoveSettlementTransfer,),
                 },
                 'attribute_map': {
                     'settlement_id': 'settlement_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'settlement_id': 'path',
+                    'accept': 'header',
                     'remove_settlement_transfer': 'body',
                 },
                 'collection_format_map': {
@@ -438,34 +469,36 @@ class SettlementsApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
         )
 
-    def create(
+    def put(
         self,
-        identity_id,
+        settlement_id,
         **kwargs
     ):
-        """Close Current Active Settlement  # noqa: E501
+        """Close a Settlement  # noqa: E501
 
-        Close the currently accruing `settlement`.   Finix, by default, creates accruing `settlements` then closes them based on your payout configurations. Use this endpoint to manually close the currently accruing settlement.  The closed `Settlement` will not accrue any further transactions and gets immediately submitted for approval. - Any refunded `Transfers` get included in `Settlements` as a deduction. - **PENDING** `Transfers` don't get included in `Settlements`.  - The `total_amount` minus the `total_fee` equals the `net_amount`. The `net_amount` is the amount in cents that gets deposited into the merchant's bank account.  Related Guides: [Accruing Settlements](/guides/payouts/~accruing-settlements/#closing-an-accruing-settlement)  # noqa: E501
+        Close an accruing `settlement`.  Finix, by default, creates accruing `settlements` then closes them based on your payout configurations. Use this endpoint to manually close a specific `settlement`.  The closed `Settlement` will not accrue any further transactions and gets immediately submitted for approval. - This endpoint is only available to Finix Core customers. If you have any questions, please contact the [Finix Support Team](mailto:support@finixpayments.com). - Any refunded `Transfers` get included in `Settlements` as a deduction.  - **PENDING** `Transfers` don't get included in `Settlements`. - The `total_amount` minus the `total_fee` equals the `net_amount`. The `net_amount` is the amount in cents that gets deposited into the seller's bank account.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create(identity_id, async_req=True)
+        >>> thread = api.put(settlement_id, async_req=True)
         >>> result = thread.get()
 
         Args:
-            identity_id (str): ID of the `Identity` for the merchant you want to settle. 
+            settlement_id (str): ID of `Settlement` object.
 
         Keyword Args:
-            create_settlement_request (CreateSettlementRequest): [optional]
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
+            finix_version (str): Specify the API version of your request. For more details, see [Versioning.](/guides/developers/versioning/). [optional] if omitted the server will use the default value of '2018-01-01'
+            close_settlement (CloseSettlement): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -522,9 +555,9 @@ class SettlementsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['identity_id'] = \
-            identity_id
-        return self._create_endpoint.call_with_http_info(**kwargs)
+        kwargs['settlement_id'] = \
+            settlement_id
+        return self._put_endpoint.call_with_http_info(**kwargs)
 
     def get(
         self,
@@ -544,6 +577,7 @@ class SettlementsApi(object):
             settlement_id (str): ID of `Settlement` object.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -622,9 +656,8 @@ class SettlementsApi(object):
             settlement_id (str): ID of `Settlement` object.
 
         Keyword Args:
+            accept (str): Body Header. [optional] if omitted the server will use the default value of 'application/hal+json'
             limit (int): The numbers of items to return.. [optional]
-            after_cursor (str): Return every resource created after the cursor value.. [optional]
-            before_cursor (str): Return every resource created before the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -692,7 +725,7 @@ class SettlementsApi(object):
         settlement_id,
         **kwargs
     ):
-        """List Settlement Transfers  # noqa: E501
+        """List all Transfers in a Settlement  # noqa: E501
 
         Retrieve a list of every `Transfer` in a `Settlement` that has `type` **DEBIT** or **REFUND**.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -705,9 +738,8 @@ class SettlementsApi(object):
             settlement_id (str): ID of `Settlement` object.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             limit (int): The numbers of items to return.. [optional]
-            after_cursor (str): Return every resource created after the cursor value.. [optional]
-            before_cursor (str): Return every resource created before the cursor value.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -787,12 +819,15 @@ class SettlementsApi(object):
         Keyword Args:
             created_at_gte (str): Filter where `created_at` is after the given date.. [optional]
             created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
-            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]
-            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]
-            id (str): Filter by `id`.. [optional]
-            limit (int): The numbers of items to return.. [optional]
-            after_cursor (str): Return every resource created after the cursor value.. [optional]
-            before_cursor (str): Return every resource created before the cursor value.. [optional]
+            amount (int): Filter by an amount equal to the given value.. [optional]
+            amount_gt (int): Filter by an amount greater than.. [optional]
+            amount_gte (int): Filter by an amount greater than or equal.. [optional]
+            amount_lt (int): Filter by an amount less than.. [optional]
+            amount_lte (int): Filter by an amount less than or equal.. [optional]
+            status (str): Filter by the status of the `Settlement`. Available values include:<ul><li>**PENDING**<li>**STAGED**<li>**AWAITING_APPROVAL**<li>**APPROVED**.</ul> Merchants only receive payouts when `Settlements` are **APPROVED**. For more information, see [Payouts](/docs/guides/payouts/payouts/).. [optional]
+            transfer_id (str): Filter by a `transfer_id` a `Settlement` has accrued. Please note this filter is only available for non-versioned requests, or requests using `-H 'Finix-Version: 2018-01-01'`. We're actively working on making this filter available for later versions. For more details, see [Versioning](/guides/developers/versioning/).. [optional]
+            funding_transfer_id (str): Filter by a `funding_transfer` a `Settlement` has created.. [optional]
+            accept (str): Body Header. [optional] if omitted the server will use the default value of 'application/hal+json'
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -871,6 +906,7 @@ class SettlementsApi(object):
             settlement_id (str): ID of `Settlement` object.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             remove_settlement_transfer (RemoveSettlementTransfer): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.

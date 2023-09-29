@@ -19,17 +19,17 @@ from finix.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from finix.model.create_merchant_underwriting_request import CreateMerchantUnderwritingRequest
-from finix.model.create_verification_request import CreateVerificationRequest
-from finix.model.error401_unauthorized import Error401Unauthorized
-from finix.model.error403_forbidden_list import Error403ForbiddenList
-from finix.model.error404_not_found_list import Error404NotFoundList
-from finix.model.error406_not_acceptable import Error406NotAcceptable
-from finix.model.error_generic import ErrorGeneric
-from finix.model.merchant import Merchant
-from finix.model.merchants_list import MerchantsList
-from finix.model.update_merchant_request import UpdateMerchantRequest
-from finix.model.verification import Verification
+from typing_extensions import Annotated
+from pydantic import Field, StrictInt, StrictStr
+
+from typing import Optional
+
+from finix.models.create_merchant_underwriting_request import CreateMerchantUnderwritingRequest
+from finix.models.create_verification_request import CreateVerificationRequest
+from finix.models.merchant import Merchant
+from finix.models.merchants_list import MerchantsList
+from finix.models.update_merchant_request import UpdateMerchantRequest
+from finix.models.verification import Verification
 from finix.model.finix_utils import FinixList
 
 from functools import wraps
@@ -79,6 +79,8 @@ class MerchantsApi(object):
             params_map={
                 'all': [
                     'identity_id',
+                    'accept',
+                    'finix_version',
                     'create_merchant_underwriting_request',
                 ],
                 'required': [
@@ -99,14 +101,22 @@ class MerchantsApi(object):
                 'openapi_types': {
                     'identity_id':
                         (str,),
+                    'accept':
+                        (str,),
+                    'finix_version':
+                        (str,),
                     'create_merchant_underwriting_request':
                         (CreateMerchantUnderwritingRequest,),
                 },
                 'attribute_map': {
                     'identity_id': 'identity_id',
+                    'accept': 'Accept',
+                    'finix_version': 'Finix-Version',
                 },
                 'location_map': {
                     'identity_id': 'path',
+                    'accept': 'header',
+                    'finix_version': 'header',
                     'create_merchant_underwriting_request': 'body',
                 },
                 'collection_format_map': {
@@ -114,28 +124,30 @@ class MerchantsApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
         )
-        self._create_merchant_verification_endpoint = finix.api_client.Endpoint(
+        self._create_endpoint = finix.api_client.Endpoint(
             settings={
                 'response_type': (Verification,),
                 'auth': [
                     'BasicAuth'
                 ],
                 'endpoint_path': '/merchants/{merchant_id}/verifications',
-                'operation_id': 'create_merchant_verification',
+                'operation_id': 'create',
                 'http_method': 'POST',
                 'servers': None,
             },
             params_map={
                 'all': [
                     'merchant_id',
+                    'accept',
+                    'finix_version',
                     'create_verification_request',
                 ],
                 'required': [
@@ -156,14 +168,22 @@ class MerchantsApi(object):
                 'openapi_types': {
                     'merchant_id':
                         (str,),
+                    'accept':
+                        (str,),
+                    'finix_version':
+                        (str,),
                     'create_verification_request':
                         (CreateVerificationRequest,),
                 },
                 'attribute_map': {
                     'merchant_id': 'merchant_id',
+                    'accept': 'Accept',
+                    'finix_version': 'Finix-Version',
                 },
                 'location_map': {
                     'merchant_id': 'path',
+                    'accept': 'header',
+                    'finix_version': 'header',
                     'create_verification_request': 'body',
                 },
                 'collection_format_map': {
@@ -171,10 +191,10 @@ class MerchantsApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -193,6 +213,7 @@ class MerchantsApi(object):
             params_map={
                 'all': [
                     'merchant_id',
+                    'accept',
                 ],
                 'required': [
                     'merchant_id',
@@ -212,19 +233,23 @@ class MerchantsApi(object):
                 'openapi_types': {
                     'merchant_id':
                         (str,),
+                    'accept':
+                        (str,),
                 },
                 'attribute_map': {
                     'merchant_id': 'merchant_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'merchant_id': 'path',
+                    'accept': 'header',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -243,13 +268,15 @@ class MerchantsApi(object):
             },
             params_map={
                 'all': [
+                    'accept',
                     'id',
-                    'created_at_gte',
-                    'created_at_lte',
                     'after_cursor',
                     'before_cursor',
+                    'created_at_gte',
+                    'created_at_lte',
                     'limit',
-                    'sort',
+                    'updated_at_gte',
+                    'updated_at_lte',
                 ],
                 'required': [],
                 'nullable': [
@@ -265,45 +292,53 @@ class MerchantsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'accept':
+                        (str,),
                     'id':
-                        (str,),
-                    'created_at_gte':
-                        (str,),
-                    'created_at_lte':
                         (str,),
                     'after_cursor':
                         (str,),
                     'before_cursor':
                         (str,),
+                    'created_at_gte':
+                        (str,),
+                    'created_at_lte':
+                        (str,),
                     'limit':
                         (int,),
-                    'sort':
+                    'updated_at_gte':
+                        (str,),
+                    'updated_at_lte':
                         (str,),
                 },
                 'attribute_map': {
+                    'accept': 'Accept',
                     'id': 'id',
-                    'created_at_gte': 'created_at.gte',
-                    'created_at_lte': 'created_at.lte',
                     'after_cursor': 'after_cursor',
                     'before_cursor': 'before_cursor',
+                    'created_at_gte': 'created_at.gte',
+                    'created_at_lte': 'created_at.lte',
                     'limit': 'limit',
-                    'sort': 'sort',
+                    'updated_at_gte': 'updated_at.gte',
+                    'updated_at_lte': 'updated_at.lte',
                 },
                 'location_map': {
+                    'accept': 'header',
                     'id': 'query',
-                    'created_at_gte': 'query',
-                    'created_at_lte': 'query',
                     'after_cursor': 'query',
                     'before_cursor': 'query',
+                    'created_at_gte': 'query',
+                    'created_at_lte': 'query',
                     'limit': 'query',
-                    'sort': 'query',
+                    'updated_at_gte': 'query',
+                    'updated_at_lte': 'query',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -323,6 +358,8 @@ class MerchantsApi(object):
             params_map={
                 'all': [
                     'merchant_id',
+                    'accept',
+                    'finix_version',
                     'update_merchant_request',
                 ],
                 'required': [
@@ -343,14 +380,22 @@ class MerchantsApi(object):
                 'openapi_types': {
                     'merchant_id':
                         (str,),
+                    'accept':
+                        (str,),
+                    'finix_version':
+                        (str,),
                     'update_merchant_request':
                         (UpdateMerchantRequest,),
                 },
                 'attribute_map': {
                     'merchant_id': 'merchant_id',
+                    'accept': 'Accept',
+                    'finix_version': 'Finix-Version',
                 },
                 'location_map': {
                     'merchant_id': 'path',
+                    'accept': 'header',
+                    'finix_version': 'header',
                     'update_merchant_request': 'body',
                 },
                 'collection_format_map': {
@@ -358,10 +403,10 @@ class MerchantsApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -374,7 +419,7 @@ class MerchantsApi(object):
     ):
         """Create a Merchant  # noqa: E501
 
-        Create a `Merchant` to start the underwriting (also called provisioning) process for your merchant. `Merchants` must be created under an [`Identity`](#tag/Identities).  > A bank account must be associated with the previously created `Identity` before a `Merchant` can be succefully onboarded and verified.  `Merchant` resources can have three possible `onboarding_states`:  1. **PROVISIONING**: The request is pending (the state can change after two minutes).     * `processing_enabled`: **False**     * `settlement_enabled`: **False**  1. **APPROVED**: The `Merchant` has been approved and can begin processing payments.     * `processing_enabled`: **True**    * `settlement_enabled`: **True**  1. **REJECTED**: The `Merchant` was rejected by the processor because of invalid information or it failed a regulatory and/or compliance check (e.g. KYC, OFAC, or MATCH). Make any changes that are needed, and [try verifying the `Merchant` again](#operation/createMerchantVerification).     * `processing_enabled`: **False**     * `settlement_enabled`: **False**   > Provisioning a `Merchant` account is an asynchronous request. We recommend creating a [`Webhook`](#tag/Webhooks) to listen for the state change.  # noqa: E501
+        Create a `Merchant` to start the underwriting (also called provisioning) process for your seller. `Merchants` must be created under an [`Identity`](/api/tag/Identities).  A bank account must be associated with the previously created `Identity` before a `Merchant` can be successfully onboarded and verified.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -385,6 +430,8 @@ class MerchantsApi(object):
             identity_id (str): ID of `Identity` to fetch.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
+            finix_version (str): Specify the API version of your request. For more details, see [Versioning.](/guides/developers/versioning/). [optional] if omitted the server will use the default value of '2018-01-01'
             create_merchant_underwriting_request (CreateMerchantUnderwritingRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -446,24 +493,26 @@ class MerchantsApi(object):
             identity_id
         return self._create_endpoint.call_with_http_info(**kwargs)
 
-    def create_merchant_verification(
+    def create(
         self,
         merchant_id,
         **kwargs
     ):
         """Verify a Merchant  # noqa: E501
 
-        If the `onboarding_state` for a `Merchant` returns **FAILED**, correct the `Identity` information saved for the `Merchant`. Once corrected, try verifying (also called provisioning) the `Merchant` again with another request.  # noqa: E501
+        Verify a `Merchant` if the `onboarding_state` for a `Merchant` returns **FAILED**, or if the correct the seller needs to update the saved in their information `Identity`.  Related Guides: [Onboarding Process](/guides/onboarding/onboarding-process/#reverify-a-merchant)  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_merchant_verification(merchant_id, async_req=True)
+        >>> thread = api.create(merchant_id, async_req=True)
         >>> result = thread.get()
 
         Args:
             merchant_id (str): ID of `Merchant` object.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
+            finix_version (str): Specify the API version of your request. For more details, see [Versioning.](/guides/developers/versioning/). [optional] if omitted the server will use the default value of '2018-01-01'
             create_verification_request (CreateVerificationRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -523,7 +572,7 @@ class MerchantsApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['merchant_id'] = \
             merchant_id
-        return self._create_merchant_verification_endpoint.call_with_http_info(**kwargs)
+        return self._create_endpoint.call_with_http_info(**kwargs)
 
     def get(
         self,
@@ -543,6 +592,7 @@ class MerchantsApi(object):
             merchant_id (str): ID of `Merchant`.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -618,13 +668,15 @@ class MerchantsApi(object):
 
 
         Keyword Args:
+            accept (str): Body Header. [optional] if omitted the server will use the default value of 'application/hal+json'
             id (str): Filter by `id`.. [optional]
-            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]
-            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
+            created_at_gte (str): Filter where `created_at` is after the given date.. [optional]
+            created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
             limit (int): The numbers of items to return.. [optional]
-            sort (str): Specify key to be used for sorting the collection.. [optional]
+            updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]
+            updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -692,7 +744,7 @@ class MerchantsApi(object):
     ):
         """Update a Merchant  # noqa: E501
 
-        Update a `Merchant` to:  - Change the `Identity` information saved with the underlying processor - Enable Level 2/3 processing - Enable [Buyer Chages](/guides/payments/buyer-charges/)  # noqa: E501
+        Update a `Merchant` to:  - Change the `Identity` information saved with the underlying processor - [Enable Level 2/3 processing](/guides/payments/making-a-payment/level-2-and-level-3-processing/) - Enable [buyer charges](/guides/payments/making-a-payment/buyer-charges/) - Disable a `Merchant` so the seller can't create new `Transfers` and `Authorizations`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -703,6 +755,8 @@ class MerchantsApi(object):
             merchant_id (str): ID of `Merchant`.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
+            finix_version (str): Specify the API version of your request. For more details, see [Versioning.](/guides/developers/versioning/). [optional] if omitted the server will use the default value of '2018-01-01'
             update_merchant_request (UpdateMerchantRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.

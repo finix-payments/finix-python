@@ -19,13 +19,14 @@ from finix.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from finix.model.compliance_form import ComplianceForm
-from finix.model.error401_unauthorized import Error401Unauthorized
-from finix.model.error403_forbidden_list import Error403ForbiddenList
-from finix.model.error404_not_found_list import Error404NotFoundList
-from finix.model.error406_not_acceptable import Error406NotAcceptable
-from finix.model.error422_invalid_field_list import Error422InvalidFieldList
-from finix.model.update_compliance_form_request import UpdateComplianceFormRequest
+from typing_extensions import Annotated
+from pydantic import Field, StrictStr
+
+from typing import Optional
+
+from finix.models.compliance_form import ComplianceForm
+from finix.models.compliance_form_list import ComplianceFormList
+from finix.models.update_compliance_form_request import UpdateComplianceFormRequest
 from finix.model.finix_utils import FinixList
 
 from functools import wraps
@@ -75,6 +76,7 @@ class ComplianceFormsApi(object):
             params_map={
                 'all': [
                     'compliance_forms_id',
+                    'accept',
                 ],
                 'required': [
                     'compliance_forms_id',
@@ -94,20 +96,83 @@ class ComplianceFormsApi(object):
                 'openapi_types': {
                     'compliance_forms_id':
                         (str,),
+                    'accept':
+                        (str,),
                 },
                 'attribute_map': {
                     'compliance_forms_id': 'compliance_forms_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'compliance_forms_id': 'path',
+                    'accept': 'header',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/json',
-                    'application/hal+json'
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self._list_endpoint = finix.api_client.Endpoint(
+            settings={
+                'response_type': (ComplianceFormList,),
+                'auth': [
+                    'BasicAuth'
+                ],
+                'endpoint_path': '/compliance_forms',
+                'operation_id': 'list',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'accept',
+                    'state',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                    'state',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('state',): {
+
+                        "&#39;INCOMPLETE&#39;": 'INCOMPLETE',
+                        "&#39;COMPLETE&#39;": 'COMPLETE'
+                    },
+                },
+                'openapi_types': {
+                    'accept':
+                        (str,),
+                    'state':
+                        (str,),
+                },
+                'attribute_map': {
+                    'accept': 'Accept',
+                    'state': 'state',
+                },
+                'location_map': {
+                    'accept': 'header',
+                    'state': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -127,6 +192,7 @@ class ComplianceFormsApi(object):
             params_map={
                 'all': [
                     'compliance_forms_id',
+                    'accept',
                     'update_compliance_form_request',
                 ],
                 'required': [
@@ -147,14 +213,18 @@ class ComplianceFormsApi(object):
                 'openapi_types': {
                     'compliance_forms_id':
                         (str,),
+                    'accept':
+                        (str,),
                     'update_compliance_form_request':
                         (UpdateComplianceFormRequest,),
                 },
                 'attribute_map': {
                     'compliance_forms_id': 'compliance_forms_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'compliance_forms_id': 'path',
+                    'accept': 'header',
                     'update_compliance_form_request': 'body',
                 },
                 'collection_format_map': {
@@ -162,8 +232,7 @@ class ComplianceFormsApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/json',
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
                     'application/json'
@@ -177,7 +246,7 @@ class ComplianceFormsApi(object):
         compliance_forms_id,
         **kwargs
     ):
-        """View Compliance Forms  # noqa: E501
+        """Fetch a Compliance Form  # noqa: E501
 
         A webhook notifies you when Finix creates a `compliance_form`.  Use the ID in the webhook to fetch the `compliance_form` resource from the `/compliance_forms/:COMPLIANCE_FORM_ID:` endpoint.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -190,6 +259,7 @@ class ComplianceFormsApi(object):
             compliance_forms_id (str): ID of the `compliance_form`.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -250,14 +320,91 @@ class ComplianceFormsApi(object):
             compliance_forms_id
         return self._list_endpoint.call_with_http_info(**kwargs)
 
+    def list(
+        self,
+        **kwargs
+    ):
+        """List Compliance Forms  # noqa: E501
+
+        Retrieves a list of `Compliance Forms`.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.list(async_req=True)
+        >>> result = thread.get()
+
+
+        Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
+            state (str): Filter by the `state` of the `Compliance Form`.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ComplianceFormList
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', False
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', False
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        ret = self._list_endpoint.call_with_http_info(**kwargs)
+        fl = FinixList(ret, self.list,  **kwargs)
+        return fl
+
     def update(
         self,
         compliance_forms_id,
         **kwargs
     ):
-        """Complete Compliance Forms  # noqa: E501
+        """Complete a Compliance Form  # noqa: E501
 
-        As part of onboarding your users, you'll need to build a UI experience that allows users to complete the PCI `compliance_form` and download the form as a PDF if requested.  To complete PCI compliance forms:  1. Get the `compliance_form` generated for the merchant using the `ID` from the webhook and present the form to your users when requested. 2. Show your users the [required text](/guides/security-and-compliance/pci-dss-compliance/managing-pci-compliance/#obtaining-compliance-consent) to obtain consent. 3. Submit a PUT API request with the necessary [attestation](/guides/security-and-compliance/pci-dss-compliance/managing-pci-compliance/#completing-the-questionnaire) information.  For more information, see [Managing Compliance Forms](/guides/security-and-compliance/pci-dss-compliance/managing-pci-compliance/#completing-compliance-forms).  # noqa: E501
+        As part of onboarding your users, you'll need to build a UI experience that allows users to complete the PCI `compliance_form` and download the form as a PDF if requested.  For more information, see [Managing Compliance Forms](/guides/security-and-compliance/pci-dss-compliance/managing-pci-compliance/#completing-compliance-forms).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -268,6 +415,7 @@ class ComplianceFormsApi(object):
             compliance_forms_id (str): ID of the `compliance_form`.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             update_compliance_form_request (UpdateComplianceFormRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.

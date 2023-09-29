@@ -19,15 +19,15 @@ from finix.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from finix.model.create_onboarding_form_link_request import CreateOnboardingFormLinkRequest
-from finix.model.create_onboarding_form_request import CreateOnboardingFormRequest
-from finix.model.error401_unauthorized import Error401Unauthorized
-from finix.model.error403_forbidden_list import Error403ForbiddenList
-from finix.model.error404_not_found_list import Error404NotFoundList
-from finix.model.error406_not_acceptable import Error406NotAcceptable
-from finix.model.error422_invalid_field_list import Error422InvalidFieldList
-from finix.model.onboarding_form import OnboardingForm
-from finix.model.onboarding_form_link import OnboardingFormLink
+from typing_extensions import Annotated
+from pydantic import Field, StrictStr
+
+from typing import Optional
+
+from finix.models.create_onboarding_form_link_request import CreateOnboardingFormLinkRequest
+from finix.models.create_onboarding_form_request import CreateOnboardingFormRequest
+from finix.models.onboarding_form import OnboardingForm
+from finix.models.onboarding_form_link import OnboardingFormLink
 from finix.model.finix_utils import FinixList
 
 from functools import wraps
@@ -105,8 +105,7 @@ class OnboardingFormsApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/json',
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
                     'application/json'
@@ -128,6 +127,7 @@ class OnboardingFormsApi(object):
             params_map={
                 'all': [
                     'onboarding_form_id',
+                    'accept',
                     'create_onboarding_form_link_request',
                 ],
                 'required': [
@@ -148,14 +148,18 @@ class OnboardingFormsApi(object):
                 'openapi_types': {
                     'onboarding_form_id':
                         (str,),
+                    'accept':
+                        (str,),
                     'create_onboarding_form_link_request':
                         (CreateOnboardingFormLinkRequest,),
                 },
                 'attribute_map': {
                     'onboarding_form_id': 'onboarding_form_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'onboarding_form_id': 'path',
+                    'accept': 'header',
                     'create_onboarding_form_link_request': 'body',
                 },
                 'collection_format_map': {
@@ -163,8 +167,7 @@ class OnboardingFormsApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/json',
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
                     'application/json'
@@ -186,6 +189,7 @@ class OnboardingFormsApi(object):
             params_map={
                 'all': [
                     'onboarding_form_id',
+                    'accept',
                 ],
                 'required': [
                     'onboarding_form_id',
@@ -205,20 +209,23 @@ class OnboardingFormsApi(object):
                 'openapi_types': {
                     'onboarding_form_id':
                         (str,),
+                    'accept':
+                        (str,),
                 },
                 'attribute_map': {
                     'onboarding_form_id': 'onboarding_form_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'onboarding_form_id': 'path',
+                    'accept': 'header',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/json',
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -231,7 +238,7 @@ class OnboardingFormsApi(object):
     ):
         """Create an Onboarding Form  # noqa: E501
 
-        Create an onboarding_form with the name of the processor you plan to onboard users to and the links they get redirected to when completing or moving away from the Finix Onboarding Form.  > Use your **ROLE_PARTNER** credentials to create an `onboarding_form`.  # noqa: E501
+        Create an `onboarding_form` with the name of the processor you plan to onboard users to and the links they` get redirected to when completing or moving away from the Finix Onboarding Form.  Only **ROLE_PARTNER** credentials can be used to create an `onboarding_form`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -306,7 +313,7 @@ class OnboardingFormsApi(object):
     ):
         """Create an Onboarding Form Link  # noqa: E501
 
-        You can use the `onboarding_forms` API to create a link that can return users to where they left off completing their Finix Onboarding Form.  # noqa: E501
+        Use the `onboarding_forms` API to create a link that can return users to where they left off completing their Finix Onboarding Form.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -317,6 +324,7 @@ class OnboardingFormsApi(object):
             onboarding_form_id (str): The ID of the `onboarding_form` resource.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             create_onboarding_form_link_request (CreateOnboardingFormLinkRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -396,6 +404,7 @@ class OnboardingFormsApi(object):
             onboarding_form_id (str): The id of the `onboarding_form`.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

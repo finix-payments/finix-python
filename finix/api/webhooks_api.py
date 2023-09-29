@@ -19,16 +19,15 @@ from finix.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from finix.model.create_webhook_request import CreateWebhookRequest
-from finix.model.error401_unauthorized import Error401Unauthorized
-from finix.model.error403_forbidden_list import Error403ForbiddenList
-from finix.model.error404_not_found_list import Error404NotFoundList
-from finix.model.error406_not_acceptable import Error406NotAcceptable
-from finix.model.error422_invalid_field_list import Error422InvalidFieldList
-from finix.model.error_generic import ErrorGeneric
-from finix.model.update_webhook_request import UpdateWebhookRequest
-from finix.model.webhook import Webhook
-from finix.model.webhooks_list import WebhooksList
+from typing_extensions import Annotated
+from pydantic import Field, StrictInt, StrictStr
+
+from typing import Optional
+
+from finix.models.create_webhook_request import CreateWebhookRequest
+from finix.models.update_webhook_request import UpdateWebhookRequest
+from finix.models.webhook import Webhook
+from finix.models.webhooks_list import WebhooksList
 from finix.model.finix_utils import FinixList
 
 from functools import wraps
@@ -77,6 +76,8 @@ class WebhooksApi(object):
             },
             params_map={
                 'all': [
+                    'accept',
+                    'finix_version',
                     'create_webhook_request',
                 ],
                 'required': [],
@@ -93,12 +94,20 @@ class WebhooksApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'accept':
+                        (str,),
+                    'finix_version':
+                        (str,),
                     'create_webhook_request':
                         (CreateWebhookRequest,),
                 },
                 'attribute_map': {
+                    'accept': 'Accept',
+                    'finix_version': 'Finix-Version',
                 },
                 'location_map': {
+                    'accept': 'header',
+                    'finix_version': 'header',
                     'create_webhook_request': 'body',
                 },
                 'collection_format_map': {
@@ -106,10 +115,10 @@ class WebhooksApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -128,6 +137,7 @@ class WebhooksApi(object):
             params_map={
                 'all': [
                     'webhook_id',
+                    'accept',
                 ],
                 'required': [
                     'webhook_id',
@@ -147,19 +157,23 @@ class WebhooksApi(object):
                 'openapi_types': {
                     'webhook_id':
                         (str,),
+                    'accept':
+                        (str,),
                 },
                 'attribute_map': {
                     'webhook_id': 'webhook_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'webhook_id': 'path',
+                    'accept': 'header',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -218,7 +232,7 @@ class WebhooksApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -238,6 +252,8 @@ class WebhooksApi(object):
             params_map={
                 'all': [
                     'webhook_id',
+                    'accept',
+                    'finix_version',
                     'update_webhook_request',
                 ],
                 'required': [
@@ -258,14 +274,22 @@ class WebhooksApi(object):
                 'openapi_types': {
                     'webhook_id':
                         (str,),
+                    'accept':
+                        (str,),
+                    'finix_version':
+                        (str,),
                     'update_webhook_request':
                         (UpdateWebhookRequest,),
                 },
                 'attribute_map': {
                     'webhook_id': 'webhook_id',
+                    'accept': 'Accept',
+                    'finix_version': 'Finix-Version',
                 },
                 'location_map': {
                     'webhook_id': 'path',
+                    'accept': 'header',
+                    'finix_version': 'header',
                     'update_webhook_request': 'body',
                 },
                 'collection_format_map': {
@@ -273,10 +297,10 @@ class WebhooksApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -297,6 +321,8 @@ class WebhooksApi(object):
 
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
+            finix_version (str): Specify the API version of your request. For more details, see [Versioning.](/guides/developers/versioning/). [optional] if omitted the server will use the default value of '2018-01-01'
             create_webhook_request (CreateWebhookRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -374,6 +400,7 @@ class WebhooksApi(object):
             webhook_id (str): ID of `Webhook` object.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -519,7 +546,7 @@ class WebhooksApi(object):
     ):
         """Update a Webhook  # noqa: E501
 
-        Update an existing `Webhook`.  # noqa: E501
+        Update an existing `Webhook`to: - Disable or enable an endpoint URL to recieve webhook events. - Add [authentication to a `Webhook`](/guides/developers/webhooks/#authenticating-webhooks). - Filter the [webhook events sent to an endpoint URL](/guides/developers/webhooks/#webhook-event-filtering).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -530,6 +557,8 @@ class WebhooksApi(object):
             webhook_id (str): ID of `Webhook` object.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
+            finix_version (str): Specify the API version of your request. For more details, see [Versioning.](/guides/developers/versioning/). [optional] if omitted the server will use the default value of '2018-01-01'
             update_webhook_request (UpdateWebhookRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.

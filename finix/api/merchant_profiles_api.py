@@ -19,13 +19,14 @@ from finix.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from finix.model.error401_unauthorized import Error401Unauthorized
-from finix.model.error403_forbidden_list import Error403ForbiddenList
-from finix.model.error404_not_found_list import Error404NotFoundList
-from finix.model.error406_not_acceptable import Error406NotAcceptable
-from finix.model.merchant_profile import MerchantProfile
-from finix.model.merchant_profiles_list import MerchantProfilesList
-from finix.model.update_merchant_profile_request import UpdateMerchantProfileRequest
+from typing_extensions import Annotated
+from pydantic import Field, StrictInt, StrictStr
+
+from typing import Optional
+
+from finix.models.merchant_profile import MerchantProfile
+from finix.models.merchant_profiles_list import MerchantProfilesList
+from finix.models.update_merchant_profile_request import UpdateMerchantProfileRequest
 from finix.model.finix_utils import FinixList
 
 from functools import wraps
@@ -75,6 +76,7 @@ class MerchantProfilesApi(object):
             params_map={
                 'all': [
                     'merchant_profile_id',
+                    'accept',
                 ],
                 'required': [
                     'merchant_profile_id',
@@ -94,19 +96,23 @@ class MerchantProfilesApi(object):
                 'openapi_types': {
                     'merchant_profile_id':
                         (str,),
+                    'accept':
+                        (str,),
                 },
                 'attribute_map': {
                     'merchant_profile_id': 'merchant_profile_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'merchant_profile_id': 'path',
+                    'accept': 'header',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -125,6 +131,7 @@ class MerchantProfilesApi(object):
             },
             params_map={
                 'all': [
+                    'accept',
                     'id',
                     'before_cursor',
                     'limit',
@@ -144,6 +151,8 @@ class MerchantProfilesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'accept':
+                        (str,),
                     'id':
                         (str,),
                     'before_cursor':
@@ -154,12 +163,14 @@ class MerchantProfilesApi(object):
                         (str,),
                 },
                 'attribute_map': {
+                    'accept': 'Accept',
                     'id': 'id',
                     'before_cursor': 'before_cursor',
                     'limit': 'limit',
                     'after_cursor': 'after_cursor',
                 },
                 'location_map': {
+                    'accept': 'header',
                     'id': 'query',
                     'before_cursor': 'query',
                     'limit': 'query',
@@ -170,7 +181,7 @@ class MerchantProfilesApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -190,6 +201,7 @@ class MerchantProfilesApi(object):
             params_map={
                 'all': [
                     'merchant_profile_id',
+                    'accept',
                     'update_merchant_profile_request',
                 ],
                 'required': [
@@ -210,14 +222,18 @@ class MerchantProfilesApi(object):
                 'openapi_types': {
                     'merchant_profile_id':
                         (str,),
+                    'accept':
+                        (str,),
                     'update_merchant_profile_request':
                         (UpdateMerchantProfileRequest,),
                 },
                 'attribute_map': {
                     'merchant_profile_id': 'merchant_profile_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'merchant_profile_id': 'path',
+                    'accept': 'header',
                     'update_merchant_profile_request': 'body',
                 },
                 'collection_format_map': {
@@ -225,10 +241,10 @@ class MerchantProfilesApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -252,6 +268,7 @@ class MerchantProfilesApi(object):
             merchant_profile_id (str): ID of `merchant_profile`.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -327,6 +344,7 @@ class MerchantProfilesApi(object):
 
 
         Keyword Args:
+            accept (str): Body Header. [optional] if omitted the server will use the default value of 'application/hal+json'
             id (str): Filter by `id`.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
             limit (int): The numbers of items to return.. [optional]
@@ -409,6 +427,7 @@ class MerchantProfilesApi(object):
             merchant_profile_id (str): ID of `merchant_profile`.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             update_merchant_profile_request (UpdateMerchantProfileRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
