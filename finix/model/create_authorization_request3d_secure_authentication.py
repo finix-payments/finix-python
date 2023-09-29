@@ -77,8 +77,8 @@ class CreateAuthorizationRequest3dSecureAuthentication(ModelNormal):
         """
         return {
             'cardholder_authentication': (str,),  # noqa: E501
-            'cardholder_ip_address': (str,),  # noqa: E501
             'electronic_commerce_indicator': (str,),  # noqa: E501
+            'cardholder_ip_address': (str,),  # noqa: E501
             'transaction_id': (str,),  # noqa: E501
         }
 
@@ -89,8 +89,8 @@ class CreateAuthorizationRequest3dSecureAuthentication(ModelNormal):
 
     attribute_map = {
         'cardholder_authentication': 'cardholder_authentication',  # noqa: E501
-        'cardholder_ip_address': 'cardholder_ip_address',  # noqa: E501
         'electronic_commerce_indicator': 'electronic_commerce_indicator',  # noqa: E501
+        'cardholder_ip_address': 'cardholder_ip_address',  # noqa: E501
         'transaction_id': 'transaction_id',  # noqa: E501
     }
 
@@ -101,8 +101,12 @@ class CreateAuthorizationRequest3dSecureAuthentication(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, cardholder_authentication, electronic_commerce_indicator, *args, **kwargs):  # noqa: E501
         """CreateAuthorizationRequest3dSecureAuthentication - a model defined in OpenAPI
+
+        Args:
+            cardholder_authentication (str): Provides evidence that the cardholder authentication occurred or that the merchant attempted authentication. This is unique for each authentication transaction.
+            electronic_commerce_indicator (str): - **AUTHENTICATED**: Approved by 3D Secure Vendor. - **ATTEMPTED**: Issuer or cardholder doesn't support 3D Secure.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -135,10 +139,8 @@ class CreateAuthorizationRequest3dSecureAuthentication(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            cardholder_authentication (str): Provides evidence that the cardholder authentication occurred or that the merchant attempted authentication. This is unique for each authentication transaction.. [optional]  # noqa: E501
-            cardholder_ip_address (str): Only required for American Express cards. Format is nnn.nnn.nnn.nnn. [optional]  # noqa: E501
-            electronic_commerce_indicator (str): AUTHENTICATED: Approved by 3D Secure Vendor; ATTEMPTED: Issuer or cardholder does not support 3D Secure. [optional]  # noqa: E501
-            transaction_id (str): Only valid for Visa transactions. [optional]  # noqa: E501
+            cardholder_ip_address (str): Only required for **American Express** cards.. [optional]  # noqa: E501
+            transaction_id (str): Only required for **Visa** cards.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -166,6 +168,8 @@ class CreateAuthorizationRequest3dSecureAuthentication(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.cardholder_authentication = cardholder_authentication
+        self.electronic_commerce_indicator = electronic_commerce_indicator
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -186,8 +190,12 @@ class CreateAuthorizationRequest3dSecureAuthentication(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, cardholder_authentication, electronic_commerce_indicator, *args, **kwargs):  # noqa: E501
         """CreateAuthorizationRequest3dSecureAuthentication - a model defined in OpenAPI
+
+        Args:
+            cardholder_authentication (str): Provides evidence that the cardholder authentication occurred or that the merchant attempted authentication. This is unique for each authentication transaction.
+            electronic_commerce_indicator (str): - **AUTHENTICATED**: Approved by 3D Secure Vendor. - **ATTEMPTED**: Issuer or cardholder doesn't support 3D Secure.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -220,10 +228,8 @@ class CreateAuthorizationRequest3dSecureAuthentication(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            cardholder_authentication (str): Provides evidence that the cardholder authentication occurred or that the merchant attempted authentication. This is unique for each authentication transaction.. [optional]  # noqa: E501
-            cardholder_ip_address (str): Only required for American Express cards. Format is nnn.nnn.nnn.nnn. [optional]  # noqa: E501
-            electronic_commerce_indicator (str): AUTHENTICATED: Approved by 3D Secure Vendor; ATTEMPTED: Issuer or cardholder does not support 3D Secure. [optional]  # noqa: E501
-            transaction_id (str): Only valid for Visa transactions. [optional]  # noqa: E501
+            cardholder_ip_address (str): Only required for **American Express** cards.. [optional]  # noqa: E501
+            transaction_id (str): Only required for **Visa** cards.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -249,6 +255,8 @@ class CreateAuthorizationRequest3dSecureAuthentication(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.cardholder_authentication = cardholder_authentication
+        self.electronic_commerce_indicator = electronic_commerce_indicator
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

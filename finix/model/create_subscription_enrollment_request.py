@@ -27,10 +27,6 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
-def lazy_import():
-    from finix.model.tags import Tags
-    globals()['Tags'] = Tags
-
 
 class CreateSubscriptionEnrollmentRequest(ModelNormal):
     """
@@ -77,7 +73,6 @@ class CreateSubscriptionEnrollmentRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -92,13 +87,12 @@ class CreateSubscriptionEnrollmentRequest(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        lazy_import()
         return {
             'merchant': (str,),  # noqa: E501
             'nickname': (str,),  # noqa: E501
             'started_at': (str,),  # noqa: E501
             'ended_at': (str, none_type,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -161,7 +155,7 @@ class CreateSubscriptionEnrollmentRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             ended_at (str, none_type): When the `subscription_enrollment` will end in **DateTime** format. If left **null**, the Fee will continue in perpetuity and won't end.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -252,7 +246,7 @@ class CreateSubscriptionEnrollmentRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             ended_at (str, none_type): When the `subscription_enrollment` will end in **DateTime** format. If left **null**, the Fee will continue in perpetuity and won't end.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

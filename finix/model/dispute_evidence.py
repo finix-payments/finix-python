@@ -29,9 +29,7 @@ from finix.exceptions import ApiAttributeError
 
 def lazy_import():
     from finix.model.dispute_evidence_links import DisputeEvidenceLinks
-    from finix.model.tags import Tags
     globals()['DisputeEvidenceLinks'] = DisputeEvidenceLinks
-    globals()['Tags'] = Tags
 
 
 class DisputeEvidence(ModelNormal):
@@ -93,9 +91,12 @@ class DisputeEvidence(ModelNormal):
             'id': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
+            'application': (str,),  # noqa: E501
             'dispute': (str,),  # noqa: E501
             'state': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'identity': (str,),  # noqa: E501
+            'merchant': (str,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'links': (DisputeEvidenceLinks,),  # noqa: E501
         }
 
@@ -108,8 +109,11 @@ class DisputeEvidence(ModelNormal):
         'id': 'id',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'updated_at': 'updated_at',  # noqa: E501
+        'application': 'application',  # noqa: E501
         'dispute': 'dispute',  # noqa: E501
         'state': 'state',  # noqa: E501
+        'identity': 'identity',  # noqa: E501
+        'merchant': 'merchant',  # noqa: E501
         'tags': 'tags',  # noqa: E501
         'links': '_links',  # noqa: E501
     }
@@ -158,9 +162,12 @@ class DisputeEvidence(ModelNormal):
             id (str): The ID of the `Dispute` resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
-            dispute (str): The ID of the resource.. [optional]  # noqa: E501
+            application (str): The ID of the `Application` resource that the `Dispute` was created under.. [optional]  # noqa: E501
+            dispute (str): The ID of the `Dispute` associated with the evidence.. [optional]  # noqa: E501
             state (str): Result of the evidence uploaded. - **PENDING**: The evidence file has not yet been submitted to the Processor. No user action is required. - **SUCCEEDED**: The evidence file has been successfully sent to the Processor. No further user action is required. - **CANCELED**: The evidence file upload was not completed due to user action. - **FAILED**: An issue occurred. User action is required**. Any of the following issues could have occurred:   - There was an error in the system and the user should retry uploading their evidence file.   - There is an issue with the file and the user should retry uploading a different file.   - There is an issue and the user should contact Support.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            identity (str): - The ID of the seller's `Identity` resource.  - This is the `Identity` resource that was used to create the seller's `Merchant`.. [optional]  # noqa: E501
+            merchant (str): - The ID of the seller's `Merchant` resource.  - This is the `Merchant` account the `Dispute` was filed against.. [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (DisputeEvidenceLinks): [optional]  # noqa: E501
         """
 
@@ -246,9 +253,12 @@ class DisputeEvidence(ModelNormal):
             id (str): The ID of the `Dispute` resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
-            dispute (str): The ID of the resource.. [optional]  # noqa: E501
+            application (str): The ID of the `Application` resource that the `Dispute` was created under.. [optional]  # noqa: E501
+            dispute (str): The ID of the `Dispute` associated with the evidence.. [optional]  # noqa: E501
             state (str): Result of the evidence uploaded. - **PENDING**: The evidence file has not yet been submitted to the Processor. No user action is required. - **SUCCEEDED**: The evidence file has been successfully sent to the Processor. No further user action is required. - **CANCELED**: The evidence file upload was not completed due to user action. - **FAILED**: An issue occurred. User action is required**. Any of the following issues could have occurred:   - There was an error in the system and the user should retry uploading their evidence file.   - There is an issue with the file and the user should retry uploading a different file.   - There is an issue and the user should contact Support.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            identity (str): - The ID of the seller's `Identity` resource.  - This is the `Identity` resource that was used to create the seller's `Merchant`.. [optional]  # noqa: E501
+            merchant (str): - The ID of the seller's `Merchant` resource.  - This is the `Merchant` account the `Dispute` was filed against.. [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (DisputeEvidenceLinks): [optional]  # noqa: E501
         """
 

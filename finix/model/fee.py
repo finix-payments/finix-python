@@ -30,10 +30,8 @@ from finix.exceptions import ApiAttributeError
 def lazy_import():
     from finix.model.currency import Currency
     from finix.model.fee_links import FeeLinks
-    from finix.model.tags import Tags
     globals()['Currency'] = Currency
     globals()['FeeLinks'] = FeeLinks
-    globals()['Tags'] = Tags
 
 
 class Fee(ModelNormal):
@@ -158,7 +156,7 @@ class Fee(ModelNormal):
             'linked_id': (str,),  # noqa: E501
             'linked_type': (str,),  # noqa: E501
             'merchant': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'links': (FeeLinks,),  # noqa: E501
         }
 
@@ -237,7 +235,7 @@ class Fee(ModelNormal):
             linked_id (str): ID of the linked resource.. [optional]  # noqa: E501
             linked_type (str): The type of entity the `fee` is linked to (**null** by default).. [optional]  # noqa: E501
             merchant (str): The `Merchant` ID that the fee is being debited from.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (FeeLinks): [optional]  # noqa: E501
         """
 
@@ -332,7 +330,7 @@ class Fee(ModelNormal):
             linked_id (str): ID of the linked resource.. [optional]  # noqa: E501
             linked_type (str): The type of entity the `fee` is linked to (**null** by default).. [optional]  # noqa: E501
             merchant (str): The `Merchant` ID that the fee is being debited from.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (FeeLinks): [optional]  # noqa: E501
         """
 

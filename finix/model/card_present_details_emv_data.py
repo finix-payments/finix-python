@@ -27,10 +27,6 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
-def lazy_import():
-    from finix.model.tags import Tags
-    globals()['Tags'] = Tags
-
 
 class CardPresentDetailsEmvData(ModelNormal):
     """
@@ -65,7 +61,6 @@ class CardPresentDetailsEmvData(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = True
@@ -80,7 +75,6 @@ class CardPresentDetailsEmvData(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        lazy_import()
         return {
             'application_identifier': (str,),  # noqa: E501
             'application_label': (str,),  # noqa: E501
@@ -89,7 +83,7 @@ class CardPresentDetailsEmvData(ModelNormal):
             'cryptogram': (str,),  # noqa: E501
             'issuer_code_table_index': (str, none_type,),  # noqa: E501
             'pin_verified': (bool,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -156,7 +150,7 @@ class CardPresentDetailsEmvData(ModelNormal):
             cryptogram (str): Encrypted card infromation used to process the transaction.. [optional]  # noqa: E501
             issuer_code_table_index (str, none_type): The alphabet code table (according to ISO 8859) used by the EMV application (if provided).. [optional]  # noqa: E501
             pin_verified (bool): Details if the cardholder's PIN number was verified.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -245,7 +239,7 @@ class CardPresentDetailsEmvData(ModelNormal):
             cryptogram (str): Encrypted card infromation used to process the transaction.. [optional]  # noqa: E501
             issuer_code_table_index (str, none_type): The alphabet code table (according to ISO 8859) used by the EMV application (if provided).. [optional]  # noqa: E501
             pin_verified (bool): Details if the cardholder's PIN number was verified.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

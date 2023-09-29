@@ -31,11 +31,9 @@ def lazy_import():
     from finix.model.identity_additional_underwriting_data import IdentityAdditionalUnderwritingData
     from finix.model.identity_entity import IdentityEntity
     from finix.model.identity_links import IdentityLinks
-    from finix.model.tags import Tags
     globals()['IdentityAdditionalUnderwritingData'] = IdentityAdditionalUnderwritingData
     globals()['IdentityEntity'] = IdentityEntity
     globals()['IdentityLinks'] = IdentityLinks
-    globals()['Tags'] = Tags
 
 
 class Identity(ModelNormal):
@@ -100,7 +98,7 @@ class Identity(ModelNormal):
             'additional_underwriting_data': (IdentityAdditionalUnderwritingData,),  # noqa: E501
             'application': (str,),  # noqa: E501
             'entity': (IdentityEntity,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'links': (IdentityLinks,),  # noqa: E501
         }
 
@@ -167,7 +165,7 @@ class Identity(ModelNormal):
             additional_underwriting_data (IdentityAdditionalUnderwritingData): [optional]  # noqa: E501
             application (str): ID of the `Application` associated with the `Identity`.. [optional]  # noqa: E501
             entity (IdentityEntity): [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (IdentityLinks): [optional]  # noqa: E501
         """
 
@@ -256,7 +254,7 @@ class Identity(ModelNormal):
             additional_underwriting_data (IdentityAdditionalUnderwritingData): [optional]  # noqa: E501
             application (str): ID of the `Application` associated with the `Identity`.. [optional]  # noqa: E501
             entity (IdentityEntity): [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (IdentityLinks): [optional]  # noqa: E501
         """
 

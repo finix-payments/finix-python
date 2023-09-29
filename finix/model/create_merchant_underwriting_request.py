@@ -27,10 +27,6 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
-def lazy_import():
-    from finix.model.tags import Tags
-    globals()['Tags'] = Tags
-
 
 class CreateMerchantUnderwritingRequest(ModelNormal):
     """
@@ -57,7 +53,7 @@ class CreateMerchantUnderwritingRequest(ModelNormal):
         ('gateway',): {
             'TRIPOS_CLOUD_V1': "TRIPOS_CLOUD_V1",
             'TRIPOS_MOBILE_V1': "TRIPOS_MOBILE_V1",
-            'EXPRESS_V1': "EXPRESS_V1",
+            'DATACAP_V1': "DATACAP_V1",
         },
     }
 
@@ -70,7 +66,6 @@ class CreateMerchantUnderwritingRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -85,11 +80,10 @@ class CreateMerchantUnderwritingRequest(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        lazy_import()
         return {
             'processor': (str, none_type,),  # noqa: E501
             'gateway': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -147,8 +141,8 @@ class CreateMerchantUnderwritingRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            gateway (str): Name of the gateway that processes the `Merchant's` card present transactions. Use `gateway` only to enable a merchantto accept card present transactions.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            gateway (str): Name of the gateway that processes the `Merchant's` card present transactions. Use `gateway` only to enable a merchant to accept card present transactions.. [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -234,8 +228,8 @@ class CreateMerchantUnderwritingRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            gateway (str): Name of the gateway that processes the `Merchant's` card present transactions. Use `gateway` only to enable a merchantto accept card present transactions.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            gateway (str): Name of the gateway that processes the `Merchant's` card present transactions. Use `gateway` only to enable a merchant to accept card present transactions.. [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

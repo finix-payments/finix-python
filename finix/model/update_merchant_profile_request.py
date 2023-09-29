@@ -27,10 +27,6 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
-def lazy_import():
-    from finix.model.tags import Tags
-    globals()['Tags'] = Tags
-
 
 class UpdateMerchantProfileRequest(ModelNormal):
     """
@@ -65,7 +61,6 @@ class UpdateMerchantProfileRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -80,11 +75,11 @@ class UpdateMerchantProfileRequest(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        lazy_import()
         return {
             'fee_profile': (str,),  # noqa: E501
+            'payout_profile': (str,),  # noqa: E501
             'risk_profile': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -94,6 +89,7 @@ class UpdateMerchantProfileRequest(ModelNormal):
 
     attribute_map = {
         'fee_profile': 'fee_profile',  # noqa: E501
+        'payout_profile': 'payout_profile',  # noqa: E501
         'risk_profile': 'risk_profile',  # noqa: E501
         'tags': 'tags',  # noqa: E501
     }
@@ -140,8 +136,9 @@ class UpdateMerchantProfileRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             fee_profile (str): ID of the `fee_profile`.. [optional]  # noqa: E501
+            payout_profile (str): ID of the `payout_profile`.. [optional]  # noqa: E501
             risk_profile (str): ID of the `risk_profile`.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -224,8 +221,9 @@ class UpdateMerchantProfileRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             fee_profile (str): ID of the `fee_profile`.. [optional]  # noqa: E501
+            payout_profile (str): ID of the `payout_profile`.. [optional]  # noqa: E501
             risk_profile (str): ID of the `risk_profile`.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

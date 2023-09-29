@@ -195,9 +195,9 @@ class IdentityAdditionalUnderwritingData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            annual_ach_volume (int): The approximate annual ACH sales expected to be processed (in cents) by this merchant (max 10 characters).. [optional]  # noqa: E501
-            average_ach_transfer_amount (int): The approximate average ACH sale amount (in cents) for this merchant.. [optional]  # noqa: E501
-            average_card_transfer_amount (int): The average credit card sale amount (in cents) for this merchant.. [optional]  # noqa: E501
+            annual_ach_volume (int): The approximate annual ACH sales expected to be processed (in cents) by this seller (max 10 characters).. [optional]  # noqa: E501
+            average_ach_transfer_amount (int): The approximate average ACH sale amount (in cents) for this seller.. [optional]  # noqa: E501
+            average_card_transfer_amount (int): The average credit card sale amount (in cents) for this seller.. [optional]  # noqa: E501
             business_description (str): Description of this merchant's business (max 200 characters).. [optional]  # noqa: E501
             card_volume_distribution (IdentityAdditionalUnderwritingDataCardVolumeDistribution): [optional]  # noqa: E501
             credit_check_allowed (bool): Sets if this merchant has consented and accepted to a credit check.. [optional]  # noqa: E501
@@ -208,7 +208,7 @@ class IdentityAdditionalUnderwritingData(ModelNormal):
             merchant_agreement_ip_address (str): IP address of the merchant when this merchant accepted the merchant agreement (e.g., 42.1.1.113).. [optional]  # noqa: E501
             merchant_agreement_timestamp (str): Timestamp of when the merchant accepted Finix's Terms of Service (e.g., 2021-04-28T16:42:55Z).. [optional]  # noqa: E501
             merchant_agreement_user_agent (str): The details of the browser that was used when this merchant accepted Finix's Terms of Service (e.g., Mozilla 5.0 (Macintosh; Intel Mac OS X 10 _14_6)).. [optional]  # noqa: E501
-            refund_policy (str): Include the value that best applies to the merchant's refund policy.. [optional]  # noqa: E501
+            refund_policy (str): Include the value that best applies to the seller's refund policy.. [optional]  # noqa: E501
             volume_distribution_by_business_type (IdentityAdditionalUnderwritingDataVolumeDistributionByBusinessType): [optional]  # noqa: E501
         """
 
@@ -291,9 +291,9 @@ class IdentityAdditionalUnderwritingData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            annual_ach_volume (int): The approximate annual ACH sales expected to be processed (in cents) by this merchant (max 10 characters).. [optional]  # noqa: E501
-            average_ach_transfer_amount (int): The approximate average ACH sale amount (in cents) for this merchant.. [optional]  # noqa: E501
-            average_card_transfer_amount (int): The average credit card sale amount (in cents) for this merchant.. [optional]  # noqa: E501
+            annual_ach_volume (int): The approximate annual ACH sales expected to be processed (in cents) by this seller (max 10 characters).. [optional]  # noqa: E501
+            average_ach_transfer_amount (int): The approximate average ACH sale amount (in cents) for this seller.. [optional]  # noqa: E501
+            average_card_transfer_amount (int): The average credit card sale amount (in cents) for this seller.. [optional]  # noqa: E501
             business_description (str): Description of this merchant's business (max 200 characters).. [optional]  # noqa: E501
             card_volume_distribution (IdentityAdditionalUnderwritingDataCardVolumeDistribution): [optional]  # noqa: E501
             credit_check_allowed (bool): Sets if this merchant has consented and accepted to a credit check.. [optional]  # noqa: E501
@@ -304,7 +304,7 @@ class IdentityAdditionalUnderwritingData(ModelNormal):
             merchant_agreement_ip_address (str): IP address of the merchant when this merchant accepted the merchant agreement (e.g., 42.1.1.113).. [optional]  # noqa: E501
             merchant_agreement_timestamp (str): Timestamp of when the merchant accepted Finix's Terms of Service (e.g., 2021-04-28T16:42:55Z).. [optional]  # noqa: E501
             merchant_agreement_user_agent (str): The details of the browser that was used when this merchant accepted Finix's Terms of Service (e.g., Mozilla 5.0 (Macintosh; Intel Mac OS X 10 _14_6)).. [optional]  # noqa: E501
-            refund_policy (str): Include the value that best applies to the merchant's refund policy.. [optional]  # noqa: E501
+            refund_policy (str): Include the value that best applies to the seller's refund policy.. [optional]  # noqa: E501
             volume_distribution_by_business_type (IdentityAdditionalUnderwritingDataVolumeDistributionByBusinessType): [optional]  # noqa: E501
         """
 

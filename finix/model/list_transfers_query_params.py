@@ -76,7 +76,7 @@ class ListTransfersQueryParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'sort': (str,),  # noqa: E501
+            'accept': (str,),  # noqa: E501
             'after_cursor': (str,),  # noqa: E501
             'limit': (int,),  # noqa: E501
             'amount': (int,),  # noqa: E501
@@ -88,9 +88,9 @@ class ListTransfersQueryParams(ModelNormal):
             'created_at_lte': (str,),  # noqa: E501
             'idempotency_id': (str,),  # noqa: E501
             'id': (str,),  # noqa: E501
-            'state': (str,),  # noqa: E501
             'ready_to_settle_at_gte': (str,),  # noqa: E501
             'ready_to_settle_at_lte': (str,),  # noqa: E501
+            'state': (str,),  # noqa: E501
             'statement_descriptor': (int,),  # noqa: E501
             'trace_id': (str,),  # noqa: E501
             'updated_at_gte': (str,),  # noqa: E501
@@ -108,6 +108,8 @@ class ListTransfersQueryParams(ModelNormal):
             'merchant_processor_id': (str,),  # noqa: E501
             'type': (str,),  # noqa: E501
             'before_cursor': (str,),  # noqa: E501
+            'tags_key': (str,),  # noqa: E501
+            'tags_value': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -116,7 +118,7 @@ class ListTransfersQueryParams(ModelNormal):
 
 
     attribute_map = {
-        'sort': 'sort',  # noqa: E501
+        'accept': 'Accept',  # noqa: E501
         'after_cursor': 'after_cursor',  # noqa: E501
         'limit': 'limit',  # noqa: E501
         'amount': 'amount',  # noqa: E501
@@ -128,9 +130,9 @@ class ListTransfersQueryParams(ModelNormal):
         'created_at_lte': 'created_at.lte',  # noqa: E501
         'idempotency_id': 'idempotency_id',  # noqa: E501
         'id': 'id',  # noqa: E501
-        'state': 'state',  # noqa: E501
         'ready_to_settle_at_gte': 'ready_to_settle_at.gte',  # noqa: E501
         'ready_to_settle_at_lte': 'ready_to_settle_at.lte',  # noqa: E501
+        'state': 'state',  # noqa: E501
         'statement_descriptor': 'statement_descriptor',  # noqa: E501
         'trace_id': 'trace_id',  # noqa: E501
         'updated_at_gte': 'updated_at.gte',  # noqa: E501
@@ -148,6 +150,8 @@ class ListTransfersQueryParams(ModelNormal):
         'merchant_processor_id': 'merchant_processor_id',  # noqa: E501
         'type': 'type',  # noqa: E501
         'before_cursor': 'before_cursor',  # noqa: E501
+        'tags_key': 'tags.key',  # noqa: E501
+        'tags_value': 'tags.value',  # noqa: E501
     }
 
     read_only_vars = {
@@ -191,7 +195,7 @@ class ListTransfersQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            sort (str): Specify key to be used for sorting the collection.. [optional]  # noqa: E501
+            accept (str): Body Header. [optional]  # noqa: E501
             after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
             limit (int): The numbers of items to return.. [optional]  # noqa: E501
             amount (int): Filter by an amount equal to the given value.. [optional]  # noqa: E501
@@ -203,9 +207,9 @@ class ListTransfersQueryParams(ModelNormal):
             created_at_lte (str): Filter where `created_at` is before the given date.. [optional]  # noqa: E501
             idempotency_id (str): Filter by `idempotency_id`.. [optional]  # noqa: E501
             id (str): Filter by `id`.. [optional]  # noqa: E501
+            ready_to_settle_at_gte (str): Filter where `ready_to_settle_at` is after the given date. Only available on `Finix-Version: 2022-02-01`. For more details, see [Versioning](/guides/developers/versioning/).. [optional]  # noqa: E501
+            ready_to_settle_at_lte (str): Filter where `ready_to_settle_at` is before the given date. Only available on `Finix-Version: 2022-02-01`. For more details, see [Versioning](/guides/developers/versioning/).. [optional]  # noqa: E501
             state (str): Filter by Transaction state.. [optional]  # noqa: E501
-            ready_to_settle_at_gte (str): Filter by `ready_to_settle_at`.. [optional]  # noqa: E501
-            ready_to_settle_at_lte (str): Filter by `ready_to_settle_at`.. [optional]  # noqa: E501
             statement_descriptor (int): Filter by `statement_descriptor`.. [optional]  # noqa: E501
             trace_id (str): Filter by `trace_id`.. [optional]  # noqa: E501
             updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]  # noqa: E501
@@ -223,6 +227,8 @@ class ListTransfersQueryParams(ModelNormal):
             merchant_processor_id (str): Filter by `Processor` ID.. [optional]  # noqa: E501
             type (str): Filter by `Transfer` type. Available type filters include: All, Debits, Refunds, or Credits.. [optional]  # noqa: E501
             before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
+            tags_key (str): Filter by the [`key` of a `Tag`](/api/overview/#section/Tags).. [optional]  # noqa: E501
+            tags_value (str): Filter by the [value of a `Tag`](https://finix.com/docs/api/overview/#section/Tags).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -304,7 +310,7 @@ class ListTransfersQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            sort (str): Specify key to be used for sorting the collection.. [optional]  # noqa: E501
+            accept (str): Body Header. [optional]  # noqa: E501
             after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
             limit (int): The numbers of items to return.. [optional]  # noqa: E501
             amount (int): Filter by an amount equal to the given value.. [optional]  # noqa: E501
@@ -316,9 +322,9 @@ class ListTransfersQueryParams(ModelNormal):
             created_at_lte (str): Filter where `created_at` is before the given date.. [optional]  # noqa: E501
             idempotency_id (str): Filter by `idempotency_id`.. [optional]  # noqa: E501
             id (str): Filter by `id`.. [optional]  # noqa: E501
+            ready_to_settle_at_gte (str): Filter where `ready_to_settle_at` is after the given date. Only available on `Finix-Version: 2022-02-01`. For more details, see [Versioning](/guides/developers/versioning/).. [optional]  # noqa: E501
+            ready_to_settle_at_lte (str): Filter where `ready_to_settle_at` is before the given date. Only available on `Finix-Version: 2022-02-01`. For more details, see [Versioning](/guides/developers/versioning/).. [optional]  # noqa: E501
             state (str): Filter by Transaction state.. [optional]  # noqa: E501
-            ready_to_settle_at_gte (str): Filter by `ready_to_settle_at`.. [optional]  # noqa: E501
-            ready_to_settle_at_lte (str): Filter by `ready_to_settle_at`.. [optional]  # noqa: E501
             statement_descriptor (int): Filter by `statement_descriptor`.. [optional]  # noqa: E501
             trace_id (str): Filter by `trace_id`.. [optional]  # noqa: E501
             updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]  # noqa: E501
@@ -336,6 +342,8 @@ class ListTransfersQueryParams(ModelNormal):
             merchant_processor_id (str): Filter by `Processor` ID.. [optional]  # noqa: E501
             type (str): Filter by `Transfer` type. Available type filters include: All, Debits, Refunds, or Credits.. [optional]  # noqa: E501
             before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
+            tags_key (str): Filter by the [`key` of a `Tag`](/api/overview/#section/Tags).. [optional]  # noqa: E501
+            tags_value (str): Filter by the [value of a `Tag`](https://finix.com/docs/api/overview/#section/Tags).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -28,11 +28,11 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from finix.model.application_links_application_profile import ApplicationLinksApplicationProfile
+    from finix.model.application_links_authorizations import ApplicationLinksAuthorizations
     from finix.model.application_links_self import ApplicationLinksSelf
     from finix.model.application_profile_links_application import ApplicationProfileLinksApplication
     from finix.model.payment_instrument_token_links_verifications import PaymentInstrumentTokenLinksVerifications
-    globals()['ApplicationLinksApplicationProfile'] = ApplicationLinksApplicationProfile
+    globals()['ApplicationLinksAuthorizations'] = ApplicationLinksAuthorizations
     globals()['ApplicationLinksSelf'] = ApplicationLinksSelf
     globals()['ApplicationProfileLinksApplication'] = ApplicationProfileLinksApplication
     globals()['PaymentInstrumentTokenLinksVerifications'] = PaymentInstrumentTokenLinksVerifications
@@ -89,10 +89,10 @@ class PaymentInstrumentTokenLinks(ModelNormal):
         lazy_import()
         return {
             'application': (ApplicationProfileLinksApplication,),  # noqa: E501
-            'authorizations': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'identity': (ApplicationLinksApplicationProfile,),  # noqa: E501
+            'authorizations': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'identity': (ApplicationLinksAuthorizations,),  # noqa: E501
             'self': (ApplicationLinksSelf,),  # noqa: E501
-            'transfers': (ApplicationLinksApplicationProfile,),  # noqa: E501
+            'transfers': (ApplicationLinksAuthorizations,),  # noqa: E501
             'verifications': (PaymentInstrumentTokenLinksVerifications,),  # noqa: E501
         }
 
@@ -152,10 +152,10 @@ class PaymentInstrumentTokenLinks(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             application (ApplicationProfileLinksApplication): [optional]  # noqa: E501
-            authorizations (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            identity (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            authorizations (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            identity (ApplicationLinksAuthorizations): [optional]  # noqa: E501
             self (ApplicationLinksSelf): [optional]  # noqa: E501
-            transfers (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            transfers (ApplicationLinksAuthorizations): [optional]  # noqa: E501
             verifications (PaymentInstrumentTokenLinksVerifications): [optional]  # noqa: E501
         """
 
@@ -239,10 +239,10 @@ class PaymentInstrumentTokenLinks(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             application (ApplicationProfileLinksApplication): [optional]  # noqa: E501
-            authorizations (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            identity (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            authorizations (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            identity (ApplicationLinksAuthorizations): [optional]  # noqa: E501
             self (ApplicationLinksSelf): [optional]  # noqa: E501
-            transfers (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            transfers (ApplicationLinksAuthorizations): [optional]  # noqa: E501
             verifications (PaymentInstrumentTokenLinksVerifications): [optional]  # noqa: E501
         """
 

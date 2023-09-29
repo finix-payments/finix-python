@@ -29,9 +29,7 @@ from finix.exceptions import ApiAttributeError
 
 def lazy_import():
     from finix.model.configuration_details import ConfigurationDetails
-    from finix.model.tags import Tags
     globals()['ConfigurationDetails'] = ConfigurationDetails
-    globals()['Tags'] = Tags
 
 
 class CreateDevice(ModelNormal):
@@ -58,16 +56,29 @@ class CreateDevice(ModelNormal):
     allowed_values = {
         ('model',): {
             'BBPOS': "BBPOS",
-            'MX915': "MX915",
-            'MX925': "MX925",
+            'DESK_3500': "DESK_3500",
+            'DESK_5000': "DESK_5000",
             'IPP320': "IPP320",
             'IPP350': "IPP350",
             'ISC250': "ISC250",
             'ISC480': "ISC480",
             'ISMP4': "ISMP4",
-            'ANDROID': "ANDROID",
             'LANE_3000': "LANE_3000",
+            'LANE_5000': "LANE_5000",
+            'LANE_7000': "LANE_7000",
+            'LANE_8000': "LANE_8000",
             'LINK_2500': "LINK_2500",
+            'MOVE_5000': "MOVE_5000",
+            'MX915': "MX915",
+            'MX925': "MX925",
+            'PAX_A30': "PAX_A30",
+            'PAX_A35': "PAX_A35",
+            'PAX_A60': "PAX_A60",
+            'PAX_A77': "PAX_A77",
+            'PAX_A920PRO': "PAX_A920PRO",
+            'PAX_ARIES6': "PAX_ARIES6",
+            'PAX_ARIES8': "PAX_ARIES8",
+            'PAX_IM30': "PAX_IM30",
         },
     }
 
@@ -101,7 +112,7 @@ class CreateDevice(ModelNormal):
             'name': (str,),  # noqa: E501
             'configuration': (ConfigurationDetails,),  # noqa: E501
             'description': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -164,7 +175,7 @@ class CreateDevice(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             configuration (ConfigurationDetails): [optional]  # noqa: E501
             description (str): Additional information about device (e.g. self serving terminal).. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -254,7 +265,7 @@ class CreateDevice(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             configuration (ConfigurationDetails): [optional]  # noqa: E501
             description (str): Additional information about device (e.g. self serving terminal).. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

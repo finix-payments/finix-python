@@ -28,10 +28,10 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from finix.model.tags import Tags
     from finix.model.verification_links import VerificationLinks
-    globals()['Tags'] = Tags
+    from finix.model.verification_payment_instrument_verification_details import VerificationPaymentInstrumentVerificationDetails
     globals()['VerificationLinks'] = VerificationLinks
+    globals()['VerificationPaymentInstrumentVerificationDetails'] = VerificationPaymentInstrumentVerificationDetails
 
 
 class Verification(ModelNormal):
@@ -98,10 +98,11 @@ class Verification(ModelNormal):
             'merchant_identity': (str, none_type,),  # noqa: E501
             'messages': ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}],),  # noqa: E501
             'payment_instrument': (str, none_type,),  # noqa: E501
+            'payment_instrument_verification_details': (VerificationPaymentInstrumentVerificationDetails,),  # noqa: E501
             'processor': (str,),  # noqa: E501
             'raw': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'state': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'trace_id': (str,),  # noqa: E501
             'links': (VerificationLinks,),  # noqa: E501
         }
@@ -121,6 +122,7 @@ class Verification(ModelNormal):
         'merchant_identity': 'merchant_identity',  # noqa: E501
         'messages': 'messages',  # noqa: E501
         'payment_instrument': 'payment_instrument',  # noqa: E501
+        'payment_instrument_verification_details': 'payment_instrument_verification_details',  # noqa: E501
         'processor': 'processor',  # noqa: E501
         'raw': 'raw',  # noqa: E501
         'state': 'state',  # noqa: E501
@@ -178,11 +180,12 @@ class Verification(ModelNormal):
             merchant (str, none_type): ID of the `Merchant` resource.. [optional]  # noqa: E501
             merchant_identity (str, none_type): ID of the `Identity` associated with the `Merchant`.. [optional]  # noqa: E501
             messages ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): Provides additional details about the verification (e.g why it failed). This field is usually **null**.. [optional]  # noqa: E501
-            payment_instrument (str, none_type): The `Payment Instrument` that'll be used to settle the `Merchant's` processed funds.. [optional]  # noqa: E501
+            payment_instrument (str, none_type): The `Payment Instrument` that's used to settle the `Merchant's` processed funds.. [optional]  # noqa: E501
+            payment_instrument_verification_details (VerificationPaymentInstrumentVerificationDetails): [optional]  # noqa: E501
             processor (str): Name of the verification processor.. [optional]  # noqa: E501
             raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Raw response from the processor.. [optional]  # noqa: E501
             state (str): The status of the `Verification` request.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             trace_id (str): Trace ID of the `Verification`. The processor sends back the `trace_id` so you can track the verification end-to-end.. [optional]  # noqa: E501
             links (VerificationLinks): [optional]  # noqa: E501
         """
@@ -274,11 +277,12 @@ class Verification(ModelNormal):
             merchant (str, none_type): ID of the `Merchant` resource.. [optional]  # noqa: E501
             merchant_identity (str, none_type): ID of the `Identity` associated with the `Merchant`.. [optional]  # noqa: E501
             messages ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): Provides additional details about the verification (e.g why it failed). This field is usually **null**.. [optional]  # noqa: E501
-            payment_instrument (str, none_type): The `Payment Instrument` that'll be used to settle the `Merchant's` processed funds.. [optional]  # noqa: E501
+            payment_instrument (str, none_type): The `Payment Instrument` that's used to settle the `Merchant's` processed funds.. [optional]  # noqa: E501
+            payment_instrument_verification_details (VerificationPaymentInstrumentVerificationDetails): [optional]  # noqa: E501
             processor (str): Name of the verification processor.. [optional]  # noqa: E501
             raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Raw response from the processor.. [optional]  # noqa: E501
             state (str): The status of the `Verification` request.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             trace_id (str): Trace ID of the `Verification`. The processor sends back the `trace_id` so you can track the verification end-to-end.. [optional]  # noqa: E501
             links (VerificationLinks): [optional]  # noqa: E501
         """

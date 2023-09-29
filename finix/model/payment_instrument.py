@@ -32,12 +32,10 @@ def lazy_import():
     from finix.model.country import Country
     from finix.model.currency import Currency
     from finix.model.payment_instrument_links import PaymentInstrumentLinks
-    from finix.model.tags import Tags
     globals()['Address'] = Address
     globals()['Country'] = Country
     globals()['Currency'] = Currency
     globals()['PaymentInstrumentLinks'] = PaymentInstrumentLinks
-    globals()['Tags'] = Tags
 
 
 class PaymentInstrument(ModelNormal):
@@ -63,28 +61,63 @@ class PaymentInstrument(ModelNormal):
 
     allowed_values = {
         ('address_verification',): {
-            'POSTAL_CODE_AND_STREET_MATCH': "POSTAL_CODE_AND_STREET_MATCH",
-            'STREET_MATCH': "STREET_MATCH",
-            'POSTAL_CODE_MATCH': "POSTAL_CODE_MATCH",
+            'NOT_SUPPORTED': "NOT_SUPPORTED",
             'NO_ADDRESS': "NO_ADDRESS",
             'NO_MATCH': "NO_MATCH",
-            'NOT_SUPPORTED': "NOT_SUPPORTED",
+            'POSTAL_CODE_AND_STREET_MATCH': "POSTAL_CODE_AND_STREET_MATCH",
+            'POSTAL_CODE_MATCH': "POSTAL_CODE_MATCH",
+            'STREET_MATCH': "STREET_MATCH",
+            'UNKNOWN': "UNKNOWN",
+        },
+        ('brand',): {
+            'AMERICAN_EXPRESS': "AMERICAN_EXPRESS",
+            'CHINA_T_UNION': "CHINA_T_UNION",
+            'CHINA_UNION_PAY': "CHINA_UNION_PAY",
+            'DANKORT': "DANKORT",
+            'DINERS_CLUB': "DINERS_CLUB",
+            'DINERS_CLUB_INTERNATIONAL': "DINERS_CLUB_INTERNATIONAL",
+            'DISCOVER': "DISCOVER",
+            'INSTAPAYMENT': "INSTAPAYMENT",
+            'INTERPAYMENT': "INTERPAYMENT",
+            'JCB': "JCB",
+            'LANKAPAY': "LANKAPAY",
+            'MAESTRO': "MAESTRO",
+            'MASTERCARD': "MASTERCARD",
+            'MIR': "MIR",
+            'RUPAY': "RUPAY",
+            'TROY': "TROY",
+            'UATP': "UATP",
+            'UNKNOWN': "UNKNOWN",
+            'VERVE': "VERVE",
+            'VISA': "VISA",
+        },
+        ('card_type',): {
+            'CREDIT': "CREDIT",
+            'DEBIT': "DEBIT",
+            'HSA_FSA': "HSA_FSA",
+            'NON_RELOADABLE_PREPAID': "NON_RELOADABLE_PREPAID",
+            'RELOADABLE_PREPAID': "RELOADABLE_PREPAID",
             'UNKNOWN': "UNKNOWN",
         },
         ('instrument_type',): {
-            'BANK_ACCOUNT': "BANK_ACCOUNT",
-            'TOKEN': "TOKEN",
             'APPLE_PAY': "APPLE_PAY",
-            'VIRTUAL': "VIRTUAL",
-            'PAYMENT_CARD_PRESENT': "PAYMENT_CARD_PRESENT",
+            'BANK_ACCOUNT': "BANK_ACCOUNT",
             'GOOGLE_PAY': "GOOGLE_PAY",
-            'VANTIV_OMNI_TOKEN': "VANTIV_OMNI_TOKEN",
-            'SWIPED_PAYMENT_CARD': "SWIPED_PAYMENT_CARD",
             'PAYMENT_CARD': "PAYMENT_CARD",
+            'PAYMENT_CARD_PRESENT': "PAYMENT_CARD_PRESENT",
+            'SWIPED_PAYMENT_CARD': "SWIPED_PAYMENT_CARD",
+            'TOKEN': "TOKEN",
+            'VANTIV_OMNI_TOKEN': "VANTIV_OMNI_TOKEN",
+            'VIRTUAL': "VIRTUAL",
+        },
+        ('issuer_country',): {
+            'NON_USA': "NON_USA",
+            'UNKNOWN': "UNKNOWN",
+            'USA': "USA",
         },
         ('payload_type',): {
-            'SOURCE': "SOURCE",
             'DESTINATION': "DESTINATION",
+            'SOURCE': "SOURCE",
         },
         ('security_code_verification',): {
             'MATCHED': "MATCHED",
@@ -92,26 +125,24 @@ class PaymentInstrument(ModelNormal):
             'UNMATCHED': "UNMATCHED",
         },
         ('type',): {
-            'BANK_ACCOUNT': "BANK_ACCOUNT",
-            'TOKEN': "TOKEN",
             'APPLE_PAY': "APPLE_PAY",
-            'VIRTUAL': "VIRTUAL",
-            'PAYMENT_CARD_PRESENT': "PAYMENT_CARD_PRESENT",
+            'BANK_ACCOUNT': "BANK_ACCOUNT",
             'GOOGLE_PAY': "GOOGLE_PAY",
-            'VANTIV_OMNI_TOKEN': "VANTIV_OMNI_TOKEN",
-            'SWIPED_PAYMENT_CARD': "SWIPED_PAYMENT_CARD",
             'PAYMENT_CARD': "PAYMENT_CARD",
+            'PAYMENT_CARD_PRESENT': "PAYMENT_CARD_PRESENT",
+            'SWIPED_PAYMENT_CARD': "SWIPED_PAYMENT_CARD",
+            'TOKEN': "TOKEN",
+            'VANTIV_OMNI_TOKEN': "VANTIV_OMNI_TOKEN",
+            'VIRTUAL': "VIRTUAL",
         },
         ('account_type',): {
             'CHECKING': "CHECKING",
             'SAVINGS': "SAVINGS",
-            'CORPORATE': "CORPORATE",
-            'CORP_SAVINGS': "CORP_SAVINGS",
         },
         ('bank_account_validation_check',): {
-            'NOT_ATTEMPTED': "NOT_ATTEMPTED",
             'INCONCLUSIVE': "INCONCLUSIVE",
             'INVALID': "INVALID",
+            'NOT_ATTEMPTED': "NOT_ATTEMPTED",
             'VALID': "VALID",
         },
     }
@@ -149,7 +180,7 @@ class PaymentInstrument(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (str, none_type,),  # noqa: E501
+            'id': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
             'address': (Address,),  # noqa: E501
@@ -160,19 +191,21 @@ class PaymentInstrument(ModelNormal):
             'card_name': (str, none_type,),  # noqa: E501
             'card_type': (str,),  # noqa: E501
             'currency': (Currency,),  # noqa: E501
+            'enabled': (bool,),  # noqa: E501
             'expiration_month': (int,),  # noqa: E501
             'expiration_year': (int,),  # noqa: E501
             'fast_funds_indicator': (str,),  # noqa: E501
             'fingerprint': (str,),  # noqa: E501
-            'identity': (str, none_type,),  # noqa: E501
+            'identity': (str,),  # noqa: E501
             'instrument_type': (str,),  # noqa: E501
+            'issuer_country': (str,),  # noqa: E501
             'last_four': (str,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
             'online_gambing_block_indicator': (str,),  # noqa: E501
             'payload_type': (str,),  # noqa: E501
             'push_funds_block_indicator': (str,),  # noqa: E501
             'security_code_verification': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'type': (str,),  # noqa: E501
             'links': (PaymentInstrumentLinks,),  # noqa: E501
             'account_type': (str,),  # noqa: E501
@@ -199,12 +232,14 @@ class PaymentInstrument(ModelNormal):
         'card_name': 'card_name',  # noqa: E501
         'card_type': 'card_type',  # noqa: E501
         'currency': 'currency',  # noqa: E501
+        'enabled': 'enabled',  # noqa: E501
         'expiration_month': 'expiration_month',  # noqa: E501
         'expiration_year': 'expiration_year',  # noqa: E501
         'fast_funds_indicator': 'fast_funds_indicator',  # noqa: E501
         'fingerprint': 'fingerprint',  # noqa: E501
         'identity': 'identity',  # noqa: E501
         'instrument_type': 'instrument_type',  # noqa: E501
+        'issuer_country': 'issuer_country',  # noqa: E501
         'last_four': 'last_four',  # noqa: E501
         'name': 'name',  # noqa: E501
         'online_gambing_block_indicator': 'online_gambing_block_indicator',  # noqa: E501
@@ -262,34 +297,36 @@ class PaymentInstrument(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            id (str): The ID of the `Payment Instrument`.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             address (Address): [optional]  # noqa: E501
             address_verification (str): Additional address information that’s required to verify the identity of the merchant.. [optional]  # noqa: E501
-            application (str): The ID of the resource.. [optional]  # noqa: E501
+            application (str): The ID of the `Application` resource the `Payment Instrument` was created under.. [optional]  # noqa: E501
             bin (str): Bank Identification number for the `Payment Instrument`.. [optional]  # noqa: E501
             brand (str): The `brand` of the card saved in the `Payment Instrument`.. [optional]  # noqa: E501
             card_name (str, none_type): A custom name you can include to identify the card being used (e.g. **Business Card**).. [optional]  # noqa: E501
             card_type (str): The type of payment card saved in the `Payment Instrument`.. [optional]  # noqa: E501
             currency (Currency): [optional]  # noqa: E501
+            enabled (bool): Details if the `Payment Instrument` resource is enabled. Default value is **true**; set to **false** to disable the `Payment Instrument`.. [optional]  # noqa: E501
             expiration_month (int): Expiration month (e.g. 12 for December).. [optional]  # noqa: E501
             expiration_year (int): 4-digit expiration year.. [optional]  # noqa: E501
             fast_funds_indicator (str): Details if Fast Funds is enabled for the card.. [optional]  # noqa: E501
             fingerprint (str): Unique ID that represents the tokenized card data.. [optional]  # noqa: E501
-            identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            identity (str): The ID of the `Identity` used to create the `Payment Instrument` resource.. [optional]  # noqa: E501
             instrument_type (str): The type of `Payment Instrument`.. [optional]  # noqa: E501
+            issuer_country (str): Details what country the card was issued in:<li><strong>USA</strong>: The card was issued inside the United States.<li><strong>NON_USA</strong>: The card was issued outside of the United States.<li><strong>UNKNOWN</strong>: Processor did not return an issuer country for this particular BIN.. [optional]  # noqa: E501
             last_four (str): Last four digits of the card or bank account number.. [optional]  # noqa: E501
             name (str, none_type): The name of the bank account or card owner.. [optional]  # noqa: E501
             online_gambing_block_indicator (str): Detailes if the card is enabled to receive push-payments for online gambling payouts.. [optional]  # noqa: E501
             payload_type (str): [optional]  # noqa: E501
             push_funds_block_indicator (str): Details if the card is enabled to receive push-to-card disbursements.. [optional]  # noqa: E501
             security_code_verification (str): Details the results of the Card Verification Code check.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             type (str): Type of `Payment Instrument`.. [optional]  # noqa: E501
             links (PaymentInstrumentLinks): [optional]  # noqa: E501
             account_type (str): Details what kind of **BANK_ACCOUNT** is being used.. [optional]  # noqa: E501
-            bank_account_validation_check (str): Details the results of the bank account validation check if `attempt_bank_account_validation_check` is set to **true**.. [optional] if omitted the server will use the default value of "NOT_ATTEMPTED"  # noqa: E501
+            bank_account_validation_check (str): Details the results of the bank account validation check if `attempt_bank_account_validation_check` is set to **true** or the `Payment Instrument` gets used to create a `Transfer`. - **INCONCLUSIVE**: A verification check was performed, but the bank account couldn't be found or verified with the issuing bank. Reach out to the buyer to verify the details collected or request another method of payment,  - **INVALID**: The `Payment Instrument` was used in transactions that returned one of the following ACH errors: <ul><li>**Account Does Not Allow ACH Transactions**</li><li>**Account is Closed**</li><li>**Account Funds are Frozen**</li><li>**Deceased Account Holder**</li><li>**Invalid Account Number**</li><li>**Invalid Routing Number**</li><li>**No Account on File**</li></ul>. For more details on the different ACH failure codes, see [ACH Direct Debit.](/guides/payments/online-payments/getting-started/finix-api/ach-echeck/#failed-ach-direct-debits) - **NOT_ATTEMPTED**: A verification check wasn't performed and the `Payment Instrument` hasn't been used to create a `Transfer` or `Authorization`. - **VALID**: The bank account was verified. The `Payment Instrument` can be used to create [ACH Direct Debits.](/guides/payments/online-payments/getting-started/finix-api/ach-echeck/#failed-ach-direct-debits). [optional] if omitted the server will use the default value of "NOT_ATTEMPTED"  # noqa: E501
             bank_code (str): The routing number of the bank account.. [optional]  # noqa: E501
             country (Country): [optional]  # noqa: E501
             masked_account_number (str, none_type): The last 4 digits of the account number used to create the `Payment Instrument`.. [optional]  # noqa: E501
@@ -374,34 +411,36 @@ class PaymentInstrument(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            id (str): The ID of the `Payment Instrument`.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             address (Address): [optional]  # noqa: E501
             address_verification (str): Additional address information that’s required to verify the identity of the merchant.. [optional]  # noqa: E501
-            application (str): The ID of the resource.. [optional]  # noqa: E501
+            application (str): The ID of the `Application` resource the `Payment Instrument` was created under.. [optional]  # noqa: E501
             bin (str): Bank Identification number for the `Payment Instrument`.. [optional]  # noqa: E501
             brand (str): The `brand` of the card saved in the `Payment Instrument`.. [optional]  # noqa: E501
             card_name (str, none_type): A custom name you can include to identify the card being used (e.g. **Business Card**).. [optional]  # noqa: E501
             card_type (str): The type of payment card saved in the `Payment Instrument`.. [optional]  # noqa: E501
             currency (Currency): [optional]  # noqa: E501
+            enabled (bool): Details if the `Payment Instrument` resource is enabled. Default value is **true**; set to **false** to disable the `Payment Instrument`.. [optional]  # noqa: E501
             expiration_month (int): Expiration month (e.g. 12 for December).. [optional]  # noqa: E501
             expiration_year (int): 4-digit expiration year.. [optional]  # noqa: E501
             fast_funds_indicator (str): Details if Fast Funds is enabled for the card.. [optional]  # noqa: E501
             fingerprint (str): Unique ID that represents the tokenized card data.. [optional]  # noqa: E501
-            identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            identity (str): The ID of the `Identity` used to create the `Payment Instrument` resource.. [optional]  # noqa: E501
             instrument_type (str): The type of `Payment Instrument`.. [optional]  # noqa: E501
+            issuer_country (str): Details what country the card was issued in:<li><strong>USA</strong>: The card was issued inside the United States.<li><strong>NON_USA</strong>: The card was issued outside of the United States.<li><strong>UNKNOWN</strong>: Processor did not return an issuer country for this particular BIN.. [optional]  # noqa: E501
             last_four (str): Last four digits of the card or bank account number.. [optional]  # noqa: E501
             name (str, none_type): The name of the bank account or card owner.. [optional]  # noqa: E501
             online_gambing_block_indicator (str): Detailes if the card is enabled to receive push-payments for online gambling payouts.. [optional]  # noqa: E501
             payload_type (str): [optional]  # noqa: E501
             push_funds_block_indicator (str): Details if the card is enabled to receive push-to-card disbursements.. [optional]  # noqa: E501
             security_code_verification (str): Details the results of the Card Verification Code check.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             type (str): Type of `Payment Instrument`.. [optional]  # noqa: E501
             links (PaymentInstrumentLinks): [optional]  # noqa: E501
             account_type (str): Details what kind of **BANK_ACCOUNT** is being used.. [optional]  # noqa: E501
-            bank_account_validation_check (str): Details the results of the bank account validation check if `attempt_bank_account_validation_check` is set to **true**.. [optional] if omitted the server will use the default value of "NOT_ATTEMPTED"  # noqa: E501
+            bank_account_validation_check (str): Details the results of the bank account validation check if `attempt_bank_account_validation_check` is set to **true** or the `Payment Instrument` gets used to create a `Transfer`. - **INCONCLUSIVE**: A verification check was performed, but the bank account couldn't be found or verified with the issuing bank. Reach out to the buyer to verify the details collected or request another method of payment,  - **INVALID**: The `Payment Instrument` was used in transactions that returned one of the following ACH errors: <ul><li>**Account Does Not Allow ACH Transactions**</li><li>**Account is Closed**</li><li>**Account Funds are Frozen**</li><li>**Deceased Account Holder**</li><li>**Invalid Account Number**</li><li>**Invalid Routing Number**</li><li>**No Account on File**</li></ul>. For more details on the different ACH failure codes, see [ACH Direct Debit.](/guides/payments/online-payments/getting-started/finix-api/ach-echeck/#failed-ach-direct-debits) - **NOT_ATTEMPTED**: A verification check wasn't performed and the `Payment Instrument` hasn't been used to create a `Transfer` or `Authorization`. - **VALID**: The bank account was verified. The `Payment Instrument` can be used to create [ACH Direct Debits.](/guides/payments/online-payments/getting-started/finix-api/ach-echeck/#failed-ach-direct-debits). [optional] if omitted the server will use the default value of "NOT_ATTEMPTED"  # noqa: E501
             bank_code (str): The routing number of the bank account.. [optional]  # noqa: E501
             country (Country): [optional]  # noqa: E501
             masked_account_number (str, none_type): The last 4 digits of the account number used to create the `Payment Instrument`.. [optional]  # noqa: E501

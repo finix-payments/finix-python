@@ -352,7 +352,7 @@ class ProcessorSystemConfig(ModelNormal):
             'acquiring_bin': (str,),  # noqa: E501
             'allow_credit_for_partner': (bool,),  # noqa: E501
             'available_countries': ([Country],),  # noqa: E501
-            'business_application_id': (str, none_type,),  # noqa: E501
+            'business_application_id': (str,),  # noqa: E501
             'class_key_identifier': (str,),  # noqa: E501
             'config': (ProcessorSystemConfigConfig,),  # noqa: E501
             'default_currencies': ([Currency],),  # noqa: E501
@@ -465,7 +465,7 @@ class ProcessorSystemConfig(ModelNormal):
             acquiring_bin (str): The Bank Identification Number (BIN) the `Processor` is registered under with Visa Direct.. [optional]  # noqa: E501
             allow_credit_for_partner (bool): Field used by Finix and processor to handle transactions.. [optional]  # noqa: E501
             available_countries ([Country]): Details the countries the `Processor` is avalible in.. [optional]  # noqa: E501
-            business_application_id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            business_application_id (str): The ID of the `Application` linked to the `Processor`.. [optional]  # noqa: E501
             class_key_identifier (str): Field used by processor to communicate with Finix.. [optional] if omitted the server will use the default value of "io.finix.visa.direct.client.VisaSystemConfig"  # noqa: E501
             config (ProcessorSystemConfigConfig): [optional]  # noqa: E501
             default_currencies ([Currency]): ISO 4217 3 letter currency code.. [optional]  # noqa: E501
@@ -577,7 +577,7 @@ class ProcessorSystemConfig(ModelNormal):
             acquiring_bin (str): The Bank Identification Number (BIN) the `Processor` is registered under with Visa Direct.. [optional]  # noqa: E501
             allow_credit_for_partner (bool): Field used by Finix and processor to handle transactions.. [optional]  # noqa: E501
             available_countries ([Country]): Details the countries the `Processor` is avalible in.. [optional]  # noqa: E501
-            business_application_id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            business_application_id (str): The ID of the `Application` linked to the `Processor`.. [optional]  # noqa: E501
             class_key_identifier (str): Field used by processor to communicate with Finix.. [optional] if omitted the server will use the default value of "io.finix.visa.direct.client.VisaSystemConfig"  # noqa: E501
             config (ProcessorSystemConfigConfig): [optional]  # noqa: E501
             default_currencies ([Currency]): ISO 4217 3 letter currency code.. [optional]  # noqa: E501

@@ -76,13 +76,36 @@ class ListDisputesQueryParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'sort': (str,),  # noqa: E501
-            'offset': (int,),  # noqa: E501
+            'accept': (str,),  # noqa: E501
             'limit': (int,),  # noqa: E501
             'created_at_gte': (str,),  # noqa: E501
             'created_at_lte': (str,),  # noqa: E501
             'updated_at_gte': (str,),  # noqa: E501
             'updated_at_lte': (str,),  # noqa: E501
+            'transfer_id': (str,),  # noqa: E501
+            'adjustment_transfer_id': (str,),  # noqa: E501
+            'amount': (int,),  # noqa: E501
+            'amount_gte': (int,),  # noqa: E501
+            'amount_gt': (int,),  # noqa: E501
+            'amount_lt': (int,),  # noqa: E501
+            'state': (str,),  # noqa: E501
+            'response_state': (str,),  # noqa: E501
+            'respond_by_lte': (str,),  # noqa: E501
+            'respond_by_gte': (str,),  # noqa: E501
+            'instrument_bin': (str,),  # noqa: E501
+            'instrument_brand_type': (str,),  # noqa: E501
+            'merchant_identity_id': (str,),  # noqa: E501
+            'merchant_identity_name': (str,),  # noqa: E501
+            'instrument_name': (str,),  # noqa: E501
+            'instrument_type': (str,),  # noqa: E501
+            'merchant_id': (str,),  # noqa: E501
+            'merchant_mid': (str,),  # noqa: E501
+            'instrument_card_last4': (str,),  # noqa: E501
+            'instrument_card_type': (str,),  # noqa: E501
+            'instrument_fingerprint': (str,),  # noqa: E501
+            'before_cursor': (str,),  # noqa: E501
+            'tags_key': (str,),  # noqa: E501
+            'tags_value': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -91,13 +114,36 @@ class ListDisputesQueryParams(ModelNormal):
 
 
     attribute_map = {
-        'sort': 'sort',  # noqa: E501
-        'offset': 'offset',  # noqa: E501
+        'accept': 'Accept',  # noqa: E501
         'limit': 'limit',  # noqa: E501
         'created_at_gte': 'created_at.gte',  # noqa: E501
         'created_at_lte': 'created_at.lte',  # noqa: E501
         'updated_at_gte': 'updated_at.gte',  # noqa: E501
         'updated_at_lte': 'updated_at.lte',  # noqa: E501
+        'transfer_id': 'transfer_id',  # noqa: E501
+        'adjustment_transfer_id': 'adjustment_transfer_id',  # noqa: E501
+        'amount': 'amount',  # noqa: E501
+        'amount_gte': 'amount.gte',  # noqa: E501
+        'amount_gt': 'amount.gt',  # noqa: E501
+        'amount_lt': 'amount.lt',  # noqa: E501
+        'state': 'state',  # noqa: E501
+        'response_state': 'response_state',  # noqa: E501
+        'respond_by_lte': 'respond_by.lte',  # noqa: E501
+        'respond_by_gte': 'respond_by.gte',  # noqa: E501
+        'instrument_bin': 'instrument_bin',  # noqa: E501
+        'instrument_brand_type': 'instrument_brand_type',  # noqa: E501
+        'merchant_identity_id': 'merchant_identity_id',  # noqa: E501
+        'merchant_identity_name': 'merchant_identity_name',  # noqa: E501
+        'instrument_name': 'instrument_name',  # noqa: E501
+        'instrument_type': 'instrument_type',  # noqa: E501
+        'merchant_id': 'merchant_id',  # noqa: E501
+        'merchant_mid': 'merchant_mid',  # noqa: E501
+        'instrument_card_last4': 'instrument_card_last4',  # noqa: E501
+        'instrument_card_type': 'instrument_card_type',  # noqa: E501
+        'instrument_fingerprint': 'instrument_fingerprint',  # noqa: E501
+        'before_cursor': 'before_cursor',  # noqa: E501
+        'tags_key': 'tags.key',  # noqa: E501
+        'tags_value': 'tags.value',  # noqa: E501
     }
 
     read_only_vars = {
@@ -141,13 +187,36 @@ class ListDisputesQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            sort (str): Specify key to be used for sorting the collection.. [optional]  # noqa: E501
-            offset (int): The number of items to skip before starting to collect the result set.. [optional]  # noqa: E501
+            accept (str): Body Header. [optional]  # noqa: E501
             limit (int): The numbers of items to return.. [optional]  # noqa: E501
             created_at_gte (str): Filter where `created_at` is after the given date.. [optional]  # noqa: E501
             created_at_lte (str): Filter where `created_at` is before the given date.. [optional]  # noqa: E501
             updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]  # noqa: E501
             updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]  # noqa: E501
+            transfer_id (str): Filter by the ID of the `Transfer` that's being disputed. <br><br>**Note**: If included, all other filter parameters are ignored.. [optional]  # noqa: E501
+            adjustment_transfer_id (str): Filter by the ID of the adjustment `Transfer`. <br><br>**Note**: If included, all other filter parameters are ignored.. [optional]  # noqa: E501
+            amount (int): Filter by an amount equal to the given value.. [optional]  # noqa: E501
+            amount_gte (int): Filter by an amount greater than or equal.. [optional]  # noqa: E501
+            amount_gt (int): Filter by an amount greater than.. [optional]  # noqa: E501
+            amount_lt (int): Filter by an amount less than.. [optional]  # noqa: E501
+            state (str): Filter by the state of the `Dispute`.. [optional]  # noqa: E501
+            response_state (str): Filter by the `response_state` of the `Dispute`.. [optional]  # noqa: E501
+            respond_by_lte (str): Filter where `respond_by` is before the given date.. [optional]  # noqa: E501
+            respond_by_gte (str): Filter where `respond_by` is after the given date.. [optional]  # noqa: E501
+            instrument_bin (str): Filter by the Bank Identification Number (BIN). The BIN is the first 6 digits of the masked account number.. [optional]  # noqa: E501
+            instrument_brand_type (str): Filter by the card brand used.. [optional]  # noqa: E501
+            merchant_identity_id (str): Filter by the ID of the `Identity` used by the `Merchant`.. [optional]  # noqa: E501
+            merchant_identity_name (str): Filter by the name used by the `Merchant`.. [optional]  # noqa: E501
+            instrument_name (str): Filter by the name of the `Payment Instrument`.. [optional]  # noqa: E501
+            instrument_type (str): Filter by `Payment Instrument` type.. [optional]  # noqa: E501
+            merchant_id (str): Filter by the ID of the `Merchant`.. [optional]  # noqa: E501
+            merchant_mid (str): Filter by the MID of the `Merchant`.. [optional]  # noqa: E501
+            instrument_card_last4 (str): Filter by the last 4 digits of the card used.. [optional]  # noqa: E501
+            instrument_card_type (str): Filter by the card type.. [optional]  # noqa: E501
+            instrument_fingerprint (str): Filter by the fingerprint of the `Payment Instrument`.. [optional]  # noqa: E501
+            before_cursor (str): Returns every `Dispute` created before the cursor value.. [optional]  # noqa: E501
+            tags_key (str): Filter by the [`key` of a `Tag`](/api/overview/#section/Tags).. [optional]  # noqa: E501
+            tags_value (str): Filter by the [value of a `Tag`](https://finix.com/docs/api/overview/#section/Tags).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -229,13 +298,36 @@ class ListDisputesQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            sort (str): Specify key to be used for sorting the collection.. [optional]  # noqa: E501
-            offset (int): The number of items to skip before starting to collect the result set.. [optional]  # noqa: E501
+            accept (str): Body Header. [optional]  # noqa: E501
             limit (int): The numbers of items to return.. [optional]  # noqa: E501
             created_at_gte (str): Filter where `created_at` is after the given date.. [optional]  # noqa: E501
             created_at_lte (str): Filter where `created_at` is before the given date.. [optional]  # noqa: E501
             updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]  # noqa: E501
             updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]  # noqa: E501
+            transfer_id (str): Filter by the ID of the `Transfer` that's being disputed. <br><br>**Note**: If included, all other filter parameters are ignored.. [optional]  # noqa: E501
+            adjustment_transfer_id (str): Filter by the ID of the adjustment `Transfer`. <br><br>**Note**: If included, all other filter parameters are ignored.. [optional]  # noqa: E501
+            amount (int): Filter by an amount equal to the given value.. [optional]  # noqa: E501
+            amount_gte (int): Filter by an amount greater than or equal.. [optional]  # noqa: E501
+            amount_gt (int): Filter by an amount greater than.. [optional]  # noqa: E501
+            amount_lt (int): Filter by an amount less than.. [optional]  # noqa: E501
+            state (str): Filter by the state of the `Dispute`.. [optional]  # noqa: E501
+            response_state (str): Filter by the `response_state` of the `Dispute`.. [optional]  # noqa: E501
+            respond_by_lte (str): Filter where `respond_by` is before the given date.. [optional]  # noqa: E501
+            respond_by_gte (str): Filter where `respond_by` is after the given date.. [optional]  # noqa: E501
+            instrument_bin (str): Filter by the Bank Identification Number (BIN). The BIN is the first 6 digits of the masked account number.. [optional]  # noqa: E501
+            instrument_brand_type (str): Filter by the card brand used.. [optional]  # noqa: E501
+            merchant_identity_id (str): Filter by the ID of the `Identity` used by the `Merchant`.. [optional]  # noqa: E501
+            merchant_identity_name (str): Filter by the name used by the `Merchant`.. [optional]  # noqa: E501
+            instrument_name (str): Filter by the name of the `Payment Instrument`.. [optional]  # noqa: E501
+            instrument_type (str): Filter by `Payment Instrument` type.. [optional]  # noqa: E501
+            merchant_id (str): Filter by the ID of the `Merchant`.. [optional]  # noqa: E501
+            merchant_mid (str): Filter by the MID of the `Merchant`.. [optional]  # noqa: E501
+            instrument_card_last4 (str): Filter by the last 4 digits of the card used.. [optional]  # noqa: E501
+            instrument_card_type (str): Filter by the card type.. [optional]  # noqa: E501
+            instrument_fingerprint (str): Filter by the fingerprint of the `Payment Instrument`.. [optional]  # noqa: E501
+            before_cursor (str): Returns every `Dispute` created before the cursor value.. [optional]  # noqa: E501
+            tags_key (str): Filter by the [`key` of a `Tag`](/api/overview/#section/Tags).. [optional]  # noqa: E501
+            tags_value (str): Filter by the [value of a `Tag`](https://finix.com/docs/api/overview/#section/Tags).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

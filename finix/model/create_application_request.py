@@ -29,9 +29,7 @@ from finix.exceptions import ApiAttributeError
 
 def lazy_import():
     from finix.model.identity_entity_form import IdentityEntityForm
-    from finix.model.tags import Tags
     globals()['IdentityEntityForm'] = IdentityEntityForm
-    globals()['Tags'] = Tags
 
 
 class CreateApplicationRequest(ModelNormal):
@@ -88,7 +86,7 @@ class CreateApplicationRequest(ModelNormal):
             'entity': (IdentityEntityForm,),  # noqa: E501
             'max_transaction_amount': (int, none_type,),  # noqa: E501
             'name': (str, none_type,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -151,7 +149,7 @@ class CreateApplicationRequest(ModelNormal):
             entity (IdentityEntityForm): [optional]  # noqa: E501
             max_transaction_amount (int, none_type): Maximum amount that can be processed for a single transaction in cents (max 12 characters).. [optional]  # noqa: E501
             name (str, none_type): Merchant's full legal business name (If **INDIVIDUAL_SOLE_PROPRIETORSHIP**, enter first name, Full legal last name and middle initial; max 120 characters).. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -240,7 +238,7 @@ class CreateApplicationRequest(ModelNormal):
             entity (IdentityEntityForm): [optional]  # noqa: E501
             max_transaction_amount (int, none_type): Maximum amount that can be processed for a single transaction in cents (max 12 characters).. [optional]  # noqa: E501
             name (str, none_type): Merchant's full legal business name (If **INDIVIDUAL_SOLE_PROPRIETORSHIP**, enter first name, Full legal last name and middle initial; max 120 characters).. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -28,10 +28,8 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from finix.model.tags import Tags
     from finix.model.update_identity_request_additional_underwriting_data import UpdateIdentityRequestAdditionalUnderwritingData
     from finix.model.update_identity_request_entity import UpdateIdentityRequestEntity
-    globals()['Tags'] = Tags
     globals()['UpdateIdentityRequestAdditionalUnderwritingData'] = UpdateIdentityRequestAdditionalUnderwritingData
     globals()['UpdateIdentityRequestEntity'] = UpdateIdentityRequestEntity
 
@@ -88,7 +86,7 @@ class UpdateIdentityRequest(ModelNormal):
         return {
             'additional_underwriting_data': (UpdateIdentityRequestAdditionalUnderwritingData,),  # noqa: E501
             'entity': (UpdateIdentityRequestEntity,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -145,7 +143,7 @@ class UpdateIdentityRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             additional_underwriting_data (UpdateIdentityRequestAdditionalUnderwritingData): [optional]  # noqa: E501
             entity (UpdateIdentityRequestEntity): [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -229,7 +227,7 @@ class UpdateIdentityRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             additional_underwriting_data (UpdateIdentityRequestAdditionalUnderwritingData): [optional]  # noqa: E501
             entity (UpdateIdentityRequestEntity): [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

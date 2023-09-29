@@ -77,7 +77,6 @@ class ListBalanceTransfersQueryParams(ModelNormal):
         """
         return {
             'limit': (int,),  # noqa: E501
-            'offset': (int,),  # noqa: E501
             'page_number': (int,),  # noqa: E501
             'page_size': (int,),  # noqa: E501
             'created_at_gte': (str,),  # noqa: E501
@@ -100,7 +99,6 @@ class ListBalanceTransfersQueryParams(ModelNormal):
 
     attribute_map = {
         'limit': 'limit',  # noqa: E501
-        'offset': 'offset',  # noqa: E501
         'page_number': 'pageNumber',  # noqa: E501
         'page_size': 'pageSize',  # noqa: E501
         'created_at_gte': 'created_at.gte',  # noqa: E501
@@ -158,7 +156,6 @@ class ListBalanceTransfersQueryParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             limit (int): The numbers of items to return.. [optional]  # noqa: E501
-            offset (int): The number of items to skip before starting to collect the result set.. [optional]  # noqa: E501
             page_number (int): The page number to list.. [optional]  # noqa: E501
             page_size (int): The size of the page.. [optional]  # noqa: E501
             created_at_gte (str): Filter where `created_at` is after the given date.. [optional]  # noqa: E501
@@ -254,7 +251,6 @@ class ListBalanceTransfersQueryParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             limit (int): The numbers of items to return.. [optional]  # noqa: E501
-            offset (int): The number of items to skip before starting to collect the result set.. [optional]  # noqa: E501
             page_number (int): The page number to list.. [optional]  # noqa: E501
             page_size (int): The size of the page.. [optional]  # noqa: E501
             created_at_gte (str): Filter where `created_at` is after the given date.. [optional]  # noqa: E501

@@ -30,10 +30,8 @@ from finix.exceptions import ApiAttributeError
 def lazy_import():
     from finix.model.currency import Currency
     from finix.model.payment_instrument_token_links import PaymentInstrumentTokenLinks
-    from finix.model.tags import Tags
     globals()['Currency'] = Currency
     globals()['PaymentInstrumentTokenLinks'] = PaymentInstrumentTokenLinks
-    globals()['Tags'] = Tags
 
 
 class PaymentInstrumentToken(ModelNormal):
@@ -96,15 +94,16 @@ class PaymentInstrumentToken(ModelNormal):
         """
         lazy_import()
         return {
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'enabled': (bool,),  # noqa: E501
             'type': (str,),  # noqa: E501
-            'id': (str, none_type,),  # noqa: E501
+            'id': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
             'application': (str,),  # noqa: E501
             'currency': (Currency,),  # noqa: E501
             'fingerprint': (str,),  # noqa: E501
-            'identity': (str, none_type,),  # noqa: E501
+            'identity': (str,),  # noqa: E501
             'instrument_type': (str,),  # noqa: E501
             'payload_type': (str,),  # noqa: E501
             'links': (PaymentInstrumentTokenLinks,),  # noqa: E501
@@ -117,6 +116,7 @@ class PaymentInstrumentToken(ModelNormal):
 
     attribute_map = {
         'tags': 'tags',  # noqa: E501
+        'enabled': 'enabled',  # noqa: E501
         'type': 'type',  # noqa: E501
         'id': 'id',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
@@ -171,15 +171,16 @@ class PaymentInstrumentToken(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
+            enabled (bool): Details if the `Payment Instrument` resource is enabled. Set to `false` to disable the `Payment Instrument`.. [optional]  # noqa: E501
             type (str): [optional] if omitted the server will use the default value of "TOKEN"  # noqa: E501
-            id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            id (str): The ID of the `Payment Instrument`.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
-            application (str): The ID of the resource.. [optional]  # noqa: E501
+            application (str): The ID of the `Application` resource the `Payment Instrument` was created under.. [optional]  # noqa: E501
             currency (Currency): [optional]  # noqa: E501
             fingerprint (str): [optional]  # noqa: E501
-            identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            identity (str): The ID of the `Identity` used to create the `Payment Instrument` resource.. [optional]  # noqa: E501
             instrument_type (str): [optional] if omitted the server will use the default value of "TOKEN"  # noqa: E501
             payload_type (str): [optional]  # noqa: E501
             links (PaymentInstrumentTokenLinks): [optional]  # noqa: E501
@@ -264,15 +265,16 @@ class PaymentInstrumentToken(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
+            enabled (bool): Details if the `Payment Instrument` resource is enabled. Set to `false` to disable the `Payment Instrument`.. [optional]  # noqa: E501
             type (str): [optional] if omitted the server will use the default value of "TOKEN"  # noqa: E501
-            id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            id (str): The ID of the `Payment Instrument`.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
-            application (str): The ID of the resource.. [optional]  # noqa: E501
+            application (str): The ID of the `Application` resource the `Payment Instrument` was created under.. [optional]  # noqa: E501
             currency (Currency): [optional]  # noqa: E501
             fingerprint (str): [optional]  # noqa: E501
-            identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            identity (str): The ID of the `Identity` used to create the `Payment Instrument` resource.. [optional]  # noqa: E501
             instrument_type (str): [optional] if omitted the server will use the default value of "TOKEN"  # noqa: E501
             payload_type (str): [optional]  # noqa: E501
             links (PaymentInstrumentTokenLinks): [optional]  # noqa: E501

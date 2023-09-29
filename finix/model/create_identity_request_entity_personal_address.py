@@ -79,9 +79,9 @@ class CreateIdentityRequestEntityPersonalAddress(ModelNormal):
             'city': (str,),  # noqa: E501
             'country': (str,),  # noqa: E501
             'line1': (str,),  # noqa: E501
-            'line2': (str,),  # noqa: E501
             'postal_code': (str,),  # noqa: E501
             'region': (str,),  # noqa: E501
+            'line2': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -93,9 +93,9 @@ class CreateIdentityRequestEntityPersonalAddress(ModelNormal):
         'city': 'city',  # noqa: E501
         'country': 'country',  # noqa: E501
         'line1': 'line1',  # noqa: E501
-        'line2': 'line2',  # noqa: E501
         'postal_code': 'postal_code',  # noqa: E501
         'region': 'region',  # noqa: E501
+        'line2': 'line2',  # noqa: E501
     }
 
     read_only_vars = {
@@ -105,8 +105,15 @@ class CreateIdentityRequestEntityPersonalAddress(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, city, country, line1, postal_code, region, *args, **kwargs):  # noqa: E501
         """CreateIdentityRequestEntityPersonalAddress - a model defined in OpenAPI
+
+        Args:
+            city (str): City (max 20 characters).
+            country (str): 3-Letter country code (e.g. USA).
+            line1 (str): First line of the address (max 35 characters).
+            postal_code (str): Zip or Postal code (max 7 characters).
+            region (str): 2-letter State code.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -139,12 +146,7 @@ class CreateIdentityRequestEntityPersonalAddress(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            city (str): City (max 20 characters).. [optional]  # noqa: E501
-            country (str): 3-Letter country code (e.g. USA).. [optional]  # noqa: E501
-            line1 (str): First line of the address (max 35 characters).. [optional]  # noqa: E501
             line2 (str): Second line of the address (max 35 characters).. [optional]  # noqa: E501
-            postal_code (str): Zip or Postal code (max 7 characters).. [optional]  # noqa: E501
-            region (str): 2-letter State code.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -172,6 +174,11 @@ class CreateIdentityRequestEntityPersonalAddress(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.city = city
+        self.country = country
+        self.line1 = line1
+        self.postal_code = postal_code
+        self.region = region
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -192,8 +199,15 @@ class CreateIdentityRequestEntityPersonalAddress(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, city, country, line1, postal_code, region, *args, **kwargs):  # noqa: E501
         """CreateIdentityRequestEntityPersonalAddress - a model defined in OpenAPI
+
+        Args:
+            city (str): City (max 20 characters).
+            country (str): 3-Letter country code (e.g. USA).
+            line1 (str): First line of the address (max 35 characters).
+            postal_code (str): Zip or Postal code (max 7 characters).
+            region (str): 2-letter State code.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -226,12 +240,7 @@ class CreateIdentityRequestEntityPersonalAddress(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            city (str): City (max 20 characters).. [optional]  # noqa: E501
-            country (str): 3-Letter country code (e.g. USA).. [optional]  # noqa: E501
-            line1 (str): First line of the address (max 35 characters).. [optional]  # noqa: E501
             line2 (str): Second line of the address (max 35 characters).. [optional]  # noqa: E501
-            postal_code (str): Zip or Postal code (max 7 characters).. [optional]  # noqa: E501
-            region (str): 2-letter State code.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -257,6 +266,11 @@ class CreateIdentityRequestEntityPersonalAddress(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.city = city
+        self.country = country
+        self.line1 = line1
+        self.postal_code = postal_code
+        self.region = region
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

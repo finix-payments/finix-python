@@ -29,9 +29,7 @@ from finix.exceptions import ApiAttributeError
 
 def lazy_import():
     from finix.model.currency import Currency
-    from finix.model.tags import Tags
     globals()['Currency'] = Currency
-    globals()['Tags'] = Tags
 
 
 class CreateSettlementRequest(ModelNormal):
@@ -87,7 +85,7 @@ class CreateSettlementRequest(ModelNormal):
             'currency': (Currency,),  # noqa: E501
             'merchant_id': (str,),  # noqa: E501
             'processor': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -146,7 +144,7 @@ class CreateSettlementRequest(ModelNormal):
             currency (Currency): [optional]  # noqa: E501
             merchant_id (str): If the `Application` has more than one associated `processor`, this field is required.. [optional]  # noqa: E501
             processor (str): If the `Application` has more than one associated `processor`, it's required when creating `settlements` to include the `processor` (e.g. **DUMMY_V1**).. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -231,7 +229,7 @@ class CreateSettlementRequest(ModelNormal):
             currency (Currency): [optional]  # noqa: E501
             merchant_id (str): If the `Application` has more than one associated `processor`, this field is required.. [optional]  # noqa: E501
             processor (str): If the `Application` has more than one associated `processor`, it's required when creating `settlements` to include the `processor` (e.g. **DUMMY_V1**).. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

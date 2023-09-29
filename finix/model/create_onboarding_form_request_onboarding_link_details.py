@@ -76,11 +76,11 @@ class CreateOnboardingFormRequestOnboardingLinkDetails(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'return_url': (str,),  # noqa: E501
-            'expired_session_url': (str,),  # noqa: E501
-            'terms_of_service_url': (str,),  # noqa: E501
-            'fee_details_url': (str,),  # noqa: E501
             'expiration_in_minutes': (str,),  # noqa: E501
+            'expired_session_url': (str,),  # noqa: E501
+            'fee_details_url': (str,),  # noqa: E501
+            'return_url': (str,),  # noqa: E501
+            'terms_of_service_url': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -89,11 +89,11 @@ class CreateOnboardingFormRequestOnboardingLinkDetails(ModelNormal):
 
 
     attribute_map = {
-        'return_url': 'return_url',  # noqa: E501
-        'expired_session_url': 'expired_session_url',  # noqa: E501
-        'terms_of_service_url': 'terms_of_service_url',  # noqa: E501
-        'fee_details_url': 'fee_details_url',  # noqa: E501
         'expiration_in_minutes': 'expiration_in_minutes',  # noqa: E501
+        'expired_session_url': 'expired_session_url',  # noqa: E501
+        'fee_details_url': 'fee_details_url',  # noqa: E501
+        'return_url': 'return_url',  # noqa: E501
+        'terms_of_service_url': 'terms_of_service_url',  # noqa: E501
     }
 
     read_only_vars = {
@@ -137,11 +137,11 @@ class CreateOnboardingFormRequestOnboardingLinkDetails(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            return_url (str): The URL users get sent to after completing the onboarding flow.. [optional]  # noqa: E501
-            expired_session_url (str): The URL users get sent to if the bearer token expires.. [optional]  # noqa: E501
-            terms_of_service_url (str): Your Terms of Service URL. The URL is provided to users for consent along with [Finix's Terms of Service](https://finix-hosted-content.s3.amazonaws.com/flex/v2/finix-terms-of-service.html).. [optional]  # noqa: E501
-            fee_details_url (str): The URL of the page where you display the fees related to processing payments (for more info, see [Displaying Processing Fees](/guides/onboarding/onboarding-form/#displaying-processing-fees)).. [optional]  # noqa: E501
             expiration_in_minutes (str): How long (in minutes) the link should be valid for. Defaults to 60 minutes.. [optional]  # noqa: E501
+            expired_session_url (str): The URL users get sent to if the bearer token expires.. [optional]  # noqa: E501
+            fee_details_url (str): The URL of the page where you display the fees related to processing payments (for more info, see [Displaying Processing Fees](/guides/onboarding/onboarding-form/#displaying-processing-fees)).. [optional]  # noqa: E501
+            return_url (str): The URL users get sent to after completing the onboarding flow.. [optional]  # noqa: E501
+            terms_of_service_url (str): Your Terms of Service URL. The URL is provided to users for consent along with [Finix's Terms of Service](https://finix-hosted-content.s3.amazonaws.com/flex/v2/finix-terms-of-service.html).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -223,11 +223,11 @@ class CreateOnboardingFormRequestOnboardingLinkDetails(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            return_url (str): The URL users get sent to after completing the onboarding flow.. [optional]  # noqa: E501
-            expired_session_url (str): The URL users get sent to if the bearer token expires.. [optional]  # noqa: E501
-            terms_of_service_url (str): Your Terms of Service URL. The URL is provided to users for consent along with [Finix's Terms of Service](https://finix-hosted-content.s3.amazonaws.com/flex/v2/finix-terms-of-service.html).. [optional]  # noqa: E501
-            fee_details_url (str): The URL of the page where you display the fees related to processing payments (for more info, see [Displaying Processing Fees](/guides/onboarding/onboarding-form/#displaying-processing-fees)).. [optional]  # noqa: E501
             expiration_in_minutes (str): How long (in minutes) the link should be valid for. Defaults to 60 minutes.. [optional]  # noqa: E501
+            expired_session_url (str): The URL users get sent to if the bearer token expires.. [optional]  # noqa: E501
+            fee_details_url (str): The URL of the page where you display the fees related to processing payments (for more info, see [Displaying Processing Fees](/guides/onboarding/onboarding-form/#displaying-processing-fees)).. [optional]  # noqa: E501
+            return_url (str): The URL users get sent to after completing the onboarding flow.. [optional]  # noqa: E501
+            terms_of_service_url (str): Your Terms of Service URL. The URL is provided to users for consent along with [Finix's Terms of Service](https://finix-hosted-content.s3.amazonaws.com/flex/v2/finix-terms-of-service.html).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

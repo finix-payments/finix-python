@@ -28,9 +28,7 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from finix.model.tags import Tags
     from finix.model.user_links import UserLinks
-    globals()['Tags'] = Tags
     globals()['UserLinks'] = UserLinks
 
 
@@ -97,7 +95,7 @@ class User(ModelNormal):
             'identity': (str, none_type,),  # noqa: E501
             'password': (str, none_type,),  # noqa: E501
             'role': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'links': (UserLinks,),  # noqa: E501
         }
 
@@ -165,8 +163,8 @@ class User(ModelNormal):
             enabled (bool): Details if the `User` is enabled and active. Set to **false** to disable the `User`.. [optional]  # noqa: E501
             identity (str, none_type): ID of the `Identity` that the `User` object was created under.. [optional]  # noqa: E501
             password (str, none_type): The `password` you'll use to authetnicate requests.. [optional]  # noqa: E501
-            role (str): Details the level of access the [`User`](#tag/Users) has available.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            role (str): Details the level of access the [`User`](/api/tag/Users) has available.. [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (UserLinks): [optional]  # noqa: E501
         """
 
@@ -255,8 +253,8 @@ class User(ModelNormal):
             enabled (bool): Details if the `User` is enabled and active. Set to **false** to disable the `User`.. [optional]  # noqa: E501
             identity (str, none_type): ID of the `Identity` that the `User` object was created under.. [optional]  # noqa: E501
             password (str, none_type): The `password` you'll use to authetnicate requests.. [optional]  # noqa: E501
-            role (str): Details the level of access the [`User`](#tag/Users) has available.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            role (str): Details the level of access the [`User`](/api/tag/Users) has available.. [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (UserLinks): [optional]  # noqa: E501
         """
 

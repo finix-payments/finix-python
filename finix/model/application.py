@@ -29,9 +29,7 @@ from finix.exceptions import ApiAttributeError
 
 def lazy_import():
     from finix.model.application_links import ApplicationLinks
-    from finix.model.tags import Tags
     globals()['ApplicationLinks'] = ApplicationLinks
-    globals()['Tags'] = Tags
 
 
 class Application(ModelNormal):
@@ -67,8 +65,9 @@ class Application(ModelNormal):
             'SUCCESSFUL_CAPTURE': "SUCCESSFUL_CAPTURE",
         },
         ('settlement_funding_identifier',): {
-            'None': None,
             'UNSET': "UNSET",
+            'MID_AND_DATE': "MID_AND_DATE",
+            'MID_AND_MERCHANT_NAME': "MID_AND_MERCHANT_NAME",
         },
     }
 
@@ -111,8 +110,8 @@ class Application(ModelNormal):
             'processing_enabled': (bool,),  # noqa: E501
             'ready_to_settle_upon': (str, none_type,),  # noqa: E501
             'settlement_enabled': (bool,),  # noqa: E501
-            'settlement_funding_identifier': (str, none_type,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'settlement_funding_identifier': (str,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'links': (ApplicationLinks,),  # noqa: E501
         }
 
@@ -192,10 +191,10 @@ class Application(ModelNormal):
             name (str): The name of the `Application`.. [optional]  # noqa: E501
             owner (str): ID of the `Identity` resource that created the `Application`.. [optional]  # noqa: E501
             processing_enabled (bool): Details if transaction processing is enabled for the `Application`. . [optional]  # noqa: E501
-            ready_to_settle_upon (str, none_type): Details when `Authroizations` submitted under the `Application` will be ready to settle.. [optional]  # noqa: E501
+            ready_to_settle_upon (str, none_type): Details when transactions submitted under the `Application` will be ready to settle.. [optional]  # noqa: E501
             settlement_enabled (bool): Details if settlement processing is enabled for the `Application`. . [optional]  # noqa: E501
-            settlement_funding_identifier (str, none_type): [optional] if omitted the server will use the default value of "UNSET"  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            settlement_funding_identifier (str): Includes additional information (like the MID or `Merchant` name) when submitting funding `Transfers` to processors. - **UNSET**: No additional details get provided to the processor. - **MID_AND_DATE**: The `MID` of the `Merchant` and the date the funding `Transfer` was submitted (Date is in UTC). e.g **MID:12345678-20220225** - **MID_AND_MERCHANT_NAME**: The `MID` of the `Merchant` and the `Merchant#name` (white spaces will be removed). e.g. **MID:12345678-NameOfMerchant**  These details appear alongside the seller's payout in their bank account as a description of the deposit.. [optional] if omitted the server will use the default value of "UNSET"  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (ApplicationLinks): [optional]  # noqa: E501
         """
 
@@ -289,10 +288,10 @@ class Application(ModelNormal):
             name (str): The name of the `Application`.. [optional]  # noqa: E501
             owner (str): ID of the `Identity` resource that created the `Application`.. [optional]  # noqa: E501
             processing_enabled (bool): Details if transaction processing is enabled for the `Application`. . [optional]  # noqa: E501
-            ready_to_settle_upon (str, none_type): Details when `Authroizations` submitted under the `Application` will be ready to settle.. [optional]  # noqa: E501
+            ready_to_settle_upon (str, none_type): Details when transactions submitted under the `Application` will be ready to settle.. [optional]  # noqa: E501
             settlement_enabled (bool): Details if settlement processing is enabled for the `Application`. . [optional]  # noqa: E501
-            settlement_funding_identifier (str, none_type): [optional] if omitted the server will use the default value of "UNSET"  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            settlement_funding_identifier (str): Includes additional information (like the MID or `Merchant` name) when submitting funding `Transfers` to processors. - **UNSET**: No additional details get provided to the processor. - **MID_AND_DATE**: The `MID` of the `Merchant` and the date the funding `Transfer` was submitted (Date is in UTC). e.g **MID:12345678-20220225** - **MID_AND_MERCHANT_NAME**: The `MID` of the `Merchant` and the `Merchant#name` (white spaces will be removed). e.g. **MID:12345678-NameOfMerchant**  These details appear alongside the seller's payout in their bank account as a description of the deposit.. [optional] if omitted the server will use the default value of "UNSET"  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (ApplicationLinks): [optional]  # noqa: E501
         """
 

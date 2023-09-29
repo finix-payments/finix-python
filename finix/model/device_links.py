@@ -28,10 +28,10 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from finix.model.application_links_application_profile import ApplicationLinksApplicationProfile
+    from finix.model.application_links_authorizations import ApplicationLinksAuthorizations
     from finix.model.application_links_self import ApplicationLinksSelf
     from finix.model.device_links_merchant import DeviceLinksMerchant
-    globals()['ApplicationLinksApplicationProfile'] = ApplicationLinksApplicationProfile
+    globals()['ApplicationLinksAuthorizations'] = ApplicationLinksAuthorizations
     globals()['ApplicationLinksSelf'] = ApplicationLinksSelf
     globals()['DeviceLinksMerchant'] = DeviceLinksMerchant
 
@@ -86,10 +86,10 @@ class DeviceLinks(ModelNormal):
         """
         lazy_import()
         return {
-            'authorizations': (ApplicationLinksApplicationProfile,),  # noqa: E501
+            'authorizations': (ApplicationLinksAuthorizations,),  # noqa: E501
             'merchant': (DeviceLinksMerchant,),  # noqa: E501
             'self': (ApplicationLinksSelf,),  # noqa: E501
-            'transfers': (ApplicationLinksApplicationProfile,),  # noqa: E501
+            'transfers': (ApplicationLinksAuthorizations,),  # noqa: E501
         }
 
     @cached_property
@@ -145,10 +145,10 @@ class DeviceLinks(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            authorizations (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            authorizations (ApplicationLinksAuthorizations): [optional]  # noqa: E501
             merchant (DeviceLinksMerchant): [optional]  # noqa: E501
             self (ApplicationLinksSelf): [optional]  # noqa: E501
-            transfers (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            transfers (ApplicationLinksAuthorizations): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -230,10 +230,10 @@ class DeviceLinks(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            authorizations (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            authorizations (ApplicationLinksAuthorizations): [optional]  # noqa: E501
             merchant (DeviceLinksMerchant): [optional]  # noqa: E501
             self (ApplicationLinksSelf): [optional]  # noqa: E501
-            transfers (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            transfers (ApplicationLinksAuthorizations): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

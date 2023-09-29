@@ -30,10 +30,8 @@ from finix.exceptions import ApiAttributeError
 def lazy_import():
     from finix.model.create_subscription_schedule_request_fixed_time_interval_offset import CreateSubscriptionScheduleRequestFixedTimeIntervalOffset
     from finix.model.create_subscription_schedule_request_period_offset import CreateSubscriptionScheduleRequestPeriodOffset
-    from finix.model.tags import Tags
     globals()['CreateSubscriptionScheduleRequestFixedTimeIntervalOffset'] = CreateSubscriptionScheduleRequestFixedTimeIntervalOffset
     globals()['CreateSubscriptionScheduleRequestPeriodOffset'] = CreateSubscriptionScheduleRequestPeriodOffset
-    globals()['Tags'] = Tags
 
 
 class CreateSubscriptionScheduleRequest(ModelNormal):
@@ -102,7 +100,7 @@ class CreateSubscriptionScheduleRequest(ModelNormal):
             'subscription_type': (str,),  # noqa: E501
             'fixed_time_interval_offset': (CreateSubscriptionScheduleRequestFixedTimeIntervalOffset,),  # noqa: E501
             'period_offset': (CreateSubscriptionScheduleRequestPeriodOffset,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -167,7 +165,7 @@ class CreateSubscriptionScheduleRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             fixed_time_interval_offset (CreateSubscriptionScheduleRequestFixedTimeIntervalOffset): [optional]  # noqa: E501
             period_offset (CreateSubscriptionScheduleRequestPeriodOffset): [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         line_item_type = kwargs.get('line_item_type', "FEE")
@@ -260,7 +258,7 @@ class CreateSubscriptionScheduleRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             fixed_time_interval_offset (CreateSubscriptionScheduleRequestFixedTimeIntervalOffset): [optional]  # noqa: E501
             period_offset (CreateSubscriptionScheduleRequestPeriodOffset): [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
         """
 
         line_item_type = kwargs.get('line_item_type', "FEE")

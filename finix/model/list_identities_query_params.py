@@ -76,7 +76,7 @@ class ListIdentitiesQueryParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'sort': (str,),  # noqa: E501
+            'accept': (str,),  # noqa: E501
             'after_cursor': (str,),  # noqa: E501
             'limit': (int,),  # noqa: E501
             'id': (str,),  # noqa: E501
@@ -90,6 +90,8 @@ class ListIdentitiesQueryParams(ModelNormal):
             'last_name': (str,),  # noqa: E501
             'title': (str,),  # noqa: E501
             'before_cursor': (str,),  # noqa: E501
+            'tags_key': (str,),  # noqa: E501
+            'tags_value': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -98,7 +100,7 @@ class ListIdentitiesQueryParams(ModelNormal):
 
 
     attribute_map = {
-        'sort': 'sort',  # noqa: E501
+        'accept': 'Accept',  # noqa: E501
         'after_cursor': 'after_cursor',  # noqa: E501
         'limit': 'limit',  # noqa: E501
         'id': 'id',  # noqa: E501
@@ -112,6 +114,8 @@ class ListIdentitiesQueryParams(ModelNormal):
         'last_name': 'last_name',  # noqa: E501
         'title': 'title',  # noqa: E501
         'before_cursor': 'before_cursor',  # noqa: E501
+        'tags_key': 'tags.key',  # noqa: E501
+        'tags_value': 'tags.value',  # noqa: E501
     }
 
     read_only_vars = {
@@ -155,7 +159,7 @@ class ListIdentitiesQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            sort (str): Specify key to be used for sorting the collection.. [optional]  # noqa: E501
+            accept (str): Body Header. [optional]  # noqa: E501
             after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
             limit (int): The numbers of items to return.. [optional]  # noqa: E501
             id (str): Filter by `id`.. [optional]  # noqa: E501
@@ -169,6 +173,8 @@ class ListIdentitiesQueryParams(ModelNormal):
             last_name (str): Filter by the last name of the person associated to the `Identity`.. [optional]  # noqa: E501
             title (str): Filter by the title if available.. [optional]  # noqa: E501
             before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
+            tags_key (str): Filter by the [`key` of a `Tag`](/api/overview/#section/Tags).. [optional]  # noqa: E501
+            tags_value (str): Filter by the [value of a `Tag`](https://finix.com/docs/api/overview/#section/Tags).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -250,7 +256,7 @@ class ListIdentitiesQueryParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            sort (str): Specify key to be used for sorting the collection.. [optional]  # noqa: E501
+            accept (str): Body Header. [optional]  # noqa: E501
             after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
             limit (int): The numbers of items to return.. [optional]  # noqa: E501
             id (str): Filter by `id`.. [optional]  # noqa: E501
@@ -264,6 +270,8 @@ class ListIdentitiesQueryParams(ModelNormal):
             last_name (str): Filter by the last name of the person associated to the `Identity`.. [optional]  # noqa: E501
             title (str): Filter by the title if available.. [optional]  # noqa: E501
             before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
+            tags_key (str): Filter by the [`key` of a `Tag`](/api/overview/#section/Tags).. [optional]  # noqa: E501
+            tags_value (str): Filter by the [value of a `Tag`](https://finix.com/docs/api/overview/#section/Tags).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

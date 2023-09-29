@@ -28,10 +28,10 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from finix.model.create_reversal_request_split_transfers import CreateReversalRequestSplitTransfers
     from finix.model.currency import Currency
-    from finix.model.tags import Tags
+    globals()['CreateReversalRequestSplitTransfers'] = CreateReversalRequestSplitTransfers
     globals()['Currency'] = Currency
-    globals()['Tags'] = Tags
 
 
 class CreateReversalRequest(ModelNormal):
@@ -84,12 +84,14 @@ class CreateReversalRequest(ModelNormal):
         """
         lazy_import()
         return {
+            'idempotency_id': (str, none_type,),  # noqa: E501
             'refund_amount': (int,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'device': (str,),  # noqa: E501
             'amount': (int,),  # noqa: E501
             'currency': (Currency,),  # noqa: E501
             'operation_key': (str, none_type,),  # noqa: E501
+            'split_transfers': (CreateReversalRequestSplitTransfers,),  # noqa: E501
         }
 
     @cached_property
@@ -98,12 +100,14 @@ class CreateReversalRequest(ModelNormal):
 
 
     attribute_map = {
+        'idempotency_id': 'idempotency_id',  # noqa: E501
         'refund_amount': 'refund_amount',  # noqa: E501
         'tags': 'tags',  # noqa: E501
         'device': 'device',  # noqa: E501
         'amount': 'amount',  # noqa: E501
         'currency': 'currency',  # noqa: E501
         'operation_key': 'operation_key',  # noqa: E501
+        'split_transfers': 'split_transfers',  # noqa: E501
     }
 
     read_only_vars = {
@@ -147,12 +151,14 @@ class CreateReversalRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            idempotency_id (str, none_type): Pass any randomly generated or internal ID to [idempotently](/api/overview/#section/Idempotency-Requests) identify `Transfers`, `Authorizations`, and refund requests.. [optional]  # noqa: E501
             refund_amount (int): The amount of the refund in cents. It must be equal to or less than the amount of the original `Transfer`.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             device (str): The ID of the `Device` used to process the transaction.. [optional]  # noqa: E501
             amount (int): The amount of the sale.. [optional]  # noqa: E501
             currency (Currency): [optional]  # noqa: E501
             operation_key (str, none_type): Describes the operation to be performed in the transaction. Use **CARD_PRESENT_UNREFERENCED_REFUND** for refunds where the card isn't avalible.. [optional]  # noqa: E501
+            split_transfers (CreateReversalRequestSplitTransfers): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -234,12 +240,14 @@ class CreateReversalRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            idempotency_id (str, none_type): Pass any randomly generated or internal ID to [idempotently](/api/overview/#section/Idempotency-Requests) identify `Transfers`, `Authorizations`, and refund requests.. [optional]  # noqa: E501
             refund_amount (int): The amount of the refund in cents. It must be equal to or less than the amount of the original `Transfer`.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             device (str): The ID of the `Device` used to process the transaction.. [optional]  # noqa: E501
             amount (int): The amount of the sale.. [optional]  # noqa: E501
             currency (Currency): [optional]  # noqa: E501
             operation_key (str, none_type): Describes the operation to be performed in the transaction. Use **CARD_PRESENT_UNREFERENCED_REFUND** for refunds where the card isn't avalible.. [optional]  # noqa: E501
+            split_transfers (CreateReversalRequestSplitTransfers): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

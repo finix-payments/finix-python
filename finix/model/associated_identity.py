@@ -30,10 +30,8 @@ from finix.exceptions import ApiAttributeError
 def lazy_import():
     from finix.model.associated_identity_entity import AssociatedIdentityEntity
     from finix.model.identity_links import IdentityLinks
-    from finix.model.tags import Tags
     globals()['AssociatedIdentityEntity'] = AssociatedIdentityEntity
     globals()['IdentityLinks'] = IdentityLinks
-    globals()['Tags'] = Tags
 
 
 class AssociatedIdentity(ModelNormal):
@@ -97,7 +95,7 @@ class AssociatedIdentity(ModelNormal):
             'updated_at': (datetime,),  # noqa: E501
             'application': (str,),  # noqa: E501
             'entity': (AssociatedIdentityEntity,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'links': (IdentityLinks,),  # noqa: E501
         }
 
@@ -162,7 +160,7 @@ class AssociatedIdentity(ModelNormal):
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             application (str): ID of the `Application` associated with the `Identity`.. [optional]  # noqa: E501
             entity (AssociatedIdentityEntity): [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (IdentityLinks): [optional]  # noqa: E501
         """
 
@@ -250,7 +248,7 @@ class AssociatedIdentity(ModelNormal):
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             application (str): ID of the `Application` associated with the `Identity`.. [optional]  # noqa: E501
             entity (AssociatedIdentityEntity): [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             links (IdentityLinks): [optional]  # noqa: E501
         """
 

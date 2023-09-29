@@ -30,11 +30,11 @@ from finix.exceptions import ApiAttributeError
 def lazy_import():
     from finix.model.identity_entity_business_address import IdentityEntityBusinessAddress
     from finix.model.identity_entity_dob import IdentityEntityDob
-    from finix.model.identity_entity_incorporation_date import IdentityEntityIncorporationDate
+    from finix.model.identity_entity_form_incorporation_date import IdentityEntityFormIncorporationDate
     from finix.model.identity_entity_personal_address import IdentityEntityPersonalAddress
     globals()['IdentityEntityBusinessAddress'] = IdentityEntityBusinessAddress
     globals()['IdentityEntityDob'] = IdentityEntityDob
-    globals()['IdentityEntityIncorporationDate'] = IdentityEntityIncorporationDate
+    globals()['IdentityEntityFormIncorporationDate'] = IdentityEntityFormIncorporationDate
     globals()['IdentityEntityPersonalAddress'] = IdentityEntityPersonalAddress
 
 
@@ -129,6 +129,7 @@ class IdentityEntity(ModelNormal):
         """
         lazy_import()
         return {
+            'amex_mid': (int, none_type,),  # noqa: E501
             'annual_card_volume': (int, none_type,),  # noqa: E501
             'business_address': (IdentityEntityBusinessAddress,),  # noqa: E501
             'business_name': (str, none_type,),  # noqa: E501
@@ -142,7 +143,7 @@ class IdentityEntity(ModelNormal):
             'email': (str, none_type,),  # noqa: E501
             'first_name': (str, none_type,),  # noqa: E501
             'has_accepted_credit_cards_previously': (bool,),  # noqa: E501
-            'incorporation_date': (IdentityEntityIncorporationDate,),  # noqa: E501
+            'incorporation_date': (IdentityEntityFormIncorporationDate,),  # noqa: E501
             'last_name': (str, none_type,),  # noqa: E501
             'max_transaction_amount': (int, none_type,),  # noqa: E501
             'mcc': (str, none_type,),  # noqa: E501
@@ -163,6 +164,7 @@ class IdentityEntity(ModelNormal):
 
 
     attribute_map = {
+        'amex_mid': 'amex_mid',  # noqa: E501
         'annual_card_volume': 'annual_card_volume',  # noqa: E501
         'business_address': 'business_address',  # noqa: E501
         'business_name': 'business_name',  # noqa: E501
@@ -232,6 +234,7 @@ class IdentityEntity(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            amex_mid (int, none_type): Assigned amexMid value. If a value is passed, it must be 10 or 11 digits.. [optional]  # noqa: E501
             annual_card_volume (int, none_type): The annual credit card sales (in cents) expected to be processed by this merchant (max 19 characters).. [optional]  # noqa: E501
             business_address (IdentityEntityBusinessAddress): [optional]  # noqa: E501
             business_name (str, none_type): The merchant's legal business name (max 120 characters).<ul><li>If <strong>INDIVIDUAL_SOLE_PROPRIETORSHIP</strong>, pass the owner's legal first name, last name and middle initial.. [optional]  # noqa: E501
@@ -245,10 +248,10 @@ class IdentityEntity(ModelNormal):
             email (str, none_type): The email address of the principal control owner where they can be reached (max 100 characters).. [optional]  # noqa: E501
             first_name (str, none_type): The legal first name of the merchant's control owner (max 20 characters).. [optional]  # noqa: E501
             has_accepted_credit_cards_previously (bool): Defaults to **false** if not passed.. [optional]  # noqa: E501
-            incorporation_date (IdentityEntityIncorporationDate): [optional]  # noqa: E501
+            incorporation_date (IdentityEntityFormIncorporationDate): [optional]  # noqa: E501
             last_name (str, none_type): The legal last name of the merchant's control owner (max 20 characters).. [optional]  # noqa: E501
             max_transaction_amount (int, none_type): The maximum amount (in cents) that can be charged for a single transaction (max 12 characters).. [optional]  # noqa: E501
-            mcc (str, none_type): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card\\_x/mcc.pdf)) that this merchant will be classified under.. [optional]  # noqa: E501
+            mcc (str, none_type): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card\\_x/mcc.pdf)) that this merchant will be classified under. For a list of approved MCCs, see [Approved Merchant Category Codes.](/docs/guides/business/security-and-compliance/approved-merchants/). [optional]  # noqa: E501
             ownership_type (str, none_type): Values can be either: <ul><li><strong>PUBLIC</strong> to indicate a publicly-traded company.<li><strong>PRIVATE</strong> for privately-held businesses.. [optional]  # noqa: E501
             personal_address (IdentityEntityPersonalAddress): [optional]  # noqa: E501
             phone (str, none_type): The principal control owner's phone number (max 10 characters).. [optional]  # noqa: E501
@@ -339,6 +342,7 @@ class IdentityEntity(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            amex_mid (int, none_type): Assigned amexMid value. If a value is passed, it must be 10 or 11 digits.. [optional]  # noqa: E501
             annual_card_volume (int, none_type): The annual credit card sales (in cents) expected to be processed by this merchant (max 19 characters).. [optional]  # noqa: E501
             business_address (IdentityEntityBusinessAddress): [optional]  # noqa: E501
             business_name (str, none_type): The merchant's legal business name (max 120 characters).<ul><li>If <strong>INDIVIDUAL_SOLE_PROPRIETORSHIP</strong>, pass the owner's legal first name, last name and middle initial.. [optional]  # noqa: E501
@@ -352,10 +356,10 @@ class IdentityEntity(ModelNormal):
             email (str, none_type): The email address of the principal control owner where they can be reached (max 100 characters).. [optional]  # noqa: E501
             first_name (str, none_type): The legal first name of the merchant's control owner (max 20 characters).. [optional]  # noqa: E501
             has_accepted_credit_cards_previously (bool): Defaults to **false** if not passed.. [optional]  # noqa: E501
-            incorporation_date (IdentityEntityIncorporationDate): [optional]  # noqa: E501
+            incorporation_date (IdentityEntityFormIncorporationDate): [optional]  # noqa: E501
             last_name (str, none_type): The legal last name of the merchant's control owner (max 20 characters).. [optional]  # noqa: E501
             max_transaction_amount (int, none_type): The maximum amount (in cents) that can be charged for a single transaction (max 12 characters).. [optional]  # noqa: E501
-            mcc (str, none_type): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card\\_x/mcc.pdf)) that this merchant will be classified under.. [optional]  # noqa: E501
+            mcc (str, none_type): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card\\_x/mcc.pdf)) that this merchant will be classified under. For a list of approved MCCs, see [Approved Merchant Category Codes.](/docs/guides/business/security-and-compliance/approved-merchants/). [optional]  # noqa: E501
             ownership_type (str, none_type): Values can be either: <ul><li><strong>PUBLIC</strong> to indicate a publicly-traded company.<li><strong>PRIVATE</strong> for privately-held businesses.. [optional]  # noqa: E501
             personal_address (IdentityEntityPersonalAddress): [optional]  # noqa: E501
             phone (str, none_type): The principal control owner's phone number (max 10 characters).. [optional]  # noqa: E501

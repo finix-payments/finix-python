@@ -29,17 +29,15 @@ from finix.exceptions import ApiAttributeError
 
 def lazy_import():
     from finix.model.additional_buyer_charges import AdditionalBuyerCharges
-    from finix.model.authorization_captured_external_responses_inner import AuthorizationCapturedExternalResponsesInner
+    from finix.model.authorization_captured_external_responses import AuthorizationCapturedExternalResponses
     from finix.model.authorization_links import AuthorizationLinks
     from finix.model.card_present_details import CardPresentDetails
     from finix.model.currency import Currency
-    from finix.model.tags import Tags
     globals()['AdditionalBuyerCharges'] = AdditionalBuyerCharges
-    globals()['AuthorizationCapturedExternalResponsesInner'] = AuthorizationCapturedExternalResponsesInner
+    globals()['AuthorizationCapturedExternalResponses'] = AuthorizationCapturedExternalResponses
     globals()['AuthorizationLinks'] = AuthorizationLinks
     globals()['CardPresentDetails'] = CardPresentDetails
     globals()['Currency'] = Currency
-    globals()['Tags'] = Tags
 
 
 class AuthorizationCaptured(ModelNormal):
@@ -114,17 +112,18 @@ class AuthorizationCaptured(ModelNormal):
             'currency': (Currency,),  # noqa: E501
             'device': (str, none_type,),  # noqa: E501
             'expires_at': (datetime,),  # noqa: E501
-            'external_responses': ([AuthorizationCapturedExternalResponsesInner], none_type,),  # noqa: E501
+            'external_responses': ([AuthorizationCapturedExternalResponses], none_type,),  # noqa: E501
             'failure_code': (str, none_type,),  # noqa: E501
             'failure_message': (str, none_type,),  # noqa: E501
             'idempotency_id': (str, none_type,),  # noqa: E501
             'is_void': (bool,),  # noqa: E501
-            'merchant_identity': (str, none_type,),  # noqa: E501
+            'merchant': (str,),  # noqa: E501
+            'merchant_identity': (str,),  # noqa: E501
             'messages': ([str],),  # noqa: E501
             'raw': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'source': (str,),  # noqa: E501
             'state': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'trace_id': (str,),  # noqa: E501
             'transfer': (str, none_type,),  # noqa: E501
             'void_state': (str,),  # noqa: E501
@@ -154,6 +153,7 @@ class AuthorizationCaptured(ModelNormal):
         'failure_message': 'failure_message',  # noqa: E501
         'idempotency_id': 'idempotency_id',  # noqa: E501
         'is_void': 'is_void',  # noqa: E501
+        'merchant': 'merchant',  # noqa: E501
         'merchant_identity': 'merchant_identity',  # noqa: E501
         'messages': 'messages',  # noqa: E501
         'raw': 'raw',  # noqa: E501
@@ -219,17 +219,18 @@ class AuthorizationCaptured(ModelNormal):
             currency (Currency): [optional]  # noqa: E501
             device (str, none_type): The ID of the activated device.. [optional]  # noqa: E501
             expires_at (datetime): Authorization expiration time.. [optional]  # noqa: E501
-            external_responses ([AuthorizationCapturedExternalResponsesInner], none_type): [optional]  # noqa: E501
-            failure_code (str, none_type): The code of the failure so the decline can be handled programmatically. For more info on how to handle the failure, see [Failure Codes](/docs/guides/developers/errors/#failure-codes).. [optional]  # noqa: E501
+            external_responses ([AuthorizationCapturedExternalResponses], none_type): [optional]  # noqa: E501
+            failure_code (str, none_type): The code of the failure so the decline can be handled programmatically. For more info on how to handle the failure, see [Failure Codes](/guides/developers/errors/#failure-codes).. [optional]  # noqa: E501
             failure_message (str, none_type): A human-readable description of why the transaction was declined. This will also include a suggestion on how to complete the payment.. [optional]  # noqa: E501
-            idempotency_id (str, none_type): A randomly generated value that'll be associated with the request.. [optional]  # noqa: E501
+            idempotency_id (str, none_type): A randomly generated value that gets tied with the request.. [optional]  # noqa: E501
             is_void (bool): Details if the `Authorization` is void.. [optional]  # noqa: E501
-            merchant_identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            merchant (str): The ID of the `Merchant` resource the `Authorization` was created under.. [optional]  # noqa: E501
+            merchant_identity (str): The ID of `Identity` resource used by the `Merchant` the `Authorization` was created under.. [optional]  # noqa: E501
             messages ([str]): Message field that provides additional details. This field is typically **null**.. [optional]  # noqa: E501
             raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Raw response from the processor.. [optional]  # noqa: E501
             source (str): ID of the `Payment Instrument` where funds get debited.. [optional]  # noqa: E501
             state (str): The state of the `Transfer`.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             trace_id (str): Trace ID of the `Authorization`. The processor sends back the `trace_id` so you can track the authorization end-to-end.. [optional]  # noqa: E501
             transfer (str, none_type): The ID of the `transfer` resource that gets created when the `Authorization` moves to **SUCCEEDED**.. [optional]  # noqa: E501
             void_state (str): Details if the `Authorization` has been voided.. [optional]  # noqa: E501
@@ -327,17 +328,18 @@ class AuthorizationCaptured(ModelNormal):
             currency (Currency): [optional]  # noqa: E501
             device (str, none_type): The ID of the activated device.. [optional]  # noqa: E501
             expires_at (datetime): Authorization expiration time.. [optional]  # noqa: E501
-            external_responses ([AuthorizationCapturedExternalResponsesInner], none_type): [optional]  # noqa: E501
-            failure_code (str, none_type): The code of the failure so the decline can be handled programmatically. For more info on how to handle the failure, see [Failure Codes](/docs/guides/developers/errors/#failure-codes).. [optional]  # noqa: E501
+            external_responses ([AuthorizationCapturedExternalResponses], none_type): [optional]  # noqa: E501
+            failure_code (str, none_type): The code of the failure so the decline can be handled programmatically. For more info on how to handle the failure, see [Failure Codes](/guides/developers/errors/#failure-codes).. [optional]  # noqa: E501
             failure_message (str, none_type): A human-readable description of why the transaction was declined. This will also include a suggestion on how to complete the payment.. [optional]  # noqa: E501
-            idempotency_id (str, none_type): A randomly generated value that'll be associated with the request.. [optional]  # noqa: E501
+            idempotency_id (str, none_type): A randomly generated value that gets tied with the request.. [optional]  # noqa: E501
             is_void (bool): Details if the `Authorization` is void.. [optional]  # noqa: E501
-            merchant_identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            merchant (str): The ID of the `Merchant` resource the `Authorization` was created under.. [optional]  # noqa: E501
+            merchant_identity (str): The ID of `Identity` resource used by the `Merchant` the `Authorization` was created under.. [optional]  # noqa: E501
             messages ([str]): Message field that provides additional details. This field is typically **null**.. [optional]  # noqa: E501
             raw ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Raw response from the processor.. [optional]  # noqa: E501
             source (str): ID of the `Payment Instrument` where funds get debited.. [optional]  # noqa: E501
             state (str): The state of the `Transfer`.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             trace_id (str): Trace ID of the `Authorization`. The processor sends back the `trace_id` so you can track the authorization end-to-end.. [optional]  # noqa: E501
             transfer (str, none_type): The ID of the `transfer` resource that gets created when the `Authorization` moves to **SUCCEEDED**.. [optional]  # noqa: E501
             void_state (str): Details if the `Authorization` has been voided.. [optional]  # noqa: E501

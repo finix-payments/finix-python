@@ -53,6 +53,24 @@ class UpdateIdentityRequestEntityPersonalAddress(ModelNormal):
     }
 
     validations = {
+        ('city',): {
+            'min_length': 1,
+        },
+        ('country',): {
+            'min_length': 1,
+        },
+        ('region',): {
+            'min_length': 1,
+        },
+        ('line2',): {
+            'min_length': 1,
+        },
+        ('line1',): {
+            'min_length': 1,
+        },
+        ('postal_code',): {
+            'min_length': 1,
+        },
     }
 
     @cached_property
@@ -78,8 +96,9 @@ class UpdateIdentityRequestEntityPersonalAddress(ModelNormal):
         return {
             'city': (str,),  # noqa: E501
             'country': (str,),  # noqa: E501
-            'line1': (str,),  # noqa: E501
+            'region': (str,),  # noqa: E501
             'line2': (str,),  # noqa: E501
+            'line1': (str,),  # noqa: E501
             'postal_code': (str,),  # noqa: E501
         }
 
@@ -91,8 +110,9 @@ class UpdateIdentityRequestEntityPersonalAddress(ModelNormal):
     attribute_map = {
         'city': 'city',  # noqa: E501
         'country': 'country',  # noqa: E501
-        'line1': 'line1',  # noqa: E501
+        'region': 'region',  # noqa: E501
         'line2': 'line2',  # noqa: E501
+        'line1': 'line1',  # noqa: E501
         'postal_code': 'postal_code',  # noqa: E501
     }
 
@@ -139,8 +159,9 @@ class UpdateIdentityRequestEntityPersonalAddress(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             city (str): City (max 20 characters).. [optional]  # noqa: E501
             country (str): 3-Letter country code (e.g. USA).. [optional]  # noqa: E501
-            line1 (str): First line of the address (max 35 characters).. [optional]  # noqa: E501
+            region (str): 2-letter State code.. [optional]  # noqa: E501
             line2 (str): Second line of the address (max 35 characters).. [optional]  # noqa: E501
+            line1 (str): First line of the address (max 35 characters).. [optional]  # noqa: E501
             postal_code (str): Zip or Postal code (max 7 characters).. [optional]  # noqa: E501
         """
 
@@ -225,8 +246,9 @@ class UpdateIdentityRequestEntityPersonalAddress(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             city (str): City (max 20 characters).. [optional]  # noqa: E501
             country (str): 3-Letter country code (e.g. USA).. [optional]  # noqa: E501
-            line1 (str): First line of the address (max 35 characters).. [optional]  # noqa: E501
+            region (str): 2-letter State code.. [optional]  # noqa: E501
             line2 (str): Second line of the address (max 35 characters).. [optional]  # noqa: E501
+            line1 (str): First line of the address (max 35 characters).. [optional]  # noqa: E501
             postal_code (str): Zip or Postal code (max 7 characters).. [optional]  # noqa: E501
         """
 

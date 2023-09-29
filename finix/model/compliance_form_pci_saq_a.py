@@ -76,12 +76,12 @@ class ComplianceFormPciSaqA(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'name': (str, none_type,),  # noqa: E501
-            'signed_at': (str, none_type,),  # noqa: E501
-            'user_agent': (str, none_type,),  # noqa: E501
             'ip_address': (str, none_type,),  # noqa: E501
             'is_accepted': (bool, none_type,),  # noqa: E501
+            'name': (str, none_type,),  # noqa: E501
+            'signed_at': (str, none_type,),  # noqa: E501
             'title': (str, none_type,),  # noqa: E501
+            'user_agent': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -90,12 +90,12 @@ class ComplianceFormPciSaqA(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
-        'signed_at': 'signed_at',  # noqa: E501
-        'user_agent': 'user_agent',  # noqa: E501
         'ip_address': 'ip_address',  # noqa: E501
         'is_accepted': 'is_accepted',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'signed_at': 'signed_at',  # noqa: E501
         'title': 'title',  # noqa: E501
+        'user_agent': 'user_agent',  # noqa: E501
     }
 
     read_only_vars = {
@@ -139,12 +139,12 @@ class ComplianceFormPciSaqA(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            name (str, none_type): Name of the person completing (aka attesting to) the `compliance_form`.. [optional]  # noqa: E501
-            signed_at (str, none_type): Timestamp of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
-            user_agent (str, none_type): User agent of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
             ip_address (str, none_type): IP address of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
             is_accepted (bool, none_type): If all `pci_saq_a` fields are all submitted, `is_accepted` updates to **true**.. [optional]  # noqa: E501
+            name (str, none_type): Name of the person completing (aka attesting to) the `compliance_form`.. [optional]  # noqa: E501
+            signed_at (str, none_type): Timestamp of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
             title (str, none_type): Title or role of the person completing (aka attesting to) the `compliance_form`.. [optional]  # noqa: E501
+            user_agent (str, none_type): User agent of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -226,12 +226,12 @@ class ComplianceFormPciSaqA(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            name (str, none_type): Name of the person completing (aka attesting to) the `compliance_form`.. [optional]  # noqa: E501
-            signed_at (str, none_type): Timestamp of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
-            user_agent (str, none_type): User agent of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
             ip_address (str, none_type): IP address of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
             is_accepted (bool, none_type): If all `pci_saq_a` fields are all submitted, `is_accepted` updates to **true**.. [optional]  # noqa: E501
+            name (str, none_type): Name of the person completing (aka attesting to) the `compliance_form`.. [optional]  # noqa: E501
+            signed_at (str, none_type): Timestamp of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
             title (str, none_type): Title or role of the person completing (aka attesting to) the `compliance_form`.. [optional]  # noqa: E501
+            user_agent (str, none_type): User agent of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -27,10 +27,6 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
-def lazy_import():
-    from finix.model.tags import Tags
-    globals()['Tags'] = Tags
-
 
 class ExternalLink(ModelNormal):
     """
@@ -65,7 +61,6 @@ class ExternalLink(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -80,7 +75,6 @@ class ExternalLink(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        lazy_import()
         return {
             'id': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
@@ -88,7 +82,7 @@ class ExternalLink(ModelNormal):
             'expired': (bool,),  # noqa: E501
             'expires_at': (str,),  # noqa: E501
             'file_id': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'tags': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'type': (str,),  # noqa: E501
             'url': (str,),  # noqa: E501
             'user_id': (str,),  # noqa: E501
@@ -159,7 +153,7 @@ class ExternalLink(ModelNormal):
             expired (bool): <ul><li>If <strong>TRUE</strong> the link has expired<br><li>If <strong>FALSE</strong>, the link is active and files can still be uploaded or downloaded from the link.. [optional]  # noqa: E501
             expires_at (str): The timestamp that the external link expires at.. [optional]  # noqa: E501
             file_id (str): The `File` ID the `external_link` is related to.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             type (str): Sets if the link is for uploading or downloading files from Finix.. [optional]  # noqa: E501
             url (str): The URL you can share with merchants to **UPLOAD** or **DOWNLOAD** files depending on the request sent.. [optional]  # noqa: E501
             user_id (str): The ID of the `user` that requested to create this link.. [optional]  # noqa: E501
@@ -250,7 +244,7 @@ class ExternalLink(ModelNormal):
             expired (bool): <ul><li>If <strong>TRUE</strong> the link has expired<br><li>If <strong>FALSE</strong>, the link is active and files can still be uploaded or downloaded from the link.. [optional]  # noqa: E501
             expires_at (str): The timestamp that the external link expires at.. [optional]  # noqa: E501
             file_id (str): The `File` ID the `external_link` is related to.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            tags ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Include up to 50 `key`: **value** pairs to annotate requests with custom metadata. - Maximum character length for individual `keys` is 40. - Maximum character length for individual **values** is 500.  (e.g., `order number`: **25**, `item_type`: **produce**, `department`: **sales**, etc.). [optional]  # noqa: E501
             type (str): Sets if the link is for uploading or downloading files from Finix.. [optional]  # noqa: E501
             url (str): The URL you can share with merchants to **UPLOAD** or **DOWNLOAD** files depending on the request sent.. [optional]  # noqa: E501
             user_id (str): The ID of the `user` that requested to create this link.. [optional]  # noqa: E501

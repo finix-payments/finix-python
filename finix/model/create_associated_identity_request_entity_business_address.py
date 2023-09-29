@@ -59,9 +59,6 @@ class CreateAssociatedIdentityRequestEntityBusinessAddress(ModelNormal):
         ('country',): {
             'min_length': 1,
         },
-        ('region',): {
-            'min_length': 1,
-        },
         ('line2',): {
             'min_length': 1,
         },
@@ -69,6 +66,9 @@ class CreateAssociatedIdentityRequestEntityBusinessAddress(ModelNormal):
             'min_length': 1,
         },
         ('postal_code',): {
+            'min_length': 1,
+        },
+        ('region',): {
             'min_length': 1,
         },
     }
@@ -96,10 +96,10 @@ class CreateAssociatedIdentityRequestEntityBusinessAddress(ModelNormal):
         return {
             'city': (str,),  # noqa: E501
             'country': (str,),  # noqa: E501
-            'region': (str,),  # noqa: E501
             'line2': (str,),  # noqa: E501
             'line1': (str,),  # noqa: E501
             'postal_code': (str,),  # noqa: E501
+            'region': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -110,10 +110,10 @@ class CreateAssociatedIdentityRequestEntityBusinessAddress(ModelNormal):
     attribute_map = {
         'city': 'city',  # noqa: E501
         'country': 'country',  # noqa: E501
-        'region': 'region',  # noqa: E501
         'line2': 'line2',  # noqa: E501
         'line1': 'line1',  # noqa: E501
         'postal_code': 'postal_code',  # noqa: E501
+        'region': 'region',  # noqa: E501
     }
 
     read_only_vars = {
@@ -159,10 +159,10 @@ class CreateAssociatedIdentityRequestEntityBusinessAddress(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             city (str): City (max 20 characters).. [optional]  # noqa: E501
             country (str): [optional]  # noqa: E501
-            region (str): 2-letter state code.. [optional]  # noqa: E501
             line2 (str): Second line of the address (max 35 characters).. [optional]  # noqa: E501
             line1 (str): First line of the address (max 35 characters).. [optional]  # noqa: E501
             postal_code (str): Zip or Postal code (max 7 characters).. [optional]  # noqa: E501
+            region (str): 2-letter state code.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -246,10 +246,10 @@ class CreateAssociatedIdentityRequestEntityBusinessAddress(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             city (str): City (max 20 characters).. [optional]  # noqa: E501
             country (str): [optional]  # noqa: E501
-            region (str): 2-letter state code.. [optional]  # noqa: E501
             line2 (str): Second line of the address (max 35 characters).. [optional]  # noqa: E501
             line1 (str): First line of the address (max 35 characters).. [optional]  # noqa: E501
             postal_code (str): Zip or Postal code (max 7 characters).. [optional]  # noqa: E501
+            region (str): 2-letter state code.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
