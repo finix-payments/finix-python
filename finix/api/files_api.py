@@ -19,17 +19,18 @@ from finix.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from finix.model.create_external_link_request import CreateExternalLinkRequest
-from finix.model.create_file_request import CreateFileRequest
-from finix.model.error401_unauthorized import Error401Unauthorized
-from finix.model.error403_forbidden_list import Error403ForbiddenList
-from finix.model.error404_not_found_list import Error404NotFoundList
-from finix.model.error406_not_acceptable import Error406NotAcceptable
-from finix.model.external_link import ExternalLink
-from finix.model.external_links_list import ExternalLinksList
-from finix.model.file import File
-from finix.model.files_list import FilesList
-from finix.model.upload_file_request import UploadFileRequest
+from typing_extensions import Annotated
+from pydantic import Field, StrictInt, StrictStr
+
+from typing import Optional, Union
+
+from finix.models.create_external_link_request import CreateExternalLinkRequest
+from finix.models.create_file_request import CreateFileRequest
+from finix.models.external_link import ExternalLink
+from finix.models.external_links_list import ExternalLinksList
+from finix.models.file import File
+from finix.models.files_list import FilesList
+from finix.models.upload_file_request import UploadFileRequest
 from finix.model.finix_utils import FinixList
 
 from functools import wraps
@@ -79,6 +80,7 @@ class FilesApi(object):
             params_map={
                 'all': [
                     'file_id',
+                    'accept',
                     'create_external_link_request',
                 ],
                 'required': [
@@ -99,14 +101,18 @@ class FilesApi(object):
                 'openapi_types': {
                     'file_id':
                         (str,),
+                    'accept':
+                        (str,),
                     'create_external_link_request':
                         (CreateExternalLinkRequest,),
                 },
                 'attribute_map': {
                     'file_id': 'file_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'file_id': 'path',
+                    'accept': 'header',
                     'create_external_link_request': 'body',
                 },
                 'collection_format_map': {
@@ -114,11 +120,10 @@ class FilesApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/vnd.api+json',
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/vnd.api+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -165,18 +170,17 @@ class FilesApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/vnd.api+json',
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/vnd.api+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
         )
         self._download_endpoint = finix.api_client.Endpoint(
             settings={
-                'response_type': (file_type,),
+                'response_type': (bytearray,),
                 'auth': [
                     'BasicAuth'
                 ],
@@ -188,6 +192,8 @@ class FilesApi(object):
             params_map={
                 'all': [
                     'file_id',
+                    'accept',
+                    'stream',
                 ],
                 'required': [
                     'file_id',
@@ -195,6 +201,7 @@ class FilesApi(object):
                 'nullable': [
                 ],
                 'enum': [
+                    'stream',
                 ],
                 'validation': [
                 ]
@@ -203,16 +210,29 @@ class FilesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
+                    ('stream',): {
+
+                        "&#39;true&#39;": 'true',
+                        "&#39;false&#39;": 'false'
+                    },
                 },
                 'openapi_types': {
                     'file_id':
                         (str,),
+                    'accept':
+                        (str,),
+                    'stream':
+                        (str,),
                 },
                 'attribute_map': {
                     'file_id': 'file_id',
+                    'accept': 'Accept',
+                    'stream': 'stream',
                 },
                 'location_map': {
                     'file_id': 'path',
+                    'accept': 'header',
+                    'stream': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -220,7 +240,7 @@ class FilesApi(object):
             headers_map={
                 'accept': [
                     'application/octet-stream',
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -241,6 +261,7 @@ class FilesApi(object):
                 'all': [
                     'file_id',
                     'external_link_id',
+                    'accept',
                 ],
                 'required': [
                     'file_id',
@@ -263,22 +284,25 @@ class FilesApi(object):
                         (str,),
                     'external_link_id':
                         (str,),
+                    'accept':
+                        (str,),
                 },
                 'attribute_map': {
                     'file_id': 'file_id',
                     'external_link_id': 'external_link_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'file_id': 'path',
                     'external_link_id': 'path',
+                    'accept': 'header',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/vnd.api+json',
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -298,6 +322,7 @@ class FilesApi(object):
             params_map={
                 'all': [
                     'file_id',
+                    'accept',
                 ],
                 'required': [
                     'file_id',
@@ -317,20 +342,23 @@ class FilesApi(object):
                 'openapi_types': {
                     'file_id':
                         (str,),
+                    'accept':
+                        (str,),
                 },
                 'attribute_map': {
                     'file_id': 'file_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'file_id': 'path',
+                    'accept': 'header',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/vnd.api+json',
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -350,7 +378,7 @@ class FilesApi(object):
             params_map={
                 'all': [
                     'file_id',
-                    'sort',
+                    'accept',
                     'after_cursor',
                     'limit',
                     'id',
@@ -378,7 +406,7 @@ class FilesApi(object):
                 'openapi_types': {
                     'file_id':
                         (str,),
-                    'sort':
+                    'accept':
                         (str,),
                     'after_cursor':
                         (str,),
@@ -399,7 +427,7 @@ class FilesApi(object):
                 },
                 'attribute_map': {
                     'file_id': 'file_id',
-                    'sort': 'sort',
+                    'accept': 'Accept',
                     'after_cursor': 'after_cursor',
                     'limit': 'limit',
                     'id': 'id',
@@ -411,7 +439,7 @@ class FilesApi(object):
                 },
                 'location_map': {
                     'file_id': 'path',
-                    'sort': 'query',
+                    'accept': 'header',
                     'after_cursor': 'query',
                     'limit': 'query',
                     'id': 'query',
@@ -426,8 +454,7 @@ class FilesApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/vnd.api+json',
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -446,7 +473,6 @@ class FilesApi(object):
             },
             params_map={
                 'all': [
-                    'sort',
                     'after_cursor',
                     'limit',
                     'id',
@@ -470,8 +496,6 @@ class FilesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'sort':
-                        (str,),
                     'after_cursor':
                         (str,),
                     'limit':
@@ -490,7 +514,6 @@ class FilesApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'sort': 'sort',
                     'after_cursor': 'after_cursor',
                     'limit': 'limit',
                     'id': 'id',
@@ -501,7 +524,6 @@ class FilesApi(object):
                     'before_cursor': 'before_cursor',
                 },
                 'location_map': {
-                    'sort': 'query',
                     'after_cursor': 'query',
                     'limit': 'query',
                     'id': 'query',
@@ -516,8 +538,7 @@ class FilesApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/vnd.api+json',
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -537,6 +558,7 @@ class FilesApi(object):
             params_map={
                 'all': [
                     'file_id',
+                    'accept',
                     'upload_file_request',
                 ],
                 'required': [
@@ -557,14 +579,18 @@ class FilesApi(object):
                 'openapi_types': {
                     'file_id':
                         (str,),
+                    'accept':
+                        (str,),
                     'upload_file_request':
                         (UploadFileRequest,),
                 },
                 'attribute_map': {
                     'file_id': 'file_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'file_id': 'path',
+                    'accept': 'header',
                     'upload_file_request': 'body',
                 },
                 'collection_format_map': {
@@ -572,8 +598,7 @@ class FilesApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/vnd.api+json',
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
                     'multipart/form-data'
@@ -589,7 +614,7 @@ class FilesApi(object):
     ):
         """Create an External Link  # noqa: E501
 
-        Create an `external_link` resource to share with users so they can upload files directly from their browser. For more info, see [Uploading files to Finix](/docs/guides/onboarding/uploading-files-to-finix/).   Once created, you can request the user to upload a file to the `external_link` resource: [Upload files to External Link](#operation/uploadExternalLink)  # noqa: E501
+        Create an `external_link` resource to share with users so they can upload files directly from their browser. For more info, see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix/).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -600,6 +625,7 @@ class FilesApi(object):
             file_id (str): Your `File` ID.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             create_external_link_request (CreateExternalLinkRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -667,7 +693,7 @@ class FilesApi(object):
     ):
         """Create a File  # noqa: E501
 
-        Before uploading a file, you need to create a `File` resource.   Once created, you can [upload](/#operation/uploadFile) your file to the new `File` resource.  # noqa: E501
+        Before uploading a file, you need to create a `File` resource.   Once created, you can [upload](/guides/onboarding/uploading-files-to-finix/#how-to-upload-a-file-to-finix) your file to the new `File` resource.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -740,9 +766,9 @@ class FilesApi(object):
         file_id,
         **kwargs
     ):
-        """Download a file  # noqa: E501
+        """Download a File  # noqa: E501
 
-        Download a file that was uploaded to a `File` resource. For more info, see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix).  # noqa: E501
+        Download a file that was uploaded to a `File` resource.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -753,6 +779,8 @@ class FilesApi(object):
             file_id (str): The ID of the `File` that was created to upload the file.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
+            stream (str): Stream the contents of the `File` so it's displayed inline in the user's web browser.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -781,7 +809,7 @@ class FilesApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            file_type
+            bytearray
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -821,7 +849,7 @@ class FilesApi(object):
     ):
         """Fetch an External LInk  # noqa: E501
 
-        Fetch a previously created `external_link` resource. For more info see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix/#create-an-external-link).  # noqa: E501
+        Fetch a previously created `external_link` resource.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -833,6 +861,7 @@ class FilesApi(object):
             external_link_id (str): The ID of the `external_link` that you want to retireve.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -902,7 +931,7 @@ class FilesApi(object):
     ):
         """Fetch a File  # noqa: E501
 
-        Retrieve the details of a `File` resource. For more info see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix/#create-an-external-link).  # noqa: E501
+        Retrieve the details of a `File` resource.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -913,6 +942,7 @@ class FilesApi(object):
             file_id (str): Your `File` ID.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -980,7 +1010,7 @@ class FilesApi(object):
     ):
         """List All External Links  # noqa: E501
 
-        List the previously created `external_links` for a `File`. For more info, see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix/#create-an-external-link).  # noqa: E501
+        List the previously created `external_links` for a `File`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -991,7 +1021,7 @@ class FilesApi(object):
             file_id (str): Your `File` ID.
 
         Keyword Args:
-            sort (str): Specify key to be used for sorting the collection.. [optional]
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             limit (int): The numbers of items to return.. [optional]
             id (str): Filter by `id`.. [optional]
@@ -1068,7 +1098,7 @@ class FilesApi(object):
     ):
         """List All Files  # noqa: E501
 
-        List all the `File` resources you've created. For more info, see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix/#step-1-create-a-file).  # noqa: E501
+        List all the `File` resources you've created.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1077,7 +1107,6 @@ class FilesApi(object):
 
 
         Keyword Args:
-            sort (str): Specify key to be used for sorting the collection.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             limit (int): The numbers of items to return.. [optional]
             id (str): Filter by `id`.. [optional]
@@ -1153,7 +1182,7 @@ class FilesApi(object):
     ):
         """Upload files Directly  # noqa: E501
 
-        Upload files directly with a `multipart/form-data` request. For more info see, [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix/#step-2-upload-the-file).  # noqa: E501
+        Upload files directly with a `multipart/form-data` request.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1164,6 +1193,7 @@ class FilesApi(object):
             file_id (str): The ID of the `File` that was created to upload the file.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             upload_file_request (UploadFileRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.

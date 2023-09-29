@@ -19,19 +19,17 @@ from finix.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from finix.model.apple_pay_session import ApplePaySession
-from finix.model.apple_pay_session_request import ApplePaySessionRequest
-from finix.model.create_payment_instrument_request import CreatePaymentInstrumentRequest
-from finix.model.error401_unauthorized import Error401Unauthorized
-from finix.model.error403_forbidden_list import Error403ForbiddenList
-from finix.model.error404_not_found_list import Error404NotFoundList
-from finix.model.error406_not_acceptable import Error406NotAcceptable
-from finix.model.error422_invalid_field_list import Error422InvalidFieldList
-from finix.model.error_generic import ErrorGeneric
-from finix.model.payment_instrument import PaymentInstrument
-from finix.model.payment_instrument_updates_list import PaymentInstrumentUpdatesList
-from finix.model.payment_instruments_list import PaymentInstrumentsList
-from finix.model.update_payment_instrument_request import UpdatePaymentInstrumentRequest
+from typing_extensions import Annotated
+from pydantic import Field, StrictInt, StrictStr
+
+from typing import Optional
+
+from finix.models.apple_pay_session import ApplePaySession
+from finix.models.apple_pay_session_request import ApplePaySessionRequest
+from finix.models.create_payment_instrument_request import CreatePaymentInstrumentRequest
+from finix.models.payment_instrument import PaymentInstrument
+from finix.models.payment_instruments_list import PaymentInstrumentsList
+from finix.models.update_payment_instrument_request import UpdatePaymentInstrumentRequest
 from finix.model.finix_utils import FinixList
 
 from functools import wraps
@@ -109,10 +107,10 @@ class PaymentInstrumentsApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -130,6 +128,8 @@ class PaymentInstrumentsApi(object):
             },
             params_map={
                 'all': [
+                    'accept',
+                    'finix_version',
                     'create_payment_instrument_request',
                 ],
                 'required': [],
@@ -146,12 +146,20 @@ class PaymentInstrumentsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'accept':
+                        (str,),
+                    'finix_version':
+                        (str,),
                     'create_payment_instrument_request':
                         (CreatePaymentInstrumentRequest,),
                 },
                 'attribute_map': {
+                    'accept': 'Accept',
+                    'finix_version': 'Finix-Version',
                 },
                 'location_map': {
+                    'accept': 'header',
+                    'finix_version': 'header',
                     'create_payment_instrument_request': 'body',
                 },
                 'collection_format_map': {
@@ -159,10 +167,10 @@ class PaymentInstrumentsApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -181,6 +189,7 @@ class PaymentInstrumentsApi(object):
             params_map={
                 'all': [
                     'payment_instrument_id',
+                    'accept',
                 ],
                 'required': [
                     'payment_instrument_id',
@@ -200,85 +209,23 @@ class PaymentInstrumentsApi(object):
                 'openapi_types': {
                     'payment_instrument_id':
                         (str,),
-                },
-                'attribute_map': {
-                    'payment_instrument_id': 'payment_instrument_id',
-                },
-                'location_map': {
-                    'payment_instrument_id': 'path',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/hal+json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client
-        )
-        self._list_updates_by_payment_instrument_id_endpoint = finix.api_client.Endpoint(
-            settings={
-                'response_type': (PaymentInstrumentUpdatesList,),
-                'auth': [
-                    'BasicAuth'
-                ],
-                'endpoint_path': '/payment_instruments/{payment_instrument_id}/updates',
-                'operation_id': 'list_updates_by_payment_instrument_id',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'payment_instrument_id',
-                    'limit',
-                    'offset',
-                    'page_size',
-                ],
-                'required': [
-                    'payment_instrument_id',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'payment_instrument_id':
+                    'accept':
                         (str,),
-                    'limit':
-                        (int,),
-                    'offset':
-                        (int,),
-                    'page_size':
-                        (int,),
                 },
                 'attribute_map': {
                     'payment_instrument_id': 'payment_instrument_id',
-                    'limit': 'limit',
-                    'offset': 'offset',
-                    'page_size': 'pageSize',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'payment_instrument_id': 'path',
-                    'limit': 'query',
-                    'offset': 'query',
-                    'page_size': 'query',
+                    'accept': 'header',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -297,6 +244,7 @@ class PaymentInstrumentsApi(object):
             },
             params_map={
                 'all': [
+                    'accept',
                     'account_last4',
                     'account_routing_number',
                     'after_cursor',
@@ -307,11 +255,13 @@ class PaymentInstrumentsApi(object):
                     'created_at_lte',
                     'expiration_month',
                     'expiration_year',
-                    'last_four',
+                    'last4',
                     'limit',
                     'name',
                     'owner_identity_id',
                     'type',
+                    'tags_key',
+                    'tags_value',
                 ],
                 'required': [],
                 'nullable': [
@@ -328,12 +278,14 @@ class PaymentInstrumentsApi(object):
                 'allowed_values': {
                     ('type',): {
 
-                        "ALL": "ALL",
-                        "BANK_ACCOUNT": "BANK_ACCOUNT",
-                        "PAYMENT_CARD": "PAYMENT_CARD"
+                        "&#39;ALL&#39;": 'ALL',
+                        "&#39;BANK_ACCOUNT&#39;": 'BANK_ACCOUNT',
+                        "&#39;PAYMENT_CARD&#39;": 'PAYMENT_CARD'
                     },
                 },
                 'openapi_types': {
+                    'accept':
+                        (str,),
                     'account_last4':
                         (str,),
                     'account_routing_number':
@@ -354,7 +306,7 @@ class PaymentInstrumentsApi(object):
                         (str,),
                     'expiration_year':
                         (str,),
-                    'last_four':
+                    'last4':
                         (str,),
                     'limit':
                         (int,),
@@ -364,8 +316,13 @@ class PaymentInstrumentsApi(object):
                         (str,),
                     'type':
                         (str,),
+                    'tags_key':
+                        (str,),
+                    'tags_value':
+                        (str,),
                 },
                 'attribute_map': {
+                    'accept': 'Accept',
                     'account_last4': 'account_last4',
                     'account_routing_number': 'account_routing_number',
                     'after_cursor': 'after_cursor',
@@ -376,13 +333,16 @@ class PaymentInstrumentsApi(object):
                     'created_at_lte': 'created_at.lte',
                     'expiration_month': 'expiration_month',
                     'expiration_year': 'expiration_year',
-                    'last_four': 'last_four',
+                    'last4': 'last4',
                     'limit': 'limit',
                     'name': 'name',
                     'owner_identity_id': 'owner_identity_id',
                     'type': 'type',
+                    'tags_key': 'tags.key',
+                    'tags_value': 'tags.value',
                 },
                 'location_map': {
+                    'accept': 'header',
                     'account_last4': 'query',
                     'account_routing_number': 'query',
                     'after_cursor': 'query',
@@ -393,18 +353,20 @@ class PaymentInstrumentsApi(object):
                     'created_at_lte': 'query',
                     'expiration_month': 'query',
                     'expiration_year': 'query',
-                    'last_four': 'query',
+                    'last4': 'query',
                     'limit': 'query',
                     'name': 'query',
                     'owner_identity_id': 'query',
                     'type': 'query',
+                    'tags_key': 'query',
+                    'tags_value': 'query',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -424,6 +386,8 @@ class PaymentInstrumentsApi(object):
             params_map={
                 'all': [
                     'payment_instrument_id',
+                    'accept',
+                    'finix_version',
                     'update_payment_instrument_request',
                 ],
                 'required': [
@@ -444,14 +408,22 @@ class PaymentInstrumentsApi(object):
                 'openapi_types': {
                     'payment_instrument_id':
                         (str,),
+                    'accept':
+                        (str,),
+                    'finix_version':
+                        (str,),
                     'update_payment_instrument_request':
                         (UpdatePaymentInstrumentRequest,),
                 },
                 'attribute_map': {
                     'payment_instrument_id': 'payment_instrument_id',
+                    'accept': 'Accept',
+                    'finix_version': 'Finix-Version',
                 },
                 'location_map': {
                     'payment_instrument_id': 'path',
+                    'accept': 'header',
+                    'finix_version': 'header',
                     'update_payment_instrument_request': 'body',
                 },
                 'collection_format_map': {
@@ -459,10 +431,10 @@ class PaymentInstrumentsApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -474,7 +446,7 @@ class PaymentInstrumentsApi(object):
     ):
         """Create an Apple Pay Session  # noqa: E501
 
-        Create an `apple_pay_session` to process Apple Pay transactions on the web.  To create an Apple Pay Session, pass the unique `validation_url` (provided by Apple) while creating an `apple_pay_sessions` resource. Finix returns a `merchantSession` object that you can use to create a payment. For more information, see [Apple Pay](/docs/guides/payments/alternative-payment-methods/apple-pay/).  # noqa: E501
+        Create an `apple_pay_session` to process Apple Pay transactions on the web.  To create an Apple Pay Session, pass the unique `validation_url` (provided by Apple) while creating an `apple_pay_sessions` resource. Finix returns a `merchantSession` object that you can use to create a payment. For more information, see [Apple Pay](/guides/payments/alternative-payment-methods/apple-pay/).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -548,7 +520,7 @@ class PaymentInstrumentsApi(object):
     ):
         """Create a Payment Instrument  # noqa: E501
 
-        Create a `Payment Instrument` resource using a card or bank account.  To accept payment details, review our guide on how to [tokenize cards using hosted fields](/guides/payments/tokenization-with-hosted-fields).  - The creation of `Payment Instruments` directly via Finix's API should only be done for testing purposes. You must use the Hosted Tokenization fields or the javascript client to remain out of PCI scope.  # noqa: E501
+        Create a `Payment Instrument` resource using a card or bank account.  - The creation of `Payment Instruments` directly via Finix's API should only be done for testing purposes. You must use [our hosted fields](/guides/payments/making-a-payment/using-hosted-fields/) or the javascript client to remain out of PCI scope.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -557,6 +529,8 @@ class PaymentInstrumentsApi(object):
 
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
+            finix_version (str): Specify the API version of your request. For more details, see [Versioning.](/guides/developers/versioning/). [optional] if omitted the server will use the default value of '2018-01-01'
             create_payment_instrument_request (CreatePaymentInstrumentRequest): . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -634,6 +608,7 @@ class PaymentInstrumentsApi(object):
             payment_instrument_id (str): ID of object
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -694,89 +669,6 @@ class PaymentInstrumentsApi(object):
             payment_instrument_id
         return self._get_endpoint.call_with_http_info(**kwargs)
 
-    def list_updates_by_payment_instrument_id(
-        self,
-        payment_instrument_id,
-        **kwargs
-    ):
-        """List Payment Instrument Updates  # noqa: E501
-
-        List the updates on a `Payment Instrument`.  When using the [account updater](/guides/payments/account-updater), `Payment Instrument` details that are updated are represented by an `Update`.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.list_updates_by_payment_instrument_id(payment_instrument_id, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            payment_instrument_id (str): ID of `Payment Instrument` object.
-
-        Keyword Args:
-            limit (int): The number of entries to return.. [optional]
-            offset (int): The number of items to skip before starting to collect the result set.. [optional]
-            page_size (int): The size of the page.. [optional]
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is True.
-            _spec_property_naming (bool): True if the variable names in the input data
-                are serialized names, as specified in the OpenAPI document.
-                False if the variable names in the input data
-                are pythonic names, e.g. snake case (default)
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            PaymentInstrumentUpdatesList
-                If the method is called asynchronously, returns the request
-                thread.
-        """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', False
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['payment_instrument_id'] = \
-            payment_instrument_id
-        ret = self._list_updates_by_payment_instrument_id_endpoint.call_with_http_info(**kwargs)
-        fl = FinixList(ret, self.list_updates_by_payment_instrument_id,  **kwargs)
-        return fl
-
     def list(
         self,
         **kwargs
@@ -792,6 +684,7 @@ class PaymentInstrumentsApi(object):
 
 
         Keyword Args:
+            accept (str): Body Header. [optional] if omitted the server will use the default value of 'application/hal+json'
             account_last4 (str): Filter by the last 4 digits of the account if available.. [optional]
             account_routing_number (str): Filter by the account routing number if available.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
@@ -802,11 +695,13 @@ class PaymentInstrumentsApi(object):
             created_at_lte (str): Filter where `created_at` is before the given date.. [optional]
             expiration_month (str): Filter by the expiration month associated with the `Payment Instrument` if applicable. This filter only applies to payment cards.. [optional]
             expiration_year (str): Filter by the 4 digit expiration year associated with the Payment Instrument if applicable. This filter only applies to payment cards.. [optional]
-            last_four (str): Filter by the last 4 digits of the `Payment Instrument` card. This filter only applies to payment cards.. [optional]
+            last4 (str): Filter by the last 4 digits of the `Payment Instrument` card. This filter only applies to payment cards.. [optional]
             limit (int): The numbers of items to return.. [optional]
             name (str): Filter by the name.. [optional]
             owner_identity_id (str): Filter by the owner id of the associated `Identity`.. [optional]
             type (str): Filter by the `Payment Instrument` type.. [optional]
+            tags_key (str): Filter by the [`key` of a `Tag`](/api/overview/#section/Tags).. [optional]
+            tags_value (str): Filter by the [value of a `Tag`](https://finix.com/docs/api/overview/#section/Tags).. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -874,7 +769,7 @@ class PaymentInstrumentsApi(object):
     ):
         """Update a Payment Instrument  # noqa: E501
 
-        Update a `Payment Instrument`.  # noqa: E501
+        Update a `Payment Instrument` to: - Change the **billing address** in case the account holder moved (`instrument_type`:**PAYMENT_CARD** only). - Disable the `Payment Instrument` resource so it can't be used in requests. - Update the `name` on the `Payment Instrument`. - Change the `tags`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -885,6 +780,8 @@ class PaymentInstrumentsApi(object):
             payment_instrument_id (str): ID of object
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
+            finix_version (str): Specify the API version of your request. For more details, see [Versioning.](/guides/developers/versioning/). [optional] if omitted the server will use the default value of '2018-01-01'
             update_payment_instrument_request (UpdatePaymentInstrumentRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.

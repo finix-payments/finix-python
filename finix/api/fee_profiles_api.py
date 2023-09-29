@@ -19,14 +19,14 @@ from finix.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from finix.model.create_fee_profile_request import CreateFeeProfileRequest
-from finix.model.error401_unauthorized import Error401Unauthorized
-from finix.model.error403_forbidden_list import Error403ForbiddenList
-from finix.model.error404_not_found_list import Error404NotFoundList
-from finix.model.error406_not_acceptable import Error406NotAcceptable
-from finix.model.error422_invalid_field_list import Error422InvalidFieldList
-from finix.model.fee_profile import FeeProfile
-from finix.model.fee_profiles_list import FeeProfilesList
+from typing_extensions import Annotated
+from pydantic import Field, StrictInt, StrictStr
+
+from typing import Optional
+
+from finix.models.create_fee_profile_request import CreateFeeProfileRequest
+from finix.models.fee_profile import FeeProfile
+from finix.models.fee_profiles_list import FeeProfilesList
 from finix.model.finix_utils import FinixList
 
 from functools import wraps
@@ -104,10 +104,10 @@ class FeeProfilesApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -126,6 +126,7 @@ class FeeProfilesApi(object):
             params_map={
                 'all': [
                     'fee_profile_id',
+                    'accept',
                 ],
                 'required': [
                     'fee_profile_id',
@@ -145,19 +146,23 @@ class FeeProfilesApi(object):
                 'openapi_types': {
                     'fee_profile_id':
                         (str,),
+                    'accept':
+                        (str,),
                 },
                 'attribute_map': {
                     'fee_profile_id': 'fee_profile_id',
+                    'accept': 'Accept',
                 },
                 'location_map': {
                     'fee_profile_id': 'path',
+                    'accept': 'header',
                 },
                 'collection_format_map': {
                 }
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -176,6 +181,7 @@ class FeeProfilesApi(object):
             },
             params_map={
                 'all': [
+                    'accept',
                     'after_cursor',
                     'before_cursor',
                     'limit',
@@ -194,6 +200,8 @@ class FeeProfilesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'accept':
+                        (str,),
                     'after_cursor':
                         (str,),
                     'before_cursor':
@@ -202,11 +210,13 @@ class FeeProfilesApi(object):
                         (int,),
                 },
                 'attribute_map': {
+                    'accept': 'Accept',
                     'after_cursor': 'after_cursor',
                     'before_cursor': 'before_cursor',
                     'limit': 'limit',
                 },
                 'location_map': {
+                    'accept': 'header',
                     'after_cursor': 'query',
                     'before_cursor': 'query',
                     'limit': 'query',
@@ -216,7 +226,7 @@ class FeeProfilesApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/hal+json'
+                    'application/json'
                 ],
                 'content_type': [],
             },
@@ -315,6 +325,7 @@ class FeeProfilesApi(object):
             fee_profile_id (str): The ID of the `fee_profile`.
 
         Keyword Args:
+            accept (str): [optional] if omitted the server will use the default value of 'application/hal+json'
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -390,6 +401,7 @@ class FeeProfilesApi(object):
 
 
         Keyword Args:
+            accept (str): Body Header. [optional] if omitted the server will use the default value of 'application/hal+json'
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             before_cursor (str): Return every resource created before the cursor value.. [optional]
             limit (int): The numbers of items to return.. [optional]
