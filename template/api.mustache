@@ -209,7 +209,7 @@ class {{classname}}(object):
 {{#hasProduces}}
                 'accept': [
 {{#produces}}
-                    '{{{mediaType}}}'{{^-last}},{{/-last}}
+                    'application/hal+json'
 {{/produces}}
                 ],
 {{/hasProduces}}

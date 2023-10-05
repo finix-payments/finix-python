@@ -29,9 +29,11 @@ from finix.exceptions import ApiAttributeError
 
 def lazy_import():
     from finix.model.processor_application_config import ProcessorApplicationConfig
+    from finix.model.processor_config import ProcessorConfig
     from finix.model.processor_links import ProcessorLinks
     from finix.model.processor_system_config import ProcessorSystemConfig
     globals()['ProcessorApplicationConfig'] = ProcessorApplicationConfig
+    globals()['ProcessorConfig'] = ProcessorConfig
     globals()['ProcessorLinks'] = ProcessorLinks
     globals()['ProcessorSystemConfig'] = ProcessorSystemConfig
 
@@ -91,7 +93,8 @@ class Processor(ModelNormal):
             'updated_at': (datetime,),  # noqa: E501
             'application': (str,),  # noqa: E501
             'application_config': (ProcessorApplicationConfig,),  # noqa: E501
-            'default_merchant_profile': (str, none_type,),  # noqa: E501
+            'config': (ProcessorConfig,),  # noqa: E501
+            'default_merchant_profile': (str,),  # noqa: E501
             'enabled': (bool,),  # noqa: E501
             'processor': (str,),  # noqa: E501
             'system_config': (ProcessorSystemConfig,),  # noqa: E501
@@ -109,6 +112,7 @@ class Processor(ModelNormal):
         'updated_at': 'updated_at',  # noqa: E501
         'application': 'application',  # noqa: E501
         'application_config': 'application_config',  # noqa: E501
+        'config': 'config',  # noqa: E501
         'default_merchant_profile': 'default_merchant_profile',  # noqa: E501
         'enabled': 'enabled',  # noqa: E501
         'processor': 'processor',  # noqa: E501
@@ -162,7 +166,8 @@ class Processor(ModelNormal):
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             application (str): The ID of the `Application` resource.. [optional]  # noqa: E501
             application_config (ProcessorApplicationConfig): [optional]  # noqa: E501
-            default_merchant_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            config (ProcessorConfig): [optional]  # noqa: E501
+            default_merchant_profile (str): The ID of the `Merchant Profile` resource used to create the `Processor`.. [optional]  # noqa: E501
             enabled (bool): Details if the `Processor` resource is enabled. Set to **false** to disable the `Processor`.. [optional]  # noqa: E501
             processor (str): The name of the processor.. [optional]  # noqa: E501
             system_config (ProcessorSystemConfig): [optional]  # noqa: E501
@@ -253,7 +258,8 @@ class Processor(ModelNormal):
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             application (str): The ID of the `Application` resource.. [optional]  # noqa: E501
             application_config (ProcessorApplicationConfig): [optional]  # noqa: E501
-            default_merchant_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            config (ProcessorConfig): [optional]  # noqa: E501
+            default_merchant_profile (str): The ID of the `Merchant Profile` resource used to create the `Processor`.. [optional]  # noqa: E501
             enabled (bool): Details if the `Processor` resource is enabled. Set to **false** to disable the `Processor`.. [optional]  # noqa: E501
             processor (str): The name of the processor.. [optional]  # noqa: E501
             system_config (ProcessorSystemConfig): [optional]  # noqa: E501

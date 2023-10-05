@@ -58,10 +58,41 @@ def test_create_merchant(client00):
 	        test_key_100 = "test_val_100"
         ),
 	    entity=CreateIdentityRequestEntity(
+            annual_card_volume=12000000,
+            business_address=CreateIdentityRequestEntityBusinessAddress(
+				city="San Mateo",
+	            country="USA",
+	            region="CA",
+	            line2="Apartment 7",
+	            line1="741 Douglass St",
+	            postal_code="94114"
+			),
+			business_name="Finix Flowers",
+			business_phone="+1 (408) 756-4497",
+			business_tax_id="123456789",
+			business_type="INDIVIDUAL_SOLE_PROPRIETORSHIP",
+			default_statement_descriptor="Finix Flowers",
+			dob=CreateIdentityRequestEntityDob(
+				year=1978,
+				day=27,
+				month=6
+			),
+			doing_business_as="Finix Flowers",
+			incorporation_date=CreateIdentityRequestEntityIncorporationDate(
+				year=1978,
+				day=27,
+				month=6
+			),
 	        last_name="lbc",
 	        max_transaction_amount=12000000,
+            ach_max_transaction_amount=1000000,
+            mcc="4900",
+            ownership_type="PRIVATE",
+            principal_percentage_ownership=50,
+            tax_id="123456789",
+            title="CEO",
+            url="https://www.finix.com",
 	        has_accepted_credit_cards_previously=True,
-	        default_statement_descriptor="Petes Coffee",
 	        personal_address=CreateIdentityRequestEntityPersonalAddress(
 	            city="San Mateo",
 	            country="USA",

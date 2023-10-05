@@ -28,12 +28,14 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from finix.model.create_onboarding_form_request_merchant_processors_inner import CreateOnboardingFormRequestMerchantProcessorsInner
-    from finix.model.create_onboarding_form_request_onboarding_data import CreateOnboardingFormRequestOnboardingData
+    from finix.model.create_onboarding_form_request_merchant_processors import CreateOnboardingFormRequestMerchantProcessors
     from finix.model.create_onboarding_form_request_onboarding_link_details import CreateOnboardingFormRequestOnboardingLinkDetails
-    globals()['CreateOnboardingFormRequestMerchantProcessorsInner'] = CreateOnboardingFormRequestMerchantProcessorsInner
-    globals()['CreateOnboardingFormRequestOnboardingData'] = CreateOnboardingFormRequestOnboardingData
+    from finix.model.onboarding_form_onboarding_data import OnboardingFormOnboardingData
+    from finix.model.tags import Tags
+    globals()['CreateOnboardingFormRequestMerchantProcessors'] = CreateOnboardingFormRequestMerchantProcessors
     globals()['CreateOnboardingFormRequestOnboardingLinkDetails'] = CreateOnboardingFormRequestOnboardingLinkDetails
+    globals()['OnboardingFormOnboardingData'] = OnboardingFormOnboardingData
+    globals()['Tags'] = Tags
 
 
 class CreateOnboardingFormRequest(ModelNormal):
@@ -86,9 +88,10 @@ class CreateOnboardingFormRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'onboarding_data': (CreateOnboardingFormRequestOnboardingData,),  # noqa: E501
-            'merchant_processors': ([CreateOnboardingFormRequestMerchantProcessorsInner],),  # noqa: E501
+            'onboarding_data': (OnboardingFormOnboardingData,),  # noqa: E501
+            'merchant_processors': ([CreateOnboardingFormRequestMerchantProcessors],),  # noqa: E501
             'onboarding_link_details': (CreateOnboardingFormRequestOnboardingLinkDetails,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
         }
 
     @cached_property
@@ -100,6 +103,7 @@ class CreateOnboardingFormRequest(ModelNormal):
         'onboarding_data': 'onboarding_data',  # noqa: E501
         'merchant_processors': 'merchant_processors',  # noqa: E501
         'onboarding_link_details': 'onboarding_link_details',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
     }
 
     read_only_vars = {
@@ -143,9 +147,10 @@ class CreateOnboardingFormRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            onboarding_data (CreateOnboardingFormRequestOnboardingData): [optional]  # noqa: E501
-            merchant_processors ([CreateOnboardingFormRequestMerchantProcessorsInner]): An array of objects with the processors and gateways users will be onboarded to.. [optional]  # noqa: E501
+            onboarding_data (OnboardingFormOnboardingData): [optional]  # noqa: E501
+            merchant_processors ([CreateOnboardingFormRequestMerchantProcessors]): An array of objects with the processors and gateways users will be onboarded to.. [optional]  # noqa: E501
             onboarding_link_details (CreateOnboardingFormRequestOnboardingLinkDetails): [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -227,9 +232,10 @@ class CreateOnboardingFormRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            onboarding_data (CreateOnboardingFormRequestOnboardingData): [optional]  # noqa: E501
-            merchant_processors ([CreateOnboardingFormRequestMerchantProcessorsInner]): An array of objects with the processors and gateways users will be onboarded to.. [optional]  # noqa: E501
+            onboarding_data (OnboardingFormOnboardingData): [optional]  # noqa: E501
+            merchant_processors ([CreateOnboardingFormRequestMerchantProcessors]): An array of objects with the processors and gateways users will be onboarded to.. [optional]  # noqa: E501
             onboarding_link_details (CreateOnboardingFormRequestOnboardingLinkDetails): [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

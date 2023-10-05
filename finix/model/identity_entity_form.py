@@ -75,6 +75,7 @@ class IdentityEntityForm(ModelNormal):
             'JOINT_VENTURE': "JOINT_VENTURE",
         },
         ('ownership_type',): {
+            'None': None,
             'PRIVATE': "PRIVATE",
             'PUBLIC': "PUBLIC",
         },
@@ -145,7 +146,7 @@ class IdentityEntityForm(ModelNormal):
             'incorporation_date': (IdentityEntityFormIncorporationDate,),  # noqa: E501
             'max_transaction_amount': (int,),  # noqa: E501
             'mcc': (str,),  # noqa: E501
-            'ownership_type': (str,),  # noqa: E501
+            'ownership_type': (str, none_type,),  # noqa: E501
             'principal_percentage_ownership': (int,),  # noqa: E501
             'short_business_name': (str,),  # noqa: E501
             'tax_authority': (str,),  # noqa: E501
@@ -245,14 +246,14 @@ class IdentityEntityForm(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             amex_mid (str, none_type): Assigned amex_Mid value. If included must be 10 or 11 digits.. [optional]  # noqa: E501
-            annual_card_volume (int): Approximate annual credit card sales expected to be processed in cents by this merchant (max 19 characters).. [optional]  # noqa: E501
+            annual_card_volume (int): Approximate annual credit card sales expected to be processed in cents by this seller (max 19 characters).. [optional]  # noqa: E501
             default_statement_descriptor (str): Billing description displayed on the buyer's bank or card statement (Length must be between 1 and 20 characters).. [optional]  # noqa: E501
             discover_mid (str): Assigned Discover Mid value.. [optional]  # noqa: E501
             has_accepted_credit_cards_previously (bool): Defaults to **false** if not passed.. [optional]  # noqa: E501
             incorporation_date (IdentityEntityFormIncorporationDate): [optional]  # noqa: E501
             max_transaction_amount (int): Maximum amount that can be transacted for a single transaction in cents (max 12 characters).. [optional]  # noqa: E501
-            mcc (str): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf)) the merchant is classified under.. [optional]  # noqa: E501
-            ownership_type (str): Values can be either: <ul><li><strong>PUBLIC</strong> to indicate a publicly-traded company.<li><strong>PRIVATE</strong> for privately-held businesses.. [optional]  # noqa: E501
+            mcc (str): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card\\_x/mcc.pdf)) that this merchant will be classified under. For a list of approved MCCs, see [Approved Merchant Category Codes.](/docs/guides/business/security-and-compliance/approved-merchants/). [optional]  # noqa: E501
+            ownership_type (str, none_type): Values can be either: <ul><li><strong>PUBLIC</strong> to indicate a publicly-traded company.<li><strong>PRIVATE</strong> for privately-held businesses.. [optional]  # noqa: E501
             principal_percentage_ownership (int): Percentage of company owned by the principal (min 0; max 100).. [optional]  # noqa: E501
             short_business_name (str): The short version of the business name. (Defaults to **null**).. [optional]  # noqa: E501
             tax_authority (str): Used and required when onboarding a `Merchant` with a `MCC` of **9311**. The  `tax_authority` is the tax gathering entity (e.g San Francisco Water Authority).. [optional]  # noqa: E501
@@ -368,14 +369,14 @@ class IdentityEntityForm(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             amex_mid (str, none_type): Assigned amex_Mid value. If included must be 10 or 11 digits.. [optional]  # noqa: E501
-            annual_card_volume (int): Approximate annual credit card sales expected to be processed in cents by this merchant (max 19 characters).. [optional]  # noqa: E501
+            annual_card_volume (int): Approximate annual credit card sales expected to be processed in cents by this seller (max 19 characters).. [optional]  # noqa: E501
             default_statement_descriptor (str): Billing description displayed on the buyer's bank or card statement (Length must be between 1 and 20 characters).. [optional]  # noqa: E501
             discover_mid (str): Assigned Discover Mid value.. [optional]  # noqa: E501
             has_accepted_credit_cards_previously (bool): Defaults to **false** if not passed.. [optional]  # noqa: E501
             incorporation_date (IdentityEntityFormIncorporationDate): [optional]  # noqa: E501
             max_transaction_amount (int): Maximum amount that can be transacted for a single transaction in cents (max 12 characters).. [optional]  # noqa: E501
-            mcc (str): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card_x/mcc.pdf)) the merchant is classified under.. [optional]  # noqa: E501
-            ownership_type (str): Values can be either: <ul><li><strong>PUBLIC</strong> to indicate a publicly-traded company.<li><strong>PRIVATE</strong> for privately-held businesses.. [optional]  # noqa: E501
+            mcc (str): The Merchant Category Code ([MCC](http://www.dm.usda.gov/procurement/card/card\\_x/mcc.pdf)) that this merchant will be classified under. For a list of approved MCCs, see [Approved Merchant Category Codes.](/docs/guides/business/security-and-compliance/approved-merchants/). [optional]  # noqa: E501
+            ownership_type (str, none_type): Values can be either: <ul><li><strong>PUBLIC</strong> to indicate a publicly-traded company.<li><strong>PRIVATE</strong> for privately-held businesses.. [optional]  # noqa: E501
             principal_percentage_ownership (int): Percentage of company owned by the principal (min 0; max 100).. [optional]  # noqa: E501
             short_business_name (str): The short version of the business name. (Defaults to **null**).. [optional]  # noqa: E501
             tax_authority (str): Used and required when onboarding a `Merchant` with a `MCC` of **9311**. The  `tax_authority` is the tax gathering entity (e.g San Francisco Water Authority).. [optional]  # noqa: E501

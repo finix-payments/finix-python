@@ -28,9 +28,9 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from finix.model.additional_purchase_data_item_data_inner import AdditionalPurchaseDataItemDataInner
+    from finix.model.additional_purchase_data_item_data import AdditionalPurchaseDataItemData
     from finix.model.additional_purchase_data_order_date import AdditionalPurchaseDataOrderDate
-    globals()['AdditionalPurchaseDataItemDataInner'] = AdditionalPurchaseDataItemDataInner
+    globals()['AdditionalPurchaseDataItemData'] = AdditionalPurchaseDataItemData
     globals()['AdditionalPurchaseDataOrderDate'] = AdditionalPurchaseDataOrderDate
 
 
@@ -59,6 +59,18 @@ class AdditionalPurchaseData(ModelNormal):
     }
 
     validations = {
+        ('customer_reference_number',): {
+            'max_length': 17,
+        },
+        ('destination_postal_code',): {
+            'max_length': 10,
+        },
+        ('invoice_reference_number',): {
+            'max_length': 15,
+        },
+        ('ship_from_postal_code',): {
+            'max_length': 10,
+        },
     }
 
     @cached_property
@@ -85,14 +97,14 @@ class AdditionalPurchaseData(ModelNormal):
         lazy_import()
         return {
             'customer_reference_number': (str,),  # noqa: E501
+            'sales_tax': (int,),  # noqa: E501
             'customs_duty_amount': (int,),  # noqa: E501
             'destination_country_code': (str,),  # noqa: E501
             'destination_postal_code': (str,),  # noqa: E501
             'discount_amount': (int,),  # noqa: E501
             'invoice_reference_number': (str,),  # noqa: E501
-            'item_data': ([AdditionalPurchaseDataItemDataInner],),  # noqa: E501
+            'item_data': ([AdditionalPurchaseDataItemData],),  # noqa: E501
             'order_date': (AdditionalPurchaseDataOrderDate,),  # noqa: E501
-            'sales_tax': (int,),  # noqa: E501
             'ship_from_postal_code': (str,),  # noqa: E501
             'shipping_amount': (int,),  # noqa: E501
             'tax_exempt': (bool,),  # noqa: E501
@@ -105,6 +117,7 @@ class AdditionalPurchaseData(ModelNormal):
 
     attribute_map = {
         'customer_reference_number': 'customer_reference_number',  # noqa: E501
+        'sales_tax': 'sales_tax',  # noqa: E501
         'customs_duty_amount': 'customs_duty_amount',  # noqa: E501
         'destination_country_code': 'destination_country_code',  # noqa: E501
         'destination_postal_code': 'destination_postal_code',  # noqa: E501
@@ -112,7 +125,6 @@ class AdditionalPurchaseData(ModelNormal):
         'invoice_reference_number': 'invoice_reference_number',  # noqa: E501
         'item_data': 'item_data',  # noqa: E501
         'order_date': 'order_date',  # noqa: E501
-        'sales_tax': 'sales_tax',  # noqa: E501
         'ship_from_postal_code': 'ship_from_postal_code',  # noqa: E501
         'shipping_amount': 'shipping_amount',  # noqa: E501
         'tax_exempt': 'tax_exempt',  # noqa: E501
@@ -125,8 +137,12 @@ class AdditionalPurchaseData(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, customer_reference_number, sales_tax, *args, **kwargs):  # noqa: E501
         """AdditionalPurchaseData - a model defined in OpenAPI
+
+        Args:
+            customer_reference_number (str): The customer reference for the purchase (max 17 characters).
+            sales_tax (int): - Total aggregate tax amount in cents for the entire purchase. Field is automatically calculated if you pass in the itemized tax amounts.  - For non-taxable transactions either set `sales_tax` to 0 or omit from payload and also set `tax_exempt` to **True**. - Request must align so `amount_excluding_sales_tax` + `sales_tax` = `amount_including_sales_tax`.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -159,18 +175,16 @@ class AdditionalPurchaseData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            customer_reference_number (str): The customer reference for the purchase (max 17 characters).. [optional]  # noqa: E501
             customs_duty_amount (int): The duty in cents on the total purchase amount for the order. [optional]  # noqa: E501
             destination_country_code (str): The ISO country code of the order destination.. [optional]  # noqa: E501
             destination_postal_code (str): The postal code of the order destination (10 characters). [optional]  # noqa: E501
             discount_amount (int): The amount in cents of the discount for the order.. [optional]  # noqa: E501
             invoice_reference_number (str): The order's invoice number (max 15 characters). [optional]  # noqa: E501
-            item_data ([AdditionalPurchaseDataItemDataInner]): Additional information about the transaction. Used for Level 2 and Level 3 Processing.. [optional]  # noqa: E501
+            item_data ([AdditionalPurchaseDataItemData]): Additional information about the transaction. Used for Level 2 and Level 3 Processing.. [optional]  # noqa: E501
             order_date (AdditionalPurchaseDataOrderDate): [optional]  # noqa: E501
-            sales_tax (int): Total aggregate tax amount in cents for the entire purchase. Field is automatically calculated if you pass in the itemized tax amounts.   For non-taxable transactions either set `sales_tax` to 0 or omit from payload and also set `tax_exempt` to **True**.. [optional]  # noqa: E501
             ship_from_postal_code (str): The postal code from where order is shipped (10 characters). [optional]  # noqa: E501
             shipping_amount (int): The shipping cost in cents for the order. . [optional]  # noqa: E501
-            tax_exempt (bool): For tax exempt purchases set to True.. [optional]  # noqa: E501
+            tax_exempt (bool): - For tax exempt purchases set to **True**. - If set to **True**, request can't include `sales_tax`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -198,6 +212,8 @@ class AdditionalPurchaseData(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.customer_reference_number = customer_reference_number
+        self.sales_tax = sales_tax
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -218,8 +234,12 @@ class AdditionalPurchaseData(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, customer_reference_number, sales_tax, *args, **kwargs):  # noqa: E501
         """AdditionalPurchaseData - a model defined in OpenAPI
+
+        Args:
+            customer_reference_number (str): The customer reference for the purchase (max 17 characters).
+            sales_tax (int): - Total aggregate tax amount in cents for the entire purchase. Field is automatically calculated if you pass in the itemized tax amounts.  - For non-taxable transactions either set `sales_tax` to 0 or omit from payload and also set `tax_exempt` to **True**. - Request must align so `amount_excluding_sales_tax` + `sales_tax` = `amount_including_sales_tax`.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -252,18 +272,16 @@ class AdditionalPurchaseData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            customer_reference_number (str): The customer reference for the purchase (max 17 characters).. [optional]  # noqa: E501
             customs_duty_amount (int): The duty in cents on the total purchase amount for the order. [optional]  # noqa: E501
             destination_country_code (str): The ISO country code of the order destination.. [optional]  # noqa: E501
             destination_postal_code (str): The postal code of the order destination (10 characters). [optional]  # noqa: E501
             discount_amount (int): The amount in cents of the discount for the order.. [optional]  # noqa: E501
             invoice_reference_number (str): The order's invoice number (max 15 characters). [optional]  # noqa: E501
-            item_data ([AdditionalPurchaseDataItemDataInner]): Additional information about the transaction. Used for Level 2 and Level 3 Processing.. [optional]  # noqa: E501
+            item_data ([AdditionalPurchaseDataItemData]): Additional information about the transaction. Used for Level 2 and Level 3 Processing.. [optional]  # noqa: E501
             order_date (AdditionalPurchaseDataOrderDate): [optional]  # noqa: E501
-            sales_tax (int): Total aggregate tax amount in cents for the entire purchase. Field is automatically calculated if you pass in the itemized tax amounts.   For non-taxable transactions either set `sales_tax` to 0 or omit from payload and also set `tax_exempt` to **True**.. [optional]  # noqa: E501
             ship_from_postal_code (str): The postal code from where order is shipped (10 characters). [optional]  # noqa: E501
             shipping_amount (int): The shipping cost in cents for the order. . [optional]  # noqa: E501
-            tax_exempt (bool): For tax exempt purchases set to True.. [optional]  # noqa: E501
+            tax_exempt (bool): - For tax exempt purchases set to **True**. - If set to **True**, request can't include `sales_tax`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -289,6 +307,8 @@ class AdditionalPurchaseData(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.customer_reference_number = customer_reference_number
+        self.sales_tax = sales_tax
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

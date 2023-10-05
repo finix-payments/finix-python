@@ -58,14 +58,14 @@ class ComplianceForm(ModelNormal):
     """
 
     allowed_values = {
-        ('type',): {
-            'PCI_SAQ_A': "PCI_SAQ_A",
-        },
         ('state',): {
             'PENDING': "PENDING",
-            'COMPLETED': "COMPLETED",
+            'COMPLETE': "COMPLETE",
             'INVALID': "INVALID",
             'INCOMPLETE': "INCOMPLETE",
+        },
+        ('type',): {
+            'PCI_SAQ_A': "PCI_SAQ_A",
         },
     }
 
@@ -96,19 +96,21 @@ class ComplianceForm(ModelNormal):
         lazy_import()
         return {
             'id': (str,),  # noqa: E501
-            'type': (str,),  # noqa: E501
-            'state': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
+            'application_id': (str,),  # noqa: E501
+            'compliance_form_template': (str,),  # noqa: E501
             'due_at': (datetime,),  # noqa: E501
+            'files': (ComplianceFormFiles,),  # noqa: E501
             'linked_to': (str,),  # noqa: E501
             'linked_type': (str,),  # noqa: E501
             'pci_saq_a': (ComplianceFormPciSaqA,),  # noqa: E501
-            'files': (ComplianceFormFiles,),  # noqa: E501
+            'state': (str,),  # noqa: E501
+            'tags': (Tags,),  # noqa: E501
+            'type': (str,),  # noqa: E501
             'valid_from': (datetime,),  # noqa: E501
             'valid_until': (str,),  # noqa: E501
-            'compliance_form_template': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
+            'version': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -118,19 +120,21 @@ class ComplianceForm(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'type': 'type',  # noqa: E501
-        'state': 'state',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'updated_at': 'updated_at',  # noqa: E501
+        'application_id': 'application_id',  # noqa: E501
+        'compliance_form_template': 'compliance_form_template',  # noqa: E501
         'due_at': 'due_at',  # noqa: E501
+        'files': 'files',  # noqa: E501
         'linked_to': 'linked_to',  # noqa: E501
         'linked_type': 'linked_type',  # noqa: E501
         'pci_saq_a': 'pci_saq_a',  # noqa: E501
-        'files': 'files',  # noqa: E501
+        'state': 'state',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
+        'type': 'type',  # noqa: E501
         'valid_from': 'valid_from',  # noqa: E501
         'valid_until': 'valid_until',  # noqa: E501
-        'compliance_form_template': 'compliance_form_template',  # noqa: E501
-        'tags': 'tags',  # noqa: E501
+        'version': 'version',  # noqa: E501
     }
 
     read_only_vars = {
@@ -175,19 +179,21 @@ class ComplianceForm(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): ID of the `compliance_form`.. [optional]  # noqa: E501
-            type (str): Type of `compliance_form`. There is one available value: **PCI_SAQ_A**.. [optional] if omitted the server will use the default value of "PCI_SAQ_A"  # noqa: E501
-            state (str): The state of the `compliance_form`.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
+            application_id (str): The ID of the `Application` the `compliance_form` was created under.. [optional]  # noqa: E501
+            compliance_form_template (str): Template linked to this `compliance_form`.. [optional]  # noqa: E501
             due_at (datetime): Timestamp of when the `compliance_form` must be completed by.. [optional]  # noqa: E501
+            files (ComplianceFormFiles): [optional]  # noqa: E501
             linked_to (str): The ID of the `merchant` linked to the `compliance_form`.. [optional]  # noqa: E501
             linked_type (str): The type of resource this `compliance_form` is linked to.. [optional]  # noqa: E501
             pci_saq_a (ComplianceFormPciSaqA): [optional]  # noqa: E501
-            files (ComplianceFormFiles): [optional]  # noqa: E501
+            state (str): The state of the `compliance_form`.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            type (str): Type of `compliance_form`. There is one available value: **PCI_SAQ_A**.. [optional] if omitted the server will use the default value of "PCI_SAQ_A"  # noqa: E501
             valid_from (datetime): Timestamp of when the `compliance_form` becomes active and valid.. [optional]  # noqa: E501
             valid_until (str): Timestamp of when the `compliance_form` is no longer active and valid.. [optional]  # noqa: E501
-            compliance_form_template (str): Template linked to this `compliance_form`.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            version (str): Details the version of the SAQ form. When `compliance_forms` are created, Finix automatically provides the most up-to-date SAQ form that's available.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -270,19 +276,21 @@ class ComplianceForm(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): ID of the `compliance_form`.. [optional]  # noqa: E501
-            type (str): Type of `compliance_form`. There is one available value: **PCI_SAQ_A**.. [optional] if omitted the server will use the default value of "PCI_SAQ_A"  # noqa: E501
-            state (str): The state of the `compliance_form`.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
+            application_id (str): The ID of the `Application` the `compliance_form` was created under.. [optional]  # noqa: E501
+            compliance_form_template (str): Template linked to this `compliance_form`.. [optional]  # noqa: E501
             due_at (datetime): Timestamp of when the `compliance_form` must be completed by.. [optional]  # noqa: E501
+            files (ComplianceFormFiles): [optional]  # noqa: E501
             linked_to (str): The ID of the `merchant` linked to the `compliance_form`.. [optional]  # noqa: E501
             linked_type (str): The type of resource this `compliance_form` is linked to.. [optional]  # noqa: E501
             pci_saq_a (ComplianceFormPciSaqA): [optional]  # noqa: E501
-            files (ComplianceFormFiles): [optional]  # noqa: E501
+            state (str): The state of the `compliance_form`.. [optional]  # noqa: E501
+            tags (Tags): [optional]  # noqa: E501
+            type (str): Type of `compliance_form`. There is one available value: **PCI_SAQ_A**.. [optional] if omitted the server will use the default value of "PCI_SAQ_A"  # noqa: E501
             valid_from (datetime): Timestamp of when the `compliance_form` becomes active and valid.. [optional]  # noqa: E501
             valid_until (str): Timestamp of when the `compliance_form` is no longer active and valid.. [optional]  # noqa: E501
-            compliance_form_template (str): Template linked to this `compliance_form`.. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
+            version (str): Details the version of the SAQ form. When `compliance_forms` are created, Finix automatically provides the most up-to-date SAQ form that's available.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -227,7 +227,41 @@ def identity_merchant(client00):
 	        test_key_100 = "test_val_100"
         ),
 	    entity=CreateIdentityRequestEntity(
+            annual_card_volume=12000000,
+            business_address=CreateIdentityRequestEntityBusinessAddress(
+				city="San Mateo",
+	            country="USA",
+	            region="CA",
+	            line2="Apartment 7",
+	            line1="741 Douglass St",
+	            postal_code="94114"
+			),
+			business_name="Finix Flowers",
+			business_phone="+1 (408) 756-4497",
+			business_tax_id="123456789",
+			business_type="INDIVIDUAL_SOLE_PROPRIETORSHIP",
+			default_statement_descriptor="Finix Flowers",
+			dob=CreateIdentityRequestEntityDob(
+				year=1978,
+				day=27,
+				month=6
+			),
+			doing_business_as="Finix Flowers",
+			incorporation_date=CreateIdentityRequestEntityIncorporationDate(
+				year=1978,
+				day=27,
+				month=6
+			),
 	        last_name="lbc",
+	        max_transaction_amount=12000000,
+            ach_max_transaction_amount=1000000,
+            mcc="4900",
+            ownership_type="PRIVATE",
+            principal_percentage_ownership=50,
+            tax_id="123456789",
+            title="CEO",
+            url="https://www.finix.com",
+	        has_accepted_credit_cards_previously=True,
 	        personal_address=CreateIdentityRequestEntityPersonalAddress(
 	            city="San Mateo",
 	            country="USA",
@@ -239,8 +273,8 @@ def identity_merchant(client00):
 	        first_name="dwayne",
 	        email="user@example.org",
 	        phone="1234567890"
-        )
-    ) 
+            )  
+    )
     response = client00.identities.create(create_identity_request=request)
     return response
 
@@ -278,7 +312,41 @@ def business_identity_merchant(client00):
 	        test_key_100 = "test_val_100"
         ),
 	    entity=CreateIdentityRequestEntity(
+            annual_card_volume=12000000,
+            business_address=CreateIdentityRequestEntityBusinessAddress(
+				city="San Mateo",
+	            country="USA",
+	            region="CA",
+	            line2="Apartment 7",
+	            line1="741 Douglass St",
+	            postal_code="94114"
+			),
+			business_name="Finix Flowers",
+			business_phone="+1 (408) 756-4497",
+			business_tax_id="123456789",
+			business_type="INDIVIDUAL_SOLE_PROPRIETORSHIP",
+			default_statement_descriptor="Finix Flowers",
+			dob=CreateIdentityRequestEntityDob(
+				year=1978,
+				day=27,
+				month=6
+			),
+			doing_business_as="Finix Flowers",
+			incorporation_date=CreateIdentityRequestEntityIncorporationDate(
+				year=1978,
+				day=27,
+				month=6
+			),
 	        last_name="lbc",
+	        max_transaction_amount=12000000,
+            ach_max_transaction_amount=1000000,
+            mcc="4900",
+            ownership_type="PRIVATE",
+            principal_percentage_ownership=50,
+            tax_id="123456789",
+            title="CEO",
+            url="https://www.finix.com",
+	        has_accepted_credit_cards_previously=True,
 	        personal_address=CreateIdentityRequestEntityPersonalAddress(
 	            city="San Mateo",
 	            country="USA",
@@ -289,28 +357,8 @@ def business_identity_merchant(client00):
             ),
 	        first_name="dwayne",
 	        email="user@example.org",
-	        phone="1234567890",
-            business_name="Finix Flowers",
-            business_type="INDIVIDUAL_SOLE_PROPRIETORSHIP",
-            incorporation_date=IdentityEntityIncorporationDate(
-                year=1978,
-                day=27,
-                month=6
-            ),
-            doing_business_as="Finix Flowers",
-            annual_card_volume=12000000,
-            tax_id=123456789,
-            mcc="0742",
-            dob=IdentityEntityDob(
-                year=1978,
-                day=27,
-                month=6
-            ),
-            url="www.finixflowers.com",
-            principal_percentage_ownership=50,
-            default_statement_descriptor="Finix Flowers",
-            max_transaction_amount=12000000
-        ),
+	        phone="1234567890"
+        )
     )
     response = client00.identities.create(create_identity_request=request)
     return response
@@ -360,8 +408,42 @@ def merchant(client00):
 	    tags=Tags(
 	        test_key_100 = "test_val_100"
         ),
-	    entity=CreateIdentityRequestEntity(
+        entity=CreateIdentityRequestEntity(
+            annual_card_volume=12000000,
+            business_address=CreateIdentityRequestEntityBusinessAddress(
+				city="San Mateo",
+	            country="USA",
+	            region="CA",
+	            line2="Apartment 7",
+	            line1="741 Douglass St",
+	            postal_code="94114"
+			),
+			business_name="Finix Flowers",
+			business_phone="+1 (408) 756-4497",
+			business_tax_id="123456789",
+			business_type="INDIVIDUAL_SOLE_PROPRIETORSHIP",
+			default_statement_descriptor="Finix Flowers",
+			dob=CreateIdentityRequestEntityDob(
+				year=1978,
+				day=27,
+				month=6
+			),
+			doing_business_as="Finix Flowers",
+			incorporation_date=CreateIdentityRequestEntityIncorporationDate(
+				year=1978,
+				day=27,
+				month=6
+			),
 	        last_name="lbc",
+	        max_transaction_amount=12000000,
+            ach_max_transaction_amount=1000000,
+            mcc="4900",
+            ownership_type="PRIVATE",
+            principal_percentage_ownership=50,
+            tax_id="123456789",
+            title="CEO",
+            url="https://www.finix.com",
+	        has_accepted_credit_cards_previously=True,
 	        personal_address=CreateIdentityRequestEntityPersonalAddress(
 	            city="San Mateo",
 	            country="USA",
@@ -461,10 +543,10 @@ def webhook(client00):
 @pytest.fixture
 def onboarding_form(client00):
     request = CreateOnboardingFormRequest(
-        onboarding_data = CreateOnboardingFormRequestOnboardingData(
+        onboarding_data = OnboardingFormOnboardingData(
             max_transaction_amount = 100000
         ),
-        merchant_processors = [CreateOnboardingFormRequestMerchantProcessorsInner(
+        merchant_processors = [CreateOnboardingFormRequestMerchantProcessors(
             processor = "LITLE_V1"
         )],
         onboarding_link_details = CreateOnboardingFormRequestOnboardingLinkDetails(

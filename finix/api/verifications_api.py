@@ -108,7 +108,7 @@ class VerificationsApi(object):
                     'application/hal+json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -236,21 +236,21 @@ class VerificationsApi(object):
                 'auth': [
                     'BasicAuth'
                 ],
-                'endpoint_path': '/payment_instruments/{payment_instrument_id}/verifications',
+                'endpoint_path': '/payment_instruments/{payment_instrument_id_verify}',
                 'operation_id': 'list_by_payment_instrument_id',
                 'http_method': 'GET',
                 'servers': None,
             },
             params_map={
                 'all': [
-                    'payment_instrument_id',
+                    'payment_instrument_id_verify',
                     'limit',
                     'offset',
                     'page_number',
                     'page_size',
                 ],
                 'required': [
-                    'payment_instrument_id',
+                    'payment_instrument_id_verify',
                 ],
                 'nullable': [
                 ],
@@ -265,7 +265,7 @@ class VerificationsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'payment_instrument_id':
+                    'payment_instrument_id_verify':
                         (str,),
                     'limit':
                         (int,),
@@ -277,14 +277,14 @@ class VerificationsApi(object):
                         (int,),
                 },
                 'attribute_map': {
-                    'payment_instrument_id': 'payment_instrument_id',
+                    'payment_instrument_id_verify': 'payment_instrument_id_verify',
                     'limit': 'limit',
                     'offset': 'offset',
                     'page_number': 'pageNumber',
                     'page_size': 'pageSize',
                 },
                 'location_map': {
-                    'payment_instrument_id': 'path',
+                    'payment_instrument_id_verify': 'path',
                     'limit': 'query',
                     'offset': 'query',
                     'page_number': 'query',
@@ -367,7 +367,7 @@ class VerificationsApi(object):
     ):
         """Create a Merchant Verification  # noqa: E501
 
-        Create a `Verification` to verify a merchant's `Identity`.  Verifications can also be created directly on the resources you want to verify: - `POST /merchants/{merchant_id}/verifications`  Verify `Payment Instruments` directly on the resource:  - `POST /payment_instruments/{payment_instrument_id}/verifications`  # noqa: E501
+        Create a `Verification` to verify a seller's `Identity`.  Verifications can also be created directly on the resources you want to verify. For example: - `POST /merchants/{merchant_id}/verifications` - `POST /payment_instruments/{payment_instrument_id}/verifications`  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -598,7 +598,7 @@ class VerificationsApi(object):
 
     def list_by_payment_instrument_id(
         self,
-        payment_instrument_id,
+        payment_instrument_id_verify,
         **kwargs
     ):
         """List Payment Instrument Verifications  # noqa: E501
@@ -607,11 +607,11 @@ class VerificationsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_by_payment_instrument_id(payment_instrument_id, async_req=True)
+        >>> thread = api.list_by_payment_instrument_id(payment_instrument_id_verify, async_req=True)
         >>> result = thread.get()
 
         Args:
-            payment_instrument_id (str): ID of `Payment Instrument `object.
+            payment_instrument_id_verify (str):
 
         Keyword Args:
             limit (int): The number of entries to return.. [optional]
@@ -674,8 +674,8 @@ class VerificationsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['payment_instrument_id'] = \
-            payment_instrument_id
+        kwargs['payment_instrument_id_verify'] = \
+            payment_instrument_id_verify
         ret = self._list_by_payment_instrument_id_endpoint.call_with_http_info(**kwargs)
         fl = FinixList(ret, self.list_by_payment_instrument_id,  **kwargs)
         return fl

@@ -107,7 +107,7 @@ class FeeProfilesApi(object):
                     'application/hal+json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client

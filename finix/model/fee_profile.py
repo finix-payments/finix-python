@@ -29,9 +29,7 @@ from finix.exceptions import ApiAttributeError
 
 def lazy_import():
     from finix.model.fee_profile_links import FeeProfileLinks
-    from finix.model.tags import Tags
     globals()['FeeProfileLinks'] = FeeProfileLinks
-    globals()['Tags'] = Tags
 
 
 class FeeProfile(ModelNormal):
@@ -98,13 +96,15 @@ class FeeProfile(ModelNormal):
             'american_express_assessment_basis_points': (int, none_type,),  # noqa: E501
             'american_express_basis_points': (int, none_type,),  # noqa: E501
             'american_express_charge_interchange': (bool, none_type,),  # noqa: E501
-            'american_express_fixed_fee': (int, none_type,),  # noqa: E501
             'american_express_externally_funded_basis_points': (int, none_type,),  # noqa: E501
             'american_express_externally_funded_fixed_fee': (int, none_type,),  # noqa: E501
+            'american_express_fixed_fee': (int, none_type,),  # noqa: E501
             'ancillary_fixed_fee_primary': (int, none_type,),  # noqa: E501
             'ancillary_fixed_fee_secondary': (int, none_type,),  # noqa: E501
             'application': (str,),  # noqa: E501
             'basis_points': (int,),  # noqa: E501
+            'card_cross_border_basis_points': (int, none_type,),  # noqa: E501
+            'card_cross_border_fixed_fee': (int, none_type,),  # noqa: E501
             'charge_interchange': (bool,),  # noqa: E501
             'diners_club_basis_points': (int, none_type,),  # noqa: E501
             'diners_club_charge_interchange': (bool, none_type,),  # noqa: E501
@@ -113,9 +113,9 @@ class FeeProfile(ModelNormal):
             'discover_basis_points': (int, none_type,),  # noqa: E501
             'discover_charge_interchange': (bool, none_type,),  # noqa: E501
             'discover_data_usage_fixed_fee': (int, none_type,),  # noqa: E501
-            'discover_fixed_fee': (int, none_type,),  # noqa: E501
             'discover_externally_funded_basis_points': (int, none_type,),  # noqa: E501
             'discover_externally_funded_fixed_fee': (int, none_type,),  # noqa: E501
+            'discover_fixed_fee': (int, none_type,),  # noqa: E501
             'discover_network_authorization_fixed_fee': (int, none_type,),  # noqa: E501
             'dispute_fixed_fee': (int, none_type,),  # noqa: E501
             'dispute_inquiry_fixed_fee': (int, none_type,),  # noqa: E501
@@ -133,7 +133,6 @@ class FeeProfile(ModelNormal):
             'mastercard_fixed_fee': (int, none_type,),  # noqa: E501
             'qualified_tiers': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
             'rounding_mode': (str,),  # noqa: E501
-            'tags': (Tags,),  # noqa: E501
             'visa_acquirer_processing_fixed_fee': (int, none_type,),  # noqa: E501
             'visa_assessments_basis_points': (int, none_type,),  # noqa: E501
             'visa_base_ii_credit_voucher_fixed_fee': (int, none_type,),  # noqa: E501
@@ -162,13 +161,15 @@ class FeeProfile(ModelNormal):
         'american_express_assessment_basis_points': 'american_express_assessment_basis_points',  # noqa: E501
         'american_express_basis_points': 'american_express_basis_points',  # noqa: E501
         'american_express_charge_interchange': 'american_express_charge_interchange',  # noqa: E501
-        'american_express_fixed_fee': 'american_express_fixed_fee',  # noqa: E501
         'american_express_externally_funded_basis_points': 'american_express_externally_funded_basis_points',  # noqa: E501
         'american_express_externally_funded_fixed_fee': 'american_express_externally_funded_fixed_fee',  # noqa: E501
+        'american_express_fixed_fee': 'american_express_fixed_fee',  # noqa: E501
         'ancillary_fixed_fee_primary': 'ancillary_fixed_fee_primary',  # noqa: E501
         'ancillary_fixed_fee_secondary': 'ancillary_fixed_fee_secondary',  # noqa: E501
         'application': 'application',  # noqa: E501
         'basis_points': 'basis_points',  # noqa: E501
+        'card_cross_border_basis_points': 'card_cross_border_basis_points',  # noqa: E501
+        'card_cross_border_fixed_fee': 'card_cross_border_fixed_fee',  # noqa: E501
         'charge_interchange': 'charge_interchange',  # noqa: E501
         'diners_club_basis_points': 'diners_club_basis_points',  # noqa: E501
         'diners_club_charge_interchange': 'diners_club_charge_interchange',  # noqa: E501
@@ -177,9 +178,9 @@ class FeeProfile(ModelNormal):
         'discover_basis_points': 'discover_basis_points',  # noqa: E501
         'discover_charge_interchange': 'discover_charge_interchange',  # noqa: E501
         'discover_data_usage_fixed_fee': 'discover_data_usage_fixed_fee',  # noqa: E501
-        'discover_fixed_fee': 'discover_fixed_fee',  # noqa: E501
         'discover_externally_funded_basis_points': 'discover_externally_funded_basis_points',  # noqa: E501
         'discover_externally_funded_fixed_fee': 'discover_externally_funded_fixed_fee',  # noqa: E501
+        'discover_fixed_fee': 'discover_fixed_fee',  # noqa: E501
         'discover_network_authorization_fixed_fee': 'discover_network_authorization_fixed_fee',  # noqa: E501
         'dispute_fixed_fee': 'dispute_fixed_fee',  # noqa: E501
         'dispute_inquiry_fixed_fee': 'dispute_inquiry_fixed_fee',  # noqa: E501
@@ -197,7 +198,6 @@ class FeeProfile(ModelNormal):
         'mastercard_fixed_fee': 'mastercard_fixed_fee',  # noqa: E501
         'qualified_tiers': 'qualified_tiers',  # noqa: E501
         'rounding_mode': 'rounding_mode',  # noqa: E501
-        'tags': 'tags',  # noqa: E501
         'visa_acquirer_processing_fixed_fee': 'visa_acquirer_processing_fixed_fee',  # noqa: E501
         'visa_assessments_basis_points': 'visa_assessments_basis_points',  # noqa: E501
         'visa_base_ii_credit_voucher_fixed_fee': 'visa_base_II_credit_voucher_fixed_fee',  # noqa: E501
@@ -251,23 +251,25 @@ class FeeProfile(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str): [optional]  # noqa: E501
+            id (str): The ID of the `Fee Profile` resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             ach_basis_points (int): Percentage-based fee incurred against the full amount of an eCheck (also called ACH payments). Calculated as one hundredth of one percent (1 basis point = .0001 or .01%). [optional]  # noqa: E501
-            ach_credit_return_fixed_fee (int, none_type): A fixed amount in cents that will be charged to the merchant for processing an echeck (also called ACH payments) credit return.. [optional]  # noqa: E501
-            ach_debit_return_fixed_fee (int, none_type): A fixed amount in cents that will be charged to the merchant for processing an echeck (also called ACH payment) debit return.. [optional]  # noqa: E501
+            ach_credit_return_fixed_fee (int, none_type): A fixed amount in cents that will be charged to the seller for processing an echeck (also called ACH payments) credit return.. [optional]  # noqa: E501
+            ach_debit_return_fixed_fee (int, none_type): A fixed amount in cents that will be charged to the seller for processing an echeck (also called ACH payment) debit return.. [optional]  # noqa: E501
             ach_fixed_fee (int): Fee in cents incurred for each individual `Transfer`.. [optional]  # noqa: E501
             american_express_assessment_basis_points (int, none_type): Applies to gross American Express card volume.. [optional]  # noqa: E501
             american_express_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each American Express `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%). [optional]  # noqa: E501
             american_express_charge_interchange (bool, none_type): Set to **True** to incur interchange fees for American Express `Transfers`.. [optional]  # noqa: E501
-            american_express_fixed_fee (int, none_type): Fee in cents incurred for each individual American Express `Transfer`.. [optional]  # noqa: E501
             american_express_externally_funded_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each American Express externally funded `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%). [optional]  # noqa: E501
             american_express_externally_funded_fixed_fee (int, none_type): Fee in cents incurred for each individual American Express externally funded `Transfer`.. [optional]  # noqa: E501
+            american_express_fixed_fee (int, none_type): Fee in cents incurred for each individual American Express `Transfer`.. [optional]  # noqa: E501
             ancillary_fixed_fee_primary (int, none_type): An additional fixed fee that can be charged per `Transfer`.. [optional]  # noqa: E501
             ancillary_fixed_fee_secondary (int, none_type): An additional fixed fee that can be charged per `Transfer` if `ancillary_fixed_fee_primary` is included.. [optional]  # noqa: E501
-            application (str): The ID of the resource.. [optional]  # noqa: E501
+            application (str): The ID of the `Application` associated with the  `Fee Profile`.. [optional]  # noqa: E501
             basis_points (int): Percentage-based fee incurred against the full amount of each card-based `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%). [optional]  # noqa: E501
+            card_cross_border_basis_points (int, none_type): Percentage-based fee charged against the full amount of every `Transfer` that includes non-US cards. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
+            card_cross_border_fixed_fee (int, none_type): Fee in cents charged against every `Transfer` that includes non-US cards.. [optional]  # noqa: E501
             charge_interchange (bool): Set to **True** to incur interchange fees for card-based `Transfers`.. [optional]  # noqa: E501
             diners_club_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each Diners `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
             diners_club_charge_interchange (bool, none_type): Set to **True** to incur interchange fees for Diners `Transfers`.. [optional]  # noqa: E501
@@ -276,9 +278,9 @@ class FeeProfile(ModelNormal):
             discover_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each Discover `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%). [optional]  # noqa: E501
             discover_charge_interchange (bool, none_type): Set to **True** to incur interchange fees for Discover `Transfers`.. [optional]  # noqa: E501
             discover_data_usage_fixed_fee (int, none_type): Applies to all U.S.-based `authorization` transactions.. [optional]  # noqa: E501
-            discover_fixed_fee (int, none_type): Fee in cents incurred for each individual Discover `Transfer`.. [optional]  # noqa: E501
             discover_externally_funded_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each Discover externally funded `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
             discover_externally_funded_fixed_fee (int, none_type): Fee in cents incurred for each individual Discover externally funded `Transfer`.. [optional]  # noqa: E501
+            discover_fixed_fee (int, none_type): Fee in cents incurred for each individual Discover `Transfer`.. [optional]  # noqa: E501
             discover_network_authorization_fixed_fee (int, none_type): This fee applies to all Discover network `authorizations` and replaces the previously assessed Data Transmission.. [optional]  # noqa: E501
             dispute_fixed_fee (int, none_type): Applied when a `dispute` is created or updated to a **PENDING** state.. [optional]  # noqa: E501
             dispute_inquiry_fixed_fee (int, none_type): Applied when a `dispute` is created or updated to a **INQUIRY** state.. [optional]  # noqa: E501
@@ -296,7 +298,6 @@ class FeeProfile(ModelNormal):
             mastercard_fixed_fee (int, none_type): Fee in cents incurred for each individual MasterCard `Transfer`.. [optional]  # noqa: E501
             qualified_tiers ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): The top of the qualified tier tree.. [optional]  # noqa: E501
             rounding_mode (str): <ul><li>Include <strong>AGGREGATE</strong> if you want to round after the settlement calculation.<li>By default, rounding happens before the sum of the settlement calculation (i.e. round each fee transfer)</ul>. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
             visa_acquirer_processing_fixed_fee (int, none_type): Applied to all U.S.-based credit card authorizations acquired in the U.S. regardless of where the issuer/cardholder is located. If your business is based in the U.S., the acquirer processing fee will apply to all Visa credit card authorizations. [optional]  # noqa: E501
             visa_assessments_basis_points (int, none_type): Applies to all Visa credit transactions.. [optional]  # noqa: E501
             visa_base_ii_credit_voucher_fixed_fee (int, none_type): Applies to all U.S.-based refunds.. [optional]  # noqa: E501
@@ -388,23 +389,25 @@ class FeeProfile(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str): [optional]  # noqa: E501
+            id (str): The ID of the `Fee Profile` resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             ach_basis_points (int): Percentage-based fee incurred against the full amount of an eCheck (also called ACH payments). Calculated as one hundredth of one percent (1 basis point = .0001 or .01%). [optional]  # noqa: E501
-            ach_credit_return_fixed_fee (int, none_type): A fixed amount in cents that will be charged to the merchant for processing an echeck (also called ACH payments) credit return.. [optional]  # noqa: E501
-            ach_debit_return_fixed_fee (int, none_type): A fixed amount in cents that will be charged to the merchant for processing an echeck (also called ACH payment) debit return.. [optional]  # noqa: E501
+            ach_credit_return_fixed_fee (int, none_type): A fixed amount in cents that will be charged to the seller for processing an echeck (also called ACH payments) credit return.. [optional]  # noqa: E501
+            ach_debit_return_fixed_fee (int, none_type): A fixed amount in cents that will be charged to the seller for processing an echeck (also called ACH payment) debit return.. [optional]  # noqa: E501
             ach_fixed_fee (int): Fee in cents incurred for each individual `Transfer`.. [optional]  # noqa: E501
             american_express_assessment_basis_points (int, none_type): Applies to gross American Express card volume.. [optional]  # noqa: E501
             american_express_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each American Express `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%). [optional]  # noqa: E501
             american_express_charge_interchange (bool, none_type): Set to **True** to incur interchange fees for American Express `Transfers`.. [optional]  # noqa: E501
-            american_express_fixed_fee (int, none_type): Fee in cents incurred for each individual American Express `Transfer`.. [optional]  # noqa: E501
             american_express_externally_funded_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each American Express externally funded `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%). [optional]  # noqa: E501
             american_express_externally_funded_fixed_fee (int, none_type): Fee in cents incurred for each individual American Express externally funded `Transfer`.. [optional]  # noqa: E501
+            american_express_fixed_fee (int, none_type): Fee in cents incurred for each individual American Express `Transfer`.. [optional]  # noqa: E501
             ancillary_fixed_fee_primary (int, none_type): An additional fixed fee that can be charged per `Transfer`.. [optional]  # noqa: E501
             ancillary_fixed_fee_secondary (int, none_type): An additional fixed fee that can be charged per `Transfer` if `ancillary_fixed_fee_primary` is included.. [optional]  # noqa: E501
-            application (str): The ID of the resource.. [optional]  # noqa: E501
+            application (str): The ID of the `Application` associated with the  `Fee Profile`.. [optional]  # noqa: E501
             basis_points (int): Percentage-based fee incurred against the full amount of each card-based `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%). [optional]  # noqa: E501
+            card_cross_border_basis_points (int, none_type): Percentage-based fee charged against the full amount of every `Transfer` that includes non-US cards. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
+            card_cross_border_fixed_fee (int, none_type): Fee in cents charged against every `Transfer` that includes non-US cards.. [optional]  # noqa: E501
             charge_interchange (bool): Set to **True** to incur interchange fees for card-based `Transfers`.. [optional]  # noqa: E501
             diners_club_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each Diners `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
             diners_club_charge_interchange (bool, none_type): Set to **True** to incur interchange fees for Diners `Transfers`.. [optional]  # noqa: E501
@@ -413,9 +416,9 @@ class FeeProfile(ModelNormal):
             discover_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each Discover `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%). [optional]  # noqa: E501
             discover_charge_interchange (bool, none_type): Set to **True** to incur interchange fees for Discover `Transfers`.. [optional]  # noqa: E501
             discover_data_usage_fixed_fee (int, none_type): Applies to all U.S.-based `authorization` transactions.. [optional]  # noqa: E501
-            discover_fixed_fee (int, none_type): Fee in cents incurred for each individual Discover `Transfer`.. [optional]  # noqa: E501
             discover_externally_funded_basis_points (int, none_type): Percentage-based fee incurred against the full amount of each Discover externally funded `Transfer`. Calculated as one hundredth of one percent (1 basis point = .0001 or .01%).. [optional]  # noqa: E501
             discover_externally_funded_fixed_fee (int, none_type): Fee in cents incurred for each individual Discover externally funded `Transfer`.. [optional]  # noqa: E501
+            discover_fixed_fee (int, none_type): Fee in cents incurred for each individual Discover `Transfer`.. [optional]  # noqa: E501
             discover_network_authorization_fixed_fee (int, none_type): This fee applies to all Discover network `authorizations` and replaces the previously assessed Data Transmission.. [optional]  # noqa: E501
             dispute_fixed_fee (int, none_type): Applied when a `dispute` is created or updated to a **PENDING** state.. [optional]  # noqa: E501
             dispute_inquiry_fixed_fee (int, none_type): Applied when a `dispute` is created or updated to a **INQUIRY** state.. [optional]  # noqa: E501
@@ -433,7 +436,6 @@ class FeeProfile(ModelNormal):
             mastercard_fixed_fee (int, none_type): Fee in cents incurred for each individual MasterCard `Transfer`.. [optional]  # noqa: E501
             qualified_tiers ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): The top of the qualified tier tree.. [optional]  # noqa: E501
             rounding_mode (str): <ul><li>Include <strong>AGGREGATE</strong> if you want to round after the settlement calculation.<li>By default, rounding happens before the sum of the settlement calculation (i.e. round each fee transfer)</ul>. [optional]  # noqa: E501
-            tags (Tags): [optional]  # noqa: E501
             visa_acquirer_processing_fixed_fee (int, none_type): Applied to all U.S.-based credit card authorizations acquired in the U.S. regardless of where the issuer/cardholder is located. If your business is based in the U.S., the acquirer processing fee will apply to all Visa credit card authorizations. [optional]  # noqa: E501
             visa_assessments_basis_points (int, none_type): Applies to all Visa credit transactions.. [optional]  # noqa: E501
             visa_base_ii_credit_voucher_fixed_fee (int, none_type): Applies to all U.S.-based refunds.. [optional]  # noqa: E501

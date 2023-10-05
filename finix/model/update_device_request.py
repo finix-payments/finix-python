@@ -28,7 +28,9 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from finix.model.configuration_details import ConfigurationDetails
     from finix.model.tags import Tags
+    globals()['ConfigurationDetails'] = ConfigurationDetails
     globals()['Tags'] = Tags
 
 
@@ -55,7 +57,10 @@ class UpdateDeviceRequest(ModelNormal):
 
     allowed_values = {
         ('action',): {
+            'ACTIVATE': "ACTIVATE",
+            'CREATE_IDLE_MESSAGE': "CREATE_IDLE_MESSAGE",
             'DEACTIVATE': "DEACTIVATE",
+            'REBOOT': "REBOOT",
         },
     }
 
@@ -86,9 +91,13 @@ class UpdateDeviceRequest(ModelNormal):
         lazy_import()
         return {
             'action': (str,),  # noqa: E501
-            'activation_code': (str,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
+            'activation_code': (str,),  # noqa: E501
             'idle_message': (str,),  # noqa: E501
+            'configuration_details': (ConfigurationDetails,),  # noqa: E501
+            'description': (str,),  # noqa: E501
+            'name': (str,),  # noqa: E501
+            'serial_number': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -98,9 +107,13 @@ class UpdateDeviceRequest(ModelNormal):
 
     attribute_map = {
         'action': 'action',  # noqa: E501
-        'activation_code': 'activation_code',  # noqa: E501
         'tags': 'tags',  # noqa: E501
+        'activation_code': 'activation_code',  # noqa: E501
         'idle_message': 'idle_message',  # noqa: E501
+        'configuration_details': 'configuration_details',  # noqa: E501
+        'description': 'description',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'serial_number': 'serial_number',  # noqa: E501
     }
 
     read_only_vars = {
@@ -144,10 +157,14 @@ class UpdateDeviceRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            action (str): The action you want to perform on the device. Use **DEACTIVATE** to deactivate the device.. [optional] if omitted the server will use the default value of "DEACTIVATE"  # noqa: E501
-            activation_code (str): Used when `action` is **ACTIVATE**. Provide the input code that shows up on the device screen.. [optional]  # noqa: E501
+            action (str): The action you want to perform on the device. Use **DEACTIVATE** to deactivate the device.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
+            activation_code (str): Used when `action` is **ACTIVATE**. Provide the input code that shows up on the device screen.. [optional]  # noqa: E501
             idle_message (str): Message to display on the idle screen.. [optional]  # noqa: E501
+            configuration_details (ConfigurationDetails): [optional]  # noqa: E501
+            description (str): Additional information about device (e.g. self serving terminal).. [optional]  # noqa: E501
+            name (str): Name of the `Device`.. [optional]  # noqa: E501
+            serial_number (str): Serial number of the `device`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -229,10 +246,14 @@ class UpdateDeviceRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            action (str): The action you want to perform on the device. Use **DEACTIVATE** to deactivate the device.. [optional] if omitted the server will use the default value of "DEACTIVATE"  # noqa: E501
-            activation_code (str): Used when `action` is **ACTIVATE**. Provide the input code that shows up on the device screen.. [optional]  # noqa: E501
+            action (str): The action you want to perform on the device. Use **DEACTIVATE** to deactivate the device.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
+            activation_code (str): Used when `action` is **ACTIVATE**. Provide the input code that shows up on the device screen.. [optional]  # noqa: E501
             idle_message (str): Message to display on the idle screen.. [optional]  # noqa: E501
+            configuration_details (ConfigurationDetails): [optional]  # noqa: E501
+            description (str): Additional information about device (e.g. self serving terminal).. [optional]  # noqa: E501
+            name (str): Name of the `Device`.. [optional]  # noqa: E501
+            serial_number (str): Serial number of the `device`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

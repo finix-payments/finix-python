@@ -63,7 +63,7 @@ class Tags(ModelNormal):
         """
         return (str,)  # noqa: E501
 
-    _nullable = False
+    _nullable = True
 
     @cached_property
     def openapi_types():

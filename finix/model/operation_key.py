@@ -108,10 +108,10 @@ class OperationKey(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): Details the operation that'll be performed in the transaction (Card present transactions only) .., must be one of ["PUSH_TO_CARD", "PULL_FROM_CARD", "CARD_PRESENT_DEBIT", "CARD_PRESENT_UNREFERENCED_REFUND", "SALE", "UNREFERENCED_REFUND", "MERCHANT_CREDIT_ADJUSTMENT", "MERCHANT_DEBIT_ADJUSTMENT", "CARD_PRESENT_AUTHORIZATION", ]  # noqa: E501
+            args[0] (str): Details the operation that's performed in the transaction (Card present transactions only) .., must be one of ["PUSH_TO_CARD", "PULL_FROM_CARD", "CARD_PRESENT_DEBIT", "CARD_PRESENT_UNREFERENCED_REFUND", "SALE", "UNREFERENCED_REFUND", "MERCHANT_CREDIT_ADJUSTMENT", "MERCHANT_DEBIT_ADJUSTMENT", "CARD_PRESENT_AUTHORIZATION", ]  # noqa: E501
 
         Keyword Args:
-            value (str): Details the operation that'll be performed in the transaction (Card present transactions only) .., must be one of ["PUSH_TO_CARD", "PULL_FROM_CARD", "CARD_PRESENT_DEBIT", "CARD_PRESENT_UNREFERENCED_REFUND", "SALE", "UNREFERENCED_REFUND", "MERCHANT_CREDIT_ADJUSTMENT", "MERCHANT_DEBIT_ADJUSTMENT", "CARD_PRESENT_AUTHORIZATION", ]  # noqa: E501
+            value (str): Details the operation that's performed in the transaction (Card present transactions only) .., must be one of ["PUSH_TO_CARD", "PULL_FROM_CARD", "CARD_PRESENT_DEBIT", "CARD_PRESENT_UNREFERENCED_REFUND", "SALE", "UNREFERENCED_REFUND", "MERCHANT_CREDIT_ADJUSTMENT", "MERCHANT_DEBIT_ADJUSTMENT", "CARD_PRESENT_AUTHORIZATION", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -198,10 +198,10 @@ class OperationKey(ModelSimple):
         Note that value can be passed either in args or in kwargs, but not in both.
 
         Args:
-            args[0] (str): Details the operation that'll be performed in the transaction (Card present transactions only) .., must be one of ["PUSH_TO_CARD", "PULL_FROM_CARD", "CARD_PRESENT_DEBIT", "CARD_PRESENT_UNREFERENCED_REFUND", "SALE", "UNREFERENCED_REFUND", "MERCHANT_CREDIT_ADJUSTMENT", "MERCHANT_DEBIT_ADJUSTMENT", "CARD_PRESENT_AUTHORIZATION", ]  # noqa: E501
+            args[0] (str): Details the operation that's performed in the transaction (Card present transactions only) .., must be one of ["PUSH_TO_CARD", "PULL_FROM_CARD", "CARD_PRESENT_DEBIT", "CARD_PRESENT_UNREFERENCED_REFUND", "SALE", "UNREFERENCED_REFUND", "MERCHANT_CREDIT_ADJUSTMENT", "MERCHANT_DEBIT_ADJUSTMENT", "CARD_PRESENT_AUTHORIZATION", ]  # noqa: E501
 
         Keyword Args:
-            value (str): Details the operation that'll be performed in the transaction (Card present transactions only) .., must be one of ["PUSH_TO_CARD", "PULL_FROM_CARD", "CARD_PRESENT_DEBIT", "CARD_PRESENT_UNREFERENCED_REFUND", "SALE", "UNREFERENCED_REFUND", "MERCHANT_CREDIT_ADJUSTMENT", "MERCHANT_DEBIT_ADJUSTMENT", "CARD_PRESENT_AUTHORIZATION", ]  # noqa: E501
+            value (str): Details the operation that's performed in the transaction (Card present transactions only) .., must be one of ["PUSH_TO_CARD", "PULL_FROM_CARD", "CARD_PRESENT_DEBIT", "CARD_PRESENT_UNREFERENCED_REFUND", "SALE", "UNREFERENCED_REFUND", "MERCHANT_CREDIT_ADJUSTMENT", "MERCHANT_DEBIT_ADJUSTMENT", "CARD_PRESENT_AUTHORIZATION", ]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

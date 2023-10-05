@@ -57,7 +57,41 @@ def test_create_identity(client00):
 	        test_key_102 = "test_val_102"
         ),
 	    entity=CreateIdentityRequestEntity(
+            annual_card_volume=12000000,
+            business_address=CreateIdentityRequestEntityBusinessAddress(
+				city="San Mateo",
+	            country="USA",
+	            region="CA",
+	            line2="Apartment 7",
+	            line1="741 Douglass St",
+	            postal_code="94114"
+			),
+			business_name="Finix Flowers",
+			business_phone="+1 (408) 756-4497",
+			business_tax_id="123456789",
+			business_type="INDIVIDUAL_SOLE_PROPRIETORSHIP",
+			default_statement_descriptor="Finix Flowers",
+			dob=CreateIdentityRequestEntityDob(
+				year=1978,
+				day=27,
+				month=6
+			),
+			doing_business_as="Finix Flowers",
+			incorporation_date=CreateIdentityRequestEntityIncorporationDate(
+				year=1978,
+				day=27,
+				month=6
+			),
 	        last_name="abc",
+	        max_transaction_amount=12000000,
+            ach_max_transaction_amount=1000000,
+            mcc="4900",
+            ownership_type="PRIVATE",
+            principal_percentage_ownership=50,
+            tax_id="123456789",
+            title="CEO",
+            url="https://www.finix.com",
+	        has_accepted_credit_cards_previously=True,
 	        personal_address=CreateIdentityRequestEntityPersonalAddress(
 	            city="San Mateo",
 	            country="USA",
@@ -69,8 +103,8 @@ def test_create_identity(client00):
 	        first_name="dwayne",
 	        email="user@example.org",
 	        phone="1234567890"
-        )
-    )
+		)
+	)    
     response = client00.identities.create(create_identity_request=request)
     assert response.id[:2] == 'ID'
     assert response.entity['last_name'] == 'abc'
@@ -102,17 +136,3 @@ def test_create_associated_identity(client00, business_identity_merchant):
     assert response.id[:2] == 'ID'
     assert response.entity['last_name'] == 'xbc'
     assert response.tags['test_key_103'] == 'test_val_103'
-
-
-def test_create_identity_verification(client00, identity_merchant):
-    id = identity_merchant.id
-    request = CreateVerificationRequest(
-		processor='DUMMY_V1',
-		tags=Tags(
-	        test_key_104 = "test_val_104"
-        )
-	)
-    response = client00.identities.create_identity_verification(id, create_verification_request=request)
-    assert response.id[:2] == 'VI'
-    assert response.processor == 'DUMMY_V1'
-    assert response.tags['test_key_104'] == 'test_val_104'

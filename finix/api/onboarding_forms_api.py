@@ -105,7 +105,6 @@ class OnboardingFormsApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/json',
                     'application/hal+json'
                 ],
                 'content_type': [
@@ -163,7 +162,6 @@ class OnboardingFormsApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/json',
                     'application/hal+json'
                 ],
                 'content_type': [
@@ -217,7 +215,6 @@ class OnboardingFormsApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/json',
                     'application/hal+json'
                 ],
                 'content_type': [],
@@ -231,7 +228,7 @@ class OnboardingFormsApi(object):
     ):
         """Create an Onboarding Form  # noqa: E501
 
-        Create an onboarding_form with the name of the processor you plan to onboard users to and the links they get redirected to when completing or moving away from the Finix Onboarding Form.  > Use your **ROLE_PARTNER** credentials to create an `onboarding_form`.  # noqa: E501
+        Create an `onboarding_form` with the name of the processor you plan to onboard users to and the links they` get redirected to when completing or moving away from the Finix Onboarding Form.  Only **ROLE_PARTNER** credentials can be used to create an `onboarding_form`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -306,7 +303,7 @@ class OnboardingFormsApi(object):
     ):
         """Create an Onboarding Form Link  # noqa: E501
 
-        You can use the `onboarding_forms` API to create a link that can return users to where they left off completing their Finix Onboarding Form.  # noqa: E501
+        Use the `onboarding_forms` API to create a link that can return users to where they left off completing their Finix Onboarding Form.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

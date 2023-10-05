@@ -30,17 +30,19 @@ from finix.exceptions import ApiAttributeError
 def lazy_import():
     from finix.model.additional_buyer_charges import AdditionalBuyerCharges
     from finix.model.additional_purchase_data import AdditionalPurchaseData
-    from finix.model.card_present_instrument_form import CardPresentInstrumentForm
     from finix.model.configuration_details import ConfigurationDetails
     from finix.model.create_transfer_request3d_secure_authentication import CreateTransferRequest3dSecureAuthentication
+    from finix.model.create_transfer_request_split_transfers import CreateTransferRequestSplitTransfers
     from finix.model.currency import Currency
+    from finix.model.l3_additional_purchase_data import L3AdditionalPurchaseData
     from finix.model.tags import Tags
     globals()['AdditionalBuyerCharges'] = AdditionalBuyerCharges
     globals()['AdditionalPurchaseData'] = AdditionalPurchaseData
-    globals()['CardPresentInstrumentForm'] = CardPresentInstrumentForm
     globals()['ConfigurationDetails'] = ConfigurationDetails
     globals()['CreateTransferRequest3dSecureAuthentication'] = CreateTransferRequest3dSecureAuthentication
+    globals()['CreateTransferRequestSplitTransfers'] = CreateTransferRequestSplitTransfers
     globals()['Currency'] = Currency
+    globals()['L3AdditionalPurchaseData'] = L3AdditionalPurchaseData
     globals()['Tags'] = Tags
 
 
@@ -68,18 +70,21 @@ class CreateTransferRequest(ModelNormal):
     allowed_values = {
         ('operation_key',): {
             'None': None,
-            'PUSH_TO_CARD': "PUSH_TO_CARD",
-            'PULL_FROM_CARD': "PULL_FROM_CARD",
             'CARD_PRESENT_DEBIT': "CARD_PRESENT_DEBIT",
             'CARD_PRESENT_UNREFERENCED_REFUND': "CARD_PRESENT_UNREFERENCED_REFUND",
-            'SALE': "SALE",
-            'UNREFERENCED_REFUND': "UNREFERENCED_REFUND",
             'MERCHANT_CREDIT_ADJUSTMENT': "MERCHANT_CREDIT_ADJUSTMENT",
             'MERCHANT_DEBIT_ADJUSTMENT': "MERCHANT_DEBIT_ADJUSTMENT",
+            'PULL_FROM_CARD': "PULL_FROM_CARD",
+            'PUSH_TO_CARD': "PUSH_TO_CARD",
+            'SALE': "SALE",
+            'UNREFERENCED_REFUND': "UNREFERENCED_REFUND",
         },
     }
 
     validations = {
+        ('statement_descriptor',): {
+            'max_length': 20,
+        },
     }
 
     @cached_property
@@ -105,25 +110,28 @@ class CreateTransferRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'amount': (int,),  # noqa: E501
-            'currency': (Currency,),  # noqa: E501
             'additional_buyer_charges': (AdditionalBuyerCharges,),  # noqa: E501
             'additional_purchase_data': (AdditionalPurchaseData,),  # noqa: E501
             'adjustment_request': (bool, none_type,),  # noqa: E501
+            'amount': (int,),  # noqa: E501
+            'currency': (Currency,),  # noqa: E501
             'destination': (str, none_type,),  # noqa: E501
             'device': (str, none_type,),  # noqa: E501
-            'device_configuration': (ConfigurationDetails,),  # noqa: E501
             'fee': (int,),  # noqa: E501
             'fraud_session_id': (str,),  # noqa: E501
+            'hsa_fsa_payment': (bool, none_type,),  # noqa: E501
             'idempotency_id': (str, none_type,),  # noqa: E501
             'merchant': (str, none_type,),  # noqa: E501
             'operation_key': (str, none_type,),  # noqa: E501
-            'payment_instrument': (CardPresentInstrumentForm,),  # noqa: E501
             'processor': (str,),  # noqa: E501
             'source': (str,),  # noqa: E501
+            'security_code': (str, none_type,),  # noqa: E501
             'statement_descriptor': (str, none_type,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
             '_3d_secure_authentication': (CreateTransferRequest3dSecureAuthentication,),  # noqa: E501
+            'additional_purchase_data_': (L3AdditionalPurchaseData,),  # noqa: E501
+            'device_configuration': (ConfigurationDetails,),  # noqa: E501
+            'split_transfers': (CreateTransferRequestSplitTransfers,),  # noqa: E501
         }
 
     @cached_property
@@ -132,25 +140,28 @@ class CreateTransferRequest(ModelNormal):
 
 
     attribute_map = {
-        'amount': 'amount',  # noqa: E501
-        'currency': 'currency',  # noqa: E501
         'additional_buyer_charges': 'additional_buyer_charges',  # noqa: E501
         'additional_purchase_data': 'additional_purchase_data',  # noqa: E501
         'adjustment_request': 'adjustment_request',  # noqa: E501
+        'amount': 'amount',  # noqa: E501
+        'currency': 'currency',  # noqa: E501
         'destination': 'destination',  # noqa: E501
         'device': 'device',  # noqa: E501
-        'device_configuration': 'device_configuration',  # noqa: E501
         'fee': 'fee',  # noqa: E501
         'fraud_session_id': 'fraud_session_id',  # noqa: E501
+        'hsa_fsa_payment': 'hsa_fsa_payment',  # noqa: E501
         'idempotency_id': 'idempotency_id',  # noqa: E501
         'merchant': 'merchant',  # noqa: E501
         'operation_key': 'operation_key',  # noqa: E501
-        'payment_instrument': 'payment_instrument',  # noqa: E501
         'processor': 'processor',  # noqa: E501
         'source': 'source',  # noqa: E501
+        'security_code': 'security_code',  # noqa: E501
         'statement_descriptor': 'statement_descriptor',  # noqa: E501
         'tags': 'tags',  # noqa: E501
         '_3d_secure_authentication': '3d_secure_authentication',  # noqa: E501
+        'additional_purchase_data_': 'additional_purchase_data ',  # noqa: E501
+        'device_configuration': 'device_configuration',  # noqa: E501
+        'split_transfers': 'split_transfers',  # noqa: E501
     }
 
     read_only_vars = {
@@ -160,12 +171,8 @@ class CreateTransferRequest(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, amount, currency, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """CreateTransferRequest - a model defined in OpenAPI
-
-        Args:
-            amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).
-            currency (Currency):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -201,20 +208,25 @@ class CreateTransferRequest(ModelNormal):
             additional_buyer_charges (AdditionalBuyerCharges): [optional]  # noqa: E501
             additional_purchase_data (AdditionalPurchaseData): [optional]  # noqa: E501
             adjustment_request (bool, none_type): Details if the `transfer` was created to adjust funds.. [optional]  # noqa: E501
+            amount (int): The total amount that will be debited from the buyer in cents (e.g. 100 cents to debit $1.00).. [optional]  # noqa: E501
+            currency (Currency): [optional]  # noqa: E501
             destination (str, none_type): ID of the `Payment Instrument` where funds will be sent.. [optional]  # noqa: E501
             device (str, none_type): The ID of the activated device.. [optional]  # noqa: E501
-            device_configuration (ConfigurationDetails): [optional]  # noqa: E501
-            fee (int): The amount of the `Transfer` you'd like to collect as your fee in cents. Defaults to zero (must be less than or equal to the `amount`).. [optional]  # noqa: E501
-            fraud_session_id (str): The `fraud_session_session` ID you want to review for fraud. For more info, see [Fraud Detection](/docs/guides/payments/fraud-detection/).. [optional]  # noqa: E501
-            idempotency_id (str, none_type): A randomly generated value that'll be associated with the request.. [optional]  # noqa: E501
-            merchant (str, none_type): ID of the `Merchant` the `Transfer` was created under.. [optional]  # noqa: E501
-            operation_key (str, none_type): Details the operation that'll be performed in the transaction.. [optional]  # noqa: E501
-            payment_instrument (CardPresentInstrumentForm): [optional]  # noqa: E501
+            fee (int): The minimum amount of the `Transfer` you'd like to collect as your fee in cents. Defaults to zero (must be less than or equal to the `amount`). - If the fees applied by the 'Fee Profile' are ***higher*** than the value passed in 'fee', 'fee' will not be applied and have no effect. - If the fees applied by the 'Fee Profile' are ***lower*** than the value passed in 'fee', an additional fee is be applied, in addition to the fees generated by the `Fee Profile`.     - The additional fee is equal to the difference between the value passed in 'fee' and the fees generated by the `Fee Profile`.. [optional]  # noqa: E501
+            fraud_session_id (str): The `fraud_session_session` ID you want to review for fraud. For more info, see [Fraud Detection](/guides/payments/fraud-detection/).. [optional]  # noqa: E501
+            hsa_fsa_payment (bool, none_type): Set to to **true** to process a payment using a `Payment Instrument` [created from a health savings account (HSA) or flexible spending account (FSA)](/guides/making-a-payment/hsa-fsa/).. [optional]  # noqa: E501
+            idempotency_id (str, none_type): A randomly generated value that gets tied with the request.. [optional]  # noqa: E501
+            merchant (str, none_type): - ID of the primary `Merchant` that's processing the `Transfer` for the buyer.  - In Split Transactions, the `Merchant` specified in the `Transfer` request is the primary `Merchant`.. [optional]  # noqa: E501
+            operation_key (str, none_type): Details the operation that's be performed in the transaction.. [optional]  # noqa: E501
             processor (str): Name of the transaction processor.. [optional]  # noqa: E501
             source (str): ID of the `Payment Instrument` where funds get debited.. [optional]  # noqa: E501
-            statement_descriptor (str, none_type): The description of the transaction that appears on the buyer's bank or card statement.. [optional]  # noqa: E501
+            security_code (str, none_type): The 3-4 digit security code for the card (i.e. CVV code). Include the CVV code of the card to include [Card Verification Checks](/guides/payments/making-a-payment/card-verification-checks/) with the created `Transfer`.. [optional]  # noqa: E501
+            statement_descriptor (str, none_type): <li>The description of the transaction that appears on the buyer's bank or card statement.</li><li><kbd>statement_descriptors</kbd> for `Transfers` in <strong>live</strong> enviroments will have a <kbd>FI *</kbd> prefix.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
             _3d_secure_authentication (CreateTransferRequest3dSecureAuthentication): [optional]  # noqa: E501
+            additional_purchase_data_ (L3AdditionalPurchaseData): [optional]  # noqa: E501
+            device_configuration (ConfigurationDetails): [optional]  # noqa: E501
+            split_transfers (CreateTransferRequestSplitTransfers): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -242,8 +254,6 @@ class CreateTransferRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.amount = amount
-        self.currency = currency
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -264,12 +274,8 @@ class CreateTransferRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, amount, currency, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """CreateTransferRequest - a model defined in OpenAPI
-
-        Args:
-            amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).
-            currency (Currency):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -305,20 +311,25 @@ class CreateTransferRequest(ModelNormal):
             additional_buyer_charges (AdditionalBuyerCharges): [optional]  # noqa: E501
             additional_purchase_data (AdditionalPurchaseData): [optional]  # noqa: E501
             adjustment_request (bool, none_type): Details if the `transfer` was created to adjust funds.. [optional]  # noqa: E501
+            amount (int): The total amount that will be debited from the buyer in cents (e.g. 100 cents to debit $1.00).. [optional]  # noqa: E501
+            currency (Currency): [optional]  # noqa: E501
             destination (str, none_type): ID of the `Payment Instrument` where funds will be sent.. [optional]  # noqa: E501
             device (str, none_type): The ID of the activated device.. [optional]  # noqa: E501
-            device_configuration (ConfigurationDetails): [optional]  # noqa: E501
-            fee (int): The amount of the `Transfer` you'd like to collect as your fee in cents. Defaults to zero (must be less than or equal to the `amount`).. [optional]  # noqa: E501
-            fraud_session_id (str): The `fraud_session_session` ID you want to review for fraud. For more info, see [Fraud Detection](/docs/guides/payments/fraud-detection/).. [optional]  # noqa: E501
-            idempotency_id (str, none_type): A randomly generated value that'll be associated with the request.. [optional]  # noqa: E501
-            merchant (str, none_type): ID of the `Merchant` the `Transfer` was created under.. [optional]  # noqa: E501
-            operation_key (str, none_type): Details the operation that'll be performed in the transaction.. [optional]  # noqa: E501
-            payment_instrument (CardPresentInstrumentForm): [optional]  # noqa: E501
+            fee (int): The minimum amount of the `Transfer` you'd like to collect as your fee in cents. Defaults to zero (must be less than or equal to the `amount`). - If the fees applied by the 'Fee Profile' are ***higher*** than the value passed in 'fee', 'fee' will not be applied and have no effect. - If the fees applied by the 'Fee Profile' are ***lower*** than the value passed in 'fee', an additional fee is be applied, in addition to the fees generated by the `Fee Profile`.     - The additional fee is equal to the difference between the value passed in 'fee' and the fees generated by the `Fee Profile`.. [optional]  # noqa: E501
+            fraud_session_id (str): The `fraud_session_session` ID you want to review for fraud. For more info, see [Fraud Detection](/guides/payments/fraud-detection/).. [optional]  # noqa: E501
+            hsa_fsa_payment (bool, none_type): Set to to **true** to process a payment using a `Payment Instrument` [created from a health savings account (HSA) or flexible spending account (FSA)](/guides/making-a-payment/hsa-fsa/).. [optional]  # noqa: E501
+            idempotency_id (str, none_type): A randomly generated value that gets tied with the request.. [optional]  # noqa: E501
+            merchant (str, none_type): - ID of the primary `Merchant` that's processing the `Transfer` for the buyer.  - In Split Transactions, the `Merchant` specified in the `Transfer` request is the primary `Merchant`.. [optional]  # noqa: E501
+            operation_key (str, none_type): Details the operation that's be performed in the transaction.. [optional]  # noqa: E501
             processor (str): Name of the transaction processor.. [optional]  # noqa: E501
             source (str): ID of the `Payment Instrument` where funds get debited.. [optional]  # noqa: E501
-            statement_descriptor (str, none_type): The description of the transaction that appears on the buyer's bank or card statement.. [optional]  # noqa: E501
+            security_code (str, none_type): The 3-4 digit security code for the card (i.e. CVV code). Include the CVV code of the card to include [Card Verification Checks](/guides/payments/making-a-payment/card-verification-checks/) with the created `Transfer`.. [optional]  # noqa: E501
+            statement_descriptor (str, none_type): <li>The description of the transaction that appears on the buyer's bank or card statement.</li><li><kbd>statement_descriptors</kbd> for `Transfers` in <strong>live</strong> enviroments will have a <kbd>FI *</kbd> prefix.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
             _3d_secure_authentication (CreateTransferRequest3dSecureAuthentication): [optional]  # noqa: E501
+            additional_purchase_data_ (L3AdditionalPurchaseData): [optional]  # noqa: E501
+            device_configuration (ConfigurationDetails): [optional]  # noqa: E501
+            split_transfers (CreateTransferRequestSplitTransfers): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -344,8 +355,6 @@ class CreateTransferRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.amount = amount
-        self.currency = currency
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

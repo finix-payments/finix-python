@@ -8,7 +8,7 @@
 """
 
 
-__version__ = "4.0.0"
+__version__ = "5.0.0"
 
 # import ApiClient
 from finix.api_client import FinixClient

@@ -58,6 +58,10 @@ class Device(ModelNormal):
     """
 
     allowed_values = {
+        ('connection',): {
+            'OPEN': "OPEN",
+            'CLOSED': "CLOSED",
+        },
     }
 
     validations = {
@@ -86,7 +90,7 @@ class Device(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (str, none_type,),  # noqa: E501
+            'id': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
             'configuration_details': (DeviceConfigDetails,),  # noqa: E501
@@ -165,7 +169,7 @@ class Device(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            id (str): The ID of the activated `Device`.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             configuration_details (DeviceConfigDetails): [optional]  # noqa: E501
@@ -260,7 +264,7 @@ class Device(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            id (str): The ID of the activated `Device`.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             configuration_details (DeviceConfigDetails): [optional]  # noqa: E501

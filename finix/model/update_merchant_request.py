@@ -54,6 +54,11 @@ class UpdateMerchantRequest(ModelNormal):
     """
 
     allowed_values = {
+        ('settlement_funding_identifier',): {
+            'MID_AND_DATE': "MID_AND_DATE",
+            'MID_AND_MERCHANT_NAME': "MID_AND_MERCHANT_NAME",
+            'UNSET': "UNSET",
+        },
     }
 
     validations = {
@@ -96,6 +101,7 @@ class UpdateMerchantRequest(ModelNormal):
             'settlement_enabled': (bool,),  # noqa: E501
             'settlement_funding_identifier': (str,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
+            'surcharge_fees_enabled': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -118,6 +124,7 @@ class UpdateMerchantRequest(ModelNormal):
         'settlement_enabled': 'settlement_enabled',  # noqa: E501
         'settlement_funding_identifier': 'settlement_funding_identifier',  # noqa: E501
         'tags': 'tags',  # noqa: E501
+        'surcharge_fees_enabled': 'surcharge_fees_enabled',  # noqa: E501
     }
 
     read_only_vars = {
@@ -170,11 +177,12 @@ class UpdateMerchantRequest(ModelNormal):
             level_two_level_three_data_enabled (bool): Set to **true** to enable the `Merchant` for Level 2 and Level 3 processing. Default value is **false**.. [optional]  # noqa: E501
             merchant_name (str): The legal name saved in the `Merchant` resource.. [optional]  # noqa: E501
             processing_enabled (bool): Details if transaction processing is enabled for the `Merchant`.. [optional]  # noqa: E501
-            ready_to_settle_upon (str): Details how `Authorizations` captured by the `Merchant` are settled.. [optional]  # noqa: E501
+            ready_to_settle_upon (str): Details how transactions captured by the `Merchant` are settled.. [optional]  # noqa: E501
             rent_surcharges_enabled (bool): Set to **true** if you want to enable a `Merchant` to accept rent charges.. [optional]  # noqa: E501
             settlement_enabled (bool): Details if settlement processing is enabled for the `Merchant`.. [optional]  # noqa: E501
-            settlement_funding_identifier (str): Include addtional information (like the MID) when submitting funding `Tranfers` to processors.. [optional]  # noqa: E501
+            settlement_funding_identifier (str): Includes additional information (like the MID or `Merchant` name) when submitting funding `Transfers` to processors. - **UNSET**: No additional details get provided to the processor. - **MID_AND_DATE**: The `MID` of the `Merchant` and the date the funding `Transfer` was submitted (Date is in UTC). e.g **MID:12345678-20220225** - **MID_AND_MERCHANT_NAME**: The `MID` of the `Merchant` and the `Merchant#name` (white spaces will be removed). e.g. **MID:12345678-NameOfMerchant**  These details appear alongside the seller's payout in their bank account as a description of the deposit.. [optional] if omitted the server will use the default value of "UNSET"  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
+            surcharge_fees_enabled (bool): Set to **true** if you want to enable a `Merchant` to accept surcharge fees.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -265,11 +273,12 @@ class UpdateMerchantRequest(ModelNormal):
             level_two_level_three_data_enabled (bool): Set to **true** to enable the `Merchant` for Level 2 and Level 3 processing. Default value is **false**.. [optional]  # noqa: E501
             merchant_name (str): The legal name saved in the `Merchant` resource.. [optional]  # noqa: E501
             processing_enabled (bool): Details if transaction processing is enabled for the `Merchant`.. [optional]  # noqa: E501
-            ready_to_settle_upon (str): Details how `Authorizations` captured by the `Merchant` are settled.. [optional]  # noqa: E501
+            ready_to_settle_upon (str): Details how transactions captured by the `Merchant` are settled.. [optional]  # noqa: E501
             rent_surcharges_enabled (bool): Set to **true** if you want to enable a `Merchant` to accept rent charges.. [optional]  # noqa: E501
             settlement_enabled (bool): Details if settlement processing is enabled for the `Merchant`.. [optional]  # noqa: E501
-            settlement_funding_identifier (str): Include addtional information (like the MID) when submitting funding `Tranfers` to processors.. [optional]  # noqa: E501
+            settlement_funding_identifier (str): Includes additional information (like the MID or `Merchant` name) when submitting funding `Transfers` to processors. - **UNSET**: No additional details get provided to the processor. - **MID_AND_DATE**: The `MID` of the `Merchant` and the date the funding `Transfer` was submitted (Date is in UTC). e.g **MID:12345678-20220225** - **MID_AND_MERCHANT_NAME**: The `MID` of the `Merchant` and the `Merchant#name` (white spaces will be removed). e.g. **MID:12345678-NameOfMerchant**  These details appear alongside the seller's payout in their bank account as a description of the deposit.. [optional] if omitted the server will use the default value of "UNSET"  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
+            surcharge_fees_enabled (bool): Set to **true** if you want to enable a `Merchant` to accept surcharge fees.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

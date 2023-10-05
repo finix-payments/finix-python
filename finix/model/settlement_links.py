@@ -28,10 +28,10 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from finix.model.application_links_application_profile import ApplicationLinksApplicationProfile
+    from finix.model.application_links_authorizations import ApplicationLinksAuthorizations
     from finix.model.application_links_self import ApplicationLinksSelf
     from finix.model.application_profile_links_application import ApplicationProfileLinksApplication
-    globals()['ApplicationLinksApplicationProfile'] = ApplicationLinksApplicationProfile
+    globals()['ApplicationLinksAuthorizations'] = ApplicationLinksAuthorizations
     globals()['ApplicationLinksSelf'] = ApplicationLinksSelf
     globals()['ApplicationProfileLinksApplication'] = ApplicationProfileLinksApplication
 
@@ -87,15 +87,15 @@ class SettlementLinks(ModelNormal):
         lazy_import()
         return {
             'application': (ApplicationProfileLinksApplication,),  # noqa: E501
-            'credits': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'debits': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'disputes': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'fees': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'funding_transfers': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'identity': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'reversals': (ApplicationLinksApplicationProfile,),  # noqa: E501
+            'credits': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'debits': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'disputes': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'fees': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'funding_transfers': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'identity': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'reversals': (ApplicationLinksAuthorizations,),  # noqa: E501
             'self': (ApplicationLinksSelf,),  # noqa: E501
-            'transfers': (ApplicationLinksApplicationProfile,),  # noqa: E501
+            'transfers': (ApplicationLinksAuthorizations,),  # noqa: E501
         }
 
     @cached_property
@@ -158,15 +158,15 @@ class SettlementLinks(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             application (ApplicationProfileLinksApplication): [optional]  # noqa: E501
-            credits (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            debits (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            disputes (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            fees (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            funding_transfers (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            identity (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            reversals (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            credits (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            debits (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            disputes (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            fees (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            funding_transfers (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            identity (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            reversals (ApplicationLinksAuthorizations): [optional]  # noqa: E501
             self (ApplicationLinksSelf): [optional]  # noqa: E501
-            transfers (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            transfers (ApplicationLinksAuthorizations): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -249,15 +249,15 @@ class SettlementLinks(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             application (ApplicationProfileLinksApplication): [optional]  # noqa: E501
-            credits (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            debits (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            disputes (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            fees (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            funding_transfers (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            identity (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            reversals (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            credits (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            debits (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            disputes (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            fees (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            funding_transfers (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            identity (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            reversals (ApplicationLinksAuthorizations): [optional]  # noqa: E501
             self (ApplicationLinksSelf): [optional]  # noqa: E501
-            transfers (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            transfers (ApplicationLinksAuthorizations): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

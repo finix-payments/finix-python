@@ -28,10 +28,10 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from finix.model.currency import Currency
+    from finix.model.dispute_dispute_details import DisputeDisputeDetails
     from finix.model.dispute_links import DisputeLinks
     from finix.model.tags import Tags
-    globals()['Currency'] = Currency
+    globals()['DisputeDisputeDetails'] = DisputeDisputeDetails
     globals()['DisputeLinks'] = DisputeLinks
     globals()['Tags'] = Tags
 
@@ -58,6 +58,13 @@ class Dispute(ModelNormal):
     """
 
     allowed_values = {
+        ('evidence_submitted',): {
+            'CHARGEBACK': "CHARGEBACK",
+            'NOT_SUPPORTED': "NOT_SUPPORTED",
+            'NONE': "NONE",
+            'UNKNOWN': "UNKNOWN",
+            'INQUIRY': "INQUIRY",
+        },
         ('reason',): {
             'CLERICAL': "CLERICAL",
             'FRAUD': "FRAUD",
@@ -65,12 +72,18 @@ class Dispute(ModelNormal):
             'QUALITY': "QUALITY",
             'TECHNICAL': "TECHNICAL",
         },
+        ('response_state',): {
+            'NEEDS_RESPONSE': "NEEDS_RESPONSE",
+            'RESPONDED': "RESPONDED",
+            'ACCEPTED': "ACCEPTED",
+            'NO_RESPONSE_ALLOWED': "NO_RESPONSE_ALLOWED",
+            'UNKNOWN': "UNKNOWN",
+        },
         ('state',): {
             'INQUIRY': "INQUIRY",
             'PENDING': "PENDING",
             'WON': "WON",
             'LOST': "LOST",
-            'ARBITRATION': "ARBITRATION",
         },
     }
 
@@ -106,13 +119,15 @@ class Dispute(ModelNormal):
             'action': (str, none_type,),  # noqa: E501
             'amount': (int, none_type,),  # noqa: E501
             'application': (str,),  # noqa: E501
-            'currency': (Currency,),  # noqa: E501
-            'dispute_details': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'identity': (str, none_type,),  # noqa: E501
+            'dispute_details': (DisputeDisputeDetails,),  # noqa: E501
+            'evidence_submitted': (str,),  # noqa: E501
+            'identity': (str,),  # noqa: E501
+            'merchant': (str,),  # noqa: E501
             'message': (str, none_type,),  # noqa: E501
             'occurred_at': (datetime, none_type,),  # noqa: E501
             'reason': (str,),  # noqa: E501
             'respond_by': (datetime, none_type,),  # noqa: E501
+            'response_state': (str,),  # noqa: E501
             'state': (str,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
             'transfer': (str,),  # noqa: E501
@@ -131,13 +146,15 @@ class Dispute(ModelNormal):
         'action': 'action',  # noqa: E501
         'amount': 'amount',  # noqa: E501
         'application': 'application',  # noqa: E501
-        'currency': 'currency',  # noqa: E501
         'dispute_details': 'dispute_details',  # noqa: E501
+        'evidence_submitted': 'evidence_submitted',  # noqa: E501
         'identity': 'identity',  # noqa: E501
+        'merchant': 'merchant',  # noqa: E501
         'message': 'message',  # noqa: E501
         'occurred_at': 'occurred_at',  # noqa: E501
         'reason': 'reason',  # noqa: E501
         'respond_by': 'respond_by',  # noqa: E501
+        'response_state': 'response_state',  # noqa: E501
         'state': 'state',  # noqa: E501
         'tags': 'tags',  # noqa: E501
         'transfer': 'transfer',  # noqa: E501
@@ -190,14 +207,16 @@ class Dispute(ModelNormal):
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             action (str, none_type): The next `action` required to move forward with the `Dispute`.. [optional]  # noqa: E501
             amount (int, none_type): The total amount of the `Dispute` (in cents).. [optional]  # noqa: E501
-            application (str): The ID of the `Application` resource the `Dispute` was created under.. [optional]  # noqa: E501
-            currency (Currency): [optional]  # noqa: E501
-            dispute_details ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Details about the `Dispute` recieved by the `Processor`. May be any type of data.. [optional]  # noqa: E501
-            identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            application (str): The ID of the `Application` resource that the `Dispute` was created under.. [optional]  # noqa: E501
+            dispute_details (DisputeDisputeDetails): [optional]  # noqa: E501
+            evidence_submitted (str): The status of the uploaded evidence. [See `Dispute#response_details` for the next steps to move the `Dispute` forward](/api/tag/Disputes/#tag/Disputes/operation/getDispute!c=200&path=response_state&t=response).. [optional]  # noqa: E501
+            identity (str): - The ID of the seller's `Identity` resource. - This is the `Identity` resource that was used to create the seller's `Merchant`.. [optional]  # noqa: E501
+            merchant (str): - The ID of the seller's `Merchant` resource.  - This is the `Merchant` account the `Dispute` was filed against.. [optional]  # noqa: E501
             message (str, none_type): Message field that provides additional details. This field is typically **null**.. [optional]  # noqa: E501
-            occurred_at (datetime, none_type): Point in time when dispute occurred.. [optional]  # noqa: E501
+            occurred_at (datetime, none_type): Point in time when the `Transfer` that's getting disputed got created.. [optional]  # noqa: E501
             reason (str): The system-defined reason for the `Dispute`. Available values include:<ul><li>**INQUIRY**<li>**QUALITY**<li>**FRAUD**. [optional]  # noqa: E501
-            respond_by (datetime, none_type): Point in time when dispute has to be resolved and the `Merchant` needs to respond by.. [optional]  # noqa: E501
+            respond_by (datetime, none_type): Point in time, the `Merchant` needs to respond to the dispute by.. [optional]  # noqa: E501
+            response_state (str): Details the state of the `Dispute` and what action the `Merchant` needs to take. - **NEEDS_RESPONSE**: The `Merchant` needs to respond to the `Dispute` by `Dispute#respond_by`. For details on how to respond to a `Dispute`, see [Responding to Disputes](/guides/after-the-payment/disputes/responding-disputes/). - **RESPONDED**: The issuing bank has received the evidence and actively reviewing it. No action needed from the `Merchant`. - **ACCEPTED**: The `Merchant` has accepted the `Dispute`. When a `Dispute` is accepted, you concede that the dispute is not worth challenging or representing. For details on how to accept a `Dispute`, see [Accepting a Dispute](/guides/after-the-payment/disputes/accepting-disputes/). - **NO_RESPONSE_ALLOWED**: The final `Dispute#response_state` when a `Dispute` is either **WON** or **LOST**. - **UNKNOWN**: `Dispute` details couldn't be submitted to the processor. Comes up when testing `Disputes` in sandbox or on the **DUMMY_V1** processor.. [optional]  # noqa: E501
             state (str): The current state of the `Dispute`.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
             transfer (str): ID of the `Transfer` resource.. [optional]  # noqa: E501
@@ -288,14 +307,16 @@ class Dispute(ModelNormal):
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
             action (str, none_type): The next `action` required to move forward with the `Dispute`.. [optional]  # noqa: E501
             amount (int, none_type): The total amount of the `Dispute` (in cents).. [optional]  # noqa: E501
-            application (str): The ID of the `Application` resource the `Dispute` was created under.. [optional]  # noqa: E501
-            currency (Currency): [optional]  # noqa: E501
-            dispute_details ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Details about the `Dispute` recieved by the `Processor`. May be any type of data.. [optional]  # noqa: E501
-            identity (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            application (str): The ID of the `Application` resource that the `Dispute` was created under.. [optional]  # noqa: E501
+            dispute_details (DisputeDisputeDetails): [optional]  # noqa: E501
+            evidence_submitted (str): The status of the uploaded evidence. [See `Dispute#response_details` for the next steps to move the `Dispute` forward](/api/tag/Disputes/#tag/Disputes/operation/getDispute!c=200&path=response_state&t=response).. [optional]  # noqa: E501
+            identity (str): - The ID of the seller's `Identity` resource. - This is the `Identity` resource that was used to create the seller's `Merchant`.. [optional]  # noqa: E501
+            merchant (str): - The ID of the seller's `Merchant` resource.  - This is the `Merchant` account the `Dispute` was filed against.. [optional]  # noqa: E501
             message (str, none_type): Message field that provides additional details. This field is typically **null**.. [optional]  # noqa: E501
-            occurred_at (datetime, none_type): Point in time when dispute occurred.. [optional]  # noqa: E501
+            occurred_at (datetime, none_type): Point in time when the `Transfer` that's getting disputed got created.. [optional]  # noqa: E501
             reason (str): The system-defined reason for the `Dispute`. Available values include:<ul><li>**INQUIRY**<li>**QUALITY**<li>**FRAUD**. [optional]  # noqa: E501
-            respond_by (datetime, none_type): Point in time when dispute has to be resolved and the `Merchant` needs to respond by.. [optional]  # noqa: E501
+            respond_by (datetime, none_type): Point in time, the `Merchant` needs to respond to the dispute by.. [optional]  # noqa: E501
+            response_state (str): Details the state of the `Dispute` and what action the `Merchant` needs to take. - **NEEDS_RESPONSE**: The `Merchant` needs to respond to the `Dispute` by `Dispute#respond_by`. For details on how to respond to a `Dispute`, see [Responding to Disputes](/guides/after-the-payment/disputes/responding-disputes/). - **RESPONDED**: The issuing bank has received the evidence and actively reviewing it. No action needed from the `Merchant`. - **ACCEPTED**: The `Merchant` has accepted the `Dispute`. When a `Dispute` is accepted, you concede that the dispute is not worth challenging or representing. For details on how to accept a `Dispute`, see [Accepting a Dispute](/guides/after-the-payment/disputes/accepting-disputes/). - **NO_RESPONSE_ALLOWED**: The final `Dispute#response_state` when a `Dispute` is either **WON** or **LOST**. - **UNKNOWN**: `Dispute` details couldn't be submitted to the processor. Comes up when testing `Disputes` in sandbox or on the **DUMMY_V1** processor.. [optional]  # noqa: E501
             state (str): The current state of the `Dispute`.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
             transfer (str): ID of the `Transfer` resource.. [optional]  # noqa: E501

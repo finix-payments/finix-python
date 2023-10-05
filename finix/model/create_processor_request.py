@@ -28,9 +28,7 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from finix.model.create_processor_request_config import CreateProcessorRequestConfig
     from finix.model.tags import Tags
-    globals()['CreateProcessorRequestConfig'] = CreateProcessorRequestConfig
     globals()['Tags'] = Tags
 
 
@@ -88,7 +86,6 @@ class CreateProcessorRequest(ModelNormal):
         lazy_import()
         return {
             'type': (str,),  # noqa: E501
-            'config': (CreateProcessorRequestConfig,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
         }
 
@@ -99,7 +96,6 @@ class CreateProcessorRequest(ModelNormal):
 
     attribute_map = {
         'type': 'type',  # noqa: E501
-        'config': 'config',  # noqa: E501
         'tags': 'tags',  # noqa: E501
     }
 
@@ -147,7 +143,6 @@ class CreateProcessorRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            config (CreateProcessorRequestConfig): [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 
@@ -234,7 +229,6 @@ class CreateProcessorRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            config (CreateProcessorRequestConfig): [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 
