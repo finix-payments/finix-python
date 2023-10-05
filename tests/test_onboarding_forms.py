@@ -5,10 +5,10 @@ from finix.models import *
 
 def test_create_onboarding_form(client00):
     request = CreateOnboardingFormRequest(
-        onboarding_data = CreateOnboardingFormRequestOnboardingData(
+        onboarding_data = OnboardingFormOnboardingData(
             max_transaction_amount = 100000
         ),
-        merchant_processors = [CreateOnboardingFormRequestMerchantProcessorsInner(
+        merchant_processors = [CreateOnboardingFormRequestMerchantProcessors(
             processor = "LITLE_V1"
         )],
         onboarding_link_details = CreateOnboardingFormRequestOnboardingLinkDetails(

@@ -207,14 +207,3 @@ def test_list_payment_instruments(client00):
     assert isinstance(response, FinixList)
     assert len(response) <= 5
     assert response[0].id[:2] == 'PI'
-
-
-def test_list_payment_instrument_updates(client00, bank_account):
-    id = bank_account.id
-    response = client00.payment_instruments.list_updates_by_payment_instrument_id(id)
-    assert isinstance(response, FinixList)
-    assert len(response) == 0
-    assert response.has_more == False
-    with pytest.raises(PaginationException) as e:
-        response.list_next()
-    assert e.value.message == 'list_next() fails: either pagination information is missing or there is no more resource to fetch!'
