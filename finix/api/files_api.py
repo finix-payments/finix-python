@@ -188,6 +188,7 @@ class FilesApi(object):
             params_map={
                 'all': [
                     'file_id',
+                    'stream',
                 ],
                 'required': [
                     'file_id',
@@ -195,6 +196,7 @@ class FilesApi(object):
                 'nullable': [
                 ],
                 'enum': [
+                    'stream',
                 ],
                 'validation': [
                 ]
@@ -203,16 +205,25 @@ class FilesApi(object):
                 'validations': {
                 },
                 'allowed_values': {
+                    ('stream',): {
+
+                        "TRUE": "true",
+                        "FALSE": "false"
+                    },
                 },
                 'openapi_types': {
                     'file_id':
                         (str,),
+                    'stream':
+                        (str,),
                 },
                 'attribute_map': {
                     'file_id': 'file_id',
+                    'stream': 'stream',
                 },
                 'location_map': {
                     'file_id': 'path',
+                    'stream': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -350,7 +361,6 @@ class FilesApi(object):
             params_map={
                 'all': [
                     'file_id',
-                    'sort',
                     'after_cursor',
                     'limit',
                     'id',
@@ -378,8 +388,6 @@ class FilesApi(object):
                 'openapi_types': {
                     'file_id':
                         (str,),
-                    'sort':
-                        (str,),
                     'after_cursor':
                         (str,),
                     'limit':
@@ -399,7 +407,6 @@ class FilesApi(object):
                 },
                 'attribute_map': {
                     'file_id': 'file_id',
-                    'sort': 'sort',
                     'after_cursor': 'after_cursor',
                     'limit': 'limit',
                     'id': 'id',
@@ -411,7 +418,6 @@ class FilesApi(object):
                 },
                 'location_map': {
                     'file_id': 'path',
-                    'sort': 'query',
                     'after_cursor': 'query',
                     'limit': 'query',
                     'id': 'query',
@@ -446,7 +452,6 @@ class FilesApi(object):
             },
             params_map={
                 'all': [
-                    'sort',
                     'after_cursor',
                     'limit',
                     'id',
@@ -470,8 +475,6 @@ class FilesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'sort':
-                        (str,),
                     'after_cursor':
                         (str,),
                     'limit':
@@ -490,7 +493,6 @@ class FilesApi(object):
                         (str,),
                 },
                 'attribute_map': {
-                    'sort': 'sort',
                     'after_cursor': 'after_cursor',
                     'limit': 'limit',
                     'id': 'id',
@@ -501,7 +503,6 @@ class FilesApi(object):
                     'before_cursor': 'before_cursor',
                 },
                 'location_map': {
-                    'sort': 'query',
                     'after_cursor': 'query',
                     'limit': 'query',
                     'id': 'query',
@@ -589,7 +590,7 @@ class FilesApi(object):
     ):
         """Create an External Link  # noqa: E501
 
-        Create an `external_link` resource to share with users so they can upload files directly from their browser. For more info, see [Uploading files to Finix](/docs/guides/onboarding/uploading-files-to-finix/).   Once created, you can request the user to upload a file to the `external_link` resource: [Upload files to External Link](#operation/uploadExternalLink)  # noqa: E501
+        Create an `external_link` resource to share with users so they can upload files directly from their browser. For more info, see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix/).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -667,7 +668,7 @@ class FilesApi(object):
     ):
         """Create a File  # noqa: E501
 
-        Before uploading a file, you need to create a `File` resource.   Once created, you can [upload](/#operation/uploadFile) your file to the new `File` resource.  # noqa: E501
+        Before uploading a file, you need to create a `File` resource.   Once created, you can [upload](/guides/onboarding/uploading-files-to-finix/#how-to-upload-a-file-to-finix) your file to the new `File` resource.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -740,9 +741,9 @@ class FilesApi(object):
         file_id,
         **kwargs
     ):
-        """Download a file  # noqa: E501
+        """Download a File  # noqa: E501
 
-        Download a file that was uploaded to a `File` resource. For more info, see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix).  # noqa: E501
+        Download a file that was uploaded to a `File` resource.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -753,6 +754,7 @@ class FilesApi(object):
             file_id (str): The ID of the `File` that was created to upload the file.
 
         Keyword Args:
+            stream (str): Stream the contents of the `File` so it's displayed inline in the user's web browser.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -821,7 +823,7 @@ class FilesApi(object):
     ):
         """Fetch an External LInk  # noqa: E501
 
-        Fetch a previously created `external_link` resource. For more info see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix/#create-an-external-link).  # noqa: E501
+        Fetch a previously created `external_link` resource.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -902,7 +904,7 @@ class FilesApi(object):
     ):
         """Fetch a File  # noqa: E501
 
-        Retrieve the details of a `File` resource. For more info see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix/#create-an-external-link).  # noqa: E501
+        Retrieve the details of a `File` resource.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -980,7 +982,7 @@ class FilesApi(object):
     ):
         """List All External Links  # noqa: E501
 
-        List the previously created `external_links` for a `File`. For more info, see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix/#create-an-external-link).  # noqa: E501
+        List the previously created `external_links` for a `File`.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -991,7 +993,6 @@ class FilesApi(object):
             file_id (str): Your `File` ID.
 
         Keyword Args:
-            sort (str): Specify key to be used for sorting the collection.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             limit (int): The numbers of items to return.. [optional]
             id (str): Filter by `id`.. [optional]
@@ -1068,7 +1069,7 @@ class FilesApi(object):
     ):
         """List All Files  # noqa: E501
 
-        List all the `File` resources you've created. For more info, see [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix/#step-1-create-a-file).  # noqa: E501
+        List all the `File` resources you've created.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1077,7 +1078,6 @@ class FilesApi(object):
 
 
         Keyword Args:
-            sort (str): Specify key to be used for sorting the collection.. [optional]
             after_cursor (str): Return every resource created after the cursor value.. [optional]
             limit (int): The numbers of items to return.. [optional]
             id (str): Filter by `id`.. [optional]
@@ -1153,7 +1153,7 @@ class FilesApi(object):
     ):
         """Upload files Directly  # noqa: E501
 
-        Upload files directly with a `multipart/form-data` request. For more info see, [Uploading files to Finix](/guides/onboarding/uploading-files-to-finix/#step-2-upload-the-file).  # noqa: E501
+        Upload files directly with a `multipart/form-data` request.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

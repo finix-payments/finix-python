@@ -27,12 +27,6 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
-def lazy_import():
-    from finix.model.configuration_details_cashback_options import ConfigurationDetailsCashbackOptions
-    from finix.model.configuration_details_tip_options import ConfigurationDetailsTipOptions
-    globals()['ConfigurationDetailsCashbackOptions'] = ConfigurationDetailsCashbackOptions
-    globals()['ConfigurationDetailsTipOptions'] = ConfigurationDetailsTipOptions
-
 
 class ConfigurationDetails(ModelNormal):
     """
@@ -67,7 +61,6 @@ class ConfigurationDetails(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -82,22 +75,14 @@ class ConfigurationDetails(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        lazy_import()
         return {
             'allow_debit': (bool,),  # noqa: E501
-            'allow_partial_approvals': (bool,),  # noqa: E501
             'bypass_device_on_capture': (bool,),  # noqa: E501
-            'cashback_options': (ConfigurationDetailsCashbackOptions,),  # noqa: E501
             'check_for_duplicate_transactions': (bool,),  # noqa: E501
-            'is_cash_back_allowed': (bool,),  # noqa: E501
-            'is_gift_supported': (str,),  # noqa: E501
-            'is_manual_entry_allowed': (bool,),  # noqa: E501
-            'market_code': (str,),  # noqa: E501
             'prompt_amount_confirmation': (bool,),  # noqa: E501
             'prompt_manual_entry': (bool,),  # noqa: E501
             'prompt_signature': (str,),  # noqa: E501
             'signature_threshold_amount': (int,),  # noqa: E501
-            'tip_options': (ConfigurationDetailsTipOptions,),  # noqa: E501
         }
 
     @cached_property
@@ -107,19 +92,12 @@ class ConfigurationDetails(ModelNormal):
 
     attribute_map = {
         'allow_debit': 'allow_debit',  # noqa: E501
-        'allow_partial_approvals': 'allow_partial_approvals',  # noqa: E501
         'bypass_device_on_capture': 'bypass_device_on_capture',  # noqa: E501
-        'cashback_options': 'cashback_options',  # noqa: E501
         'check_for_duplicate_transactions': 'check_for_duplicate_transactions',  # noqa: E501
-        'is_cash_back_allowed': 'is_cash_back_allowed',  # noqa: E501
-        'is_gift_supported': 'is_gift_supported',  # noqa: E501
-        'is_manual_entry_allowed': 'is_manual_entry_allowed',  # noqa: E501
-        'market_code': 'market_code',  # noqa: E501
         'prompt_amount_confirmation': 'prompt_amount_confirmation',  # noqa: E501
         'prompt_manual_entry': 'prompt_manual_entry',  # noqa: E501
         'prompt_signature': 'prompt_signature',  # noqa: E501
         'signature_threshold_amount': 'signature_threshold_amount',  # noqa: E501
-        'tip_options': 'tip_options',  # noqa: E501
     }
 
     read_only_vars = {
@@ -164,19 +142,12 @@ class ConfigurationDetails(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             allow_debit (bool): Allow transaction to be processed on Debit rails. If `false`, Debit card transactions will be processed on Credit rails.. [optional]  # noqa: E501
-            allow_partial_approvals (bool): Determines if a transaction can be partially approved (Usually **null**).. [optional]  # noqa: E501
             bypass_device_on_capture (bool): Sets whether the device will be used to capture `Authorizations`. The device is required to be connected if `bypass_device_on_capture` is set to false. (defaults to true).. [optional]  # noqa: E501
-            cashback_options (ConfigurationDetailsCashbackOptions): [optional]  # noqa: E501
             check_for_duplicate_transactions (bool): Sets whether the device will check for duplicate transactions.. [optional]  # noqa: E501
-            is_cash_back_allowed (bool): Sets whether the device will allow cash back.. [optional]  # noqa: E501
-            is_gift_supported (str): Sets whether the device will allow gifting funds.. [optional]  # noqa: E501
-            is_manual_entry_allowed (bool): Sets whether the device will process payment details entered manually.. [optional]  # noqa: E501
-            market_code (str): Used by the processor to handle the `transfer`. Usually **null**.. [optional]  # noqa: E501
             prompt_amount_confirmation (bool): Sets if the card holder needs to confirm the amount they will pay (defaults to **true**).. [optional]  # noqa: E501
             prompt_manual_entry (bool): Sets if the device defaults to manual entry as the default card input method. (defaults to **false**).. [optional]  # noqa: E501
             prompt_signature (str): Sets if the device will prompt the card holder for a signature by default. Available values include:<ul><li><strong>ALWAYS</strong><li><strong>NEVER</strong><li><strong>AMOUNT</strong>: Used in conjunction with `signature_threshold_amount` so when the threshold is reached the signature form appears on the device.. [optional]  # noqa: E501
             signature_threshold_amount (int): The threshold to prompt a signature when `prompt_signature` is set to **AMOUNT** (defaults to 0).. [optional]  # noqa: E501
-            tip_options (ConfigurationDetailsTipOptions): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -259,19 +230,12 @@ class ConfigurationDetails(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             allow_debit (bool): Allow transaction to be processed on Debit rails. If `false`, Debit card transactions will be processed on Credit rails.. [optional]  # noqa: E501
-            allow_partial_approvals (bool): Determines if a transaction can be partially approved (Usually **null**).. [optional]  # noqa: E501
             bypass_device_on_capture (bool): Sets whether the device will be used to capture `Authorizations`. The device is required to be connected if `bypass_device_on_capture` is set to false. (defaults to true).. [optional]  # noqa: E501
-            cashback_options (ConfigurationDetailsCashbackOptions): [optional]  # noqa: E501
             check_for_duplicate_transactions (bool): Sets whether the device will check for duplicate transactions.. [optional]  # noqa: E501
-            is_cash_back_allowed (bool): Sets whether the device will allow cash back.. [optional]  # noqa: E501
-            is_gift_supported (str): Sets whether the device will allow gifting funds.. [optional]  # noqa: E501
-            is_manual_entry_allowed (bool): Sets whether the device will process payment details entered manually.. [optional]  # noqa: E501
-            market_code (str): Used by the processor to handle the `transfer`. Usually **null**.. [optional]  # noqa: E501
             prompt_amount_confirmation (bool): Sets if the card holder needs to confirm the amount they will pay (defaults to **true**).. [optional]  # noqa: E501
             prompt_manual_entry (bool): Sets if the device defaults to manual entry as the default card input method. (defaults to **false**).. [optional]  # noqa: E501
             prompt_signature (str): Sets if the device will prompt the card holder for a signature by default. Available values include:<ul><li><strong>ALWAYS</strong><li><strong>NEVER</strong><li><strong>AMOUNT</strong>: Used in conjunction with `signature_threshold_amount` so when the threshold is reached the signature form appears on the device.. [optional]  # noqa: E501
             signature_threshold_amount (int): The threshold to prompt a signature when `prompt_signature` is set to **AMOUNT** (defaults to 0).. [optional]  # noqa: E501
-            tip_options (ConfigurationDetailsTipOptions): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

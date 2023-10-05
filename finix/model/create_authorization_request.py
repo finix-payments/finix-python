@@ -32,12 +32,14 @@ def lazy_import():
     from finix.model.additional_purchase_data import AdditionalPurchaseData
     from finix.model.create_authorization_request3d_secure_authentication import CreateAuthorizationRequest3dSecureAuthentication
     from finix.model.currency import Currency
+    from finix.model.l3_additional_purchase_data import L3AdditionalPurchaseData
     from finix.model.operation_key import OperationKey
     from finix.model.tags import Tags
     globals()['AdditionalBuyerCharges'] = AdditionalBuyerCharges
     globals()['AdditionalPurchaseData'] = AdditionalPurchaseData
     globals()['CreateAuthorizationRequest3dSecureAuthentication'] = CreateAuthorizationRequest3dSecureAuthentication
     globals()['Currency'] = Currency
+    globals()['L3AdditionalPurchaseData'] = L3AdditionalPurchaseData
     globals()['OperationKey'] = OperationKey
     globals()['Tags'] = Tags
 
@@ -92,18 +94,21 @@ class CreateAuthorizationRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'amount': (int,),  # noqa: E501
-            'currency': (Currency,),  # noqa: E501
             'additional_buyer_charges': (AdditionalBuyerCharges,),  # noqa: E501
             'additional_purchase_data': (AdditionalPurchaseData,),  # noqa: E501
-            'device': (str, none_type,),  # noqa: E501
+            'amount': (int,),  # noqa: E501
+            'currency': (Currency,),  # noqa: E501
+            'device': (str,),  # noqa: E501
             'fraud_session_id': (str,),  # noqa: E501
+            'hsa_fsa_payment': (bool, none_type,),  # noqa: E501
             'idempotency_id': (str, none_type,),  # noqa: E501
-            'merchant': (str, none_type,),  # noqa: E501
+            'merchant': (str,),  # noqa: E501
             'operation_key': (OperationKey,),  # noqa: E501
-            'source': (str, none_type,),  # noqa: E501
+            'security_code': (str,),  # noqa: E501
+            'source': (str,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
             '_3d_secure_authentication': (CreateAuthorizationRequest3dSecureAuthentication,),  # noqa: E501
+            'additional_purchase_data_': (L3AdditionalPurchaseData,),  # noqa: E501
         }
 
     @cached_property
@@ -112,18 +117,21 @@ class CreateAuthorizationRequest(ModelNormal):
 
 
     attribute_map = {
-        'amount': 'amount',  # noqa: E501
-        'currency': 'currency',  # noqa: E501
         'additional_buyer_charges': 'additional_buyer_charges',  # noqa: E501
         'additional_purchase_data': 'additional_purchase_data',  # noqa: E501
+        'amount': 'amount',  # noqa: E501
+        'currency': 'currency',  # noqa: E501
         'device': 'device',  # noqa: E501
         'fraud_session_id': 'fraud_session_id',  # noqa: E501
+        'hsa_fsa_payment': 'hsa_fsa_payment',  # noqa: E501
         'idempotency_id': 'idempotency_id',  # noqa: E501
         'merchant': 'merchant',  # noqa: E501
         'operation_key': 'operation_key',  # noqa: E501
+        'security_code': 'security_code',  # noqa: E501
         'source': 'source',  # noqa: E501
         'tags': 'tags',  # noqa: E501
         '_3d_secure_authentication': '3d_secure_authentication',  # noqa: E501
+        'additional_purchase_data_': 'additional_purchase_data ',  # noqa: E501
     }
 
     read_only_vars = {
@@ -133,12 +141,8 @@ class CreateAuthorizationRequest(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, amount, currency, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """CreateAuthorizationRequest - a model defined in OpenAPI
-
-        Args:
-            amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).
-            currency (Currency):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -173,14 +177,19 @@ class CreateAuthorizationRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             additional_buyer_charges (AdditionalBuyerCharges): [optional]  # noqa: E501
             additional_purchase_data (AdditionalPurchaseData): [optional]  # noqa: E501
-            device (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            fraud_session_id (str): The `fraud_session_session` ID you want to review for fraud. For more info, see [Fraud Detection](/docs/guides/payments/fraud-detection/).. [optional]  # noqa: E501
-            idempotency_id (str, none_type): A randomly generated value that'll be associated with the request.. [optional]  # noqa: E501
-            merchant (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).. [optional]  # noqa: E501
+            currency (Currency): [optional]  # noqa: E501
+            device (str): The ID of the `Device` that the `Authorization` was created under.. [optional]  # noqa: E501
+            fraud_session_id (str): The `fraud_session_session` ID you want to review for fraud. For more info, see [Fraud Detection](/guides/payments/fraud-detection/).. [optional]  # noqa: E501
+            hsa_fsa_payment (bool, none_type): Set to to **true** to process a payment using a `Payment Instrument` [created from a health savings account (HSA) or flexible spending account (FSA)](/guides/making-a-payment/hsa-fsa/).. [optional]  # noqa: E501
+            idempotency_id (str, none_type): A randomly generated value that gets tied with the request.. [optional]  # noqa: E501
+            merchant (str): The ID of the `Merchant` that the `Authorization` was created under.. [optional]  # noqa: E501
             operation_key (OperationKey): [optional]  # noqa: E501
-            source (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            security_code (str): The 3-4 digit security code for the card (i.e. CVV code). Include the CVV code of the card to include [Card Verification Checks](/guides/payments/making-a-payment/card-verification-checks/) with the created `Authorization`.. [optional]  # noqa: E501
+            source (str): The ID of the `Payment Instrument` that will be debited and performing the `Authorization`.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
             _3d_secure_authentication (CreateAuthorizationRequest3dSecureAuthentication): [optional]  # noqa: E501
+            additional_purchase_data_ (L3AdditionalPurchaseData): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -208,8 +217,6 @@ class CreateAuthorizationRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.amount = amount
-        self.currency = currency
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -230,12 +237,8 @@ class CreateAuthorizationRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, amount, currency, *args, **kwargs):  # noqa: E501
+    def __init__(self, *args, **kwargs):  # noqa: E501
         """CreateAuthorizationRequest - a model defined in OpenAPI
-
-        Args:
-            amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).
-            currency (Currency):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -270,14 +273,19 @@ class CreateAuthorizationRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             additional_buyer_charges (AdditionalBuyerCharges): [optional]  # noqa: E501
             additional_purchase_data (AdditionalPurchaseData): [optional]  # noqa: E501
-            device (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            fraud_session_id (str): The `fraud_session_session` ID you want to review for fraud. For more info, see [Fraud Detection](/docs/guides/payments/fraud-detection/).. [optional]  # noqa: E501
-            idempotency_id (str, none_type): A randomly generated value that'll be associated with the request.. [optional]  # noqa: E501
-            merchant (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).. [optional]  # noqa: E501
+            currency (Currency): [optional]  # noqa: E501
+            device (str): The ID of the `Device` that the `Authorization` was created under.. [optional]  # noqa: E501
+            fraud_session_id (str): The `fraud_session_session` ID you want to review for fraud. For more info, see [Fraud Detection](/guides/payments/fraud-detection/).. [optional]  # noqa: E501
+            hsa_fsa_payment (bool, none_type): Set to to **true** to process a payment using a `Payment Instrument` [created from a health savings account (HSA) or flexible spending account (FSA)](/guides/making-a-payment/hsa-fsa/).. [optional]  # noqa: E501
+            idempotency_id (str, none_type): A randomly generated value that gets tied with the request.. [optional]  # noqa: E501
+            merchant (str): The ID of the `Merchant` that the `Authorization` was created under.. [optional]  # noqa: E501
             operation_key (OperationKey): [optional]  # noqa: E501
-            source (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            security_code (str): The 3-4 digit security code for the card (i.e. CVV code). Include the CVV code of the card to include [Card Verification Checks](/guides/payments/making-a-payment/card-verification-checks/) with the created `Authorization`.. [optional]  # noqa: E501
+            source (str): The ID of the `Payment Instrument` that will be debited and performing the `Authorization`.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
             _3d_secure_authentication (CreateAuthorizationRequest3dSecureAuthentication): [optional]  # noqa: E501
+            additional_purchase_data_ (L3AdditionalPurchaseData): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -303,8 +311,6 @@ class CreateAuthorizationRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.amount = amount
-        self.currency = currency
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

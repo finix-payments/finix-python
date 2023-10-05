@@ -28,8 +28,8 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from finix.model.error422_invalid_field_list_embedded_errors_inner import Error422InvalidFieldListEmbeddedErrorsInner
-    globals()['Error422InvalidFieldListEmbeddedErrorsInner'] = Error422InvalidFieldListEmbeddedErrorsInner
+    from finix.model.error422_invalid_field_list_embedded_errors import Error422InvalidFieldListEmbeddedErrors
+    globals()['Error422InvalidFieldListEmbeddedErrors'] = Error422InvalidFieldListEmbeddedErrors
 
 
 class Error422InvalidFieldListEmbedded(ModelNormal):
@@ -82,7 +82,7 @@ class Error422InvalidFieldListEmbedded(ModelNormal):
         """
         lazy_import()
         return {
-            'errors': ([Error422InvalidFieldListEmbeddedErrorsInner],),  # noqa: E501
+            'errors': ([Error422InvalidFieldListEmbeddedErrors],),  # noqa: E501
         }
 
     @cached_property
@@ -135,7 +135,7 @@ class Error422InvalidFieldListEmbedded(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            errors ([Error422InvalidFieldListEmbeddedErrorsInner]): [optional]  # noqa: E501
+            errors ([Error422InvalidFieldListEmbeddedErrors]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -217,7 +217,7 @@ class Error422InvalidFieldListEmbedded(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            errors ([Error422InvalidFieldListEmbeddedErrorsInner]): [optional]  # noqa: E501
+            errors ([Error422InvalidFieldListEmbeddedErrors]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

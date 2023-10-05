@@ -27,6 +27,10 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
+def lazy_import():
+    from finix.model.webhook_enabled_events import WebhookEnabledEvents
+    globals()['WebhookEnabledEvents'] = WebhookEnabledEvents
+
 
 class UpdateWebhookRequest(ModelNormal):
     """
@@ -61,6 +65,7 @@ class UpdateWebhookRequest(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
+        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -75,8 +80,10 @@ class UpdateWebhookRequest(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
+        lazy_import()
         return {
             'enabled': (bool,),  # noqa: E501
+            'enabled_events': (WebhookEnabledEvents,),  # noqa: E501
             'url': (str,),  # noqa: E501
         }
 
@@ -87,6 +94,7 @@ class UpdateWebhookRequest(ModelNormal):
 
     attribute_map = {
         'enabled': 'enabled',  # noqa: E501
+        'enabled_events': 'enabled_events',  # noqa: E501
         'url': 'url',  # noqa: E501
     }
 
@@ -132,6 +140,7 @@ class UpdateWebhookRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             enabled (bool): Set to false to disable `Webhooks`. Default value when created is true.. [optional]  # noqa: E501
+            enabled_events (WebhookEnabledEvents): [optional]  # noqa: E501
             url (str): The HTTP or HTTPS url where the callbacks will be sent via POST request (max 120 characters).. [optional]  # noqa: E501
         """
 
@@ -215,6 +224,7 @@ class UpdateWebhookRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             enabled (bool): Set to false to disable `Webhooks`. Default value when created is true.. [optional]  # noqa: E501
+            enabled_events (WebhookEnabledEvents): [optional]  # noqa: E501
             url (str): The HTTP or HTTPS url where the callbacks will be sent via POST request (max 120 characters).. [optional]  # noqa: E501
         """
 

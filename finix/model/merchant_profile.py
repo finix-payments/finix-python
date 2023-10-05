@@ -84,11 +84,12 @@ class MerchantProfile(ModelNormal):
         """
         lazy_import()
         return {
-            'id': (str, none_type,),  # noqa: E501
+            'id': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
             'application': (str,),  # noqa: E501
             'fee_profile': (str, none_type,),  # noqa: E501
+            'payout_profile': (str, none_type,),  # noqa: E501
             'risk_profile': (str, none_type,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
             'links': (MerchantProfileLinks,),  # noqa: E501
@@ -105,6 +106,7 @@ class MerchantProfile(ModelNormal):
         'updated_at': 'updated_at',  # noqa: E501
         'application': 'application',  # noqa: E501
         'fee_profile': 'fee_profile',  # noqa: E501
+        'payout_profile': 'payout_profile',  # noqa: E501
         'risk_profile': 'risk_profile',  # noqa: E501
         'tags': 'tags',  # noqa: E501
         'links': '_links',  # noqa: E501
@@ -151,12 +153,13 @@ class MerchantProfile(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            id (str): The ID of the `Merchant Profile` resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
-            application (str): The ID of the resource.. [optional]  # noqa: E501
-            fee_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            risk_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            application (str): The ID of the `Application` associated with the  `Merchant Profile`.. [optional]  # noqa: E501
+            fee_profile (str, none_type): The ID of the `Fee Profile` associated with the `Merchant Profile` resource.. [optional]  # noqa: E501
+            payout_profile (str, none_type): The ID of the `Payout Profile` associated with the `Merchant Profile` resource.. [optional]  # noqa: E501
+            risk_profile (str, none_type): The ID of the `Risk Profile` associated with the `Merchant Profile` resource.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
             links (MerchantProfileLinks): [optional]  # noqa: E501
         """
@@ -240,12 +243,13 @@ class MerchantProfile(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            id (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            id (str): The ID of the `Merchant Profile` resource.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
-            application (str): The ID of the resource.. [optional]  # noqa: E501
-            fee_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            risk_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            application (str): The ID of the `Application` associated with the  `Merchant Profile`.. [optional]  # noqa: E501
+            fee_profile (str, none_type): The ID of the `Fee Profile` associated with the `Merchant Profile` resource.. [optional]  # noqa: E501
+            payout_profile (str, none_type): The ID of the `Payout Profile` associated with the `Merchant Profile` resource.. [optional]  # noqa: E501
+            risk_profile (str, none_type): The ID of the `Risk Profile` associated with the `Merchant Profile` resource.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
             links (MerchantProfileLinks): [optional]  # noqa: E501
         """

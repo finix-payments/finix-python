@@ -28,7 +28,9 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from finix.model.address import Address
     from finix.model.tags import Tags
+    globals()['Address'] = Address
     globals()['Tags'] = Tags
 
 
@@ -54,6 +56,11 @@ class CreateVerificationRequest(ModelNormal):
     """
 
     allowed_values = {
+        ('processor',): {
+            'DUMMY_V1': "DUMMY_V1",
+            'MASTERCARD_V1': "MASTERCARD_V1",
+            'VISA_V1': "VISA_V1",
+        },
     }
 
     validations = {
@@ -82,10 +89,13 @@ class CreateVerificationRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'identity': (str,),  # noqa: E501
             'merchant': (str,),  # noqa: E501
-            'processor': (str, none_type,),  # noqa: E501
+            'processor': (str,),  # noqa: E501
+            'security_code': (str,),  # noqa: E501
+            'verify_payment_card': (bool,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
+            'address': (Address,),  # noqa: E501
+            'identity': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -94,10 +104,13 @@ class CreateVerificationRequest(ModelNormal):
 
 
     attribute_map = {
-        'identity': 'identity',  # noqa: E501
         'merchant': 'merchant',  # noqa: E501
         'processor': 'processor',  # noqa: E501
+        'security_code': 'security_code',  # noqa: E501
+        'verify_payment_card': 'verify_payment_card',  # noqa: E501
         'tags': 'tags',  # noqa: E501
+        'address': 'address',  # noqa: E501
+        'identity': 'identity',  # noqa: E501
     }
 
     read_only_vars = {
@@ -141,10 +154,13 @@ class CreateVerificationRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            identity (str): ID of the `Identity` resource associated with the `Merchant`.. [optional]  # noqa: E501
-            merchant (str): The ID of the `Merchant`.. [optional]  # noqa: E501
-            processor (str, none_type): Set the acquiring processor. Avalible values include: <ul><li><strong>DUMMY_V1</strong></li><li><strong>LITLE_V1</strong></li><li><strong>MASTERCARD_V1</strong></li><li><strong>VISA_V1</strong></li><li><strong>NMI_V1</strong></li><li><strong>VANTIV_V1</strong></li></ul>Use <strong>DUMMY_V1</strong> or  <strong>null</strong> to use your sandbox. For more details on which processor to use, reach out to your Finix point of contact or email <a href=\"/guides/getting-started/support-at-finix/\">Finix Support</a>.. [optional]  # noqa: E501
+            merchant (str): - The ID of the `Merchant`. - Must be included when `verify_payment_card` is set to **true**.. [optional]  # noqa: E501
+            processor (str): Set the acquiring processor. Avalible values include: <ul><li><strong>DUMMY_V1</strong></li><li><strong>MASTERCARD_V1</strong></li><li><strong>VISA_V1</strong></li></ul>Use <strong>DUMMY_V1</strong> or  <strong>null</strong> to use your sandbox. For more details on which processor to use, reach out to your Finix point of contact or email <a href=\"/guides/getting-started/support-at-finix/\">Finix Support</a>.. [optional] if omitted the server will use the default value of "DUMMY_V1"  # noqa: E501
+            security_code (str): The ID of the `Merchant`.. [optional]  # noqa: E501
+            verify_payment_card (bool): - Set to **true** to verify card details with the card issuer. - Must be set to **true** to update the CVV or security code of a card. - When set to **true**, `merchant` must also be included with your request.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
+            address (Address): [optional]  # noqa: E501
+            identity (str): ID of the `Identity` resource associated with the `Merchant`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -226,10 +242,13 @@ class CreateVerificationRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            identity (str): ID of the `Identity` resource associated with the `Merchant`.. [optional]  # noqa: E501
-            merchant (str): The ID of the `Merchant`.. [optional]  # noqa: E501
-            processor (str, none_type): Set the acquiring processor. Avalible values include: <ul><li><strong>DUMMY_V1</strong></li><li><strong>LITLE_V1</strong></li><li><strong>MASTERCARD_V1</strong></li><li><strong>VISA_V1</strong></li><li><strong>NMI_V1</strong></li><li><strong>VANTIV_V1</strong></li></ul>Use <strong>DUMMY_V1</strong> or  <strong>null</strong> to use your sandbox. For more details on which processor to use, reach out to your Finix point of contact or email <a href=\"/guides/getting-started/support-at-finix/\">Finix Support</a>.. [optional]  # noqa: E501
+            merchant (str): - The ID of the `Merchant`. - Must be included when `verify_payment_card` is set to **true**.. [optional]  # noqa: E501
+            processor (str): Set the acquiring processor. Avalible values include: <ul><li><strong>DUMMY_V1</strong></li><li><strong>MASTERCARD_V1</strong></li><li><strong>VISA_V1</strong></li></ul>Use <strong>DUMMY_V1</strong> or  <strong>null</strong> to use your sandbox. For more details on which processor to use, reach out to your Finix point of contact or email <a href=\"/guides/getting-started/support-at-finix/\">Finix Support</a>.. [optional] if omitted the server will use the default value of "DUMMY_V1"  # noqa: E501
+            security_code (str): The ID of the `Merchant`.. [optional]  # noqa: E501
+            verify_payment_card (bool): - Set to **true** to verify card details with the card issuer. - Must be set to **true** to update the CVV or security code of a card. - When set to **true**, `merchant` must also be included with your request.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
+            address (Address): [optional]  # noqa: E501
+            identity (str): ID of the `Identity` resource associated with the `Merchant`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

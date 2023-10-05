@@ -27,10 +27,6 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
-def lazy_import():
-    from finix.model.error401_unauthorized_embedded_errors_inner import Error401UnauthorizedEmbeddedErrorsInner
-    globals()['Error401UnauthorizedEmbeddedErrorsInner'] = Error401UnauthorizedEmbeddedErrorsInner
-
 
 class Error401UnauthorizedEmbedded(ModelNormal):
     """
@@ -65,7 +61,6 @@ class Error401UnauthorizedEmbedded(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
-        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -80,9 +75,8 @@ class Error401UnauthorizedEmbedded(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
-        lazy_import()
         return {
-            'errors': ([Error401UnauthorizedEmbeddedErrorsInner],),  # noqa: E501
+            'errors': ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}],),  # noqa: E501
         }
 
     @cached_property
@@ -135,7 +129,7 @@ class Error401UnauthorizedEmbedded(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            errors ([Error401UnauthorizedEmbeddedErrorsInner]): [optional]  # noqa: E501
+            errors ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -217,7 +211,7 @@ class Error401UnauthorizedEmbedded(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            errors ([Error401UnauthorizedEmbeddedErrorsInner]): [optional]  # noqa: E501
+            errors ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

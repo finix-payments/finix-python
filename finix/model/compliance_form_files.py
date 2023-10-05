@@ -76,8 +76,8 @@ class ComplianceFormFiles(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'unsigned_file': (str,),  # noqa: E501
             'signed_file': (str, none_type,),  # noqa: E501
+            'unsigned_file': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -86,8 +86,8 @@ class ComplianceFormFiles(ModelNormal):
 
 
     attribute_map = {
-        'unsigned_file': 'unsigned_file',  # noqa: E501
         'signed_file': 'signed_file',  # noqa: E501
+        'unsigned_file': 'unsigned_file',  # noqa: E501
     }
 
     read_only_vars = {
@@ -131,8 +131,8 @@ class ComplianceFormFiles(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            unsigned_file (str): ID of the `File` resource that has the `compliance_form`.. [optional]  # noqa: E501
             signed_file (str, none_type): <ul><li>Autofills to <strong>null</strong>.</li> <li>When a <kbd>compliance_form</kbd> is attested, <kbd>signed_file</kbd> will contain a <kbd>File</kbd> corresponding to the signed version of the form.</li></ul>. [optional]  # noqa: E501
+            unsigned_file (str): ID of the `File` resource that has the `compliance_form`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -214,8 +214,8 @@ class ComplianceFormFiles(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            unsigned_file (str): ID of the `File` resource that has the `compliance_form`.. [optional]  # noqa: E501
             signed_file (str, none_type): <ul><li>Autofills to <strong>null</strong>.</li> <li>When a <kbd>compliance_form</kbd> is attested, <kbd>signed_file</kbd> will contain a <kbd>File</kbd> corresponding to the signed version of the form.</li></ul>. [optional]  # noqa: E501
+            unsigned_file (str): ID of the `File` resource that has the `compliance_form`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

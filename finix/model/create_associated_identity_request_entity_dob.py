@@ -76,9 +76,9 @@ class CreateAssociatedIdentityRequestEntityDob(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'year': (int,),  # noqa: E501
             'day': (int,),  # noqa: E501
             'month': (int,),  # noqa: E501
+            'year': (int,),  # noqa: E501
         }
 
     @cached_property
@@ -87,9 +87,9 @@ class CreateAssociatedIdentityRequestEntityDob(ModelNormal):
 
 
     attribute_map = {
-        'year': 'year',  # noqa: E501
         'day': 'day',  # noqa: E501
         'month': 'month',  # noqa: E501
+        'year': 'year',  # noqa: E501
     }
 
     read_only_vars = {
@@ -133,9 +133,9 @@ class CreateAssociatedIdentityRequestEntityDob(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            year (int): [optional]  # noqa: E501
             day (int): [optional]  # noqa: E501
             month (int): [optional]  # noqa: E501
+            year (int): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -217,9 +217,9 @@ class CreateAssociatedIdentityRequestEntityDob(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            year (int): [optional]  # noqa: E501
             day (int): [optional]  # noqa: E501
             month (int): [optional]  # noqa: E501
+            year (int): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

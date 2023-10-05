@@ -28,11 +28,11 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from finix.model.create_onboarding_form_request_merchant_processors_inner import CreateOnboardingFormRequestMerchantProcessorsInner
+    from finix.model.create_onboarding_form_request_merchant_processors import CreateOnboardingFormRequestMerchantProcessors
     from finix.model.onboarding_form_onboarding_data import OnboardingFormOnboardingData
     from finix.model.onboarding_form_onboarding_link import OnboardingFormOnboardingLink
     from finix.model.tags import Tags
-    globals()['CreateOnboardingFormRequestMerchantProcessorsInner'] = CreateOnboardingFormRequestMerchantProcessorsInner
+    globals()['CreateOnboardingFormRequestMerchantProcessors'] = CreateOnboardingFormRequestMerchantProcessors
     globals()['OnboardingFormOnboardingData'] = OnboardingFormOnboardingData
     globals()['OnboardingFormOnboardingLink'] = OnboardingFormOnboardingLink
     globals()['Tags'] = Tags
@@ -93,12 +93,12 @@ class OnboardingForm(ModelNormal):
         lazy_import()
         return {
             'id': (str,),  # noqa: E501
-            'onboarding_data': (OnboardingFormOnboardingData,),  # noqa: E501
-            'merchant_processors': ([CreateOnboardingFormRequestMerchantProcessorsInner],),  # noqa: E501
-            'onboarding_link': (OnboardingFormOnboardingLink,),  # noqa: E501
-            'status': (str,),  # noqa: E501
             'created_at': (datetime,),  # noqa: E501
             'updated_at': (datetime,),  # noqa: E501
+            'merchant_processors': ([CreateOnboardingFormRequestMerchantProcessors],),  # noqa: E501
+            'onboarding_data': (OnboardingFormOnboardingData,),  # noqa: E501
+            'onboarding_link': (OnboardingFormOnboardingLink,),  # noqa: E501
+            'status': (str,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
         }
 
@@ -109,12 +109,12 @@ class OnboardingForm(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'onboarding_data': 'onboarding_data',  # noqa: E501
-        'merchant_processors': 'merchant_processors',  # noqa: E501
-        'onboarding_link': 'onboarding_link',  # noqa: E501
-        'status': 'status',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'updated_at': 'updated_at',  # noqa: E501
+        'merchant_processors': 'merchant_processors',  # noqa: E501
+        'onboarding_data': 'onboarding_data',  # noqa: E501
+        'onboarding_link': 'onboarding_link',  # noqa: E501
+        'status': 'status',  # noqa: E501
         'tags': 'tags',  # noqa: E501
     }
 
@@ -160,12 +160,12 @@ class OnboardingForm(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): The ID of the `onboarding_form` resource.. [optional]  # noqa: E501
-            onboarding_data (OnboardingFormOnboardingData): [optional]  # noqa: E501
-            merchant_processors ([CreateOnboardingFormRequestMerchantProcessorsInner]): An array of objects with the processors and gateways users will be onboarded to.. [optional]  # noqa: E501
-            onboarding_link (OnboardingFormOnboardingLink): [optional]  # noqa: E501
-            status (str): Status of the `onboarding_from`.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
+            merchant_processors ([CreateOnboardingFormRequestMerchantProcessors]): An array of objects with the processors and gateways users will be onboarded to.. [optional]  # noqa: E501
+            onboarding_data (OnboardingFormOnboardingData): [optional]  # noqa: E501
+            onboarding_link (OnboardingFormOnboardingLink): [optional]  # noqa: E501
+            status (str): Status of the `onboarding_from`.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 
@@ -249,12 +249,12 @@ class OnboardingForm(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             id (str): The ID of the `onboarding_form` resource.. [optional]  # noqa: E501
-            onboarding_data (OnboardingFormOnboardingData): [optional]  # noqa: E501
-            merchant_processors ([CreateOnboardingFormRequestMerchantProcessorsInner]): An array of objects with the processors and gateways users will be onboarded to.. [optional]  # noqa: E501
-            onboarding_link (OnboardingFormOnboardingLink): [optional]  # noqa: E501
-            status (str): Status of the `onboarding_from`.. [optional]  # noqa: E501
             created_at (datetime): Timestamp of when the object was created.. [optional]  # noqa: E501
             updated_at (datetime): Timestamp of when the object was last updated.. [optional]  # noqa: E501
+            merchant_processors ([CreateOnboardingFormRequestMerchantProcessors]): An array of objects with the processors and gateways users will be onboarded to.. [optional]  # noqa: E501
+            onboarding_data (OnboardingFormOnboardingData): [optional]  # noqa: E501
+            onboarding_link (OnboardingFormOnboardingLink): [optional]  # noqa: E501
+            status (str): Status of the `onboarding_from`.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 

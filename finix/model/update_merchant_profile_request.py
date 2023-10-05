@@ -83,6 +83,7 @@ class UpdateMerchantProfileRequest(ModelNormal):
         lazy_import()
         return {
             'fee_profile': (str,),  # noqa: E501
+            'payout_profile': (str,),  # noqa: E501
             'risk_profile': (str,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
         }
@@ -94,6 +95,7 @@ class UpdateMerchantProfileRequest(ModelNormal):
 
     attribute_map = {
         'fee_profile': 'fee_profile',  # noqa: E501
+        'payout_profile': 'payout_profile',  # noqa: E501
         'risk_profile': 'risk_profile',  # noqa: E501
         'tags': 'tags',  # noqa: E501
     }
@@ -140,6 +142,7 @@ class UpdateMerchantProfileRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             fee_profile (str): ID of the `fee_profile`.. [optional]  # noqa: E501
+            payout_profile (str): ID of the `payout_profile`.. [optional]  # noqa: E501
             risk_profile (str): ID of the `risk_profile`.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
@@ -224,6 +227,7 @@ class UpdateMerchantProfileRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             fee_profile (str): ID of the `fee_profile`.. [optional]  # noqa: E501
+            payout_profile (str): ID of the `payout_profile`.. [optional]  # noqa: E501
             risk_profile (str): ID of the `risk_profile`.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """

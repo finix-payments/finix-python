@@ -165,7 +165,7 @@ class User(ModelNormal):
             enabled (bool): Details if the `User` is enabled and active. Set to **false** to disable the `User`.. [optional]  # noqa: E501
             identity (str, none_type): ID of the `Identity` that the `User` object was created under.. [optional]  # noqa: E501
             password (str, none_type): The `password` you'll use to authetnicate requests.. [optional]  # noqa: E501
-            role (str): Details the level of access the [`User`](#tag/Users) has available.. [optional]  # noqa: E501
+            role (str): Details the level of access the [`User`](/api/tag/Users) has available.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
             links (UserLinks): [optional]  # noqa: E501
         """
@@ -255,7 +255,7 @@ class User(ModelNormal):
             enabled (bool): Details if the `User` is enabled and active. Set to **false** to disable the `User`.. [optional]  # noqa: E501
             identity (str, none_type): ID of the `Identity` that the `User` object was created under.. [optional]  # noqa: E501
             password (str, none_type): The `password` you'll use to authetnicate requests.. [optional]  # noqa: E501
-            role (str): Details the level of access the [`User`](#tag/Users) has available.. [optional]  # noqa: E501
+            role (str): Details the level of access the [`User`](/api/tag/Users) has available.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
             links (UserLinks): [optional]  # noqa: E501
         """

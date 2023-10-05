@@ -161,7 +161,6 @@ class InstrumentUpdatesApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/json',
                     'application/hal+json'
                 ],
                 'content_type': [],
@@ -235,7 +234,7 @@ class InstrumentUpdatesApi(object):
 
 
         Keyword Args:
-            create_instrument_update_request (CreateInstrumentUpdateRequest): . [optional]
+            create_instrument_update_request (CreateInstrumentUpdateRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -380,7 +379,7 @@ class InstrumentUpdatesApi(object):
     ):
         """Fetch an Instrument Update  # noqa: E501
 
-        Fetch a specific `instrument_update` from an `instrument_updates` resource. For more information, see the guide on using our [Account Updater](/guides/payments/account-updater).  # noqa: E501
+        Fetch a specific `instrument_update` from an `instrument_updates` resource.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

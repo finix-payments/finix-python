@@ -30,8 +30,10 @@ from finix.exceptions import ApiAttributeError
 def lazy_import():
     from finix.model.processor_links import ProcessorLinks
     from finix.model.webhook_authentication import WebhookAuthentication
+    from finix.model.webhook_enabled_events import WebhookEnabledEvents
     globals()['ProcessorLinks'] = ProcessorLinks
     globals()['WebhookAuthentication'] = WebhookAuthentication
+    globals()['WebhookEnabledEvents'] = WebhookEnabledEvents
 
 
 class Webhook(ModelNormal):
@@ -90,6 +92,9 @@ class Webhook(ModelNormal):
             'application': (str,),  # noqa: E501
             'authentication': (WebhookAuthentication,),  # noqa: E501
             'enabled': (bool,),  # noqa: E501
+            'enabled_events': (WebhookEnabledEvents,),  # noqa: E501
+            'previous_secret_expires_at': (str, none_type,),  # noqa: E501
+            'secret_signing_key': (str, none_type,),  # noqa: E501
             'url': (str,),  # noqa: E501
             'links': (ProcessorLinks,),  # noqa: E501
         }
@@ -106,6 +111,9 @@ class Webhook(ModelNormal):
         'application': 'application',  # noqa: E501
         'authentication': 'authentication',  # noqa: E501
         'enabled': 'enabled',  # noqa: E501
+        'enabled_events': 'enabled_events',  # noqa: E501
+        'previous_secret_expires_at': 'previous_secret_expires_at',  # noqa: E501
+        'secret_signing_key': 'secret_signing_key',  # noqa: E501
         'url': 'url',  # noqa: E501
         'links': '_links',  # noqa: E501
     }
@@ -157,6 +165,9 @@ class Webhook(ModelNormal):
             application (str): The ID of the `Application` resource the `Webhook` was created under.. [optional]  # noqa: E501
             authentication (WebhookAuthentication): [optional]  # noqa: E501
             enabled (bool): Details if the `Webhook` is enabled:<ul><li><strong>true</strong>: Events are being sent to the `url`.<li><strong>false</strong>: Events are not being sent.. [optional]  # noqa: E501
+            enabled_events (WebhookEnabledEvents): [optional]  # noqa: E501
+            previous_secret_expires_at (str, none_type): The time when the previous `secret_signing_key` will expire. This is **null** when the webhook is initially created.. [optional]  # noqa: E501
+            secret_signing_key (str, none_type): The secret signing key that gets used to verify webhook events.. [optional]  # noqa: E501
             url (str): The HTTP or HTTPS URL where callbacks (i.e. events) will be sent via POST request (max 120 characters).. [optional]  # noqa: E501
             links (ProcessorLinks): [optional]  # noqa: E501
         """
@@ -246,6 +257,9 @@ class Webhook(ModelNormal):
             application (str): The ID of the `Application` resource the `Webhook` was created under.. [optional]  # noqa: E501
             authentication (WebhookAuthentication): [optional]  # noqa: E501
             enabled (bool): Details if the `Webhook` is enabled:<ul><li><strong>true</strong>: Events are being sent to the `url`.<li><strong>false</strong>: Events are not being sent.. [optional]  # noqa: E501
+            enabled_events (WebhookEnabledEvents): [optional]  # noqa: E501
+            previous_secret_expires_at (str, none_type): The time when the previous `secret_signing_key` will expire. This is **null** when the webhook is initially created.. [optional]  # noqa: E501
+            secret_signing_key (str, none_type): The secret signing key that gets used to verify webhook events.. [optional]  # noqa: E501
             url (str): The HTTP or HTTPS URL where callbacks (i.e. events) will be sent via POST request (max 120 characters).. [optional]  # noqa: E501
             links (ProcessorLinks): [optional]  # noqa: E501
         """

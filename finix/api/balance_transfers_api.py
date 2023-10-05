@@ -107,7 +107,7 @@ class BalanceTransfersApi(object):
                     'application/hal+json'
                 ],
                 'content_type': [
-                    'application/hal+json'
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -177,7 +177,6 @@ class BalanceTransfersApi(object):
             params_map={
                 'all': [
                     'limit',
-                    'offset',
                     'page_number',
                     'page_size',
                     'created_at_gte',
@@ -208,8 +207,6 @@ class BalanceTransfersApi(object):
                 'openapi_types': {
                     'limit':
                         (int,),
-                    'offset':
-                        (int,),
                     'page_number':
                         (int,),
                     'page_size':
@@ -239,7 +236,6 @@ class BalanceTransfersApi(object):
                 },
                 'attribute_map': {
                     'limit': 'limit',
-                    'offset': 'offset',
                     'page_number': 'pageNumber',
                     'page_size': 'pageSize',
                     'created_at_gte': 'created_at.gte',
@@ -256,7 +252,6 @@ class BalanceTransfersApi(object):
                 },
                 'location_map': {
                     'limit': 'query',
-                    'offset': 'query',
                     'page_number': 'query',
                     'page_size': 'query',
                     'created_at_gte': 'query',
@@ -451,7 +446,6 @@ class BalanceTransfersApi(object):
 
         Keyword Args:
             limit (int): The numbers of items to return.. [optional]
-            offset (int): The number of items to skip before starting to collect the result set.. [optional]
             page_number (int): The page number to list.. [optional]
             page_size (int): The size of the page.. [optional]
             created_at_gte (str): Filter where `created_at` is after the given date.. [optional]

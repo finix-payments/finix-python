@@ -29,7 +29,9 @@ from finix.exceptions import ApiAttributeError
 
 def lazy_import():
     from finix.model.create_webhook_request_authentication import CreateWebhookRequestAuthentication
+    from finix.model.webhook_enabled_events import WebhookEnabledEvents
     globals()['CreateWebhookRequestAuthentication'] = CreateWebhookRequestAuthentication
+    globals()['WebhookEnabledEvents'] = WebhookEnabledEvents
 
 
 class CreateWebhookRequest(ModelNormal):
@@ -88,6 +90,7 @@ class CreateWebhookRequest(ModelNormal):
             'url': (str,),  # noqa: E501
             'authentication': (CreateWebhookRequestAuthentication,),  # noqa: E501
             'enabled': (bool,),  # noqa: E501
+            'enabled_events': (WebhookEnabledEvents,),  # noqa: E501
         }
 
     @cached_property
@@ -99,6 +102,7 @@ class CreateWebhookRequest(ModelNormal):
         'url': 'url',  # noqa: E501
         'authentication': 'authentication',  # noqa: E501
         'enabled': 'enabled',  # noqa: E501
+        'enabled_events': 'enabled_events',  # noqa: E501
     }
 
     read_only_vars = {
@@ -147,6 +151,7 @@ class CreateWebhookRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             authentication (CreateWebhookRequestAuthentication): [optional]  # noqa: E501
             enabled (bool): Set to false to disable Webhooks. Default value when created is true.. [optional]  # noqa: E501
+            enabled_events (WebhookEnabledEvents): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -234,6 +239,7 @@ class CreateWebhookRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             authentication (CreateWebhookRequestAuthentication): [optional]  # noqa: E501
             enabled (bool): Set to false to disable Webhooks. Default value when created is true.. [optional]  # noqa: E501
+            enabled_events (WebhookEnabledEvents): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

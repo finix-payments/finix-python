@@ -28,9 +28,9 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from finix.model.application_links_application_profile import ApplicationLinksApplicationProfile
+    from finix.model.application_links_authorizations import ApplicationLinksAuthorizations
     from finix.model.application_links_self import ApplicationLinksSelf
-    globals()['ApplicationLinksApplicationProfile'] = ApplicationLinksApplicationProfile
+    globals()['ApplicationLinksAuthorizations'] = ApplicationLinksAuthorizations
     globals()['ApplicationLinksSelf'] = ApplicationLinksSelf
 
 
@@ -84,21 +84,21 @@ class ApplicationLinks(ModelNormal):
         """
         lazy_import()
         return {
-            'application_profile': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'authorizations': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'disputes': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'identities': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'merchants': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'owner_identity': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'payment_instruments': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'processors': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'reversals': (ApplicationLinksApplicationProfile,),  # noqa: E501
+            'authorizations': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'application_profile': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'disputes': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'identities': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'merchants': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'owner_identity': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'payment_instruments': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'processors': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'reversals': (ApplicationLinksAuthorizations,),  # noqa: E501
             'self': (ApplicationLinksSelf,),  # noqa: E501
-            'settlements': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'tokens': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'transfers': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'users': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'webhooks': (ApplicationLinksApplicationProfile,),  # noqa: E501
+            'settlements': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'tokens': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'transfers': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'users': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'webhooks': (ApplicationLinksAuthorizations,),  # noqa: E501
         }
 
     @cached_property
@@ -107,8 +107,8 @@ class ApplicationLinks(ModelNormal):
 
 
     attribute_map = {
-        'application_profile': 'application_profile',  # noqa: E501
         'authorizations': 'authorizations',  # noqa: E501
+        'application_profile': 'application_profile',  # noqa: E501
         'disputes': 'disputes',  # noqa: E501
         'identities': 'identities',  # noqa: E501
         'merchants': 'merchants',  # noqa: E501
@@ -165,21 +165,21 @@ class ApplicationLinks(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            application_profile (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            authorizations (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            disputes (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            identities (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            merchants (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            owner_identity (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            payment_instruments (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            processors (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            reversals (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            authorizations (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            application_profile (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            disputes (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            identities (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            merchants (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            owner_identity (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            payment_instruments (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            processors (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            reversals (ApplicationLinksAuthorizations): [optional]  # noqa: E501
             self (ApplicationLinksSelf): [optional]  # noqa: E501
-            settlements (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            tokens (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            transfers (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            users (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            webhooks (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            settlements (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            tokens (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            transfers (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            users (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            webhooks (ApplicationLinksAuthorizations): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -261,21 +261,21 @@ class ApplicationLinks(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            application_profile (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            authorizations (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            disputes (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            identities (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            merchants (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            owner_identity (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            payment_instruments (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            processors (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            reversals (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            authorizations (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            application_profile (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            disputes (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            identities (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            merchants (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            owner_identity (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            payment_instruments (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            processors (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            reversals (ApplicationLinksAuthorizations): [optional]  # noqa: E501
             self (ApplicationLinksSelf): [optional]  # noqa: E501
-            settlements (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            tokens (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            transfers (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            users (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            webhooks (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            settlements (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            tokens (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            transfers (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            users (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            webhooks (ApplicationLinksAuthorizations): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

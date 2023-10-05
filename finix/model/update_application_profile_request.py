@@ -82,8 +82,8 @@ class UpdateApplicationProfileRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'fee_profile': (str, none_type,),  # noqa: E501
-            'risk_profile': (str, none_type,),  # noqa: E501
+            'fee_profile': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'risk_profile': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
         }
 
@@ -139,8 +139,8 @@ class UpdateApplicationProfileRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            fee_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            risk_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            fee_profile ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): The ID of the `Fee Profile` associated with the `Application`.. [optional]  # noqa: E501
+            risk_profile ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): The ID of the `Risk Profile` associated with the `Application`.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 
@@ -223,8 +223,8 @@ class UpdateApplicationProfileRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            fee_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
-            risk_profile (str, none_type): The ID of the resource.. [optional]  # noqa: E501
+            fee_profile ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): The ID of the `Fee Profile` associated with the `Application`.. [optional]  # noqa: E501
+            risk_profile ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): The ID of the `Risk Profile` associated with the `Application`.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 

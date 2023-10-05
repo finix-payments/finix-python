@@ -28,7 +28,9 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from finix.model.address import Address
     from finix.model.tags import Tags
+    globals()['Address'] = Address
     globals()['Tags'] = Tags
 
 
@@ -82,7 +84,13 @@ class UpdatePaymentInstrumentRequest(ModelNormal):
         """
         lazy_import()
         return {
+            'address': (Address,),  # noqa: E501
+            'merchant': (str,),  # noqa: E501
+            'verify_payment_card': (bool,),  # noqa: E501
             'tags': (Tags,),  # noqa: E501
+            'enabled': (bool,),  # noqa: E501
+            'name': (str,),  # noqa: E501
+            'attempt_bank_account_validation_check': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -91,7 +99,13 @@ class UpdatePaymentInstrumentRequest(ModelNormal):
 
 
     attribute_map = {
+        'address': 'address',  # noqa: E501
+        'merchant': 'merchant',  # noqa: E501
+        'verify_payment_card': 'verify_payment_card',  # noqa: E501
         'tags': 'tags',  # noqa: E501
+        'enabled': 'enabled',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'attempt_bank_account_validation_check': 'attempt_bank_account_validation_check',  # noqa: E501
     }
 
     read_only_vars = {
@@ -135,7 +149,13 @@ class UpdatePaymentInstrumentRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            address (Address): [optional]  # noqa: E501
+            merchant (str): The ID of the `Merchant` that the `Payment Instrument` will be created under.. [optional] if omitted the server will use the default value of "false"  # noqa: E501
+            verify_payment_card (bool): - Set to **true** to verify card details with the card issuer. - Must be set to **true** to update the CVV or security code of a card. - When set to **true**, `merchant` must also be included with your request.. [optional] if omitted the server will use the default value of False  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
+            enabled (bool): Details if the `Payment Instrument` resource is enabled. Default value is **true**; set to **false** to disable the `Payment Instrument`.. [optional]  # noqa: E501
+            name (str): The name of the bank account or card owner. This value can get truncated to comply with processor requirements.. [optional] if omitted the server will use the default value of "false"  # noqa: E501
+            attempt_bank_account_validation_check (bool): Verify and validate the `Payment Instrument` to confirm it can be used for [ACH Direct Debits.](/guides/payments/online-payments/getting-started/finix-api/ach-echeck/) - Set to **True** to verify the `Payment Instrument` can be used for ACH payments.  - Only `Payment Instruments` created from bank accounts can be used for ACH payments.. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -217,7 +237,13 @@ class UpdatePaymentInstrumentRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            address (Address): [optional]  # noqa: E501
+            merchant (str): The ID of the `Merchant` that the `Payment Instrument` will be created under.. [optional] if omitted the server will use the default value of "false"  # noqa: E501
+            verify_payment_card (bool): - Set to **true** to verify card details with the card issuer. - Must be set to **true** to update the CVV or security code of a card. - When set to **true**, `merchant` must also be included with your request.. [optional] if omitted the server will use the default value of False  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
+            enabled (bool): Details if the `Payment Instrument` resource is enabled. Default value is **true**; set to **false** to disable the `Payment Instrument`.. [optional]  # noqa: E501
+            name (str): The name of the bank account or card owner. This value can get truncated to comply with processor requirements.. [optional] if omitted the server will use the default value of "false"  # noqa: E501
+            attempt_bank_account_validation_check (bool): Verify and validate the `Payment Instrument` to confirm it can be used for [ACH Direct Debits.](/guides/payments/online-payments/getting-started/finix-api/ach-echeck/) - Set to **True** to verify the `Payment Instrument` can be used for ACH payments.  - Only `Payment Instruments` created from bank accounts can be used for ACH payments.. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

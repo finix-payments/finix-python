@@ -100,7 +100,7 @@ class CreateFeeRequest(ModelNormal):
             'currency': (Currency,),  # noqa: E501
             'fee_subtype': (str,),  # noqa: E501
             'fee_type': (str,),  # noqa: E501
-            'merchant_id': (str, none_type,),  # noqa: E501
+            'merchant_id': (str,),  # noqa: E501
             'label': (str,),  # noqa: E501
             'linked_id': (str,),  # noqa: E501
             'linked_type': (str,),  # noqa: E501
@@ -139,7 +139,7 @@ class CreateFeeRequest(ModelNormal):
         Args:
             amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).
             currency (Currency):
-            merchant_id (str, none_type): The ID of the resource.
+            merchant_id (str): The ID of the `Merchant` resource used to create the `Fee`.
 
         Keyword Args:
             fee_subtype (str): Subtype of the fee. Set to **CUSTOM**.. defaults to "CUSTOM", must be one of ["CUSTOM", ]  # noqa: E501
@@ -177,7 +177,7 @@ class CreateFeeRequest(ModelNormal):
             label (str): The display name of the `Fee` that can be used for filtering purposes.. [optional]  # noqa: E501
             linked_id (str): ID of the linked resource. [optional]  # noqa: E501
             linked_type (str): The type of entity the fee is linked to (**null** by default).. [optional]  # noqa: E501
-            settlement_delay_days (int, none_type): Delays in days, when the fee will be submitted for settlement.. [optional]  # noqa: E501
+            settlement_delay_days (int, none_type): Delays in days, when the `Transfer` the `Fee` creates will be submitted for settlement.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 
@@ -239,7 +239,7 @@ class CreateFeeRequest(ModelNormal):
         Args:
             amount (int): The total amount that will be debited in cents (e.g. 100 cents to debit $1.00).
             currency (Currency):
-            merchant_id (str, none_type): The ID of the resource.
+            merchant_id (str): The ID of the `Merchant` resource used to create the `Fee`.
 
         Keyword Args:
             fee_subtype (str): Subtype of the fee. Set to **CUSTOM**.. defaults to "CUSTOM", must be one of ["CUSTOM", ]  # noqa: E501
@@ -277,7 +277,7 @@ class CreateFeeRequest(ModelNormal):
             label (str): The display name of the `Fee` that can be used for filtering purposes.. [optional]  # noqa: E501
             linked_id (str): ID of the linked resource. [optional]  # noqa: E501
             linked_type (str): The type of entity the fee is linked to (**null** by default).. [optional]  # noqa: E501
-            settlement_delay_days (int, none_type): Delays in days, when the fee will be submitted for settlement.. [optional]  # noqa: E501
+            settlement_delay_days (int, none_type): Delays in days, when the `Transfer` the `Fee` creates will be submitted for settlement.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 

@@ -31,7 +31,9 @@ import finix.api.merchant_profiles_api
 import finix.api.merchants_api
 import finix.api.onboarding_forms_api
 import finix.api.payment_instruments_api
+import finix.api.payout_profiles_api
 import finix.api.settlements_api
+import finix.api.split_transfers_api
 import finix.api.transfers_api
 import finix.api.verifications_api
 import finix.api.webhooks_api
@@ -88,7 +90,7 @@ class FinixClient(object):
             self._default_headers[header_name] = header_value
         self._cookie = cookie
         # Set default User-Agent.
-        self._user_agent = 'finix-python/4.0.0'
+        self._user_agent = 'finix-python/5.0.0'
 
         self.set_default_header('Finix-Version','2022-02-01')
         self.authorizations = finix.api.authorizations_api.AuthorizationsApi(self)
@@ -104,7 +106,9 @@ class FinixClient(object):
         self.merchants = finix.api.merchants_api.MerchantsApi(self)
         self.onboarding_forms = finix.api.onboarding_forms_api.OnboardingFormsApi(self)
         self.payment_instruments = finix.api.payment_instruments_api.PaymentInstrumentsApi(self)
+        self.payout_profiles = finix.api.payout_profiles_api.PayoutProfilesApi(self)
         self.settlements = finix.api.settlements_api.SettlementsApi(self)
+        self.split_transfers = finix.api.split_transfers_api.SplitTransfersApi(self)
         self.transfers = finix.api.transfers_api.TransfersApi(self)
         self.verifications = finix.api.verifications_api.VerificationsApi(self)
         self.webhooks = finix.api.webhooks_api.WebhooksApi(self)

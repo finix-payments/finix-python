@@ -28,10 +28,10 @@ from finix.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from finix.model.application_links_application_profile import ApplicationLinksApplicationProfile
+    from finix.model.application_links_authorizations import ApplicationLinksAuthorizations
     from finix.model.application_links_self import ApplicationLinksSelf
     from finix.model.application_profile_links_application import ApplicationProfileLinksApplication
-    globals()['ApplicationLinksApplicationProfile'] = ApplicationLinksApplicationProfile
+    globals()['ApplicationLinksAuthorizations'] = ApplicationLinksAuthorizations
     globals()['ApplicationLinksSelf'] = ApplicationLinksSelf
     globals()['ApplicationProfileLinksApplication'] = ApplicationProfileLinksApplication
 
@@ -87,13 +87,13 @@ class MerchantProfileLinks(ModelNormal):
         lazy_import()
         return {
             'application': (ApplicationProfileLinksApplication,),  # noqa: E501
-            'fee_profile': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'owner_identity': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'processors': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'reserve_profile': (ApplicationLinksApplicationProfile,),  # noqa: E501
-            'risk_profile': (ApplicationLinksApplicationProfile,),  # noqa: E501
+            'fee_profile': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'owner_identity': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'processors': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'reserve_profile': (ApplicationLinksAuthorizations,),  # noqa: E501
+            'risk_profile': (ApplicationLinksAuthorizations,),  # noqa: E501
             'self': (ApplicationLinksSelf,),  # noqa: E501
-            'users': (ApplicationLinksApplicationProfile,),  # noqa: E501
+            'users': (ApplicationLinksAuthorizations,),  # noqa: E501
         }
 
     @cached_property
@@ -154,13 +154,13 @@ class MerchantProfileLinks(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             application (ApplicationProfileLinksApplication): [optional]  # noqa: E501
-            fee_profile (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            owner_identity (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            processors (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            reserve_profile (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            risk_profile (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            fee_profile (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            owner_identity (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            processors (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            reserve_profile (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            risk_profile (ApplicationLinksAuthorizations): [optional]  # noqa: E501
             self (ApplicationLinksSelf): [optional]  # noqa: E501
-            users (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            users (ApplicationLinksAuthorizations): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -243,13 +243,13 @@ class MerchantProfileLinks(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             application (ApplicationProfileLinksApplication): [optional]  # noqa: E501
-            fee_profile (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            owner_identity (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            processors (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            reserve_profile (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
-            risk_profile (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            fee_profile (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            owner_identity (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            processors (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            reserve_profile (ApplicationLinksAuthorizations): [optional]  # noqa: E501
+            risk_profile (ApplicationLinksAuthorizations): [optional]  # noqa: E501
             self (ApplicationLinksSelf): [optional]  # noqa: E501
-            users (ApplicationLinksApplicationProfile): [optional]  # noqa: E501
+            users (ApplicationLinksAuthorizations): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

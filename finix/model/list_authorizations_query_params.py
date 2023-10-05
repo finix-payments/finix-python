@@ -82,11 +82,13 @@ class ListAuthorizationsQueryParams(ModelNormal):
             'amount_lt': (int,),  # noqa: E501
             'amount_lte': (int,),  # noqa: E501
             'before_cursor': (str,),  # noqa: E501
+            'after_cursor': (str,),  # noqa: E501
             'created_at_gte': (str,),  # noqa: E501
             'created_at_lte': (str,),  # noqa: E501
             'idempotency_id': (str,),  # noqa: E501
             'limit': (int,),  # noqa: E501
-            'sort': (str,),  # noqa: E501
+            'tags_key': (str,),  # noqa: E501
+            'tags_value': (str,),  # noqa: E501
             'state': (str,),  # noqa: E501
             'updated_at_gte': (str,),  # noqa: E501
             'updated_at_lte': (str,),  # noqa: E501
@@ -104,7 +106,7 @@ class ListAuthorizationsQueryParams(ModelNormal):
             'instrument_card_last4': (str,),  # noqa: E501
             'merchant_processor_id': (str,),  # noqa: E501
             'type': (str,),  # noqa: E501
-            'after_cursor': (str,),  # noqa: E501
+            'finix_version': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -119,11 +121,13 @@ class ListAuthorizationsQueryParams(ModelNormal):
         'amount_lt': 'amount.lt',  # noqa: E501
         'amount_lte': 'amount.lte',  # noqa: E501
         'before_cursor': 'before_cursor',  # noqa: E501
+        'after_cursor': 'after_cursor',  # noqa: E501
         'created_at_gte': 'created_at.gte',  # noqa: E501
         'created_at_lte': 'created_at.lte',  # noqa: E501
         'idempotency_id': 'idempotency_id',  # noqa: E501
         'limit': 'limit',  # noqa: E501
-        'sort': 'sort',  # noqa: E501
+        'tags_key': 'tags.key',  # noqa: E501
+        'tags_value': 'tags.value',  # noqa: E501
         'state': 'state',  # noqa: E501
         'updated_at_gte': 'updated_at.gte',  # noqa: E501
         'updated_at_lte': 'updated_at.lte',  # noqa: E501
@@ -141,7 +145,7 @@ class ListAuthorizationsQueryParams(ModelNormal):
         'instrument_card_last4': 'instrument_card_last4',  # noqa: E501
         'merchant_processor_id': 'merchant_processor_id',  # noqa: E501
         'type': 'type',  # noqa: E501
-        'after_cursor': 'after_cursor',  # noqa: E501
+        'finix_version': 'Finix-Version',  # noqa: E501
     }
 
     read_only_vars = {
@@ -191,11 +195,13 @@ class ListAuthorizationsQueryParams(ModelNormal):
             amount_lt (int): Filter by an amount less than.. [optional]  # noqa: E501
             amount_lte (int): Filter by an amount less than or equal.. [optional]  # noqa: E501
             before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
+            after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
             created_at_gte (str): Filter where `created_at` is after the given date.. [optional]  # noqa: E501
             created_at_lte (str): Filter where `created_at` is before the given date.. [optional]  # noqa: E501
             idempotency_id (str): Filter by `idempotency_id`.. [optional]  # noqa: E501
             limit (int): The numbers of items to return.. [optional]  # noqa: E501
-            sort (str): Specify key to be used for sorting the collection.. [optional]  # noqa: E501
+            tags_key (str): Filter by the [`key` of a `Tag`](/api/overview/#section/Tags).. [optional]  # noqa: E501
+            tags_value (str): Filter by the [value of a `Tag`](https://finix.com/docs/api/overview/#section/Tags).. [optional]  # noqa: E501
             state (str): Filter by Transaction state.. [optional]  # noqa: E501
             updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]  # noqa: E501
             updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]  # noqa: E501
@@ -213,7 +219,7 @@ class ListAuthorizationsQueryParams(ModelNormal):
             instrument_card_last4 (str): Filter by the payment card last 4 digits.. [optional]  # noqa: E501
             merchant_processor_id (str): Filter by `Processor` ID.. [optional]  # noqa: E501
             type (str): Type of the `Authorization`.. [optional]  # noqa: E501
-            after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
+            finix_version (str): Specify the API version of your request. For more details, see [Versioning.](/guides/developers/versioning/). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -301,11 +307,13 @@ class ListAuthorizationsQueryParams(ModelNormal):
             amount_lt (int): Filter by an amount less than.. [optional]  # noqa: E501
             amount_lte (int): Filter by an amount less than or equal.. [optional]  # noqa: E501
             before_cursor (str): Return every resource created before the cursor value.. [optional]  # noqa: E501
+            after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
             created_at_gte (str): Filter where `created_at` is after the given date.. [optional]  # noqa: E501
             created_at_lte (str): Filter where `created_at` is before the given date.. [optional]  # noqa: E501
             idempotency_id (str): Filter by `idempotency_id`.. [optional]  # noqa: E501
             limit (int): The numbers of items to return.. [optional]  # noqa: E501
-            sort (str): Specify key to be used for sorting the collection.. [optional]  # noqa: E501
+            tags_key (str): Filter by the [`key` of a `Tag`](/api/overview/#section/Tags).. [optional]  # noqa: E501
+            tags_value (str): Filter by the [value of a `Tag`](https://finix.com/docs/api/overview/#section/Tags).. [optional]  # noqa: E501
             state (str): Filter by Transaction state.. [optional]  # noqa: E501
             updated_at_gte (str): Filter where `updated_at` is after the given date.. [optional]  # noqa: E501
             updated_at_lte (str): Filter where `updated_at` is before the given date.. [optional]  # noqa: E501
@@ -323,7 +331,7 @@ class ListAuthorizationsQueryParams(ModelNormal):
             instrument_card_last4 (str): Filter by the payment card last 4 digits.. [optional]  # noqa: E501
             merchant_processor_id (str): Filter by `Processor` ID.. [optional]  # noqa: E501
             type (str): Type of the `Authorization`.. [optional]  # noqa: E501
-            after_cursor (str): Return every resource created after the cursor value.. [optional]  # noqa: E501
+            finix_version (str): Specify the API version of your request. For more details, see [Versioning.](/guides/developers/versioning/). [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

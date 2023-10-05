@@ -27,6 +27,16 @@ from finix.model_utils import (  # noqa: F401
 from finix.exceptions import ApiAttributeError
 
 
+def lazy_import():
+    from finix.model.create_associated_identity_request_entity import CreateAssociatedIdentityRequestEntity
+    from finix.model.onboarding_form_onboarding_data_additional_underwriting_data import OnboardingFormOnboardingDataAdditionalUnderwritingData
+    from finix.model.onboarding_form_onboarding_data_entity import OnboardingFormOnboardingDataEntity
+    from finix.model.onboarding_form_onboarding_data_payment_instruments import OnboardingFormOnboardingDataPaymentInstruments
+    globals()['CreateAssociatedIdentityRequestEntity'] = CreateAssociatedIdentityRequestEntity
+    globals()['OnboardingFormOnboardingDataAdditionalUnderwritingData'] = OnboardingFormOnboardingDataAdditionalUnderwritingData
+    globals()['OnboardingFormOnboardingDataEntity'] = OnboardingFormOnboardingDataEntity
+    globals()['OnboardingFormOnboardingDataPaymentInstruments'] = OnboardingFormOnboardingDataPaymentInstruments
+
 
 class OnboardingFormOnboardingData(ModelNormal):
     """
@@ -61,6 +71,7 @@ class OnboardingFormOnboardingData(ModelNormal):
         This must be a method because a model may have properties that are
         of type self, this must run after the class is loaded
         """
+        lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
@@ -75,11 +86,12 @@ class OnboardingFormOnboardingData(ModelNormal):
             openapi_types (dict): The key is attribute name
                 and the value is attribute type.
         """
+        lazy_import()
         return {
-            'entity': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'associated_entities': ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}],),  # noqa: E501
-            'payment_instruments': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
-            'additional_underwriting_data': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            'additional_underwriting_data': (OnboardingFormOnboardingDataAdditionalUnderwritingData,),  # noqa: E501
+            'associated_entities': ([CreateAssociatedIdentityRequestEntity],),  # noqa: E501
+            'entity': (OnboardingFormOnboardingDataEntity,),  # noqa: E501
+            'payment_instruments': (OnboardingFormOnboardingDataPaymentInstruments,),  # noqa: E501
             'max_transaction_amount': (int,),  # noqa: E501
         }
 
@@ -89,10 +101,10 @@ class OnboardingFormOnboardingData(ModelNormal):
 
 
     attribute_map = {
-        'entity': 'entity',  # noqa: E501
-        'associated_entities': 'associated_entities',  # noqa: E501
-        'payment_instruments': 'payment_instruments',  # noqa: E501
         'additional_underwriting_data': 'additional_underwriting_data',  # noqa: E501
+        'associated_entities': 'associated_entities',  # noqa: E501
+        'entity': 'entity',  # noqa: E501
+        'payment_instruments': 'payment_instruments',  # noqa: E501
         'max_transaction_amount': 'max_transaction_amount',  # noqa: E501
     }
 
@@ -137,10 +149,10 @@ class OnboardingFormOnboardingData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            entity ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): The `entity` information saved in the `Identity` of the user.. [optional]  # noqa: E501
-            associated_entities ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): The `entities` saved in the `associated_identities` of the user. For more information, see [Create an Associated Identity](/api/#operation/createAssociatedIdentity).. [optional]  # noqa: E501
-            payment_instruments ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): The `Payment Instrument` that'll be used to payout the user. For more information, see [Payouts](/guides/payouts).. [optional]  # noqa: E501
-            additional_underwriting_data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Additional underwriting data about the user.. [optional]  # noqa: E501
+            additional_underwriting_data (OnboardingFormOnboardingDataAdditionalUnderwritingData): [optional]  # noqa: E501
+            associated_entities ([CreateAssociatedIdentityRequestEntity]): The `entities` saved in the `associated_identities` of the user. For more information, see [Create an Associated Identity](/guides/onboarding/onboarding-form/#prefilling-fields).. [optional]  # noqa: E501
+            entity (OnboardingFormOnboardingDataEntity): [optional]  # noqa: E501
+            payment_instruments (OnboardingFormOnboardingDataPaymentInstruments): [optional]  # noqa: E501
             max_transaction_amount (int): Maximum amount that can be transacted for a single transaction in cents (max 12 characters). Must be equal to or less than your `max_transaction_amount`.. [optional]  # noqa: E501
         """
 
@@ -223,10 +235,10 @@ class OnboardingFormOnboardingData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            entity ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): The `entity` information saved in the `Identity` of the user.. [optional]  # noqa: E501
-            associated_entities ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): The `entities` saved in the `associated_identities` of the user. For more information, see [Create an Associated Identity](/api/#operation/createAssociatedIdentity).. [optional]  # noqa: E501
-            payment_instruments ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): The `Payment Instrument` that'll be used to payout the user. For more information, see [Payouts](/guides/payouts).. [optional]  # noqa: E501
-            additional_underwriting_data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Additional underwriting data about the user.. [optional]  # noqa: E501
+            additional_underwriting_data (OnboardingFormOnboardingDataAdditionalUnderwritingData): [optional]  # noqa: E501
+            associated_entities ([CreateAssociatedIdentityRequestEntity]): The `entities` saved in the `associated_identities` of the user. For more information, see [Create an Associated Identity](/guides/onboarding/onboarding-form/#prefilling-fields).. [optional]  # noqa: E501
+            entity (OnboardingFormOnboardingDataEntity): [optional]  # noqa: E501
+            payment_instruments (OnboardingFormOnboardingDataPaymentInstruments): [optional]  # noqa: E501
             max_transaction_amount (int): Maximum amount that can be transacted for a single transaction in cents (max 12 characters). Must be equal to or less than your `max_transaction_amount`.. [optional]  # noqa: E501
         """
 

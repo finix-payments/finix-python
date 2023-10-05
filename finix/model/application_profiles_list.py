@@ -29,10 +29,10 @@ from finix.exceptions import ApiAttributeError
 
 def lazy_import():
     from finix.model.application_profiles_list_embedded import ApplicationProfilesListEmbedded
-    from finix.model.application_profiles_list_links import ApplicationProfilesListLinks
+    from finix.model.list_links import ListLinks
     from finix.model.page_cursor import PageCursor
     globals()['ApplicationProfilesListEmbedded'] = ApplicationProfilesListEmbedded
-    globals()['ApplicationProfilesListLinks'] = ApplicationProfilesListLinks
+    globals()['ListLinks'] = ListLinks
     globals()['PageCursor'] = PageCursor
 
 
@@ -88,7 +88,7 @@ class ApplicationProfilesList(ModelNormal):
         return {
             'page': (PageCursor,),  # noqa: E501
             'embedded': (ApplicationProfilesListEmbedded,),  # noqa: E501
-            'links': (ApplicationProfilesListLinks,),  # noqa: E501
+            'links': (ListLinks,),  # noqa: E501
         }
 
     @cached_property
@@ -145,7 +145,7 @@ class ApplicationProfilesList(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             page (PageCursor): [optional]  # noqa: E501
             embedded (ApplicationProfilesListEmbedded): [optional]  # noqa: E501
-            links (ApplicationProfilesListLinks): [optional]  # noqa: E501
+            links (ListLinks): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -229,7 +229,7 @@ class ApplicationProfilesList(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             page (PageCursor): [optional]  # noqa: E501
             embedded (ApplicationProfilesListEmbedded): [optional]  # noqa: E501
-            links (ApplicationProfilesListLinks): [optional]  # noqa: E501
+            links (ListLinks): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

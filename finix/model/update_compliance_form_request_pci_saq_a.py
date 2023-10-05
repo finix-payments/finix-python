@@ -76,11 +76,11 @@ class UpdateComplianceFormRequestPciSaqA(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'ip_address': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'signed_at': (str,),  # noqa: E501
-            'user_agent': (str,),  # noqa: E501
-            'ip_address': (str,),  # noqa: E501
             'title': (str,),  # noqa: E501
+            'user_agent': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -89,11 +89,11 @@ class UpdateComplianceFormRequestPciSaqA(ModelNormal):
 
 
     attribute_map = {
+        'ip_address': 'ip_address',  # noqa: E501
         'name': 'name',  # noqa: E501
         'signed_at': 'signed_at',  # noqa: E501
-        'user_agent': 'user_agent',  # noqa: E501
-        'ip_address': 'ip_address',  # noqa: E501
         'title': 'title',  # noqa: E501
+        'user_agent': 'user_agent',  # noqa: E501
     }
 
     read_only_vars = {
@@ -137,11 +137,11 @@ class UpdateComplianceFormRequestPciSaqA(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            ip_address (str): IP address of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
             name (str): Name of the person completing (aka attesting to) the `compliance_form`.. [optional]  # noqa: E501
             signed_at (str): Timestamp of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
-            user_agent (str): User agent of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
-            ip_address (str): IP address of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
             title (str): Title or role of the person completing (aka attesting to)                 the `compliance_form`.. [optional]  # noqa: E501
+            user_agent (str): User agent of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -223,11 +223,11 @@ class UpdateComplianceFormRequestPciSaqA(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            ip_address (str): IP address of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
             name (str): Name of the person completing (aka attesting to) the `compliance_form`.. [optional]  # noqa: E501
             signed_at (str): Timestamp of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
-            user_agent (str): User agent of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
-            ip_address (str): IP address of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
             title (str): Title or role of the person completing (aka attesting to)                 the `compliance_form`.. [optional]  # noqa: E501
+            user_agent (str): User agent of the person attesting to this `compliance_form`.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

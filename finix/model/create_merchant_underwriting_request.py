@@ -57,7 +57,7 @@ class CreateMerchantUnderwritingRequest(ModelNormal):
         ('gateway',): {
             'TRIPOS_CLOUD_V1': "TRIPOS_CLOUD_V1",
             'TRIPOS_MOBILE_V1': "TRIPOS_MOBILE_V1",
-            'EXPRESS_V1': "EXPRESS_V1",
+            'DATACAP_V1': "DATACAP_V1",
         },
     }
 
@@ -147,7 +147,7 @@ class CreateMerchantUnderwritingRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            gateway (str): Name of the gateway that processes the `Merchant's` card present transactions. Use `gateway` only to enable a merchantto accept card present transactions.. [optional]  # noqa: E501
+            gateway (str): Name of the gateway that processes the `Merchant's` card present transactions. Use `gateway` only to enable a merchant to accept card present transactions.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 
@@ -234,7 +234,7 @@ class CreateMerchantUnderwritingRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            gateway (str): Name of the gateway that processes the `Merchant's` card present transactions. Use `gateway` only to enable a merchantto accept card present transactions.. [optional]  # noqa: E501
+            gateway (str): Name of the gateway that processes the `Merchant's` card present transactions. Use `gateway` only to enable a merchant to accept card present transactions.. [optional]  # noqa: E501
             tags (Tags): [optional]  # noqa: E501
         """
 
