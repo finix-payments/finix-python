@@ -1,8 +1,6 @@
 # Finix Python Library
 
-At this time, the Finix Python SDK the Finix Python SDK is not receiving regular updates or improvements. We plan on releasing a new version of our Python SDK in the near future. If you have any questions, reach out to the [Finix Support Team](mailto:support@finixpayments.com).
-
-At this time we're currently revamping our SDKs and plan to relase new features in . We encourage you to use our Payment Forms. For more information see [Payment Forms.](/guides/payments/online-payments/payment-details/payment-forms/)
+At this time, the Finix Python SDK is not receiving regular updates or improvements. We plan on releasing a new version of our Python SDK in the near future. If you have any questions, please reach out to the [Finix Support Team](mailto:support@finixpayments.com).
 
 ## Installation
 
