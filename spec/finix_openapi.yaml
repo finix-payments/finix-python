@@ -7677,11 +7677,11 @@ components:
                 processing_enabled: true
                 processor: VANTIV_V1
                 processor_details:
-                  acceptor_id: '874767464'
+                  acceptor_id: '123456789'
                   default_terminal_id: X6600507601
                   mid: '4445029863321'
-                  account_token: 811D0B76DEC8CCD1903D2772B68DA0CACA84BF56B5A6EE61EC05FE126EA63EF1B979A401
-                  account_id: '1056772'
+                  account_token: XXXXX
+                  account_id: '1111111'
                   merchant_ident_string: '4445029863321'
                   id: '193448212'
                   vantiv_merchant_id: '4445029863321'
@@ -8478,9 +8478,9 @@ components:
                       allow_debit_online: false
                       boarding_id: VGPG
                       business_type: Retail
-                      vantiv_sftp_username: VGPGSFTP
-                      vantiv_sftp_password: ca7Abrug
-                      vantiv_chain_number: '0X6600'
+                      vantiv_sftp_username: user
+                      vantiv_sftp_password: password
+                      vantiv_chain_number: '0X1234'
                       vantiv_license: VANTIV license="6ad47..."
                       check_for_duplicate_transactions: 'Yes'
                       username: FINIXNEW
@@ -8493,12 +8493,12 @@ components:
                       reports_sftp_username: username
                       reports_sftp_password: password
                       ach_immediate_destination_name: null
-                      sftp_username: finixv12txn
-                      sftp_password: 4J7Lp9Xq
-                      tp_application_name: express.chris
+                      sftp_username: user
+                      sftp_password: password
+                      tp_application_name: express.test
                       tp_application_id: null
-                      tp_application_version: '1.0'
-                      tp_authorization: Version=2.0
+                      tp_application_version: 'X.X'
+                      tp_authorization: Version=X.X
                       tp_base_url: https://triposcert.vantiv.com/
                       ep_transaction_url: null
                       ep_reporting_url: null
